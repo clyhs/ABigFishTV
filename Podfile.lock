@@ -1,0 +1,111 @@
+PODS:
+  - AFNetworking (2.5.4):
+    - AFNetworking/NSURLConnection (= 2.5.4)
+    - AFNetworking/NSURLSession (= 2.5.4)
+    - AFNetworking/Reachability (= 2.5.4)
+    - AFNetworking/Security (= 2.5.4)
+    - AFNetworking/Serialization (= 2.5.4)
+    - AFNetworking/UIKit (= 2.5.4)
+  - AFNetworking/NSURLConnection (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.4)
+  - AFNetworking/Security (2.5.4)
+  - AFNetworking/Serialization (2.5.4)
+  - AFNetworking/UIKit (2.5.4):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - AGEmojiKeyboard (0.2.1)
+  - ASIHTTPRequest (1.8.2):
+    - ASIHTTPRequest/ASIWebPageRequest (= 1.8.2)
+    - ASIHTTPRequest/CloudFiles (= 1.8.2)
+    - ASIHTTPRequest/Core (= 1.8.2)
+    - ASIHTTPRequest/S3 (= 1.8.2)
+  - ASIHTTPRequest/ASIWebPageRequest (1.8.2):
+    - ASIHTTPRequest/Core
+  - ASIHTTPRequest/CloudFiles (1.8.2):
+    - ASIHTTPRequest/Core
+  - ASIHTTPRequest/Core (1.8.2):
+    - Reachability
+  - ASIHTTPRequest/S3 (1.8.2):
+    - ASIHTTPRequest/Core
+  - DACircularProgress (2.3.1)
+  - FDFullscreenPopGesture (1.1)
+  - JHUD (0.3.0)
+  - Masonry (1.0.2)
+  - MBProgressHUD (0.9.2)
+  - MJExtension (3.0.13)
+  - MJRefresh (3.1.9)
+  - MWPhotoBrowser (2.1.1):
+    - DACircularProgress (~> 2.3)
+    - MBProgressHUD (~> 0.9)
+    - SDWebImage (!= 3.7.2, ~> 3.7)
+  - MXParallaxHeader (0.6.1)
+  - MyLayout (1.4.2)
+  - Reachability (3.2)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
+  - SDCycleScrollView (1.65):
+    - SDWebImage (~> 3.7)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
+  - SGQRCode (2.1.8)
+  - TZImagePickerController (1.9.3)
+  - ZFDownload (1.0.2):
+    - ASIHTTPRequest
+
+DEPENDENCIES:
+  - AFNetworking (= 2.5.4)
+  - AGEmojiKeyboard
+  - FDFullscreenPopGesture (= 1.1)
+  - JHUD
+  - Masonry
+  - MBProgressHUD (~> 0.9)
+  - MJExtension
+  - MJRefresh (= 3.1.9)
+  - MWPhotoBrowser (= 2.1.1)
+  - MXParallaxHeader
+  - MyLayout (= 1.4.2)
+  - ReactiveCocoa (= 2.5)
+  - SDCycleScrollView
+  - SDWebImage (~> 3.7.3)
+  - SGQRCode
+  - TZImagePickerController
+  - ZFDownload
+
+SPEC CHECKSUMS:
+  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  AGEmojiKeyboard: d5a01a4b0de30e1f1c2a121503ac36a79c7217ab
+  ASIHTTPRequest: ec013992946676b7978dcbde6396d57312d21db4
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  JHUD: 17650f65045d9843a7ad19f6a0b1eac6c78a45d2
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  MJRefresh: c5f1f1653e5a1b932c90f78074f2bc86f3f9bd5e
+  MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
+  MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
+  MyLayout: 90df5544cdadb00a52873cb9a95c04d7083a81c1
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  SGQRCode: 989df341fb231fc7bf7e82316de2fc8de2961e10
+  TZImagePickerController: 079ab986018c22793462e531045a75e366b18252
+  ZFDownload: a52f94ebb080833b8a8ceb19a409f2941343fe7f
+
+PODFILE CHECKSUM: f1250a0e8523144c20c0fd8f804cfdff0969d9a8
+
+COCOAPODS: 1.4.0

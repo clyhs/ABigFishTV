@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>上传头像</string>
+		<key>icon</key>
+		<string>icon_mprofile</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>修改密码</string>
+		<key>icon</key>
+		<string>icon_mpass</string>
+	</dict>
+	<dict>
+		<key>icon</key>
+		<string>icon_fk</string>
+		<key>name</key>
+		<string>反馈</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>离线下载</string>
+		<key>icon</key>
+		<string>icon_download</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>清理缓存</string>
+		<key>icon</key>
+		<string>icon_cache</string>
+	</dict>
+</array>
+</plist>
