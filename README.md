@@ -1,7 +1,7 @@
 # ABigFishTV
 
 
-![](images/home.png =200)
+![image](images/home.png)
 ![image](images/video.png)
 ![image](images/found.png)
 ![image](images/me.png)
