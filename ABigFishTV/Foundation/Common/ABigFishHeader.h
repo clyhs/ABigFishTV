@@ -32,7 +32,7 @@
 
 #define FONTNAME @"HelveticaNeue"
 
-#define BaseUrl @"www.***.com"
+#define BaseUrl @"http://webapi.abigfish.org"
 #define TVListUrl @"/api/tv/page/2"
 #define TVIndexUrl @"/api/tv/index"
 #define TVUpdatehitUrl @"/api/tv/updatehit/"

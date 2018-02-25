@@ -1,7 +1,13 @@
 # ABigFishTV
-
-### 技术点
+##大鱼TV
+* 主要包括电视台直播（电影，地方台，央视，卫视，网络台等）
+* 发表微博
+* 发现，搜索
+＊会员登录
+### 引用第三方技术包括：
 1.ijkplayer
+2.sharesdk分享，登录
+3.其他等
 
 <div align="center">
 <img src="https://github.com/clyhs/ABigFishTV/blob/master/images/home.png" width="250" style="margin:10px 10px;" >
