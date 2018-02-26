@@ -1,13 +1,15 @@
 # ABigFishTV
+* 采用纯代码方式开发，参考网上很多例子，这里不一一列出。
 ## 大鱼TV
 * 主要包括电视台直播（电影，地方台，央视，卫视，网络台等）
 * 发表微博
 * 发现，搜索
-＊会员登录
+* 会员登录
+* 评论
 ### 引用第三方技术包括：
 * ijkplayer
 * sharesdk分享，登录
-* 其他等
+* Masonry等
 
 ### 后台服务采用THINKPHP5写的，
 * 地址：<a href="https://github.com/clyhs/webapi">webapi</a>
