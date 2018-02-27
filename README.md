@@ -20,7 +20,7 @@
 * 地址：<a href="https://github.com/clyhs/webapi">webapi</a>
 
 ### 更换APP服务地址
-* 在ABigFishTV/Foundation/Common/ABigFishHeader.h的 #define BaseUrl @"www.***.com"
+* 在ABigFishTV/Foundation/Common/ABigFishHeader.h的 #define BaseUrl @"http://webapi.abigfish.org"
 ### 效果图
 <div align="center">
 <img src="https://github.com/clyhs/ABigFishTV/blob/master/images/home.png" width="250" style="margin:10px 10px;" >
