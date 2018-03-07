@@ -26,6 +26,13 @@
 #import "WeiboSDK.h"
 //新浪微博SDK需要在项目Build Settings中的Other Linker Flags添加"-ObjC"
 
+#import <UMCommon/UMCommon.h>           // 公共组件是所有友盟产品的基础组件，必选
+#import <UMAnalytics/MobClick.h>        // 统计组件
+//#import <UMShare/UMShare.h>    // 分享组件
+#import <UMPush/UMessage.h>             // Push组件
+#import <UserNotifications/UserNotifications.h>  // Push组件必须的系统库
+#import <UMErrorCatch/UMErrorCatch.h>
+
 @interface AppDelegate ()
 
 @end
@@ -106,6 +113,26 @@
                  break;
          }
      }];
+    
+    
+    [UMConfigure initWithAppkey:@"5a9fef97f29d984356000310" channel:@"App Store"];
+    [UMErrorCatch initErrorCatch];
+    
+    [MobClick setScenarioType:E_UM_NORMAL];
+    
+    // Push组件基本功能配置
+    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+    UMessageRegisterEntity * entity = [[UMessageRegisterEntity alloc] init];
+    //type是对推送的几个参数的选择，可以选择一个或者多个。默认是三个全部打开，即：声音，弹窗，角标等
+    entity.types = UMessageAuthorizationOptionBadge|UMessageAuthorizationOptionAlert;
+    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+    [UMessage registerForRemoteNotificationsWithLaunchOptions:launchOptions Entity:entity completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        if (granted) {
+            // 用户选择了接收Push消息
+        }else{
+            // 用户拒绝接收Push消息
+        }
+    }];
     
     
     

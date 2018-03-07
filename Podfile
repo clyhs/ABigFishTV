@@ -20,4 +20,10 @@ pod 'ZFDownload'
 pod 'SDCycleScrollView'
 #pod 'FlyImage'
 
+pod 'UMCCommon'
+pod 'UMCSecurityPlugins'
+pod 'UMCAnalytics'
+pod 'UMCPush'
+pod 'UMCErrorCatch'
+
 end
