@@ -50,6 +50,7 @@
     _playtitleLab = [[UILabel alloc] init];
     _playtitleLab.backgroundColor = [UIColor clearColor];
     _playtitleLab.textColor = [UIColor lightGrayColor];
+    _playtitleLab.font = [UIFont systemFontOfSize:14];
     _playtitleLab.textAlignment =NSTextAlignmentLeft;
     [self addSubview:_playtitleLab];
 }
@@ -136,7 +137,7 @@
     
     [_playtitleLab mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self.playImageView.mas_right).offset(10);
-        make.top.equalTo(self).offset(45);
+        make.top.equalTo(self).offset(35);
         make.right.equalTo(self).offset(-10);
         make.height.mas_equalTo(20);
     }];

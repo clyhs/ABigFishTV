@@ -198,8 +198,8 @@
         make.height.mas_equalTo(20);
     }];
     [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make){
-        make.right.equalTo(self.topView).offset(-10);
-        make.top.equalTo(self.topView).offset(10);
+        make.right.equalTo(self.topView).offset(-5);
+        make.top.equalTo(self.topView).offset(5);
         make.width.height.mas_equalTo(40);
     }];
     [_bottomLine mas_makeConstraints:^(MASConstraintMaker *make){

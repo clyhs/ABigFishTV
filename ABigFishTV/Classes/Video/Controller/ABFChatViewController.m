@@ -304,20 +304,20 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 40.0f;
+    return 1.0f;
 }
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
     
     if(velocity.y>0)
     {
         [UIView animateWithDuration:0.5 animations:^{
-            _commentToolView.alpha = 1;
+            _commentToolView.alpha = 0;
         }];
     }
     else
     {
         [UIView animateWithDuration:0.5 animations:^{
-            _commentToolView.alpha = 0;
+            _commentToolView.alpha = 1;
         }];
     }
     
