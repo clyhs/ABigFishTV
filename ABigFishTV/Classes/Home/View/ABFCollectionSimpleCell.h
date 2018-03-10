@@ -25,6 +25,8 @@
 
 @property(nonatomic,strong) UILabel *playtitleLab;
 
+@property(nonatomic,strong) UILabel *nexttitleLab;
+
 @property(nonatomic,strong) ABFTelevisionInfo *model;
 
 

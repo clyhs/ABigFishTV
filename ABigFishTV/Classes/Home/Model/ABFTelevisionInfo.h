@@ -33,6 +33,7 @@
 @property(nonatomic,assign) NSInteger icon_height;
 @property(nonatomic,assign) NSInteger hit;
 @property(nonatomic,copy)   NSString  *playtitle;
+@property(nonatomic,copy)   NSString  *nexttitle;
 @property(nonatomic,assign) NSInteger commentNum;
 @property(nonatomic,copy)   NSString  *goodNum;
 

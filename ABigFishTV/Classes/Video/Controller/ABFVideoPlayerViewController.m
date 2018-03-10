@@ -7,7 +7,6 @@
 //
 
 #import "ABFVideoPlayerViewController.h"
-#import "LMPlayer.h"
 #import "ABFHttpManager.h"
 #import <AVFoundation/AVFoundation.h>
 #import "TitleLineLabel.h"
@@ -31,11 +30,11 @@
 #import <ZFDownload/ZFDownloadManager.h>
 #import "UINavigationController+FDFullscreenPopGesture.h"
 
-@interface ABFVideoPlayerViewController ()<LMVideoPlayerDelegate,ABFCommentDelegate,ABFCommentTFDelegate,ABFCommentViewCellDelegate,UITableViewDelegate,UITableViewDataSource,ABFPlayerDelegate,UITextViewDelegate>
+@interface ABFVideoPlayerViewController ()<ABFCommentDelegate,ABFCommentTFDelegate,ABFCommentViewCellDelegate,UITableViewDelegate,UITableViewDataSource,ABFPlayerDelegate,UITextViewDelegate>
 
 /** 状态栏的背景 */
 @property (nonatomic, strong) UIView *topView;
-@property (nonatomic, strong) LMVideoPlayer *player;
+//@property (nonatomic, strong) LMVideoPlayer *player;
 @property (nonatomic, strong) UIView *playerFatherView;
 //@property (nonatomic, strong) LMPlayerModel *playerModel;
 

@@ -58,7 +58,13 @@
 #define UserGetGoodUrl @"/api/user/getgood/"
 #define UserRegisterUrl @"/api/user/registerforother"
 
+#define LM_SCREEN_WIDTH   [[UIScreen mainScreen] bounds].size.width
+#define LM_SCREEN_HEIGHT  [[UIScreen mainScreen] bounds].size.height
+#define LM_SCREEN_BOUNDS  [UIScreen mainScreen].bounds
 
+#define SCREEN_MAX_LENGTH (MAX(LM_SCREEN_WIDTH, LM_SCREEN_HEIGHT))
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_IPHONE_4  (IS_IPHONE && SCREEN_MAX_LENGTH == 480.0)
 
 
 

@@ -49,10 +49,17 @@
     
     _playtitleLab = [[UILabel alloc] init];
     _playtitleLab.backgroundColor = [UIColor clearColor];
-    _playtitleLab.textColor = [UIColor lightGrayColor];
+    _playtitleLab.textColor = COMMON_COLOR;
     _playtitleLab.font = [UIFont systemFontOfSize:14];
     _playtitleLab.textAlignment =NSTextAlignmentLeft;
     [self addSubview:_playtitleLab];
+    
+    _nexttitleLab = [[UILabel alloc] init];
+    _nexttitleLab.backgroundColor = [UIColor clearColor];
+    _nexttitleLab.textColor = [UIColor lightGrayColor];
+    _nexttitleLab.font = [UIFont systemFontOfSize:14];
+    _nexttitleLab.textAlignment =NSTextAlignmentLeft;
+    [self addSubview:_nexttitleLab];
 }
 
 -(void)addPlayerImageView{
@@ -113,7 +120,8 @@
     _model = model;
     [_playImageView sd_setImageWithURL:[NSURL URLWithString:model.bg] placeholderImage:[UIImage imageNamed:@""]];
     _hitLab.text =[NSString stringWithFormat:@"%ld",_model.hit] ;
-    _playtitleLab.text = model.playtitle;
+    _playtitleLab.text = [NSString stringWithFormat:@"正播：%@",model.playtitle];
+    _nexttitleLab.text =[NSString stringWithFormat:@"接下来：%@",model.nexttitle];
     
 }
 
@@ -138,6 +146,12 @@
     [_playtitleLab mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self.playImageView.mas_right).offset(10);
         make.top.equalTo(self).offset(35);
+        make.right.equalTo(self).offset(-10);
+        make.height.mas_equalTo(20);
+    }];
+    [_nexttitleLab mas_makeConstraints:^(MASConstraintMaker *make){
+        make.left.equalTo(self.playImageView.mas_right).offset(10);
+        make.top.equalTo(self).offset(55);
         make.right.equalTo(self).offset(-10);
         make.height.mas_equalTo(20);
     }];

@@ -7,7 +7,6 @@
 //
 
 #import "ABFPlayerViewController.h"
-#import "LMPlayer.h"
 #import "ABFHttpManager.h"
 #import <AVFoundation/AVFoundation.h>
 #import "TitleLineLabel.h"
@@ -25,7 +24,7 @@
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import "BRPlaceholderTextView.h"
 
-@interface ABFPlayerViewController ()<LMVideoPlayerDelegate,UIScrollViewDelegate,ABFCommentDelegate,ABFCommentTFDelegate,ABFPListViewDelegate,ABFPlayerDelegate,UITextViewDelegate>
+@interface ABFPlayerViewController ()<UIScrollViewDelegate,ABFCommentDelegate,ABFCommentTFDelegate,ABFPListViewDelegate,ABFPlayerDelegate,UITextViewDelegate>
 
 /** 状态栏的背景 */
 @property (nonatomic, strong) UIView *topView;
