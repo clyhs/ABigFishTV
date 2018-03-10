@@ -162,6 +162,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
         self.menuView.alpha = 0;
         self.typeView.alpha = 0;
         self.downLoadBtn.alpha = 0;
+        self.cutBtn.hidden = YES;
         self.downLoadBtn.hidden     = YES;
         self.resolutionBtn.hidden   = YES;
         self.bottomProgressHidden   = NO;
@@ -314,7 +315,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     [self.typeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(40);
         make.height.mas_equalTo(49);
-        make.right.equalTo(self.cutBtn.mas_left).offset(-10);
+        make.right.equalTo(self.menuBtn.mas_left).offset(-20);
         make.centerY.equalTo(self.backBtn.mas_centerY);
     }];
     
