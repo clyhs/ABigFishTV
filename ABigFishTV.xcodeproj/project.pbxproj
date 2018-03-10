@@ -24,8 +24,6 @@
 		7200E4291FE3F86700944F1A /* MMMaterialDesignSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 7200E4281FE3F86700944F1A /* MMMaterialDesignSpinner.m */; };
 		7200E42D1FE3F8D600944F1A /* ABFPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7200E42C1FE3F8D600944F1A /* ABFPlayerView.m */; };
 		72018B601F9E32AB00E04EC5 /* ABFChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72018B5F1F9E32AB00E04EC5 /* ABFChannelListViewController.m */; };
-		72018B631F9E385900E04EC5 /* NavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72018B621F9E385900E04EC5 /* NavigationBarView.m */; };
-		72022D631F7D43100069F65B /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72022D621F7D43100069F65B /* LoadingView.m */; };
 		7203C7411FCC2FDC002215D5 /* BRPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7203C7401FCC2FDC002215D5 /* BRPlaceholderTextView.m */; };
 		7203C7501FCC3225002215D5 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 7203C7441FCC3225002215D5 /* close.png */; };
 		7203C7511FCC3225002215D5 /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7203C7451FCC3225002215D5 /* close@2x.png */; };
@@ -88,9 +86,19 @@
 		721208CB1FC1BF3A004ADC28 /* ABFRightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 721208CA1FC1BF3A004ADC28 /* ABFRightTableViewCell.m */; };
 		72130B671FBC733D0083D1DD /* ABFSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72130B661FBC733D0083D1DD /* ABFSearchViewController.m */; };
 		72136B941FC5CA3C00BAA470 /* ABFPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72136B931FC5CA3C00BAA470 /* ABFPhotoViewController.m */; };
-		721A29BB1FB8945600E72A50 /* ABFMJRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 721A29BA1FB8945600E72A50 /* ABFMJRefreshGifHeader.m */; };
+		72176837205418AF008312BC /* NSDate+ABFDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 72176836205418AF008312BC /* NSDate+ABFDate.m */; };
+		7217684A20541DC9008312BC /* ABFCommentTFView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217683B20541DC9008312BC /* ABFCommentTFView.m */; };
+		7217684B20541DC9008312BC /* ABFCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217683D20541DC9008312BC /* ABFCommentView.m */; };
+		7217684C20541DC9008312BC /* ABFCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217683F20541DC9008312BC /* ABFCommentViewCell.m */; };
+		7217684D20541DC9008312BC /* ABFMJRefreshGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217684120541DC9008312BC /* ABFMJRefreshGifFooter.m */; };
+		7217684E20541DC9008312BC /* ABFMJRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217684320541DC9008312BC /* ABFMJRefreshGifHeader.m */; };
+		7217684F20541DC9008312BC /* ABFNavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217684520541DC9008312BC /* ABFNavigationBarView.m */; };
+		7217685020541DC9008312BC /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217684720541DC9008312BC /* LoadingView.m */; };
+		7217685120541DC9008312BC /* NavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217684920541DC9008312BC /* NavigationBarView.m */; };
+		7217685620541DF4008312BC /* TitleHeaderSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217685320541DF4008312BC /* TitleHeaderSectionView.m */; };
+		7217685720541DF4008312BC /* TitleLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217685520541DF4008312BC /* TitleLineLabel.m */; };
+		7217685C20541F5B008312BC /* ABFDateItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217685B20541F5B008312BC /* ABFDateItemModel.m */; };
 		721D5B921FB1D979004FD4AF /* ABFCommentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 721D5B911FB1D979004FD4AF /* ABFCommentInfo.m */; };
-		721D5B951FB1DB5A004FD4AF /* ABFCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 721D5B941FB1DB5A004FD4AF /* ABFCommentViewCell.m */; };
 		7226604F1F8E6B4400BDB357 /* ABFVideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7226604E1F8E6B4400BDB357 /* ABFVideoListViewController.m */; };
 		722660511F8E6BE800BDB357 /* menus.plist in Resources */ = {isa = PBXBuildFile; fileRef = 722660501F8E6BE800BDB357 /* menus.plist */; };
 		7226BAB11FBDCFA80028835E /* ABFProvNaviViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7226BAB01FBDCFA80028835E /* ABFProvNaviViewController.m */; };
@@ -116,7 +124,6 @@
 		724573651F9CC4B900AEE86E /* ABFCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 724573641F9CC4B900AEE86E /* ABFCollectionViewCell.m */; };
 		724A7D5B1FC857F000706B87 /* ABFChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A7D5A1FC857F000706B87 /* ABFChatViewController.m */; };
 		724A7D5E1FC85FF000706B87 /* ABFChatHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A7D5D1FC85FF000706B87 /* ABFChatHeaderView.m */; };
-		724B1D3F1FB5F5C200769CB7 /* ABFNavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 724B1D3E1FB5F5C200769CB7 /* ABFNavigationBarView.m */; };
 		724B1D431FB6051F00769CB7 /* ABFUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 724B1D421FB6051F00769CB7 /* ABFUserInfo.m */; };
 		724D09991FB9C9B300906436 /* ABFHomeTopCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 724D09981FB9C9B300906436 /* ABFHomeTopCollectionReusableView.m */; };
 		724D09A21FB9E62A00906436 /* ABFRegionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 724D09A11FB9E62A00906436 /* ABFRegionInfo.m */; };
@@ -128,7 +135,6 @@
 		7259D69C1FC305170094CEA5 /* ABFNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259D69B1FC305170094CEA5 /* ABFNoticeController.m */; };
 		7259D69F1FC3065B0094CEA5 /* ABFNoticeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259D69E1FC3065B0094CEA5 /* ABFNoticeInfo.m */; };
 		7259D6A21FC307330094CEA5 /* ABFNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259D6A11FC307330094CEA5 /* ABFNoticeCell.m */; };
-		7259D6A51FC30BC90094CEA5 /* ABFMJRefreshGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259D6A41FC30BC90094CEA5 /* ABFMJRefreshGifFooter.m */; };
 		725E7F1D1FB6EA59007D5C87 /* ABFChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 725E7F1C1FB6EA59007D5C87 /* ABFChatViewCell.m */; };
 		725E7F201FB6EA7F007D5C87 /* ABFChatInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 725E7F1F1FB6EA7F007D5C87 /* ABFChatInfo.m */; };
 		725E7F231FB6EBB2007D5C87 /* ABFInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 725E7F221FB6EBB2007D5C87 /* ABFInfo.m */; };
@@ -173,13 +179,9 @@
 		72689EC61FD82F810068FBA1 /* ABFFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72689EC51FD82F810068FBA1 /* ABFFriendsViewController.m */; };
 		72689EC91FD832D30068FBA1 /* ABFFriendTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 72689EC81FD832D30068FBA1 /* ABFFriendTableCell.m */; };
 		7270F0401FC93CD7009F83EC /* ABFChatHeaderSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7270F03F1FC93CD7009F83EC /* ABFChatHeaderSectionView.m */; };
-		7270F0431FC9403D009F83EC /* ABFCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7270F0421FC9403D009F83EC /* ABFCommentView.m */; };
-		7270F0461FC95131009F83EC /* ABFCommentTFView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7270F0451FC95131009F83EC /* ABFCommentTFView.m */; };
 		7270F04A1FC95E61009F83EC /* ABFCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7270F0491FC95E61009F83EC /* ABFCacheManager.m */; };
 		728E5A541FDD2EF600E034DB /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 728E5A531FDD2EF600E034DB /* UIView+Extension.m */; };
 		72C2C3371F7BEDFE00BDC850 /* tvTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72C2C3361F7BEDFE00BDC850 /* tvTypes.plist */; };
-		72C2C33B1F7BF39F00BDC850 /* TitleLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2C33A1F7BF39F00BDC850 /* TitleLineLabel.m */; };
-		72D86E601F9B717300D0FBC9 /* TitleHeaderSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D86E5F1F9B717300D0FBC9 /* TitleHeaderSectionView.m */; };
 		72FC5E2C1FAB5704001C8DCA /* ABFPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FC5E2B1FAB5704001C8DCA /* ABFPlayerViewController.m */; };
 		72FC5E2F1FAB5883001C8DCA /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FC5E2E1FAB5883001C8DCA /* UIColor+Hex.m */; };
 		72FE991E1F90F9E500F64005 /* channels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72FE991D1F90F9E500F64005 /* channels.plist */; };
@@ -241,10 +243,6 @@
 		7200E42C1FE3F8D600944F1A /* ABFPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFPlayerView.m; path = Classes/Video/View/ABFPlayerView.m; sourceTree = "<group>"; };
 		72018B5E1F9E32AB00E04EC5 /* ABFChannelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFChannelListViewController.h; path = Classes/Home/Controller/ABFChannelListViewController.h; sourceTree = "<group>"; };
 		72018B5F1F9E32AB00E04EC5 /* ABFChannelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFChannelListViewController.m; path = Classes/Home/Controller/ABFChannelListViewController.m; sourceTree = "<group>"; };
-		72018B611F9E385900E04EC5 /* NavigationBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigationBarView.h; path = Foundation/View/NavigationBarView.h; sourceTree = "<group>"; };
-		72018B621F9E385900E04EC5 /* NavigationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NavigationBarView.m; path = Foundation/View/NavigationBarView.m; sourceTree = "<group>"; };
-		72022D611F7D43100069F65B /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingView.h; path = Foundation/View/LoadingView.h; sourceTree = "<group>"; };
-		72022D621F7D43100069F65B /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingView.m; path = Foundation/View/LoadingView.m; sourceTree = "<group>"; };
 		7203C73F1FCC2FDC002215D5 /* BRPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BRPlaceholderTextView.h; path = Lib/PlaceholderTextView/BRPlaceholderTextView.h; sourceTree = "<group>"; };
 		7203C7401FCC2FDC002215D5 /* BRPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BRPlaceholderTextView.m; path = Lib/PlaceholderTextView/BRPlaceholderTextView.m; sourceTree = "<group>"; };
 		7203C7441FCC3225002215D5 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = close.png; path = Lib/images/close.png; sourceTree = "<group>"; };
@@ -328,7 +326,6 @@
 		720B0E131F767CC7005F30FA /* ABFMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFMineViewController.m; path = Classes/Mine/Controller/ABFMineViewController.m; sourceTree = "<group>"; };
 		720B0E151F767DF8005F30FA /* ABFNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFNavigationController.h; path = Classes/Main/Controller/ABFNavigationController.h; sourceTree = "<group>"; };
 		720B0E161F767DF8005F30FA /* ABFNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFNavigationController.m; path = Classes/Main/Controller/ABFNavigationController.m; sourceTree = "<group>"; };
-		720B0E1A1F76B179005F30FA /* ABigFishHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ABigFishHeader.h; path = Foundation/Common/ABigFishHeader.h; sourceTree = "<group>"; };
 		720BBEAF1FD573D8006C6439 /* NSString+Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Emoji.h"; path = "Foundation/Category/NSString+Emoji.h"; sourceTree = "<group>"; };
 		720BBEB01FD573D8006C6439 /* NSString+Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Emoji.m"; path = "Foundation/Category/NSString+Emoji.m"; sourceTree = "<group>"; };
 		720FE39B1FCAE26F0038B6CA /* ABFChatToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFChatToolBar.h; path = Classes/Chat/View/ABFChatToolBar.h; sourceTree = "<group>"; };
@@ -344,12 +341,33 @@
 		72130B661FBC733D0083D1DD /* ABFSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFSearchViewController.m; path = Classes/Other/Controller/ABFSearchViewController.m; sourceTree = "<group>"; };
 		72136B921FC5CA3C00BAA470 /* ABFPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFPhotoViewController.h; path = Classes/Video/Controller/ABFPhotoViewController.h; sourceTree = "<group>"; };
 		72136B931FC5CA3C00BAA470 /* ABFPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFPhotoViewController.m; path = Classes/Video/Controller/ABFPhotoViewController.m; sourceTree = "<group>"; };
-		721A29B91FB8945600E72A50 /* ABFMJRefreshGifHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFMJRefreshGifHeader.h; path = Foundation/View/ABFMJRefreshGifHeader.h; sourceTree = "<group>"; };
-		721A29BA1FB8945600E72A50 /* ABFMJRefreshGifHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFMJRefreshGifHeader.m; path = Foundation/View/ABFMJRefreshGifHeader.m; sourceTree = "<group>"; };
+		72176835205418AF008312BC /* NSDate+ABFDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+ABFDate.h"; path = "Foundation/Category/NSDate+ABFDate.h"; sourceTree = "<group>"; };
+		72176836205418AF008312BC /* NSDate+ABFDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+ABFDate.m"; path = "Foundation/Category/NSDate+ABFDate.m"; sourceTree = "<group>"; };
+		7217683A20541DC9008312BC /* ABFCommentTFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCommentTFView.h; path = Foundation/View/Common/ABFCommentTFView.h; sourceTree = "<group>"; };
+		7217683B20541DC9008312BC /* ABFCommentTFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFCommentTFView.m; path = Foundation/View/Common/ABFCommentTFView.m; sourceTree = "<group>"; };
+		7217683C20541DC9008312BC /* ABFCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCommentView.h; path = Foundation/View/Common/ABFCommentView.h; sourceTree = "<group>"; };
+		7217683D20541DC9008312BC /* ABFCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFCommentView.m; path = Foundation/View/Common/ABFCommentView.m; sourceTree = "<group>"; };
+		7217683E20541DC9008312BC /* ABFCommentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCommentViewCell.h; path = Foundation/View/Common/ABFCommentViewCell.h; sourceTree = "<group>"; };
+		7217683F20541DC9008312BC /* ABFCommentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFCommentViewCell.m; path = Foundation/View/Common/ABFCommentViewCell.m; sourceTree = "<group>"; };
+		7217684020541DC9008312BC /* ABFMJRefreshGifFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFMJRefreshGifFooter.h; path = Foundation/View/Common/ABFMJRefreshGifFooter.h; sourceTree = "<group>"; };
+		7217684120541DC9008312BC /* ABFMJRefreshGifFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFMJRefreshGifFooter.m; path = Foundation/View/Common/ABFMJRefreshGifFooter.m; sourceTree = "<group>"; };
+		7217684220541DC9008312BC /* ABFMJRefreshGifHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFMJRefreshGifHeader.h; path = Foundation/View/Common/ABFMJRefreshGifHeader.h; sourceTree = "<group>"; };
+		7217684320541DC9008312BC /* ABFMJRefreshGifHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFMJRefreshGifHeader.m; path = Foundation/View/Common/ABFMJRefreshGifHeader.m; sourceTree = "<group>"; };
+		7217684420541DC9008312BC /* ABFNavigationBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFNavigationBarView.h; path = Foundation/View/Common/ABFNavigationBarView.h; sourceTree = "<group>"; };
+		7217684520541DC9008312BC /* ABFNavigationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFNavigationBarView.m; path = Foundation/View/Common/ABFNavigationBarView.m; sourceTree = "<group>"; };
+		7217684620541DC9008312BC /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingView.h; path = Foundation/View/Common/LoadingView.h; sourceTree = "<group>"; };
+		7217684720541DC9008312BC /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingView.m; path = Foundation/View/Common/LoadingView.m; sourceTree = "<group>"; };
+		7217684820541DC9008312BC /* NavigationBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigationBarView.h; path = Foundation/View/Common/NavigationBarView.h; sourceTree = "<group>"; };
+		7217684920541DC9008312BC /* NavigationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NavigationBarView.m; path = Foundation/View/Common/NavigationBarView.m; sourceTree = "<group>"; };
+		7217685220541DF4008312BC /* TitleHeaderSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TitleHeaderSectionView.h; path = Foundation/View/Common/TitleHeaderSectionView.h; sourceTree = "<group>"; };
+		7217685320541DF4008312BC /* TitleHeaderSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TitleHeaderSectionView.m; path = Foundation/View/Common/TitleHeaderSectionView.m; sourceTree = "<group>"; };
+		7217685420541DF4008312BC /* TitleLineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TitleLineLabel.h; path = Foundation/View/Common/TitleLineLabel.h; sourceTree = "<group>"; };
+		7217685520541DF4008312BC /* TitleLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TitleLineLabel.m; path = Foundation/View/Common/TitleLineLabel.m; sourceTree = "<group>"; };
+		7217685820541E14008312BC /* ABigFishHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABigFishHeader.h; path = Foundation/Header/ABigFishHeader.h; sourceTree = "<group>"; };
+		7217685A20541F5B008312BC /* ABFDateItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFDateItemModel.h; path = Foundation/Model/ABFDateItemModel.h; sourceTree = "<group>"; };
+		7217685B20541F5B008312BC /* ABFDateItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFDateItemModel.m; path = Foundation/Model/ABFDateItemModel.m; sourceTree = "<group>"; };
 		721D5B901FB1D979004FD4AF /* ABFCommentInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCommentInfo.h; path = Foundation/Model/ABFCommentInfo.h; sourceTree = "<group>"; };
 		721D5B911FB1D979004FD4AF /* ABFCommentInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFCommentInfo.m; path = Foundation/Model/ABFCommentInfo.m; sourceTree = "<group>"; };
-		721D5B931FB1DB5A004FD4AF /* ABFCommentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCommentViewCell.h; path = Foundation/View/ABFCommentViewCell.h; sourceTree = "<group>"; };
-		721D5B941FB1DB5A004FD4AF /* ABFCommentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFCommentViewCell.m; path = Foundation/View/ABFCommentViewCell.m; sourceTree = "<group>"; };
 		7226604D1F8E6B4400BDB357 /* ABFVideoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFVideoListViewController.h; path = Classes/Video/Controller/ABFVideoListViewController.h; sourceTree = "<group>"; };
 		7226604E1F8E6B4400BDB357 /* ABFVideoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFVideoListViewController.m; path = Classes/Video/Controller/ABFVideoListViewController.m; sourceTree = "<group>"; };
 		722660501F8E6BE800BDB357 /* menus.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = menus.plist; sourceTree = "<group>"; };
@@ -391,8 +409,6 @@
 		724A7D5A1FC857F000706B87 /* ABFChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFChatViewController.m; path = Classes/Video/Controller/ABFChatViewController.m; sourceTree = "<group>"; };
 		724A7D5C1FC85FF000706B87 /* ABFChatHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFChatHeaderView.h; path = Classes/Video/View/ABFChatHeaderView.h; sourceTree = "<group>"; };
 		724A7D5D1FC85FF000706B87 /* ABFChatHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFChatHeaderView.m; path = Classes/Video/View/ABFChatHeaderView.m; sourceTree = "<group>"; };
-		724B1D3D1FB5F5C200769CB7 /* ABFNavigationBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFNavigationBarView.h; path = Foundation/View/ABFNavigationBarView.h; sourceTree = "<group>"; };
-		724B1D3E1FB5F5C200769CB7 /* ABFNavigationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFNavigationBarView.m; path = Foundation/View/ABFNavigationBarView.m; sourceTree = "<group>"; };
 		724B1D411FB6051F00769CB7 /* ABFUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFUserInfo.h; path = Classes/Mine/Model/ABFUserInfo.h; sourceTree = "<group>"; };
 		724B1D421FB6051F00769CB7 /* ABFUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFUserInfo.m; path = Classes/Mine/Model/ABFUserInfo.m; sourceTree = "<group>"; };
 		724D09971FB9C9B300906436 /* ABFHomeTopCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFHomeTopCollectionReusableView.h; path = Classes/Home/View/ABFHomeTopCollectionReusableView.h; sourceTree = "<group>"; };
@@ -413,8 +429,6 @@
 		7259D69E1FC3065B0094CEA5 /* ABFNoticeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFNoticeInfo.m; path = Classes/Mine/Model/ABFNoticeInfo.m; sourceTree = "<group>"; };
 		7259D6A01FC307330094CEA5 /* ABFNoticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFNoticeCell.h; path = Classes/Mine/View/ABFNoticeCell.h; sourceTree = "<group>"; };
 		7259D6A11FC307330094CEA5 /* ABFNoticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFNoticeCell.m; path = Classes/Mine/View/ABFNoticeCell.m; sourceTree = "<group>"; };
-		7259D6A31FC30BC90094CEA5 /* ABFMJRefreshGifFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFMJRefreshGifFooter.h; path = Foundation/View/ABFMJRefreshGifFooter.h; sourceTree = "<group>"; };
-		7259D6A41FC30BC90094CEA5 /* ABFMJRefreshGifFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFMJRefreshGifFooter.m; path = Foundation/View/ABFMJRefreshGifFooter.m; sourceTree = "<group>"; };
 		725E7F1B1FB6EA59007D5C87 /* ABFChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFChatViewCell.h; path = Classes/Video/View/ABFChatViewCell.h; sourceTree = "<group>"; };
 		725E7F1C1FB6EA59007D5C87 /* ABFChatViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFChatViewCell.m; path = Classes/Video/View/ABFChatViewCell.m; sourceTree = "<group>"; };
 		725E7F1E1FB6EA7F007D5C87 /* ABFChatInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFChatInfo.h; path = "Classes/Video/Ｍodel/ABFChatInfo.h"; sourceTree = "<group>"; };
@@ -480,19 +494,11 @@
 		72689EC81FD832D30068FBA1 /* ABFFriendTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFFriendTableCell.m; path = Classes/Mine/View/ABFFriendTableCell.m; sourceTree = "<group>"; };
 		7270F03E1FC93CD7009F83EC /* ABFChatHeaderSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFChatHeaderSectionView.h; path = Classes/Video/View/ABFChatHeaderSectionView.h; sourceTree = "<group>"; };
 		7270F03F1FC93CD7009F83EC /* ABFChatHeaderSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFChatHeaderSectionView.m; path = Classes/Video/View/ABFChatHeaderSectionView.m; sourceTree = "<group>"; };
-		7270F0411FC9403D009F83EC /* ABFCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCommentView.h; path = Foundation/View/ABFCommentView.h; sourceTree = "<group>"; };
-		7270F0421FC9403D009F83EC /* ABFCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFCommentView.m; path = Foundation/View/ABFCommentView.m; sourceTree = "<group>"; };
-		7270F0441FC95131009F83EC /* ABFCommentTFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCommentTFView.h; path = Foundation/View/ABFCommentTFView.h; sourceTree = "<group>"; };
-		7270F0451FC95131009F83EC /* ABFCommentTFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFCommentTFView.m; path = Foundation/View/ABFCommentTFView.m; sourceTree = "<group>"; };
 		7270F0481FC95E61009F83EC /* ABFCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCacheManager.h; path = Foundation/Utils/ABFCacheManager.h; sourceTree = "<group>"; };
 		7270F0491FC95E61009F83EC /* ABFCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFCacheManager.m; path = Foundation/Utils/ABFCacheManager.m; sourceTree = "<group>"; };
 		728E5A521FDD2EF600E034DB /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Extension.h"; path = "Foundation/Category/UIView+Extension.h"; sourceTree = "<group>"; };
 		728E5A531FDD2EF600E034DB /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Extension.m"; path = "Foundation/Category/UIView+Extension.m"; sourceTree = "<group>"; };
 		72C2C3361F7BEDFE00BDC850 /* tvTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tvTypes.plist; sourceTree = "<group>"; };
-		72C2C3391F7BF39F00BDC850 /* TitleLineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TitleLineLabel.h; path = Foundation/Common/TitleLineLabel.h; sourceTree = "<group>"; };
-		72C2C33A1F7BF39F00BDC850 /* TitleLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TitleLineLabel.m; path = Foundation/Common/TitleLineLabel.m; sourceTree = "<group>"; };
-		72D86E5E1F9B717300D0FBC9 /* TitleHeaderSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TitleHeaderSectionView.h; path = Foundation/Common/TitleHeaderSectionView.h; sourceTree = "<group>"; };
-		72D86E5F1F9B717300D0FBC9 /* TitleHeaderSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TitleHeaderSectionView.m; path = Foundation/Common/TitleHeaderSectionView.m; sourceTree = "<group>"; };
 		72FC5E2A1FAB5704001C8DCA /* ABFPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFPlayerViewController.h; path = Classes/Home/Controller/ABFPlayerViewController.h; sourceTree = "<group>"; };
 		72FC5E2B1FAB5704001C8DCA /* ABFPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFPlayerViewController.m; path = Classes/Home/Controller/ABFPlayerViewController.m; sourceTree = "<group>"; };
 		72FC5E2D1FAB5883001C8DCA /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Hex.h"; path = "Foundation/Category/UIColor+Hex.h"; sourceTree = "<group>"; };
@@ -919,21 +925,17 @@
 				724573591F9C714800AEE86E /* Http */,
 				7229810F1F8FC4B700484146 /* Category */,
 				72C2C3381F7BF1E000BDC850 /* View */,
-				720B0E191F76B15A005F30FA /* Common */,
+				720B0E191F76B15A005F30FA /* Header */,
 			);
 			name = Foundation;
 			sourceTree = "<group>";
 		};
-		720B0E191F76B15A005F30FA /* Common */ = {
+		720B0E191F76B15A005F30FA /* Header */ = {
 			isa = PBXGroup;
 			children = (
-				720B0E1A1F76B179005F30FA /* ABigFishHeader.h */,
-				72C2C3391F7BF39F00BDC850 /* TitleLineLabel.h */,
-				72C2C33A1F7BF39F00BDC850 /* TitleLineLabel.m */,
-				72D86E5E1F9B717300D0FBC9 /* TitleHeaderSectionView.h */,
-				72D86E5F1F9B717300D0FBC9 /* TitleHeaderSectionView.m */,
+				7217685820541E14008312BC /* ABigFishHeader.h */,
 			);
-			name = Common;
+			name = Header;
 			sourceTree = "<group>";
 		};
 		720FE38E1FCAE0250038B6CA /* Chat */ = {
@@ -973,6 +975,48 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		7217683820541CEF008312BC /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				7217685920541E56008312BC /* Calendar */,
+			);
+			name = CalendarView;
+			sourceTree = "<group>";
+		};
+		7217683920541DB5008312BC /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7217685220541DF4008312BC /* TitleHeaderSectionView.h */,
+				7217685320541DF4008312BC /* TitleHeaderSectionView.m */,
+				7217685420541DF4008312BC /* TitleLineLabel.h */,
+				7217685520541DF4008312BC /* TitleLineLabel.m */,
+				7217683A20541DC9008312BC /* ABFCommentTFView.h */,
+				7217683B20541DC9008312BC /* ABFCommentTFView.m */,
+				7217683C20541DC9008312BC /* ABFCommentView.h */,
+				7217683D20541DC9008312BC /* ABFCommentView.m */,
+				7217683E20541DC9008312BC /* ABFCommentViewCell.h */,
+				7217683F20541DC9008312BC /* ABFCommentViewCell.m */,
+				7217684020541DC9008312BC /* ABFMJRefreshGifFooter.h */,
+				7217684120541DC9008312BC /* ABFMJRefreshGifFooter.m */,
+				7217684220541DC9008312BC /* ABFMJRefreshGifHeader.h */,
+				7217684320541DC9008312BC /* ABFMJRefreshGifHeader.m */,
+				7217684420541DC9008312BC /* ABFNavigationBarView.h */,
+				7217684520541DC9008312BC /* ABFNavigationBarView.m */,
+				7217684620541DC9008312BC /* LoadingView.h */,
+				7217684720541DC9008312BC /* LoadingView.m */,
+				7217684820541DC9008312BC /* NavigationBarView.h */,
+				7217684920541DC9008312BC /* NavigationBarView.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		7217685920541E56008312BC /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Calendar;
+			sourceTree = "<group>";
+		};
 		721D5B8F1FB1D952004FD4AF /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -980,6 +1024,8 @@
 				721D5B911FB1D979004FD4AF /* ABFCommentInfo.m */,
 				7203C75F1FCC5D98002215D5 /* ABFResultInfo.h */,
 				7203C7601FCC5D98002215D5 /* ABFResultInfo.m */,
+				7217685A20541F5B008312BC /* ABFDateItemModel.h */,
+				7217685B20541F5B008312BC /* ABFDateItemModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1024,6 +1070,8 @@
 				722981111F8FC52D00484146 /* UIImage+ABFImage.m */,
 				7203DB751FB1F75600F10C47 /* UILabel+ABFLabel.h */,
 				7203DB761FB1F75600F10C47 /* UILabel+ABFLabel.m */,
+				72176835205418AF008312BC /* NSDate+ABFDate.h */,
+				72176836205418AF008312BC /* NSDate+ABFDate.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -1270,22 +1318,8 @@
 		72C2C3381F7BF1E000BDC850 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				72022D611F7D43100069F65B /* LoadingView.h */,
-				72022D621F7D43100069F65B /* LoadingView.m */,
-				72018B611F9E385900E04EC5 /* NavigationBarView.h */,
-				72018B621F9E385900E04EC5 /* NavigationBarView.m */,
-				721D5B931FB1DB5A004FD4AF /* ABFCommentViewCell.h */,
-				721D5B941FB1DB5A004FD4AF /* ABFCommentViewCell.m */,
-				724B1D3D1FB5F5C200769CB7 /* ABFNavigationBarView.h */,
-				724B1D3E1FB5F5C200769CB7 /* ABFNavigationBarView.m */,
-				721A29B91FB8945600E72A50 /* ABFMJRefreshGifHeader.h */,
-				721A29BA1FB8945600E72A50 /* ABFMJRefreshGifHeader.m */,
-				7259D6A31FC30BC90094CEA5 /* ABFMJRefreshGifFooter.h */,
-				7259D6A41FC30BC90094CEA5 /* ABFMJRefreshGifFooter.m */,
-				7270F0411FC9403D009F83EC /* ABFCommentView.h */,
-				7270F0421FC9403D009F83EC /* ABFCommentView.m */,
-				7270F0441FC95131009F83EC /* ABFCommentTFView.h */,
-				7270F0451FC95131009F83EC /* ABFCommentTFView.m */,
+				7217683920541DB5008312BC /* Common */,
+				7217683820541CEF008312BC /* CalendarView */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1568,10 +1602,11 @@
 				7245735F1F9C9F3200AEE86E /* ABFHomeInfo.m in Sources */,
 				7208551F1FC9DC9A00C29D36 /* SGQRCodeScanningVC.m in Sources */,
 				72018B601F9E32AB00E04EC5 /* ABFChannelListViewController.m in Sources */,
+				7217685620541DF4008312BC /* TitleHeaderSectionView.m in Sources */,
 				724573581F9C6C0F00AEE86E /* ABFTelevisionInfo.m in Sources */,
+				7217685120541DC9008312BC /* NavigationBarView.m in Sources */,
 				7203C7411FCC2FDC002215D5 /* BRPlaceholderTextView.m in Sources */,
 				7200E4291FE3F86700944F1A /* MMMaterialDesignSpinner.m in Sources */,
-				7270F0461FC95131009F83EC /* ABFCommentTFView.m in Sources */,
 				7259D69C1FC305170094CEA5 /* ABFNoticeController.m in Sources */,
 				7200E41D1FE3F84200944F1A /* UINavigationController+ZFPlayerRotation.m in Sources */,
 				7211EB1C1FB08AD5000108F6 /* ABFOtherSimpleCell.m in Sources */,
@@ -1579,15 +1614,14 @@
 				720855251FC9DEB100C29D36 /* SGWebView.m in Sources */,
 				7200E4201FE3F84200944F1A /* UIViewController+ZFPlayerRotation.m in Sources */,
 				725840102031CFD700413B7C /* ABFProvinceInfo.m in Sources */,
+				7217685720541DF4008312BC /* TitleLineLabel.m in Sources */,
 				720FE39D1FCAE26F0038B6CA /* ABFChatToolBar.m in Sources */,
-				72022D631F7D43100069F65B /* LoadingView.m in Sources */,
 				72FC5E2F1FAB5883001C8DCA /* UIColor+Hex.m in Sources */,
 				725E7F201FB6EA7F007D5C87 /* ABFChatInfo.m in Sources */,
 				7200E4221FE3F84200944F1A /* ZFBrightnessView.m in Sources */,
 				720B0E171F767DF8005F30FA /* ABFNavigationController.m in Sources */,
 				721208CB1FC1BF3A004ADC28 /* ABFRightTableViewCell.m in Sources */,
 				72136B941FC5CA3C00BAA470 /* ABFPhotoViewController.m in Sources */,
-				7270F0431FC9403D009F83EC /* ABFCommentView.m in Sources */,
 				725F03121FBB2C5500B89736 /* ABFProvViewController.m in Sources */,
 				720B0E0E1F767C93005F30FA /* ABFVideoViewController.m in Sources */,
 				720807E11FB33DEE005D39F5 /* ABFLeftTableViewCell.m in Sources */,
@@ -1595,6 +1629,7 @@
 				724D09A21FB9E62A00906436 /* ABFRegionInfo.m in Sources */,
 				722981151F8FC5AE00484146 /* ABFMenuView.m in Sources */,
 				720B0E141F767CC7005F30FA /* ABFMineViewController.m in Sources */,
+				7217684A20541DC9008312BC /* ABFCommentTFView.m in Sources */,
 				72130B671FBC733D0083D1DD /* ABFSearchViewController.m in Sources */,
 				720B0E041F767B6C005F30FA /* ABFTabBarController.m in Sources */,
 				7267D2F11FDD0A2500AEE25F /* ABFVideoPlayerViewController.m in Sources */,
@@ -1604,25 +1639,23 @@
 				720A8DDA1FE7FC4A0046A061 /* ABFProgramViewCell.m in Sources */,
 				7259D6A21FC307330094CEA5 /* ABFNoticeCell.m in Sources */,
 				7200E41F1FE3F84200944F1A /* UIView+CustomControlView.m in Sources */,
-				721D5B951FB1DB5A004FD4AF /* ABFCommentViewCell.m in Sources */,
 				7267D2EC1FDCCF5B00AEE25F /* STEmoji.m in Sources */,
+				7217685020541DC9008312BC /* LoadingView.m in Sources */,
 				722D8A551F9F71E000F21D2D /* ABFChannelViewCell.m in Sources */,
 				723D96661FB48E00007EDFA7 /* ABFLoginViewController.m in Sources */,
 				7203C75E1FCC3A3F002215D5 /* ABFImageCollectionCell.m in Sources */,
 				72689EC91FD832D30068FBA1 /* ABFFriendTableCell.m in Sources */,
-				7259D6A51FC30BC90094CEA5 /* ABFMJRefreshGifFooter.m in Sources */,
 				720A8DD71FE7FB310046A061 /* ABFProgramInfo.m in Sources */,
+				7217684E20541DC9008312BC /* ABFMJRefreshGifHeader.m in Sources */,
 				722D8A591F9F894D00F21D2D /* ABFMineHeaderView.m in Sources */,
 				725E7F291FB71D3E007D5C87 /* ABFVideoViewCell.m in Sources */,
 				724B1D431FB6051F00769CB7 /* ABFUserInfo.m in Sources */,
 				7245735C1F9C718400AEE86E /* ABFHttpManager.m in Sources */,
 				728E5A541FDD2EF600E034DB /* UIView+Extension.m in Sources */,
 				720B0DCA1F7608E0005F30FA /* AppDelegate.m in Sources */,
-				724B1D3F1FB5F5C200769CB7 /* ABFNavigationBarView.m in Sources */,
 				7259D69F1FC3065B0094CEA5 /* ABFNoticeInfo.m in Sources */,
 				7200E4251FE3F84200944F1A /* ZFPlayerModel.m in Sources */,
 				7200E41E1FE3F84200944F1A /* UITabBarController+ZFPlayerRotation.m in Sources */,
-				721A29BB1FB8945600E72A50 /* ABFMJRefreshGifHeader.m in Sources */,
 				725E7F231FB6EBB2007D5C87 /* ABFInfo.m in Sources */,
 				7200E4261FE3F84200944F1A /* ZFPlayerView.m in Sources */,
 				720B0E0B1F767C78005F30FA /* ABFHomeViewController.m in Sources */,
@@ -1631,14 +1664,14 @@
 				7203C7611FCC5D98002215D5 /* ABFResultInfo.m in Sources */,
 				724573651F9CC4B900AEE86E /* ABFCollectionViewCell.m in Sources */,
 				725E7F261FB71BD1007D5C87 /* ABFVideoInfo.m in Sources */,
-				72018B631F9E385900E04EC5 /* NavigationBarView.m in Sources */,
 				725F030F1FBB2BAB00B89736 /* ABFProvinceViewController.m in Sources */,
 				7250AF291FD6C0D10062E25B /* ABFCollectionSimpleCell.m in Sources */,
 				7200E41B1FE3F84200944F1A /* UIAlertController+ZFPlayerRotation.m in Sources */,
-				72C2C33B1F7BF39F00BDC850 /* TitleLineLabel.m in Sources */,
 				721D5B921FB1D979004FD4AF /* ABFCommentInfo.m in Sources */,
 				7200E41C1FE3F84200944F1A /* UIImageView+ZFCache.m in Sources */,
+				7217684B20541DC9008312BC /* ABFCommentView.m in Sources */,
 				725E7F1D1FB6EA59007D5C87 /* ABFChatViewCell.m in Sources */,
+				7217684C20541DC9008312BC /* ABFCommentViewCell.m in Sources */,
 				7226604F1F8E6B4400BDB357 /* ABFVideoListViewController.m in Sources */,
 				72442D041FE6A83900D788A4 /* ABFMyChatViewController.m in Sources */,
 				72689EC61FD82F810068FBA1 /* ABFFriendsViewController.m in Sources */,
@@ -1654,13 +1687,16 @@
 				7208551D1FC9DC9A00C29D36 /* QRCodeGenerateVC.m in Sources */,
 				7203DB771FB1F75600F10C47 /* UILabel+ABFLabel.m in Sources */,
 				7270F04A1FC95E61009F83EC /* ABFCacheManager.m in Sources */,
+				7217684F20541DC9008312BC /* ABFNavigationBarView.m in Sources */,
 				724A7D5B1FC857F000706B87 /* ABFChatViewController.m in Sources */,
-				72D86E601F9B717300D0FBC9 /* TitleHeaderSectionView.m in Sources */,
+				7217684D20541DC9008312BC /* ABFMJRefreshGifFooter.m in Sources */,
+				72176837205418AF008312BC /* NSDate+ABFDate.m in Sources */,
 				720FE3A31FCAE3D80038B6CA /* ABFChatController.m in Sources */,
 				722981121F8FC52D00484146 /* UIImage+ABFImage.m in Sources */,
 				724D09991FB9C9B300906436 /* ABFHomeTopCollectionReusableView.m in Sources */,
 				7200E4241FE3F84200944F1A /* ZFPlayerControlView.m in Sources */,
 				7208A0251FC0150F00DFA911 /* ABFListCommonCell.m in Sources */,
+				7217685C20541F5B008312BC /* ABFDateItemModel.m in Sources */,
 				720BBEB11FD573D8006C6439 /* NSString+Emoji.m in Sources */,
 				72634BD31FA0D71100600793 /* ABFMineMenuCell.m in Sources */,
 				7206D1431FAD620F0045FBA5 /* ABFPListViewController.m in Sources */,
