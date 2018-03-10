@@ -8,6 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ABFCalendarDelegate <NSObject>
+
+@required
+- (void)calendarDidSelectedDate:(NSDate *)date;
+
+@optional
+- (void)calendarSlideFinishWithDisplayDate:(NSDate *)displayDate;
+
+
+@end
+
 @interface ABFCalendarView : UIView
+
+@property (nonatomic, weak) id<ABFCalendarDelegate> delegate;
+
+- (void)resetCalanderWithDate:(NSDate *)date;
+- (void)resetSubviewFrame;
+
+- (void)slideToLastMonth;
+- (void)slideToNextMonth;
 
 @end
