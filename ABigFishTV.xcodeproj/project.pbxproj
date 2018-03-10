@@ -98,8 +98,8 @@
 		7217685620541DF4008312BC /* TitleHeaderSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217685320541DF4008312BC /* TitleHeaderSectionView.m */; };
 		7217685720541DF4008312BC /* TitleLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217685520541DF4008312BC /* TitleLineLabel.m */; };
 		7217685C20541F5B008312BC /* ABFDateItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217685B20541F5B008312BC /* ABFDateItemModel.m */; };
-		7217686920542C59008312BC /* ABFCalendarDateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217686620542C59008312BC /* ABFCalendarDateItem.m */; };
-		7217686A20542C59008312BC /* ABFCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217686820542C59008312BC /* ABFCalendarView.m */; };
+		7217687720542E91008312BC /* ABFCalendarDateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217687420542E91008312BC /* ABFCalendarDateItem.m */; };
+		7217687820542E91008312BC /* ABFCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217687620542E91008312BC /* ABFCalendarView.m */; };
 		721D5B921FB1D979004FD4AF /* ABFCommentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 721D5B911FB1D979004FD4AF /* ABFCommentInfo.m */; };
 		7226604F1F8E6B4400BDB357 /* ABFVideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7226604E1F8E6B4400BDB357 /* ABFVideoListViewController.m */; };
 		722660511F8E6BE800BDB357 /* menus.plist in Resources */ = {isa = PBXBuildFile; fileRef = 722660501F8E6BE800BDB357 /* menus.plist */; };
@@ -368,10 +368,10 @@
 		7217685820541E14008312BC /* ABigFishHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABigFishHeader.h; path = Foundation/Header/ABigFishHeader.h; sourceTree = "<group>"; };
 		7217685A20541F5B008312BC /* ABFDateItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFDateItemModel.h; path = Foundation/Model/ABFDateItemModel.h; sourceTree = "<group>"; };
 		7217685B20541F5B008312BC /* ABFDateItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFDateItemModel.m; path = Foundation/Model/ABFDateItemModel.m; sourceTree = "<group>"; };
-		7217686520542C59008312BC /* ABFCalendarDateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABFCalendarDateItem.h; sourceTree = "<group>"; };
-		7217686620542C59008312BC /* ABFCalendarDateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABFCalendarDateItem.m; sourceTree = "<group>"; };
-		7217686720542C59008312BC /* ABFCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABFCalendarView.h; sourceTree = "<group>"; };
-		7217686820542C59008312BC /* ABFCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABFCalendarView.m; sourceTree = "<group>"; };
+		7217687320542E91008312BC /* ABFCalendarDateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCalendarDateItem.h; path = Foundation/View/CalendarView/Calendar/ABFCalendarDateItem.h; sourceTree = "<group>"; };
+		7217687420542E91008312BC /* ABFCalendarDateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFCalendarDateItem.m; path = Foundation/View/CalendarView/Calendar/ABFCalendarDateItem.m; sourceTree = "<group>"; };
+		7217687520542E91008312BC /* ABFCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCalendarView.h; path = Foundation/View/CalendarView/Calendar/ABFCalendarView.h; sourceTree = "<group>"; };
+		7217687620542E91008312BC /* ABFCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFCalendarView.m; path = Foundation/View/CalendarView/Calendar/ABFCalendarView.m; sourceTree = "<group>"; };
 		721D5B901FB1D979004FD4AF /* ABFCommentInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCommentInfo.h; path = Foundation/Model/ABFCommentInfo.h; sourceTree = "<group>"; };
 		721D5B911FB1D979004FD4AF /* ABFCommentInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFCommentInfo.m; path = Foundation/Model/ABFCommentInfo.m; sourceTree = "<group>"; };
 		7226604D1F8E6B4400BDB357 /* ABFVideoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFVideoListViewController.h; path = Classes/Video/Controller/ABFVideoListViewController.h; sourceTree = "<group>"; };
@@ -1019,29 +1019,12 @@
 		7217685920541E56008312BC /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				7217686320542C59008312BC /* CalendarView */,
+				7217687320542E91008312BC /* ABFCalendarDateItem.h */,
+				7217687420542E91008312BC /* ABFCalendarDateItem.m */,
+				7217687520542E91008312BC /* ABFCalendarView.h */,
+				7217687620542E91008312BC /* ABFCalendarView.m */,
 			);
 			name = Calendar;
-			sourceTree = "<group>";
-		};
-		7217686320542C59008312BC /* CalendarView */ = {
-			isa = PBXGroup;
-			children = (
-				7217686420542C59008312BC /* Calendar */,
-			);
-			name = CalendarView;
-			path = Foundation/View/CalendarView;
-			sourceTree = "<group>";
-		};
-		7217686420542C59008312BC /* Calendar */ = {
-			isa = PBXGroup;
-			children = (
-				7217686520542C59008312BC /* ABFCalendarDateItem.h */,
-				7217686620542C59008312BC /* ABFCalendarDateItem.m */,
-				7217686720542C59008312BC /* ABFCalendarView.h */,
-				7217686820542C59008312BC /* ABFCalendarView.m */,
-			);
-			path = Calendar;
 			sourceTree = "<group>";
 		};
 		721D5B8F1FB1D952004FD4AF /* Model */ = {
@@ -1648,6 +1631,7 @@
 				7200E4221FE3F84200944F1A /* ZFBrightnessView.m in Sources */,
 				720B0E171F767DF8005F30FA /* ABFNavigationController.m in Sources */,
 				721208CB1FC1BF3A004ADC28 /* ABFRightTableViewCell.m in Sources */,
+				7217687720542E91008312BC /* ABFCalendarDateItem.m in Sources */,
 				72136B941FC5CA3C00BAA470 /* ABFPhotoViewController.m in Sources */,
 				725F03121FBB2C5500B89736 /* ABFProvViewController.m in Sources */,
 				720B0E0E1F767C93005F30FA /* ABFVideoViewController.m in Sources */,
@@ -1680,17 +1664,16 @@
 				7245735C1F9C718400AEE86E /* ABFHttpManager.m in Sources */,
 				728E5A541FDD2EF600E034DB /* UIView+Extension.m in Sources */,
 				720B0DCA1F7608E0005F30FA /* AppDelegate.m in Sources */,
+				7217687820542E91008312BC /* ABFCalendarView.m in Sources */,
 				7259D69F1FC3065B0094CEA5 /* ABFNoticeInfo.m in Sources */,
 				7200E4251FE3F84200944F1A /* ZFPlayerModel.m in Sources */,
 				7200E41E1FE3F84200944F1A /* UITabBarController+ZFPlayerRotation.m in Sources */,
 				725E7F231FB6EBB2007D5C87 /* ABFInfo.m in Sources */,
 				7200E4261FE3F84200944F1A /* ZFPlayerView.m in Sources */,
 				720B0E0B1F767C78005F30FA /* ABFHomeViewController.m in Sources */,
-				7217686920542C59008312BC /* ABFCalendarDateItem.m in Sources */,
 				7250AF2C1FD6CFAB0062E25B /* ABFSettingViewController.m in Sources */,
 				720807DE1FB32F1B005D39F5 /* ABFDictInfo.m in Sources */,
 				7203C7611FCC5D98002215D5 /* ABFResultInfo.m in Sources */,
-				7217686A20542C59008312BC /* ABFCalendarView.m in Sources */,
 				724573651F9CC4B900AEE86E /* ABFCollectionViewCell.m in Sources */,
 				725E7F261FB71BD1007D5C87 /* ABFVideoInfo.m in Sources */,
 				725F030F1FBB2BAB00B89736 /* ABFProvinceViewController.m in Sources */,
