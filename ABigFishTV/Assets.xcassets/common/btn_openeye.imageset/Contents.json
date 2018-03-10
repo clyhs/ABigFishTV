@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "icon_eye-open.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "login_12.jpeg",
+      "filename" : "icon_eye-open (1).png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "icon_eye-open (2).png",
       "scale" : "3x"
     }
   ],

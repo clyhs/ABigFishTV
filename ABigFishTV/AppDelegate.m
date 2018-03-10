@@ -33,7 +33,7 @@
 #import <UserNotifications/UserNotifications.h>  // Push组件必须的系统库
 #import <UMErrorCatch/UMErrorCatch.h>
 
-@interface AppDelegate ()
+@interface AppDelegate ()<UNUserNotificationCenterDelegate>
 
 @end
 
@@ -116,7 +116,7 @@
     
     
     [UMConfigure initWithAppkey:@"5a9fef97f29d984356000310" channel:@"App Store"];
-    [UMErrorCatch initErrorCatch];
+    //[UMErrorCatch initErrorCatch];
     
     [MobClick setScenarioType:E_UM_NORMAL];
     

@@ -135,6 +135,10 @@
         NSLog(@"暂未识别出扫描的二维码");
     }
 }
+- (void)QRCodeAlbumManagerDidReadQRCodeFailure:(SGQRCodeAlbumManager *)albumManager {
+    NSLog(@"暂未识别出二维码");
+}
+
 - (void)QRCodeScanManager:(SGQRCodeScanManager *)scanManager brightnessValue:(CGFloat)brightnessValue {
     if (brightnessValue < - 1) {
         [self.view addSubview:self.flashlightBtn];

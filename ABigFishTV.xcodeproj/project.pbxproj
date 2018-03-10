@@ -180,17 +180,6 @@
 		72C2C3371F7BEDFE00BDC850 /* tvTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72C2C3361F7BEDFE00BDC850 /* tvTypes.plist */; };
 		72C2C33B1F7BF39F00BDC850 /* TitleLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2C33A1F7BF39F00BDC850 /* TitleLineLabel.m */; };
 		72D86E601F9B717300D0FBC9 /* TitleHeaderSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D86E5F1F9B717300D0FBC9 /* TitleHeaderSectionView.m */; };
-		72FC5E1E1FAB5464001C8DCA /* LMVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FC5E041FAB5464001C8DCA /* LMVideoPlayer.m */; };
-		72FC5E1F1FAB5464001C8DCA /* LMPlayerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FC5E071FAB5464001C8DCA /* LMPlayerModel.m */; };
-		72FC5E201FAB5464001C8DCA /* LMPlayerStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FC5E091FAB5464001C8DCA /* LMPlayerStatusModel.m */; };
-		72FC5E211FAB5464001C8DCA /* LMPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FC5E0C1FAB5464001C8DCA /* LMPlayerManager.m */; };
-		72FC5E221FAB5464001C8DCA /* LMBrightnessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FC5E0F1FAB5464001C8DCA /* LMBrightnessView.m */; };
-		72FC5E231FAB5464001C8DCA /* LMCoverControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FC5E111FAB5464001C8DCA /* LMCoverControlView.m */; };
-		72FC5E241FAB5464001C8DCA /* LMLandScapeControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FC5E131FAB5464001C8DCA /* LMLandScapeControlView.m */; };
-		72FC5E251FAB5464001C8DCA /* LMLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FC5E151FAB5464001C8DCA /* LMLoadingView.m */; };
-		72FC5E261FAB5464001C8DCA /* LMPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FC5E171FAB5464001C8DCA /* LMPlayerControlView.m */; };
-		72FC5E271FAB5464001C8DCA /* LMPortraitControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FC5E191FAB5464001C8DCA /* LMPortraitControlView.m */; };
-		72FC5E281FAB5464001C8DCA /* LMVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FC5E1B1FAB5464001C8DCA /* LMVideoPlayerView.m */; };
 		72FC5E2C1FAB5704001C8DCA /* ABFPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FC5E2B1FAB5704001C8DCA /* ABFPlayerViewController.m */; };
 		72FC5E2F1FAB5883001C8DCA /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FC5E2E1FAB5883001C8DCA /* UIColor+Hex.m */; };
 		72FE991E1F90F9E500F64005 /* channels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72FE991D1F90F9E500F64005 /* channels.plist */; };
@@ -504,29 +493,6 @@
 		72C2C33A1F7BF39F00BDC850 /* TitleLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TitleLineLabel.m; path = Foundation/Common/TitleLineLabel.m; sourceTree = "<group>"; };
 		72D86E5E1F9B717300D0FBC9 /* TitleHeaderSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TitleHeaderSectionView.h; path = Foundation/Common/TitleHeaderSectionView.h; sourceTree = "<group>"; };
 		72D86E5F1F9B717300D0FBC9 /* TitleHeaderSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TitleHeaderSectionView.m; path = Foundation/Common/TitleHeaderSectionView.m; sourceTree = "<group>"; };
-		72FC5E021FAB5464001C8DCA /* LMPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMPlayer.h; sourceTree = "<group>"; };
-		72FC5E031FAB5464001C8DCA /* LMVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMVideoPlayer.h; sourceTree = "<group>"; };
-		72FC5E041FAB5464001C8DCA /* LMVideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMVideoPlayer.m; sourceTree = "<group>"; };
-		72FC5E061FAB5464001C8DCA /* LMPlayerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMPlayerModel.h; sourceTree = "<group>"; };
-		72FC5E071FAB5464001C8DCA /* LMPlayerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMPlayerModel.m; sourceTree = "<group>"; };
-		72FC5E081FAB5464001C8DCA /* LMPlayerStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMPlayerStatusModel.h; sourceTree = "<group>"; };
-		72FC5E091FAB5464001C8DCA /* LMPlayerStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMPlayerStatusModel.m; sourceTree = "<group>"; };
-		72FC5E0B1FAB5464001C8DCA /* LMPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMPlayerManager.h; sourceTree = "<group>"; };
-		72FC5E0C1FAB5464001C8DCA /* LMPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMPlayerManager.m; sourceTree = "<group>"; };
-		72FC5E0E1FAB5464001C8DCA /* LMBrightnessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMBrightnessView.h; sourceTree = "<group>"; };
-		72FC5E0F1FAB5464001C8DCA /* LMBrightnessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMBrightnessView.m; sourceTree = "<group>"; };
-		72FC5E101FAB5464001C8DCA /* LMCoverControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMCoverControlView.h; sourceTree = "<group>"; };
-		72FC5E111FAB5464001C8DCA /* LMCoverControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMCoverControlView.m; sourceTree = "<group>"; };
-		72FC5E121FAB5464001C8DCA /* LMLandScapeControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMLandScapeControlView.h; sourceTree = "<group>"; };
-		72FC5E131FAB5464001C8DCA /* LMLandScapeControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMLandScapeControlView.m; sourceTree = "<group>"; };
-		72FC5E141FAB5464001C8DCA /* LMLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMLoadingView.h; sourceTree = "<group>"; };
-		72FC5E151FAB5464001C8DCA /* LMLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMLoadingView.m; sourceTree = "<group>"; };
-		72FC5E161FAB5464001C8DCA /* LMPlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMPlayerControlView.h; sourceTree = "<group>"; };
-		72FC5E171FAB5464001C8DCA /* LMPlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMPlayerControlView.m; sourceTree = "<group>"; };
-		72FC5E181FAB5464001C8DCA /* LMPortraitControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMPortraitControlView.h; sourceTree = "<group>"; };
-		72FC5E191FAB5464001C8DCA /* LMPortraitControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMPortraitControlView.m; sourceTree = "<group>"; };
-		72FC5E1A1FAB5464001C8DCA /* LMVideoPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMVideoPlayerView.h; sourceTree = "<group>"; };
-		72FC5E1B1FAB5464001C8DCA /* LMVideoPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMVideoPlayerView.m; sourceTree = "<group>"; };
 		72FC5E2A1FAB5704001C8DCA /* ABFPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFPlayerViewController.h; path = Classes/Home/Controller/ABFPlayerViewController.h; sourceTree = "<group>"; };
 		72FC5E2B1FAB5704001C8DCA /* ABFPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFPlayerViewController.m; path = Classes/Home/Controller/ABFPlayerViewController.m; sourceTree = "<group>"; };
 		72FC5E2D1FAB5883001C8DCA /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Hex.h"; path = "Foundation/Category/UIColor+Hex.h"; sourceTree = "<group>"; };
@@ -950,7 +916,6 @@
 				720855161FC9DC8700C29D36 /* SGQR */,
 				7270F0471FC95E30009F83EC /* Utils */,
 				721D5B8F1FB1D952004FD4AF /* Model */,
-				72FC5E011FAB5464001C8DCA /* LMPlayer */,
 				724573591F9C714800AEE86E /* Http */,
 				7229810F1F8FC4B700484146 /* Category */,
 				72C2C3381F7BF1E000BDC850 /* View */,
@@ -1325,60 +1290,6 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		72FC5E011FAB5464001C8DCA /* LMPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				72FC5E021FAB5464001C8DCA /* LMPlayer.h */,
-				72FC5E031FAB5464001C8DCA /* LMVideoPlayer.h */,
-				72FC5E041FAB5464001C8DCA /* LMVideoPlayer.m */,
-				72FC5E051FAB5464001C8DCA /* Model */,
-				72FC5E0A1FAB5464001C8DCA /* Utility */,
-				72FC5E0D1FAB5464001C8DCA /* View */,
-			);
-			path = LMPlayer;
-			sourceTree = "<group>";
-		};
-		72FC5E051FAB5464001C8DCA /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				72FC5E061FAB5464001C8DCA /* LMPlayerModel.h */,
-				72FC5E071FAB5464001C8DCA /* LMPlayerModel.m */,
-				72FC5E081FAB5464001C8DCA /* LMPlayerStatusModel.h */,
-				72FC5E091FAB5464001C8DCA /* LMPlayerStatusModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		72FC5E0A1FAB5464001C8DCA /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				72FC5E0B1FAB5464001C8DCA /* LMPlayerManager.h */,
-				72FC5E0C1FAB5464001C8DCA /* LMPlayerManager.m */,
-			);
-			path = Utility;
-			sourceTree = "<group>";
-		};
-		72FC5E0D1FAB5464001C8DCA /* View */ = {
-			isa = PBXGroup;
-			children = (
-				72FC5E0E1FAB5464001C8DCA /* LMBrightnessView.h */,
-				72FC5E0F1FAB5464001C8DCA /* LMBrightnessView.m */,
-				72FC5E101FAB5464001C8DCA /* LMCoverControlView.h */,
-				72FC5E111FAB5464001C8DCA /* LMCoverControlView.m */,
-				72FC5E121FAB5464001C8DCA /* LMLandScapeControlView.h */,
-				72FC5E131FAB5464001C8DCA /* LMLandScapeControlView.m */,
-				72FC5E141FAB5464001C8DCA /* LMLoadingView.h */,
-				72FC5E151FAB5464001C8DCA /* LMLoadingView.m */,
-				72FC5E161FAB5464001C8DCA /* LMPlayerControlView.h */,
-				72FC5E171FAB5464001C8DCA /* LMPlayerControlView.m */,
-				72FC5E181FAB5464001C8DCA /* LMPortraitControlView.h */,
-				72FC5E191FAB5464001C8DCA /* LMPortraitControlView.m */,
-				72FC5E1A1FAB5464001C8DCA /* LMVideoPlayerView.h */,
-				72FC5E1B1FAB5464001C8DCA /* LMVideoPlayerView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		72FECD871FAE0404006CD1A9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1652,11 +1563,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				72634BD81FA0E56C00600793 /* ABFMineSimpleCell.m in Sources */,
-				72FC5E231FAB5464001C8DCA /* LMCoverControlView.m in Sources */,
 				720B0E111F767CB5005F30FA /* ABFOtherViewController.m in Sources */,
 				7267D2ED1FDCCF5B00AEE25F /* STEmojiCollectionView.m in Sources */,
 				7245735F1F9C9F3200AEE86E /* ABFHomeInfo.m in Sources */,
-				72FC5E251FAB5464001C8DCA /* LMLoadingView.m in Sources */,
 				7208551F1FC9DC9A00C29D36 /* SGQRCodeScanningVC.m in Sources */,
 				72018B601F9E32AB00E04EC5 /* ABFChannelListViewController.m in Sources */,
 				724573581F9C6C0F00AEE86E /* ABFTelevisionInfo.m in Sources */,
@@ -1668,13 +1577,11 @@
 				7211EB1C1FB08AD5000108F6 /* ABFOtherSimpleCell.m in Sources */,
 				7200E41A1FE3F84200944F1A /* ASValueTrackingSlider.m in Sources */,
 				720855251FC9DEB100C29D36 /* SGWebView.m in Sources */,
-				72FC5E1F1FAB5464001C8DCA /* LMPlayerModel.m in Sources */,
 				7200E4201FE3F84200944F1A /* UIViewController+ZFPlayerRotation.m in Sources */,
 				725840102031CFD700413B7C /* ABFProvinceInfo.m in Sources */,
 				720FE39D1FCAE26F0038B6CA /* ABFChatToolBar.m in Sources */,
 				72022D631F7D43100069F65B /* LoadingView.m in Sources */,
 				72FC5E2F1FAB5883001C8DCA /* UIColor+Hex.m in Sources */,
-				72FC5E281FAB5464001C8DCA /* LMVideoPlayerView.m in Sources */,
 				725E7F201FB6EA7F007D5C87 /* ABFChatInfo.m in Sources */,
 				7200E4221FE3F84200944F1A /* ZFBrightnessView.m in Sources */,
 				720B0E171F767DF8005F30FA /* ABFNavigationController.m in Sources */,
@@ -1684,7 +1591,6 @@
 				725F03121FBB2C5500B89736 /* ABFProvViewController.m in Sources */,
 				720B0E0E1F767C93005F30FA /* ABFVideoViewController.m in Sources */,
 				720807E11FB33DEE005D39F5 /* ABFLeftTableViewCell.m in Sources */,
-				72FC5E271FAB5464001C8DCA /* LMPortraitControlView.m in Sources */,
 				72FC5E2C1FAB5704001C8DCA /* ABFPlayerViewController.m in Sources */,
 				724D09A21FB9E62A00906436 /* ABFRegionInfo.m in Sources */,
 				722981151F8FC5AE00484146 /* ABFMenuView.m in Sources */,
@@ -1697,7 +1603,6 @@
 				7270F0401FC93CD7009F83EC /* ABFChatHeaderSectionView.m in Sources */,
 				720A8DDA1FE7FC4A0046A061 /* ABFProgramViewCell.m in Sources */,
 				7259D6A21FC307330094CEA5 /* ABFNoticeCell.m in Sources */,
-				72FC5E221FAB5464001C8DCA /* LMBrightnessView.m in Sources */,
 				7200E41F1FE3F84200944F1A /* UIView+CustomControlView.m in Sources */,
 				721D5B951FB1DB5A004FD4AF /* ABFCommentViewCell.m in Sources */,
 				7267D2EC1FDCCF5B00AEE25F /* STEmoji.m in Sources */,
@@ -1710,12 +1615,10 @@
 				722D8A591F9F894D00F21D2D /* ABFMineHeaderView.m in Sources */,
 				725E7F291FB71D3E007D5C87 /* ABFVideoViewCell.m in Sources */,
 				724B1D431FB6051F00769CB7 /* ABFUserInfo.m in Sources */,
-				72FC5E211FAB5464001C8DCA /* LMPlayerManager.m in Sources */,
 				7245735C1F9C718400AEE86E /* ABFHttpManager.m in Sources */,
 				728E5A541FDD2EF600E034DB /* UIView+Extension.m in Sources */,
 				720B0DCA1F7608E0005F30FA /* AppDelegate.m in Sources */,
 				724B1D3F1FB5F5C200769CB7 /* ABFNavigationBarView.m in Sources */,
-				72FC5E241FAB5464001C8DCA /* LMLandScapeControlView.m in Sources */,
 				7259D69F1FC3065B0094CEA5 /* ABFNoticeInfo.m in Sources */,
 				7200E4251FE3F84200944F1A /* ZFPlayerModel.m in Sources */,
 				7200E41E1FE3F84200944F1A /* UITabBarController+ZFPlayerRotation.m in Sources */,
@@ -1734,7 +1637,6 @@
 				7200E41B1FE3F84200944F1A /* UIAlertController+ZFPlayerRotation.m in Sources */,
 				72C2C33B1F7BF39F00BDC850 /* TitleLineLabel.m in Sources */,
 				721D5B921FB1D979004FD4AF /* ABFCommentInfo.m in Sources */,
-				72FC5E201FAB5464001C8DCA /* LMPlayerStatusModel.m in Sources */,
 				7200E41C1FE3F84200944F1A /* UIImageView+ZFCache.m in Sources */,
 				725E7F1D1FB6EA59007D5C87 /* ABFChatViewCell.m in Sources */,
 				7226604F1F8E6B4400BDB357 /* ABFVideoListViewController.m in Sources */,
@@ -1743,7 +1645,6 @@
 				7208551E1FC9DC9A00C29D36 /* ScanSuccessJumpVC.m in Sources */,
 				720807DB1FB32C35005D39F5 /* ABFAllChannelViewController.m in Sources */,
 				7200E42D1FE3F8D600944F1A /* ABFPlayerView.m in Sources */,
-				72FC5E261FAB5464001C8DCA /* LMPlayerControlView.m in Sources */,
 				7267D2EE1FDCCF5B00AEE25F /* STEmojiKeyboard.m in Sources */,
 				7200E4191FE3F84200944F1A /* ASValuePopUpView.m in Sources */,
 				720B0DC71F7608E0005F30FA /* main.m in Sources */,
@@ -1762,7 +1663,6 @@
 				7208A0251FC0150F00DFA911 /* ABFListCommonCell.m in Sources */,
 				720BBEB11FD573D8006C6439 /* NSString+Emoji.m in Sources */,
 				72634BD31FA0D71100600793 /* ABFMineMenuCell.m in Sources */,
-				72FC5E1E1FAB5464001C8DCA /* LMVideoPlayer.m in Sources */,
 				7206D1431FAD620F0045FBA5 /* ABFPListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

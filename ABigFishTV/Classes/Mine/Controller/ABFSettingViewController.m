@@ -19,7 +19,7 @@
 #import "TZImageManager.h"
 #import "TZLocationManager.h"
 
-@interface ABFSettingViewController ()<UITableViewDelegate,UITableViewDataSource,TZImagePickerControllerDelegate>{
+@interface ABFSettingViewController ()<UITableViewDelegate,UITableViewDataSource,TZImagePickerControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>{
     NSMutableArray *_selectedAssets;
     NSMutableArray *_selectedPhotos;
     BOOL _isSelectOriginalPhoto;

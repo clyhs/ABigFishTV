@@ -24,6 +24,7 @@
 @property(nonatomic,weak) UIButton *loginBtn;
 @property(nonatomic,weak) UIImageView *usernameIcon;
 @property(nonatomic,weak) UIImageView *passwordIcon;
+@property(nonatomic,weak) UIButton    *eyeIcon;
 @property(nonatomic,weak) UITextField *usernameTF;
 @property(nonatomic,weak) UITextField *passwordTF;
 
@@ -106,9 +107,9 @@
     bg.frame = self.view.bounds;
     //bg.backgroundColor = [UIColor blackColor];
     //bg.alpha = 0.7;
-    [bg setImage:[UIImage imageNamed:@"loginbg_9"]];
+    [bg setImage:[UIImage imageNamed:@"loginbg_3"]];
     //bg.backgroundColor = RGB_255(135, 206, 250);
-    //bg.alpha = 0.9;
+    bg.alpha = 0.9;
     [self.view addSubview:bg];
     //_bg = bg;
 }
@@ -184,7 +185,7 @@
     [usernameTF setAutocapitalizationType:UITextAutocapitalizationTypeNone]; //关闭首字母大写
     [usernameTF setAutocorrectionType:UITextAutocorrectionTypeNo];
     //[usernameTF becomeFirstResponder]; //默认打开键盘
-    [usernameTF setFont:[UIFont systemFontOfSize:16]];
+    [usernameTF setFont:[UIFont systemFontOfSize:14]];
     [usernameTF setDelegate:self];
     [usernameTF setPlaceholder:@"用户名或电子邮箱"];
     [usernameTF setText:@""];
@@ -194,9 +195,9 @@
 
     [usernameIcon mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self.baseView).offset(5);
-        make.top.equalTo(self.baseView).offset(6);
-        make.height.mas_equalTo(28);
-        make.width.mas_offset(28);
+        make.top.equalTo(self.baseView).offset(8);
+        make.height.mas_equalTo(24);
+        make.width.mas_offset(24);
     }];
     
     [usernameTF mas_makeConstraints:^(MASConstraintMaker *make){
@@ -224,7 +225,7 @@
     [passwordTF setTag:102];
     [passwordTF setPlaceholder:@"密码"];
     [passwordTF setTextColor:[UIColor grayColor]];
-    [passwordTF setFont:[UIFont systemFontOfSize:16]];
+    [passwordTF setFont:[UIFont systemFontOfSize:14]];
     [passwordTF setText:@""];
     [self.baseView addSubview:passwordTF];
     _passwordTF = passwordTF;
@@ -232,13 +233,29 @@
         make.left.equalTo(self.passwordIcon.mas_right).offset(4);
         make.top.equalTo(self.baseView).offset(46);
         make.height.mas_equalTo(28);
-        make.right.equalTo(self.baseView.mas_right).offset(-5);
+        make.right.equalTo(self.baseView.mas_right).offset(-40);
     }];
     
     [passwordIcon mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self.baseView).offset(5);
-        make.top.equalTo(self.baseView).offset(46);
-        make.height.width.mas_equalTo(28);
+        make.left.equalTo(self.baseView).offset(4);
+        make.top.equalTo(self.baseView).offset(48);
+        make.height.mas_equalTo(24);
+        make.width.mas_equalTo(26);
+    }];
+    
+    
+    UIButton *eyeIcon = [UIButton buttonWithType:UIButtonTypeCustom];
+    //[eyeIcon.imageView setImage:[UIImage imageNamed:@"btn_closeeye"]];
+    [eyeIcon setImage:[UIImage imageNamed:@"btn_closeeye"] forState:UIControlStateNormal];
+    [eyeIcon setImage:[UIImage imageNamed:@"btn_openeye"] forState:UIControlStateSelected];
+    [self.baseView addSubview:eyeIcon];
+    [eyeIcon addTarget:self action:@selector(eyeAction:) forControlEvents:UIControlEventTouchUpInside];
+    _eyeIcon = eyeIcon;
+    [eyeIcon mas_makeConstraints:^(MASConstraintMaker *make){
+        make.right.equalTo(self.baseView).offset(0);
+        make.top.equalTo(self.baseView).offset(40);
+        make.height.mas_equalTo(40);
+        make.width.mas_equalTo(40);
     }];
 
 }
@@ -510,6 +527,17 @@
         
     }];
 
+}
+
+-(void)eyeAction:(id)sender{
+
+    UIButton *btn = (UIButton *)sender;
+    btn.selected=!btn.selected;
+    if(btn.selected){
+        [_passwordTF setSecureTextEntry:NO];
+    }else{
+        [_passwordTF setSecureTextEntry:YES];
+    }
 }
 
 - (BOOL)shouldAutorotate{
