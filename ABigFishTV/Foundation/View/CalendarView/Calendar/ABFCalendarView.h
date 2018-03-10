@@ -23,10 +23,10 @@
 
 @property (nonatomic, weak) id<ABFCalendarDelegate> delegate;
 
-- (void)resetCalanderWithDate:(NSDate *)date;
-- (void)resetSubviewFrame;
+//- (void)resetCalanderWithDate:(NSDate *)date;
+//- (void)resetSubviewFrame;
 
-- (void)slideToLastMonth;
-- (void)slideToNextMonth;
+//- (void)slideToLastMonth;
+//- (void)slideToNextMonth;
 
 @end
