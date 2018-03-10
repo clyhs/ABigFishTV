@@ -94,7 +94,8 @@
     //[leftBtn setFont:[UIFont systemFontOfSize: 14.0]];
     [leftBtn.titleLabel setFont:[UIFont systemFontOfSize: 14]];
     [leftBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    leftBtn.frame = CGRectMake(20,20,60,20);
+    leftBtn.frame = CGRectMake(20,20,40,20);
+    
     [leftBtn setImage:[UIImage imageNamed:@"btn_nback"] forState:UIControlStateNormal];
     [self.view addSubview:leftBtn ];
     //UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
