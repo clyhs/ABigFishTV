@@ -43,6 +43,10 @@
 ="250" style="margin:10px 10px;">
 <img src="https://github.com/clyhs/ABigFishTV/blob/master/images/tv.png" width
 ="250" style="margin:10px 10px;">
+<img src="https://github.com/clyhs/ABigFishTV/blob/master/images/search.png" width
+="250" style="margin:10px 10px;">
+<img src="https://github.com/clyhs/ABigFishTV/blob/master/images/film.png" width
+="250" style="margin:10px 10px;">
 </div>
 
 
