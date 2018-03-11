@@ -86,6 +86,11 @@
 		721208CB1FC1BF3A004ADC28 /* ABFRightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 721208CA1FC1BF3A004ADC28 /* ABFRightTableViewCell.m */; };
 		72130B671FBC733D0083D1DD /* ABFSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72130B661FBC733D0083D1DD /* ABFSearchViewController.m */; };
 		72136B941FC5CA3C00BAA470 /* ABFPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72136B931FC5CA3C00BAA470 /* ABFPhotoViewController.m */; };
+		7215BCD32054E99700D6157E /* ABFCalendarTitleDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7215BCD22054E99700D6157E /* ABFCalendarTitleDateView.m */; };
+		7215BCE72054EFA200D6157E /* ABFCalendarTitleBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7215BCE62054EFA200D6157E /* ABFCalendarTitleBarView.m */; };
+		7215BCEA2054F07E00D6157E /* ABFCalendarWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7215BCE92054F07E00D6157E /* ABFCalendarWeekView.m */; };
+		7215BCED2054FF3D00D6157E /* ABFCalendarRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7215BCEC2054FF3D00D6157E /* ABFCalendarRecordView.m */; };
+		7215BCF02055030B00D6157E /* ABFCalendarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7215BCEF2055030B00D6157E /* ABFCalendarController.m */; };
 		72176837205418AF008312BC /* NSDate+ABFDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 72176836205418AF008312BC /* NSDate+ABFDate.m */; };
 		7217684A20541DC9008312BC /* ABFCommentTFView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217683B20541DC9008312BC /* ABFCommentTFView.m */; };
 		7217684B20541DC9008312BC /* ABFCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217683D20541DC9008312BC /* ABFCommentView.m */; };
@@ -343,6 +348,16 @@
 		72130B661FBC733D0083D1DD /* ABFSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFSearchViewController.m; path = Classes/Other/Controller/ABFSearchViewController.m; sourceTree = "<group>"; };
 		72136B921FC5CA3C00BAA470 /* ABFPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFPhotoViewController.h; path = Classes/Video/Controller/ABFPhotoViewController.h; sourceTree = "<group>"; };
 		72136B931FC5CA3C00BAA470 /* ABFPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFPhotoViewController.m; path = Classes/Video/Controller/ABFPhotoViewController.m; sourceTree = "<group>"; };
+		7215BCD12054E99700D6157E /* ABFCalendarTitleDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCalendarTitleDateView.h; path = Foundation/View/CalendarView/Calendar/ABFCalendarTitleDateView.h; sourceTree = "<group>"; };
+		7215BCD22054E99700D6157E /* ABFCalendarTitleDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFCalendarTitleDateView.m; path = Foundation/View/CalendarView/Calendar/ABFCalendarTitleDateView.m; sourceTree = "<group>"; };
+		7215BCE52054EFA200D6157E /* ABFCalendarTitleBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCalendarTitleBarView.h; path = Foundation/View/CalendarView/Calendar/ABFCalendarTitleBarView.h; sourceTree = "<group>"; };
+		7215BCE62054EFA200D6157E /* ABFCalendarTitleBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFCalendarTitleBarView.m; path = Foundation/View/CalendarView/Calendar/ABFCalendarTitleBarView.m; sourceTree = "<group>"; };
+		7215BCE82054F07E00D6157E /* ABFCalendarWeekView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCalendarWeekView.h; path = Foundation/View/CalendarView/Calendar/ABFCalendarWeekView.h; sourceTree = "<group>"; };
+		7215BCE92054F07E00D6157E /* ABFCalendarWeekView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFCalendarWeekView.m; path = Foundation/View/CalendarView/Calendar/ABFCalendarWeekView.m; sourceTree = "<group>"; };
+		7215BCEB2054FF3D00D6157E /* ABFCalendarRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCalendarRecordView.h; path = Foundation/View/CalendarView/ABFCalendarRecordView.h; sourceTree = "<group>"; };
+		7215BCEC2054FF3D00D6157E /* ABFCalendarRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFCalendarRecordView.m; path = Foundation/View/CalendarView/ABFCalendarRecordView.m; sourceTree = "<group>"; };
+		7215BCEE2055030B00D6157E /* ABFCalendarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCalendarController.h; path = Classes/Mine/Controller/ABFCalendarController.h; sourceTree = "<group>"; };
+		7215BCEF2055030B00D6157E /* ABFCalendarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFCalendarController.m; path = Classes/Mine/Controller/ABFCalendarController.m; sourceTree = "<group>"; };
 		72176835205418AF008312BC /* NSDate+ABFDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+ABFDate.h"; path = "Foundation/Category/NSDate+ABFDate.h"; sourceTree = "<group>"; };
 		72176836205418AF008312BC /* NSDate+ABFDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+ABFDate.m"; path = "Foundation/Category/NSDate+ABFDate.m"; sourceTree = "<group>"; };
 		7217683A20541DC9008312BC /* ABFCommentTFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCommentTFView.h; path = Foundation/View/Common/ABFCommentTFView.h; sourceTree = "<group>"; };
@@ -918,6 +933,8 @@
 				72689EC51FD82F810068FBA1 /* ABFFriendsViewController.m */,
 				72442D021FE6A83900D788A4 /* ABFMyChatViewController.h */,
 				72442D031FE6A83900D788A4 /* ABFMyChatViewController.m */,
+				7215BCEE2055030B00D6157E /* ABFCalendarController.h */,
+				7215BCEF2055030B00D6157E /* ABFCalendarController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -985,6 +1002,8 @@
 			isa = PBXGroup;
 			children = (
 				7217685920541E56008312BC /* Calendar */,
+				7215BCEB2054FF3D00D6157E /* ABFCalendarRecordView.h */,
+				7215BCEC2054FF3D00D6157E /* ABFCalendarRecordView.m */,
 			);
 			name = CalendarView;
 			sourceTree = "<group>";
@@ -1019,10 +1038,16 @@
 		7217685920541E56008312BC /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				7215BCE52054EFA200D6157E /* ABFCalendarTitleBarView.h */,
+				7215BCE62054EFA200D6157E /* ABFCalendarTitleBarView.m */,
 				7217687320542E91008312BC /* ABFCalendarDateItem.h */,
 				7217687420542E91008312BC /* ABFCalendarDateItem.m */,
 				7217687520542E91008312BC /* ABFCalendarView.h */,
 				7217687620542E91008312BC /* ABFCalendarView.m */,
+				7215BCD12054E99700D6157E /* ABFCalendarTitleDateView.h */,
+				7215BCD22054E99700D6157E /* ABFCalendarTitleDateView.m */,
+				7215BCE82054F07E00D6157E /* ABFCalendarWeekView.h */,
+				7215BCE92054F07E00D6157E /* ABFCalendarWeekView.m */,
 			);
 			name = Calendar;
 			sourceTree = "<group>";
@@ -1627,6 +1652,7 @@
 				7217685720541DF4008312BC /* TitleLineLabel.m in Sources */,
 				720FE39D1FCAE26F0038B6CA /* ABFChatToolBar.m in Sources */,
 				72FC5E2F1FAB5883001C8DCA /* UIColor+Hex.m in Sources */,
+				7215BCF02055030B00D6157E /* ABFCalendarController.m in Sources */,
 				725E7F201FB6EA7F007D5C87 /* ABFChatInfo.m in Sources */,
 				7200E4221FE3F84200944F1A /* ZFBrightnessView.m in Sources */,
 				720B0E171F767DF8005F30FA /* ABFNavigationController.m in Sources */,
@@ -1644,6 +1670,7 @@
 				72130B671FBC733D0083D1DD /* ABFSearchViewController.m in Sources */,
 				720B0E041F767B6C005F30FA /* ABFTabBarController.m in Sources */,
 				7267D2F11FDD0A2500AEE25F /* ABFVideoPlayerViewController.m in Sources */,
+				7215BCEA2054F07E00D6157E /* ABFCalendarWeekView.m in Sources */,
 				724573621F9CB25400AEE86E /* ABFCollectionReusableView.m in Sources */,
 				724A7D5E1FC85FF000706B87 /* ABFChatHeaderView.m in Sources */,
 				7270F0401FC93CD7009F83EC /* ABFChatHeaderSectionView.m in Sources */,
@@ -1691,6 +1718,8 @@
 				720807DB1FB32C35005D39F5 /* ABFAllChannelViewController.m in Sources */,
 				7200E42D1FE3F8D600944F1A /* ABFPlayerView.m in Sources */,
 				7267D2EE1FDCCF5B00AEE25F /* STEmojiKeyboard.m in Sources */,
+				7215BCE72054EFA200D6157E /* ABFCalendarTitleBarView.m in Sources */,
+				7215BCED2054FF3D00D6157E /* ABFCalendarRecordView.m in Sources */,
 				7200E4191FE3F84200944F1A /* ASValuePopUpView.m in Sources */,
 				720B0DC71F7608E0005F30FA /* main.m in Sources */,
 				7229810E1F8FC3B600484146 /* ABFImageMenu.m in Sources */,
@@ -1703,6 +1732,7 @@
 				724A7D5B1FC857F000706B87 /* ABFChatViewController.m in Sources */,
 				7217684D20541DC9008312BC /* ABFMJRefreshGifFooter.m in Sources */,
 				72176837205418AF008312BC /* NSDate+ABFDate.m in Sources */,
+				7215BCD32054E99700D6157E /* ABFCalendarTitleDateView.m in Sources */,
 				720FE3A31FCAE3D80038B6CA /* ABFChatController.m in Sources */,
 				722981121F8FC52D00484146 /* UIImage+ABFImage.m in Sources */,
 				724D09991FB9C9B300906436 /* ABFHomeTopCollectionReusableView.m in Sources */,

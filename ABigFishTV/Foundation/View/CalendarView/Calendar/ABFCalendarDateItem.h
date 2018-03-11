@@ -8,18 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol ABFCalendarDayItemDelegate <NSObject>
+@protocol ABFCalendarDateItemDelegate <NSObject>
 
 - (void)touchDayItemWithDay:(NSInteger)day;
 
 @end
 
-@class ABFDayItemModel;
+@class ABFDateItemModel;
 
 @interface ABFCalendarDateItem : UIView
 
-@property (nonatomic, weak) id<ABFCalendarDayItemDelegate> delegate;
+@property (nonatomic, weak) id<ABFCalendarDateItemDelegate> delegate;
 
-- (void)setupWithDayItemModel:(ABFDayItemModel *) dayItemModel;
+- (void)setupWithDayItemModel:(ABFDateItemModel *) dayItemModel;
 
 @end

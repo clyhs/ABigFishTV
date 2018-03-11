@@ -26,5 +26,11 @@
 		<key>icon</key>
 		<string>icon_qd</string>
 	</dict>
+	<dict>
+		<key>name</key>
+		<string>日历</string>
+		<key>icon</key>
+		<string>icon_calendar</string>
+	</dict>
 </array>
 </plist>

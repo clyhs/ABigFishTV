@@ -24,6 +24,7 @@
 #import "ABFSettingViewController.h"
 #import "ABFFriendsViewController.h"
 #import "ABFMyChatViewController.h"
+#import "ABFCalendarController.h"
 
 
 @interface ABFMineViewController ()<UITableViewDelegate,UITableViewDataSource,MenuBindingDelegate,ABFSettingViewControllerDelegate>
@@ -108,7 +109,7 @@
     [super viewWillLayoutSubviews];
     
     self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    _tableView.frame = CGRectMake( 0, 0, kScreenWidth, kScreenHeight-self.tabBarController.tabBar.frame.size.height-60);
+    _tableView.frame = CGRectMake( 0, 0, kScreenWidth, kScreenHeight-self.tabBarController.tabBar.frame.size.height);
 }
 
 - (void) addTableView{
@@ -271,6 +272,12 @@
         ABFMyChatViewController *vc = [[ABFMyChatViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }
+    if([title isEqualToString:@"日历"]){
+        ABFCalendarController *vc = [[ABFCalendarController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    
 }
 
 

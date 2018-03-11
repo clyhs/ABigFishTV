@@ -74,13 +74,7 @@
 - (void)addNavigationBarView{
     
     self.title = @"消息";
-    /*
-    ABFNavigationBarView *naviView = [[ABFNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
-    naviView.title = self.title;
-    naviView.backgroundColor = COMMON_COLOR;
-    [naviView setLeftBtnImageName:@"icon_lightback"];
-    [self.view addSubview:naviView];
-    _naviView = naviView;*/
+
     self.navigationController.navigationBar.barTintColor = COMMON_COLOR;
     //self.navigationController.navigationBar.alpha = 0.8;
     [self.navigationController.navigationBar setTitleTextAttributes:
