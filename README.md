@@ -24,6 +24,8 @@
 ### 登录
 * 可以使用第三方登录。
 * 或者用测试帐号test123/123456
+### ijkplayer软件包
+* 链接:https://pan.baidu.com/s/1qWVf42wnn6NuAPiGcDPZtQ  密码:769z
 
 ### 效果图
 <div align="center">
