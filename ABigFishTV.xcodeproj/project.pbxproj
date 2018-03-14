@@ -40,6 +40,7 @@
 		7203C75E1FCC3A3F002215D5 /* ABFImageCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7203C75D1FCC3A3F002215D5 /* ABFImageCollectionCell.m */; };
 		7203C7611FCC5D98002215D5 /* ABFResultInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7203C7601FCC5D98002215D5 /* ABFResultInfo.m */; };
 		7203DB771FB1F75600F10C47 /* UILabel+ABFLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7203DB761FB1F75600F10C47 /* UILabel+ABFLabel.m */; };
+		7205B58720595B5F0061084E /* ABFCollectionTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7205B58620595B5F0061084E /* ABFCollectionTopCell.m */; };
 		7206D1431FAD620F0045FBA5 /* ABFPListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7206D1421FAD620F0045FBA5 /* ABFPListViewController.m */; };
 		720776ED1FAA1F41009220FC /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 720055D51FA56491003280F7 /* IJKMediaFramework.framework */; };
 		720807DB1FB32C35005D39F5 /* ABFAllChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 720807DA1FB32C35005D39F5 /* ABFAllChannelViewController.m */; };
@@ -270,6 +271,8 @@
 		7203C7601FCC5D98002215D5 /* ABFResultInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFResultInfo.m; path = Foundation/Model/ABFResultInfo.m; sourceTree = "<group>"; };
 		7203DB751FB1F75600F10C47 /* UILabel+ABFLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+ABFLabel.h"; path = "Foundation/Category/UILabel+ABFLabel.h"; sourceTree = "<group>"; };
 		7203DB761FB1F75600F10C47 /* UILabel+ABFLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+ABFLabel.m"; path = "Foundation/Category/UILabel+ABFLabel.m"; sourceTree = "<group>"; };
+		7205B58520595B5F0061084E /* ABFCollectionTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCollectionTopCell.h; path = Classes/Home/View/ABFCollectionTopCell.h; sourceTree = "<group>"; };
+		7205B58620595B5F0061084E /* ABFCollectionTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFCollectionTopCell.m; path = Classes/Home/View/ABFCollectionTopCell.m; sourceTree = "<group>"; };
 		7206D1411FAD620F0045FBA5 /* ABFPListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFPListViewController.h; path = Classes/Home/Controller/ABFPListViewController.h; sourceTree = "<group>"; };
 		7206D1421FAD620F0045FBA5 /* ABFPListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFPListViewController.m; path = Classes/Home/Controller/ABFPListViewController.m; sourceTree = "<group>"; };
 		720807D91FB32C35005D39F5 /* ABFAllChannelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFAllChannelViewController.h; path = Classes/Home/Controller/ABFAllChannelViewController.h; sourceTree = "<group>"; };
@@ -1088,6 +1091,8 @@
 				7250AF281FD6C0D10062E25B /* ABFCollectionSimpleCell.m */,
 				720A8DD81FE7FC4A0046A061 /* ABFProgramViewCell.h */,
 				720A8DD91FE7FC4A0046A061 /* ABFProgramViewCell.m */,
+				7205B58520595B5F0061084E /* ABFCollectionTopCell.h */,
+				7205B58620595B5F0061084E /* ABFCollectionTopCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1672,6 +1677,7 @@
 				7267D2F11FDD0A2500AEE25F /* ABFVideoPlayerViewController.m in Sources */,
 				7215BCEA2054F07E00D6157E /* ABFCalendarWeekView.m in Sources */,
 				724573621F9CB25400AEE86E /* ABFCollectionReusableView.m in Sources */,
+				7205B58720595B5F0061084E /* ABFCollectionTopCell.m in Sources */,
 				724A7D5E1FC85FF000706B87 /* ABFChatHeaderView.m in Sources */,
 				7270F0401FC93CD7009F83EC /* ABFChatHeaderSectionView.m in Sources */,
 				720A8DDA1FE7FC4A0046A061 /* ABFProgramViewCell.m in Sources */,

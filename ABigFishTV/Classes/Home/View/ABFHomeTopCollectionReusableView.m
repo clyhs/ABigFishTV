@@ -53,13 +53,6 @@
     _topView = [[UIView alloc] init];
     _topView.backgroundColor = [UIColor clearColor];
     [self addSubview:_topView];
-    /*
-    [_topView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self).offset(0);
-        make.top.equalTo(self).offset(0);
-        make.width.equalTo(self);
-        make.height.mas_equalTo(160);
-    }];*/
 
 }
 
@@ -68,14 +61,6 @@
     _botView = [[UIView alloc] init];
     _botView.backgroundColor = [UIColor clearColor];
     [self addSubview:_botView];
-    /*
-    [_topView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self).offset(0);
-        make.top.equalTo(self.topView.mas_bottom).offset(0);
-        make.width.equalTo(self);
-        make.height.mas_equalTo(40);
-    }];*/
-
 }
 
 - (void) addLeftLineView{
@@ -133,8 +118,9 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    _topView.frame = CGRectMake(0, 150, kScreenWidth, 160);
-    _botView.frame = CGRectMake(0, 160+150, kScreenWidth, 40);
+    CGFloat height = kScreenWidth * 9 / 16 ;
+    _topView.frame = CGRectMake(0, height, kScreenWidth, 160);
+    _botView.frame = CGRectMake(0, 160+height, kScreenWidth, 40);
     
     _leftLineView.frame = CGRectMake(12, 12, 3, 40-2*12);
     _titleLabel.frame = CGRectMake(15+8, 0, 200, 40);

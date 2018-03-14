@@ -59,7 +59,7 @@ const CGFloat kMinimumLineSpacing = 1;
 -(void)layoutSubviews{
     
     [super layoutSubviews];
-    CGFloat height = (kScreenWidth/7+10)*6;
+    CGFloat height = (kScreenWidth/9.5+10)*6;
     [_titleBarView mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self).offset(0);
         make.top.equalTo(self).offset(0);

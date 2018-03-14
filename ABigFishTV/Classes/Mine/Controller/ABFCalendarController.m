@@ -73,7 +73,7 @@
 
 -(void)setupUI{
     ABFCalendarRecordView *calendarRecordView = [[ABFCalendarRecordView alloc] init];
-    CGFloat height = (kScreenWidth/7+10)*6 + 64;
+    CGFloat height = (kScreenWidth/9.5+10)*6 + 64;
     calendarRecordView.frame =CGRectMake(0, 64, kScreenWidth, height);
     [self.view addSubview:calendarRecordView];
     _calendarRecordView = calendarRecordView;

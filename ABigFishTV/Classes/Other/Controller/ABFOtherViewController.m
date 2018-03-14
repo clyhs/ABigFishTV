@@ -28,7 +28,7 @@
 @property(nonatomic,weak)    UILabel *titleLab;
 @property(nonatomic,weak)    SDCycleScrollView *sdcsView;
 @property(nonatomic,assign)  double nheight;
-
+@property(nonatomic,assign)  CGFloat adHeight;
 @property (nonatomic,strong) CLLocationManager *locationManager;
 
 @end
@@ -67,7 +67,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = LINE_BG;
     //self.title = @"";
-    
+    self.adHeight = kScreenWidth /3;
     //[AppDelegate APP].allowRotation = false;
     [self initData];
     [self addTableView];
@@ -253,26 +253,26 @@
     _nheight = nheight;
     
     
-    UIView  *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth,nheight+105)];
+    UIView  *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth,nheight+self.adHeight)];
     
     [self addCycleScrollView];
-    UIView *adView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth,105)];
+    UIView *adView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth,self.adHeight)];
     
     [adView addSubview:_sdcsView];
     [headerView addSubview:adView];
-    UIView *myView = [[UIView alloc] initWithFrame:CGRectMake(0, 105, kScreenWidth,nheight)];
+    UIView *myView = [[UIView alloc] initWithFrame:CGRectMake(0, self.adHeight, kScreenWidth,nheight)];
     [myView addSubview:mylayout];
     [headerView addSubview:myView];
     
     _tableView.parallaxHeader.view = headerView;
-    _tableView.parallaxHeader.height = nheight +105;
+    _tableView.parallaxHeader.height = nheight +self.adHeight;
     _tableView.parallaxHeader.mode = MXParallaxHeaderModeFill;
 }
 
 
 - (void)addCycleScrollView
 {
-    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, 105) delegate:self placeholderImage:nil];
+    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, self.adHeight) delegate:self placeholderImage:nil];
     //cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
     cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     cycleScrollView.currentPageDotColor = [UIColor whiteColor];

@@ -253,29 +253,31 @@
 {
     [super layoutSubviews];
     
+    CGFloat height = kScreenWidth*2/3-10-60;
+    
     [_topView mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self).offset(0);
         make.top.equalTo(self).offset(0);
         make.width.equalTo(self);
-        make.height.mas_offset(150);
+        make.height.mas_offset(height);
     }];
     
     [_profile mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self.topView).offset(40);
-        make.top.equalTo(self.topView).offset(50);
+        make.top.equalTo(self.topView).offset(height/3);
         make.width.height.equalTo(@75);
     }];
     
     [_username mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self.topView).offset(125);
-        make.top.equalTo(self.topView).offset(58);
+        make.top.equalTo(self.topView).offset(height/3+8);
         make.width.mas_equalTo(kScreenWidth-125-10);
         make.height.equalTo(@30);
     }];
     
     [_descLabel mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self.topView).offset(125);
-        make.top.equalTo(self.topView).offset(90);
+        make.top.equalTo(self.topView).offset(height/3+40);
         make.width.equalTo(@180);
         make.height.equalTo(@20);
     }];
@@ -287,7 +289,7 @@
     }];
     [_botView mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self).offset(0);
-        make.top.equalTo(self).offset(155);
+        make.top.equalTo(self).offset(kScreenWidth*2/3-5-60);
         make.width.equalTo(self);
         make.height.mas_offset(60);
     }];

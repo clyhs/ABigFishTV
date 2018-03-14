@@ -131,7 +131,7 @@
 
 - (void) addTableHeaderView{
     
-    ABFMineHeaderView *headerView = [[ABFMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 220)];
+    ABFMineHeaderView *headerView = [[ABFMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth*2/3)];
     headerView.delegate = self;
     //headerView.delegate = self;
     //_tableView.parallaxHeader.view = headerView;
