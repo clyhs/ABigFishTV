@@ -162,7 +162,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
         self.menuView.alpha = 0;
         self.typeView.alpha = 0;
         self.downLoadBtn.alpha = 0;
-        self.cutBtn.hidden = YES;
+        self.cutBtn.hidden = NO;
         self.downLoadBtn.hidden     = YES;
         self.resolutionBtn.hidden   = YES;
         self.bottomProgressHidden   = NO;
@@ -305,12 +305,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
         make.width.mas_equalTo(130);
         make.height.mas_equalTo(33);
     }];
-    [self.cutBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.offset(52);
-        make.height.offset(42);
-        make.top.equalTo(self.downLoadBtn.mas_top).offset(3);
-        make.right.equalTo(self.downLoadBtn.mas_left).offset(-1);
-    }];
+    
     
     [self.typeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(40);
@@ -359,6 +354,12 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
         make.width.mas_offset(80);
         make.top.equalTo(self.typeBtn.mas_bottom).offset(5);
         make.height.mas_equalTo(90);
+    }];
+    [self.cutBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.offset(52);
+        make.height.offset(42);
+        make.top.equalTo(self.typeBtn.mas_top).offset(3);
+        make.right.equalTo(self.typeBtn.mas_left).offset(-1);
     }];
 }
 
