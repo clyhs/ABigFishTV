@@ -36,6 +36,7 @@ PODS:
     - ASIHTTPRequest/Core
   - DACircularProgress (2.3.1)
   - FDFullscreenPopGesture (1.1)
+  - FLAnimatedImage (1.0.12)
   - JHUD (0.3.0)
   - Masonry (1.1.0)
   - MBProgressHUD (0.9.2)
@@ -70,6 +71,8 @@ PODS:
   - UMCPush (3.1.0):
     - UMCCommon
   - UMCSecurityPlugins (1.0.6)
+  - XHLaunchAd (3.9.3):
+    - FLAnimatedImage (~> 1.0.12)
   - ZFDownload (1.0.2):
     - ASIHTTPRequest
 
@@ -95,6 +98,7 @@ DEPENDENCIES:
   - UMCErrorCatch
   - UMCPush
   - UMCSecurityPlugins
+  - XHLaunchAd (= 3.9.3)
   - ZFDownload
 
 SPEC CHECKSUMS:
@@ -103,6 +107,7 @@ SPEC CHECKSUMS:
   ASIHTTPRequest: ec013992946676b7978dcbde6396d57312d21db4
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   JHUD: 17650f65045d9843a7ad19f6a0b1eac6c78a45d2
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
@@ -122,8 +127,9 @@ SPEC CHECKSUMS:
   UMCErrorCatch: 51f1b68f920233e90a3fa6d51f0456174507ec78
   UMCPush: 6d67ff5ca853857e2690abbdaecb86b254b1f823
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
+  XHLaunchAd: ecd208bce52a26d96d758cd58f617be09b1b52e9
   ZFDownload: a52f94ebb080833b8a8ceb19a409f2941343fe7f
 
-PODFILE CHECKSUM: 61c25ac52d3f09be1138c68d850890c1bd3fce2b
+PODFILE CHECKSUM: 025eee63e37f03018e6ef966aec1e3f2a4ab1a23
 
 COCOAPODS: 1.4.0

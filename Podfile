@@ -18,6 +18,7 @@ pod 'MWPhotoBrowser','2.1.1'
 pod 'FDFullscreenPopGesture','1.1'
 pod 'ZFDownload'
 pod 'SDCycleScrollView'
+pod 'XHLaunchAd','3.9.3'
 #pod 'FlyImage'
 
 pod 'UMCCommon'
