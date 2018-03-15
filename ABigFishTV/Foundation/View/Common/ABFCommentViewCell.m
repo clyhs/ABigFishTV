@@ -128,6 +128,13 @@
     _goodImgView.image = [UIImage imageNamed:@"btn_good"];
     [self.goodToolView addSubview:_goodImgView];
     
+    _goodLab = [[UILabel alloc] init];
+    _goodLab.font = [UIFont systemFontOfSize:14];
+    _goodLab.textColor = [UIColor lightGrayColor];
+    _goodLab.textAlignment = NSTextAlignmentLeft;
+    _goodLab.text = @"0";
+    [self addSubview:_goodLab];
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTouchButton:)];
     _goodToolView.tag = 102;
     [_goodToolView addGestureRecognizer:tap];
@@ -170,7 +177,7 @@
     //UIView *labelView = nil;
     for(NSInteger i=0;i<replyCount;i++){
         ABFCommentInfo *reply = replys[i];
-        UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(0, 20*i, labelWidth, 20)];
+        UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(0, 21*i, labelWidth, 21)];
         //UILabel *content = [[UILabel alloc] init];
         NSString *str = [reply.replayname stringByAppendingString:@":"];
         if(reply.username !=nil){
@@ -183,13 +190,13 @@
         
         CGFloat height = [UILabel getHeightByWidth:labelWidth title:content.text font:content.font];
         
-        content.frame = CGRectMake(5, 20*i+6, labelWidth, height+6);
+        content.frame = CGRectMake(8, 21*i+6, labelWidth, height+7);
         
         NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[str stringByAppendingString:[reply.context stringByReplacingEmojiCheatCodesWithUnicode]]];
         NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
         style.headIndent = 0;//缩进
         style.firstLineHeadIndent = 0;
-        style.lineSpacing = 6;//行距
+        style.lineSpacing = 7;//行距
         
         [text addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, text.length)];
         NSInteger usernameCount = str.length;
@@ -234,19 +241,20 @@
     }];
     
     [_replyToolView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.right.equalTo(self).offset(-60);
+        make.right.equalTo(self).offset(-70);
         make.top.equalTo(self).offset(0);
         make.width.height.mas_equalTo(40);
     }];
     [_replyImgView mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self.replyToolView).offset(10);
-        make.top.equalTo(self.replyToolView).offset(8);
+        make.centerY.equalTo(self.usernameLab);
         make.width.height.mas_equalTo(22);
     }];
     
     [_goodToolView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.right.equalTo(self).offset(-10);
-        make.top.equalTo(self).offset(0);
+        make.right.equalTo(self).offset(-30);
+        //make.top.equalTo(self).offset(0);
+        make.centerY.equalTo(self.usernameLab);
         make.width.height.mas_equalTo(40);
     }];
     
@@ -254,6 +262,12 @@
         make.left.equalTo(self.goodToolView).offset(10);
         make.top.equalTo(self.goodToolView).offset(9);
         make.width.height.mas_equalTo(18);
+    }];
+    
+    [_goodLab mas_makeConstraints:^(MASConstraintMaker *make){
+        make.right.equalTo(self.goodToolView).offset(30);
+        make.centerY.equalTo(self.self.usernameLab);
+        make.width.height.mas_equalTo(30);
     }];
     
     

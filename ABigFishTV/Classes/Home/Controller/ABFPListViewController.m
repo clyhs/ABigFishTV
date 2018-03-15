@@ -207,6 +207,7 @@
                 [self.tableView reloadData];
             }
             [self.tableView.mj_header endRefreshing];
+            self.tableView.mj_footer.hidden = YES;
             [self.hudView hide];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"error%@",error);
@@ -228,61 +229,6 @@
     [self loadDataFirst];
 }
 
--(void)loaddata{
-    
-    if([self.typeId isEqualToString:@"11"]){
-        NSString *fullUrl = [BaseUrl stringByAppendingString:TVCommentUrl];
-        fullUrl = [fullUrl stringByAppendingFormat:@"11/%ld",self.uid];
-        NSLog(@"url=%@",fullUrl);
-        [[ABFHttpManager manager]GET:fullUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSArray *temArray=[responseObject objectForKey:@"data"];
-            NSLog(@"11 ...success%ld",[temArray count]);
-            NSArray *arrayM = [ABFCommentInfo mj_objectArrayWithKeyValuesArray:temArray];
-            self.data = [arrayM mutableCopy];
-            for (ABFCommentInfo *info in arrayM) {
-                NSLog(@"context=%@",info.context);
-            }
-            if(self.data.count == 0){
-                _bgView.alpha = 1;
-            }else{
-                [self.tableView reloadData];
-            }
-
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"error%@",error);
-        }];
-        //[self.tableView reloadData];
-    }else if([self.typeId isEqualToString:@"12"]){
-        NSLog(@"...");
-        
-        NSString *fullUrl = [BaseUrl stringByAppendingString:TVProgramUrl];
-        fullUrl = [fullUrl stringByAppendingFormat:@"/%ld",self.uid];
-        NSDate *senddate=[NSDate date];
-        NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
-        [dateformatter setDateFormat:@"YYYYMMdd"];
-        NSString *locationString=[dateformatter stringFromDate:senddate];
-        fullUrl = [fullUrl stringByAppendingFormat:@"/%@",locationString];
-        NSLog(@"url=%@",fullUrl);
-        [[ABFHttpManager manager]GET:fullUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSArray *temArray=[responseObject objectForKey:@"data"];
-            NSLog(@"12 ... success%ld",[temArray count]);
-            NSArray *arrayM = [ABFProgramInfo mj_objectArrayWithKeyValuesArray:temArray];
-            self.data = [arrayM mutableCopy];
-            
-            if(self.data.count == 0){
-                _bgView.alpha = 1;
-            }else{
-                [self.tableView reloadData];
-            }
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"error%@",error);
-        }];
-        
-    }
-
-    
-}
 
 
 /*********table********/

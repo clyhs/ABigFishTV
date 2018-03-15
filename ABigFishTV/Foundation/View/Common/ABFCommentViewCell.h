@@ -30,6 +30,7 @@
 @property(nonatomic,strong)   UIView  *goodToolView;
 @property(nonatomic,strong)   UIImageView *replyImgView;
 @property(nonatomic,strong)   UIImageView *goodImgView;
+@property(nonatomic,strong)   UILabel *goodLab;
 
 @property(nonatomic,assign)   Boolean isGood;
 
