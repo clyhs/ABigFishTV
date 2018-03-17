@@ -174,6 +174,7 @@
                 self.data = [[self.data arrayByAddingObjectsFromArray:arrayM] mutableCopy];
                 [self.tableView reloadData];
                 [self.tableView.mj_footer endRefreshing];
+                self.tableView.mj_footer.hidden = YES;
             
             }
             [self.hudView hide];
@@ -190,6 +191,7 @@
             }
             if(type == 2){
                 [self.tableView.mj_footer endRefreshing];
+                self.tableView.mj_footer.hidden = YES;
             }
             
         }];

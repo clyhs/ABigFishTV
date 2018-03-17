@@ -1126,42 +1126,62 @@ typedef NS_ENUM(NSInteger, PanDirection){
         
         // 只要快进, 那么就不是被用户暂停
         self.isPauseByUser = NO;
-        
-        
         self.player.currentPlaybackTime = dragedSeconds;
         // 视频跳转回调
         if (completionHandler) { completionHandler(); }
-        
-        [self.player play];
-        //[self.player see]
-        //[self.player ]
-        /*
-        [self.player seekToTime:dragedCMTime toleranceBefore:CMTimeMake(1,1) toleranceAfter:CMTimeMake(1,1) completionHandler:^(BOOL finished) {
+        __weak typeof(self) weakSelf = self;
+        //NSInteger dragedSeconds = floorf(self.player.duration * value);
+        [self.controlView zf_playerPlayBtnState:YES];
+        [self seekToTime:dragedSeconds completionHandler:^(){
+            //self.playerStatusModel.dragged = NO;
+            //[wself.playerMgr play];
+            // 延迟隐藏控制层
+            //[self.videoPlayerView.playerControlView autoFadeOutControlView];
+            NSLog(@"seektime水平移动");
             [weakSelf.controlView zf_playerActivity:NO];
             // 视频跳转回调
-            if (completionHandler) { completionHandler(finished); }
+            weakSelf.player.currentPlaybackTime = dragedSeconds;
+            //if (completionHandler) { completionHandler(); }
             [weakSelf.player play];
             weakSelf.seekTime = 0;
             weakSelf.isDragged = NO;
+            
             // 结束滑动
             [weakSelf.controlView zf_playerDraggedEnd];
-            if (!weakSelf.playerItem.isPlaybackLikelyToKeepUp && !weakSelf.isLocalVideo) { weakSelf.state = ZFPlayerStateBuffering; }
-            
-        }];*/
+            if (self.state == ABPlayerStateReadyToPlay || self.state == ABFPlayerStatePause || self.state == ABFPlayerStateBuffering) {
+                if (self.player.playbackRate > 0) {
+                    self.state = ABFPlayerStatePlaying;
+                }
+            }
+        }];
+        
+        //[self.player play];
+        
+        
     }
     
-    [self.player pause];
     
     
-    // 只要快进, 那么就不是被用户暂停
-    //self.playerStatusModel.pauseByUser = NO;
+    if(dragedSeconds > 0){
+        [self.player pause];
+        // 只要快进, 那么就不是被用户暂停
+        //self.playerStatusModel.pauseByUser = NO;
+        self.player.currentPlaybackTime = dragedSeconds;
+        // 视频跳转回调
+        [self.controlView zf_playerActivity:NO];
+        //if (completionHandler) { completionHandler(); }
+        [self.player play];
+        self.seekTime = 0;
+        self.isDragged = NO;
+        [self.controlView zf_playerDraggedEnd];
+        if (self.state == ABPlayerStateReadyToPlay || self.state == ABFPlayerStatePause || self.state == ABFPlayerStateBuffering) {
+            if (self.player.playbackRate > 0) {
+                self.state = ABFPlayerStatePlaying;
+            }
+        }
+    }
     
     
-    self.player.currentPlaybackTime = dragedSeconds;
-    // 视频跳转回调
-    //if (completionHandler) { completionHandler(); }
-    
-    [self.player play];
 }
 
 /**
@@ -1874,6 +1894,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
         case IJKMPMoviePlaybackStateSeekingForward:
         case IJKMPMoviePlaybackStateSeekingBackward: {
             NSLog(@"IJKMPMoviePlayBackStateDidChange %d: seeking", (int)_player.playbackState);
+            _state = ABPlayerStateReadyToPlay;
             break;
         }
             
