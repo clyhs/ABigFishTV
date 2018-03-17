@@ -75,7 +75,7 @@
 -(void)setPlayImage{
     _playImage =[[UIImageView alloc] init];
     [self.coverView addSubview:_playImage];
-    [_playImage setImage:[UIImage imageNamed:@"btn_playplus"]];
+    [_playImage setImage:[UIImage imageNamed:@"btn_player"]];
 }
 
 -(void)setUsernameLabUI{
@@ -146,7 +146,7 @@
     
     [_playImage mas_makeConstraints:^(MASConstraintMaker *make){
         make.center.equalTo(self.coverView);
-        make.height.width.mas_equalTo(80);
+        make.height.width.mas_equalTo(64);
     }];
     
     [_coverView sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:[UIImage imageNamed:@""]];
