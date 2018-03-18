@@ -232,7 +232,8 @@ typedef NS_ENUM(NSInteger, PanDirection){
     NSInteger count = [self.playerModel.urlArrays count];
     for(int i=0;i<count;i++){
         UILabel *menuLab = [[UILabel alloc] init];
-        menuLab.frame = CGRectMake(5, (i*20)+8, 60, 25);
+        menuLab.frame = CGRectMake(10, (i*40)+10, 60, 40);
+        //menuLab.backgroundColor = COMMON_COLOR;
         NSString *url = @"直播源";
         url = [url stringByAppendingString:[NSString stringWithFormat:@"%d",(i+1)]];
         menuLab.text = url;
@@ -260,7 +261,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
     
     for(int i=0;i<3;i++){
         UILabel *menuLab = [[UILabel alloc] init];
-        menuLab.frame = CGRectMake(5, (i*20)+8, 60, 25);
+        menuLab.frame = CGRectMake(10, (i*40)+10, 60, 40);
         NSString *url = @"分辩率";
         url = [url stringByAppendingString:[NSString stringWithFormat:@"%d",(i+1)]];
         menuLab.text = url;
@@ -309,8 +310,8 @@ typedef NS_ENUM(NSInteger, PanDirection){
         [_player setScalingMode:IJKMPMovieScalingModeNone];
     }
     
-    if(self.isTypeView){
-        //[self.controlView zf_playTypeView:YES];
+    if(!self.isTypeView){
+        [self.controlView zf_playMenuView:YES];
     }
 }
 
@@ -334,8 +335,9 @@ typedef NS_ENUM(NSInteger, PanDirection){
         }
     }
     
-    if(self.isMenuView){
+    if(!self.isMenuView){
         //[self.controlView zf_playMenuView:YES];
+        [self.controlView zf_playTypeView:YES];
     }
     
     
@@ -356,11 +358,6 @@ typedef NS_ENUM(NSInteger, PanDirection){
     }else { // 重置控制层View
         [self.controlView zf_playerResetControlView];
     }
-    //self.controlView   = nil;
-    // 非重播时，移除当前playerView
-    
-    
-    //[self pause];
     self.player = nil;
     
     self.player = [[IJKFFMoviePlayerController alloc] initWithContentURL:self.playerModel.videoURL withOptions:nil];
@@ -409,13 +406,6 @@ typedef NS_ENUM(NSInteger, PanDirection){
     // 开始播放
     [self play];
     self.isPauseByUser = NO;
-    
-    
-    //[self resetToPlayNewVideo:self.playerModel];
-    //self.isFullScreen = YES;
-    //if(_isFullScreen){
-        //[self _fullScreenAction];
-    //}
 }
 
 /**
@@ -562,7 +552,11 @@ typedef NS_ENUM(NSInteger, PanDirection){
     if (!self.isBottomVideo) {
         // 显示控制层
         [self.controlView zf_playerCancelAutoFadeOutControlView];
-        [self.controlView zf_playerShowControlView];
+        
+        if(self.isTypeView || self.isMenuView){
+        }else{
+            [self.controlView zf_playerShowControlView];
+        }
     }
 }
 
@@ -1623,14 +1617,21 @@ typedef NS_ENUM(NSInteger, PanDirection){
 - (void)zf_controlView:(UIView *)controlView menuAction:(UIButton *)sender{
     NSLog(@"...menu");
     self.isMenuView = YES;
-    [self.controlView zf_playMenuView:false];
+    [self.controlView zf_playerHideControlView];
+    [self.controlView zf_playMenuView:NO];
+    [self.controlView zf_playTypeView:YES];
+    self.isTypeView = NO;
+    
     
 }
 
 - (void)zf_controlView:(UIView *)controlView typeAction:(UIButton *)sender{
     NSLog(@"...type");
     self.isTypeView = YES;
-    [self.controlView zf_playTypeView:false];
+    [self.controlView zf_playerHideControlView];
+    [self.controlView zf_playTypeView:NO];
+    [self.controlView zf_playMenuView:YES];
+    self.isMenuView = NO;
 }
 
 - (void)zf_controlView:(UIView *)controlView progressSliderTap:(CGFloat)value {
@@ -1726,15 +1727,33 @@ typedef NS_ENUM(NSInteger, PanDirection){
         return;
     }
     if (gesture.state == UIGestureRecognizerStateRecognized) {
-        if(self.isMenuView){
-            NSLog(@"menuView hidden");
-            [self.controlView zf_playMenuView:YES];
-        }
         if (self.isBottomVideo && !self.isFullScreen) { [self _fullScreenAction]; }
         else {
             if (self.playDidEnd) { return; }
-            else { [self.controlView zf_playerShowControlView]; }
+            else {
+                if(self.isTypeView || self.isMenuView){
+                    
+                }else{
+                    [self.controlView zf_playerShowControlView];
+                }
+                
+            }
         }
+        if(self.isMenuView){
+            NSLog(@"menuView hidden");
+            
+            [self.controlView zf_playMenuView:YES];
+            self.isMenuView = NO;
+        }
+        
+        if(self.isTypeView){
+            
+            NSLog(@"menuView hidden");
+            [self.controlView zf_playTypeView:YES];
+            self.isTypeView = NO;
+        }
+        
+        
         
     }
 }

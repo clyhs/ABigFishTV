@@ -343,17 +343,17 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
         make.bottom.mas_offset(0);
     }];
     [self.menuView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).offset(0);
+        make.right.equalTo(self.mas_right).offset(0);
         make.width.mas_offset(80);
-        make.top.equalTo(self.menuBtn.mas_bottom).offset(5);
-        make.height.mas_equalTo(90);
+        make.top.equalTo(self.mas_top).offset(0);
+        make.bottom.equalTo(self.mas_bottom).offset(0);
     }];
     
     [self.typeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.typeBtn.mas_left).offset(-10);
+        make.right.equalTo(self.mas_right).offset(0);
         make.width.mas_offset(80);
-        make.top.equalTo(self.typeBtn.mas_bottom).offset(5);
-        make.height.mas_equalTo(90);
+        make.top.equalTo(self.mas_top).offset(0);
+        make.bottom.equalTo(self.mas_bottom).offset(0);
     }];
     [self.cutBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.offset(52);
@@ -944,7 +944,8 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 -(UIView *)menuView{
     if(!_menuView){
         _menuView = [[UIView alloc] init];
-        _menuView.backgroundColor = [UIColor clearColor]; //RGBA(0, 0, 0, 0.8);
+        _menuView.backgroundColor = RGBA(0, 0, 0, 0.8);
+        //_menuView.alpha = 0.8;
         
         
     }
@@ -954,7 +955,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 -(UIView *)typeView{
     if(!_typeView){
         _typeView = [[UIView alloc] init];
-        _typeView.backgroundColor = [UIColor clearColor];
+        _typeView.backgroundColor = RGBA(0, 0, 0, 0.8);
     }
     return _typeView;
 }
@@ -1080,7 +1081,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
             self.menuView.alpha = 0.8;
         }];
     }else{
-        [UIView animateWithDuration:1.0 animations:^{
+        [UIView animateWithDuration:0.5 animations:^{
             self.menuView.alpha = 0;
         }];
     }
@@ -1089,7 +1090,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 
 - (void)zf_playTypeView:(BOOL)hidden{
     if(!hidden){
-        [UIView animateWithDuration:1.0 animations:^{
+        [UIView animateWithDuration:0.5 animations:^{
             self.typeView.alpha = 0.8;
         }];
     }else{

@@ -162,7 +162,7 @@
 -(void)initUM:(NSDictionary *)launchOptions{
 
     [UMConfigure initWithAppkey:@"5a9fef97f29d984356000310" channel:@"App Store"];
-    //[UMErrorCatch initErrorCatch];
+    [UMErrorCatch initErrorCatch];
     
     [MobClick setScenarioType:E_UM_NORMAL];
     
