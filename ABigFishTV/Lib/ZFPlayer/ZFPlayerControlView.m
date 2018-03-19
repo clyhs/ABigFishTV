@@ -310,7 +310,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     [self.typeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(40);
         make.height.mas_equalTo(49);
-        make.right.equalTo(self.menuBtn.mas_left).offset(-20);
+        make.right.equalTo(self.menuBtn.mas_left).offset(-10);
         make.centerY.equalTo(self.backBtn.mas_centerY);
     }];
     
@@ -867,7 +867,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 - (UIButton *)menuBtn {
     if (!_menuBtn) {
         _menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_menuBtn setImage:[UIImage imageNamed:@"icon_menu"] forState:UIControlStateNormal];
+        [_menuBtn setImage:[UIImage imageNamed:@"icon_channel"] forState:UIControlStateNormal];
         [_menuBtn addTarget:self action:@selector(menuBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _menuBtn;

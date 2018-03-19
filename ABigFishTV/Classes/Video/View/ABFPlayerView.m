@@ -1513,6 +1513,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
     self.isPauseByUser = !self.isPauseByUser;
     if (self.isPauseByUser) {
         [self pause];
+        
         if (self.state == ABFPlayerStatePlaying) { self.state = ABFPlayerStatePause;}
     } else {
         [self play];
