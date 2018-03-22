@@ -87,7 +87,7 @@
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self).offset(40);
         make.top.equalTo(self).offset(10);
-        make.width.equalTo(@100);
+        make.right.equalTo(self).offset(-20);
         make.height.equalTo(@20);
     }];
     [_lineView mas_makeConstraints:^(MASConstraintMaker *make){

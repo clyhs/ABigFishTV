@@ -26,9 +26,23 @@
 
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self){
+        NSLog(@"ABFList");
         [self addTitleLabel];
         [self addBottomLine];
     }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    
+    self = [super initWithFrame:frame];
+    
+    if (self)
+    {
+        [self addTitleLabel];
+        [self addBottomLine];
+    }
+    
     return self;
 }
 
@@ -50,9 +64,9 @@
     
     UILabel *textLabel = [[UILabel alloc] init];
     textLabel.font = [UIFont systemFontOfSize:14];
-    textLabel.textColor = [UIColor darkGrayColor];
+    textLabel.textColor = [UIColor lightGrayColor];
     textLabel.textAlignment = NSTextAlignmentLeft;
-    textLabel.text=title;
+    //textLabel.text=title;
     [self addSubview:textLabel];
     _titleLabel = textLabel;
     
@@ -79,7 +93,7 @@
 
 -(void)setModel:(ABFTelevisionInfo *)model{
     _model = model;
-    self.textLabel.text = model.name;
+    self.titleLabel.text = model.name;
 }
 
 - (void)layoutSubviews
@@ -88,9 +102,9 @@
     
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self).offset(50);
+        make.left.equalTo(self).offset(30);
         make.top.equalTo(self).offset(10);
-        make.width.equalTo(@100);
+        make.right.equalTo(self).offset(-20);
         make.height.equalTo(@20);
     }];
     [_lineView mas_makeConstraints:^(MASConstraintMaker *make){

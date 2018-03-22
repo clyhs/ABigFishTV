@@ -25,6 +25,7 @@
 #import "ABFFriendsViewController.h"
 #import "ABFMyChatViewController.h"
 #import "ABFCalendarController.h"
+#import "UITableView+ABFHighLight.h"
 
 
 @interface ABFMineViewController ()<UITableViewDelegate,UITableViewDataSource,MenuBindingDelegate,ABFSettingViewControllerDelegate>
@@ -121,6 +122,7 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.bounces = NO;
+    tableView.abf_highLightColor = LINE_BG;
     
     [self.view addSubview:tableView];
     [tableView registerClass:[ABFMineSimpleCell class] forCellReuseIdentifier:@"mycell"];
@@ -236,6 +238,7 @@
     }
     [cell setIconName:icon];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

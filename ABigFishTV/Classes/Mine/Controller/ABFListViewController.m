@@ -141,31 +141,6 @@
     _rightBtn =rightBtn;
     self.navigationItem.rightBarButtonItem = rBtnItem;
     
-    
-    /*
-    ABFNavigationBarView *naviView = [[ABFNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
-    naviView.title = self.title;
-    naviView.backgroundColor = COMMON_COLOR;
-    [naviView setLeftBtnImageName:@"icon_lightback"];
-    [self.view addSubview:naviView];
-    _naviView = naviView;
-    
-    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightBtn addTarget:self action:@selector(deleteClick:)
-       forControlEvents:UIControlEventTouchUpInside];
-    [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    rightBtn.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
-    [rightBtn setImage:[UIImage imageNamed:@"icon_square"] forState:UIControlStateNormal];
-    [rightBtn setImage:[UIImage imageNamed:@"icon_delete"] forState:UIControlStateSelected];
-    _rightBtn =rightBtn;
-    [self.naviView addSubview:rightBtn];
-    [rightBtn mas_makeConstraints:^(MASConstraintMaker *make){
-        make.right.equalTo(self.naviView).offset(-5);
-        make.top.equalTo(self.naviView).offset(22);
-        make.height.equalTo(@40);
-        make.width.mas_equalTo(40);
-    }];*/
-    
 }
 
 
@@ -203,9 +178,6 @@
             NSLog(@"ids=%@",ids);
             [self deleteAction:ids];
         }
-        
-        
-        
     }
 }
 -(void)deleteAction:(NSString *)ids{
@@ -224,9 +196,6 @@
         
         NSLog(@"url=%@",fullUrl);
         [[ABFHttpManager manager]POST:fullUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
-            //NSObject *obj = [responseObject objectForKey:@"data"];
-            
             if(self.index == 102){
                 [AppDelegate APP].user.likenum =[AppDelegate APP].user.likenum - self.deleteArrays.count;
             }else if(self.index == 103){
@@ -239,8 +208,6 @@
             
         }];
     }
-    
-    
 
 }
 
@@ -249,18 +216,15 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-    //tableView.estimatedRowHeight = 0;
-    //tableView.estimatedSectionHeaderHeight = 0;
-    //tableView.estimatedSectionFooterHeight = 0;
-    //tableView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight -64);
     tableView.backgroundColor = [UIColor whiteColor];
     tableView.editing = NO;
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.detailView addSubview:tableView];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [tableView registerClass:[ABFListCommonCell class] forCellReuseIdentifier:@"mycell"];
     _tableView = tableView;
-    [_tableView registerClass:[ABFListCommonCell class] forCellReuseIdentifier:@"mycell"];
+    
     
 }
 
@@ -359,59 +323,6 @@
     
 }
 
-- (void) loadData{
-    //NSInteger curIndexPage = _curIndexPage;
-    
-    
-    NSString *fullUrl = [BaseUrl stringByAppendingString:TVRecordUrl];
-    
-    if([AppDelegate APP].user){
-    
-        NSString *userId = [NSString stringWithFormat:@"%ld",[AppDelegate APP].user.id];
-        fullUrl = [fullUrl stringByAppendingString:userId];
-        
-        if(self.index == 102){
-            fullUrl = [fullUrl stringByAppendingString:@"/14"];
-        }else if(self.index == 103){
-            fullUrl = [fullUrl stringByAppendingString:@"/15"];
-        }
-        fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%ld",_curIndexPage]];
-        NSLog(@"url=%@",fullUrl);
-        self.hudView.messageLabel.text = @"数据加载中...";
-        [self.hudView showAtView:self.view hudType:JHUDLoadingTypeCircle];
-        [[ABFHttpManager manager]GET:fullUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
-            NSArray *temArray=[responseObject objectForKey:@"data"];
-            if(temArray.count>0){
-                _curIndexPage++;
-            }
-            NSLog(@"success%ld",[temArray count]);
-            NSArray *arrayM = [ABFTelevisionInfo mj_objectArrayWithKeyValuesArray:temArray];
-            
-            if(self.dataArrays.count == 0){
-                self.dataArrays = [arrayM mutableCopy];
-            }else{
-                //self.dataArrays = [arrayM arrayByAddingObjectsFromArray:self.dataArrays];
-                //self.dataArrays = [[arrayM arrayByAddingObjectsFromArray:self.dataArrays] mutableCopy];
-                self.dataArrays = [[self.dataArrays arrayByAddingObjectsFromArray:arrayM] mutableCopy];
-            }
-            [self.tableView reloadData];
-            [self.tableView.mj_header endRefreshing];
-            [self.hudView hide];
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"error%@",error);
-            [self.tableView.mj_header endRefreshing];
-            self.hudView.indicatorViewSize = CGSizeMake(60, 60);
-            self.hudView.messageLabel.text = @"连接网络失败，请重新连接";
-            [self.hudView.refreshButton setTitle:@"重新连接" forState:UIControlStateNormal];
-            [self.hudView.refreshButton addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventTouchUpInside];
-            self.hudView.customImage = [UIImage imageNamed:@"nullData"];
-            [self.hudView showAtView:self.view hudType:JHUDLoadingTypeFailure];
-        }];
-    }
-    
-}
 
 -(void)refresh:(id)sender{
     [self loadRefresh];
@@ -427,12 +338,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ABFListCommonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mycell" forIndexPath:indexPath];
-    //    2.如果缓存池中没有符合条件的cell,就自己创建一个Cell
-    /*
-    if (cell == nil) {
-        cell = [[ABFListCommonCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"mycell"];
-        NSLog(@"创建一个新的Cell");
-    }*/
 
 
     ABFTelevisionInfo *model = self.dataArrays[indexPath.row];

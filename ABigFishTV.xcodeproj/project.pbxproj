@@ -134,6 +134,7 @@
 		723F8923205AA4FE007F6595 /* LaunchVideoAd.json in Resources */ = {isa = PBXBuildFile; fileRef = 723F8918205AA4FE007F6595 /* LaunchVideoAd.json */; };
 		723F8924205AA4FE007F6595 /* video0.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 723F8919205AA4FE007F6595 /* video0.mp4 */; };
 		723F8925205AA4FE007F6595 /* video1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 723F891A205AA4FE007F6595 /* video1.mp4 */; };
+		724193D12063D90600A7465C /* UITableView+ABFHighLight.m in Sources */ = {isa = PBXBuildFile; fileRef = 724193D02063D90600A7465C /* UITableView+ABFHighLight.m */; };
 		72442D041FE6A83900D788A4 /* ABFMyChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72442D031FE6A83900D788A4 /* ABFMyChatViewController.m */; };
 		724573581F9C6C0F00AEE86E /* ABFTelevisionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 724573571F9C6C0F00AEE86E /* ABFTelevisionInfo.m */; };
 		7245735C1F9C718400AEE86E /* ABFHttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7245735B1F9C718400AEE86E /* ABFHttpManager.m */; };
@@ -438,6 +439,8 @@
 		723F8918205AA4FE007F6595 /* LaunchVideoAd.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = LaunchVideoAd.json; path = Foundation/Source/LaunchVideoAd.json; sourceTree = "<group>"; };
 		723F8919205AA4FE007F6595 /* video0.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = video0.mp4; path = Foundation/Source/video0.mp4; sourceTree = "<group>"; };
 		723F891A205AA4FE007F6595 /* video1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = video1.mp4; path = Foundation/Source/video1.mp4; sourceTree = "<group>"; };
+		724193CF2063D90600A7465C /* UITableView+ABFHighLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+ABFHighLight.h"; path = "Foundation/Category/UITableView+ABFHighLight.h"; sourceTree = "<group>"; };
+		724193D02063D90600A7465C /* UITableView+ABFHighLight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableView+ABFHighLight.m"; path = "Foundation/Category/UITableView+ABFHighLight.m"; sourceTree = "<group>"; };
 		72442D021FE6A83900D788A4 /* ABFMyChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFMyChatViewController.h; path = Classes/Mine/Controller/ABFMyChatViewController.h; sourceTree = "<group>"; };
 		72442D031FE6A83900D788A4 /* ABFMyChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFMyChatViewController.m; path = Classes/Mine/Controller/ABFMyChatViewController.m; sourceTree = "<group>"; };
 		724573561F9C6C0F00AEE86E /* ABFTelevisionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFTelevisionInfo.h; path = Classes/Home/Model/ABFTelevisionInfo.h; sourceTree = "<group>"; };
@@ -1133,6 +1136,8 @@
 				7203DB761FB1F75600F10C47 /* UILabel+ABFLabel.m */,
 				72176835205418AF008312BC /* NSDate+ABFDate.h */,
 				72176836205418AF008312BC /* NSDate+ABFDate.m */,
+				724193CF2063D90600A7465C /* UITableView+ABFHighLight.h */,
+				724193D02063D90600A7465C /* UITableView+ABFHighLight.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -1757,6 +1762,7 @@
 				7250AF2C1FD6CFAB0062E25B /* ABFSettingViewController.m in Sources */,
 				720807DE1FB32F1B005D39F5 /* ABFDictInfo.m in Sources */,
 				7203C7611FCC5D98002215D5 /* ABFResultInfo.m in Sources */,
+				724193D12063D90600A7465C /* UITableView+ABFHighLight.m in Sources */,
 				724573651F9CC4B900AEE86E /* ABFCollectionViewCell.m in Sources */,
 				725E7F261FB71BD1007D5C87 /* ABFVideoInfo.m in Sources */,
 				725F030F1FBB2BAB00B89736 /* ABFProvinceViewController.m in Sources */,
