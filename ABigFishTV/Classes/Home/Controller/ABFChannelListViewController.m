@@ -37,6 +37,8 @@
 
 @property(nonatomic,assign) NSInteger type;
 
+@property(nonatomic,strong) UIView *mainView;
+
 @end
 
 @implementation ABFChannelListViewController
@@ -47,9 +49,12 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     // Do any additional setup after loading the view.
     //[AppDelegate APP].allowRotation = false;
-    self.hudView = [[JHUD alloc]initWithFrame:self.view.bounds];
+    
     _curIndexPage = 1;
+    [self setuiMainView];
     [self addCollectionView];
+    
+    self.hudView = [[JHUD alloc]initWithFrame:self.mainView.bounds];
     [self addRefreshHeader];
     [self addRefreshFooter];
     [self loadDataFirst];
@@ -69,12 +74,20 @@
     [self addNavigationBarView];
 }
 
+- (void)setuiMainView{
+    _mainView = [[UIView alloc] init];
+    _mainView.backgroundColor = [UIColor whiteColor];
+    _mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    [self.view addSubview:_mainView];
+}
+
+
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    
-    self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    _collectionView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight-64);
+    self.mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    //self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+    _collectionView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64 );
     
 }
 
@@ -215,6 +228,7 @@
     
     
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero  collectionViewLayout:flowLayout];
+    collectionView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight-64 );
     collectionView.delegate = self;
     collectionView.dataSource = self;
     collectionView.backgroundColor = [UIColor clearColor];
@@ -228,7 +242,7 @@
     [_collectionView registerClass:[ABFCollectionSimpleCell class] forCellWithReuseIdentifier:@"simpleCell"];
     [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView"];
     
-    [self.view addSubview:collectionView];
+    [self.mainView addSubview:collectionView];
     
 }
 

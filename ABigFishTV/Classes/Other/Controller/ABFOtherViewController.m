@@ -108,7 +108,7 @@
     [super viewWillLayoutSubviews];
     
     self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    _tableView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight -0 -64);
+    _tableView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight -64);
     
 }
 

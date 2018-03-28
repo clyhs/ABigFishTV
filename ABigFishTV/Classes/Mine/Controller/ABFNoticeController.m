@@ -27,6 +27,8 @@
 
 @property(nonatomic,strong) ABFNavigationBarView *naviView;
 
+@property(nonatomic,strong) UIView *mainView;
+
 @end
 
 @implementation ABFNoticeController
@@ -35,9 +37,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    self.hudView = [[JHUD alloc]initWithFrame:self.view.bounds];
+    
     _curIndexPage = 1;
+    [self setuiMainView];
+    
     [self addTableView];
+    self.hudView = [[JHUD alloc] initWithFrame:self.tableView.bounds];
     [self loadData];
 }
 
@@ -61,12 +66,20 @@
     
 }
 
+- (void)setuiMainView{
+    _mainView = [[UIView alloc] init];
+    _mainView.backgroundColor = [UIColor whiteColor];
+    _mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    [self.view addSubview:_mainView];
+}
+
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
     
-    self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    _tableView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight -64);
+    //self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    self.mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    _tableView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight -64);
     
 }
 
@@ -76,6 +89,7 @@
     self.title = @"消息";
 
     self.navigationController.navigationBar.barTintColor = COMMON_COLOR;
+    self.navigationController.navigationBar.translucent = NO;
     //self.navigationController.navigationBar.alpha = 0.8;
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSFontAttributeName:[UIFont systemFontOfSize:22],NSForegroundColorAttributeName:[UIColor whiteColor]}];
@@ -96,8 +110,10 @@
 
 - (void)addTableView{
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.automaticallyAdjustsScrollViewInsets = YES;
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    tableView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight -64);
+    tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     tableView.estimatedRowHeight = 0;
     tableView.estimatedSectionHeaderHeight = 0;
     tableView.estimatedSectionFooterHeight = 0;
@@ -106,7 +122,7 @@
     tableView.editing = NO;
     tableView.delegate = self;
     tableView.dataSource = self;
-    [self.view addSubview:tableView];
+    [self.mainView addSubview:tableView];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView = tableView;
     
@@ -179,6 +195,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

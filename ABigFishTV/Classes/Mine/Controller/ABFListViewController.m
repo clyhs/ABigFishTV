@@ -31,6 +31,7 @@
 @property(nonatomic,strong) ABFNavigationBarView *naviView;
 @property(nonatomic,strong) UIButton *rightBtn;
 @property(nonatomic,strong) UIView *detailView;
+@property(nonatomic,strong) UIView *mainView;
 
 
 
@@ -59,7 +60,7 @@
     _curIndexPage = 1;
     [self addDetailView];
     [self addTableView];
-    self.hudView = [[JHUD alloc]initWithFrame:self.view.bounds];
+    self.hudView = [[JHUD alloc]initWithFrame:self.detailView.bounds];
     [self addRefreshHeader];
     [self addRefreshFooter];
     [self loadRefresh];
@@ -71,6 +72,7 @@
     [AppDelegate APP].allowRotation = false;
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [self.tabBarController.tabBar setHidden:YES];
+    self.navigationController.navigationBar.translucent = NO;
     [self addNavigationBarView];
     
 }
@@ -90,6 +92,7 @@
 
 -(void) addDetailView{
     _detailView = [[UIView alloc] init];
+    _detailView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight -64);
     [self.view addSubview:_detailView];
 }
 
@@ -101,8 +104,9 @@
 {
     [super viewWillLayoutSubviews];
     
-    self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    _detailView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight -64);
+    //self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+    //self.mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    _detailView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight -64);
     _tableView.frame = _detailView.bounds;
 }
 
@@ -211,6 +215,12 @@
 
 }
 
+- (void)setuiMainView{
+    _mainView = [[UIView alloc] init];
+    _mainView.backgroundColor = [UIColor yellowColor];
+    _mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    [self.view addSubview:_mainView];
+}
 
 - (void)addTableView{
     
@@ -349,6 +359,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 44;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return [UIView new];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

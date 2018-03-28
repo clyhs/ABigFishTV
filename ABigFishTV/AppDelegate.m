@@ -57,7 +57,7 @@
     // Override point for customization after application launch.
     
     
-    
+    [self setUPAdapteriOS11];
     
     [self initShareSdk];
     [self initUM:launchOptions];
@@ -83,6 +83,17 @@
     
     return YES;
 }
+
+-(void)setUPAdapteriOS11{
+    if (@available(iOS 11.0, *)) {
+        [UITableView appearance].estimatedRowHeight = 0;
+        [UITableView appearance].estimatedSectionFooterHeight = 0;
+        [UITableView appearance].estimatedSectionHeaderHeight = 0;
+        [UITableView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        [UIScrollView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+}
+
 
 #pragma mark - 检测网络状态变化
 -(void)netWorkChangeEvent

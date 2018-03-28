@@ -25,6 +25,8 @@
 @property (nonatomic) JHUD *hudView;
 
 @property(nonatomic,assign) NSInteger curIndexPage;
+
+@property(nonatomic,strong) UIView *mainView;
 @end
 
 @implementation ABFFriendsViewController
@@ -33,7 +35,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self addTableView];
-    self.hudView = [[JHUD alloc]initWithFrame:self.view.bounds];
+    [self setuiMainView];
+    self.hudView = [[JHUD alloc]initWithFrame:self.mainView.bounds];
     [self addRefreshHeader];
     [self addRefreshFooter];
     [self loadDataFirst];
@@ -59,12 +62,20 @@
     
 }
 
+- (void)setuiMainView{
+    _mainView = [[UIView alloc] init];
+    _mainView.backgroundColor = [UIColor whiteColor];
+    _mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    [self.view addSubview:_mainView];
+}
+
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
     
-    self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    _tableView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight -64);
+    //self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+    self.mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    _tableView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight -64);
     
 }
 
@@ -85,6 +96,7 @@
     
     self.title = @"粉丝";
     self.navigationController.navigationBar.barTintColor = COMMON_COLOR;
+    self.navigationController.navigationBar.translucent = NO;
     //self.navigationController.navigationBar.alpha = 0.8;
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSFontAttributeName:[UIFont systemFontOfSize:22],NSForegroundColorAttributeName:[UIColor whiteColor]}];
@@ -121,7 +133,7 @@
     tableView.editing = NO;
     tableView.delegate = self;
     tableView.dataSource = self;
-    [self.view addSubview:tableView];
+    [self.mainView addSubview:tableView];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView = tableView;
     [tableView registerClass:[ABFFriendTableCell class] forCellReuseIdentifier:@"mycell"];

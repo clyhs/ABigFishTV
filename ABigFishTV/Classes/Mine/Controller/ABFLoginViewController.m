@@ -189,7 +189,7 @@
     [usernameTF setFont:[UIFont systemFontOfSize:14]];
     [usernameTF setDelegate:self];
     [usernameTF setPlaceholder:@"用户名或电子邮箱"];
-    [usernameTF setText:@""];
+    [usernameTF setText:@"test123"];
     [usernameTF setHighlighted:YES];
     [self.baseView addSubview:usernameTF];
     _usernameTF = usernameTF;
@@ -227,7 +227,7 @@
     [passwordTF setPlaceholder:@"密码"];
     [passwordTF setTextColor:[UIColor grayColor]];
     [passwordTF setFont:[UIFont systemFontOfSize:14]];
-    [passwordTF setText:@""];
+    [passwordTF setText:@"123456"];
     [self.baseView addSubview:passwordTF];
     _passwordTF = passwordTF;
     [passwordTF mas_makeConstraints:^(MASConstraintMaker *make){

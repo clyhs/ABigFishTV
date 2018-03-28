@@ -26,6 +26,8 @@
 
 @property(nonatomic,strong) ABFNavigationBarView *naviView;
 
+@property(nonatomic,strong) UIView *mainView;
+
 @end
 
 @implementation ABFMyChatViewController
@@ -34,10 +36,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    self.hudView = [[JHUD alloc]initWithFrame:self.view.bounds];
+    
    // self.edgesForExtendedLayout = UIRectEdgeBottom;//不用这个，不然会有导航栏向上缩
     _curIndexPage = 1;
     [self addTableView];
+    [self setuiMainView];
+    self.hudView = [[JHUD alloc]initWithFrame:self.mainView.bounds];
     [self addRefreshHeader];
     [self addRefreshFooter];
     
@@ -55,12 +59,20 @@
     
 }
 
+- (void)setuiMainView{
+    _mainView = [[UIView alloc] init];
+    _mainView.backgroundColor = [UIColor whiteColor];
+    _mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    [self.view addSubview:_mainView];
+}
+
+
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    
-    self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    _tableView.frame =  CGRectMake(0, 64, kScreenWidth, kScreenHeight-64);
+    self.mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    //self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+    _tableView.frame =  CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
 }
 
 - (void)addRefreshHeader
@@ -80,6 +92,7 @@
     
     self.title = @"微话题";
     self.navigationController.navigationBar.barTintColor = COMMON_COLOR;
+    self.navigationController.navigationBar.translucent = NO;
     //self.navigationController.navigationBar.alpha = 0.8;
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSFontAttributeName:[UIFont systemFontOfSize:22],NSForegroundColorAttributeName:[UIColor whiteColor]}];
@@ -115,7 +128,7 @@
     tableView.editing = NO;
     tableView.delegate = self;
     tableView.dataSource = self;
-    [self.view addSubview:tableView];
+    [self.mainView addSubview:tableView];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView = tableView;
     [_tableView registerClass:[ABFChatViewCell class] forCellReuseIdentifier:@"mycell"];

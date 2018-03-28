@@ -138,12 +138,14 @@
     [super viewWillAppear:animated];
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [self setStatusBarBackgroundColor:COMMON_COLOR];
     [AppDelegate APP].allowRotation = false;
     
     //self.navigationController.navigationBarHidden=YES;
     //隐藏
     //[self.navigationController setNavigationBarHidden:YES animated:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    
     [self initNavigationBar];
     [self.tabBarController.tabBar setHidden:NO];
     
@@ -153,6 +155,13 @@
     }
 }
 
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -173,8 +182,12 @@
 //设置导航栏的颜色
 - (void)initNavigationBar{
     [self.navigationController.navigationBar setBarTintColor:COMMON_COLOR];
+    [self.navigationController.navigationBar setBackgroundColor:COMMON_COLOR];
+    [self.navigationController.navigationBar setTintColor:COMMON_COLOR];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:22],NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    self.navigationController.navigationBar.alpha = 1;
+    self.navigationController.navigationBar.translucent = NO;
+    //[self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
     //[self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault] ;
     

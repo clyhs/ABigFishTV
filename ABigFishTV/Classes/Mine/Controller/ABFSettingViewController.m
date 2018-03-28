@@ -114,21 +114,6 @@
 - (void)addNavigationBarView{
     
     self.title = @"设置";
-    /*
-    self.navigationController.navigationBar.barTintColor = COMMON_COLOR;
-    //self.navigationController.navigationBar.alpha = 0.8;
-    [self.navigationController.navigationBar setTitleTextAttributes:
-     @{NSFontAttributeName:[UIFont systemFontOfSize:22],NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftBtn addTarget:self action:@selector(backClick:)
-      forControlEvents:UIControlEventTouchUpInside];
-    //leftBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
-    leftBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    leftBtn.frame = CGRectMake(0,0,20,20);
-    [leftBtn setImage:[UIImage imageNamed:@"btn_nback"] forState:UIControlStateNormal];
-    UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
-    self.navigationItem.leftBarButtonItem = leftBtnItem;*/
     
     ABFNavigationBarView *naviView = [[ABFNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
     naviView.title = self.title;
@@ -258,6 +243,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 50;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return [UIView new];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

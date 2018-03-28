@@ -15,6 +15,8 @@
 
 @property(nonatomic,strong) ABFCalendarRecordView *calendarRecordView;
 
+@property(nonatomic,strong) UIView *mainView;
+
 @end
 
 @implementation ABFCalendarController
@@ -23,6 +25,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     NSDate *currentDate = [self getCurrentDate];
+    [self setuiMainView];
     [self setupUI];
     [self.calendarRecordView resetCalendarWithDate:currentDate];
     self.calendarRecordView.delegate = self;
@@ -37,13 +40,21 @@
     [self.tabBarController.tabBar setHidden:YES];
     [self addNavigationBarView];
 }
+
+- (void)setuiMainView{
+    _mainView = [[UIView alloc] init];
+    _mainView.backgroundColor = [UIColor whiteColor];
+    _mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    [self.view addSubview:_mainView];
+}
+
 - (void)addNavigationBarView{
     
     self.title = @"日历";
     
     self.navigationController.navigationBar.barTintColor = COMMON_COLOR;
     //self.navigationController.navigationBar.alpha = 0.8;
-    
+    self.navigationController.navigationBar.translucent = NO;
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSFontAttributeName:[UIFont systemFontOfSize:22],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -67,15 +78,15 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    
-    self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+    self.mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    //self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
 }
 
 -(void)setupUI{
     ABFCalendarRecordView *calendarRecordView = [[ABFCalendarRecordView alloc] init];
     CGFloat height = (kScreenWidth/9.5+10)*6 + 64;
-    calendarRecordView.frame =CGRectMake(0, 64, kScreenWidth, height);
-    [self.view addSubview:calendarRecordView];
+    calendarRecordView.frame =CGRectMake(0, 0, kScreenWidth, height);
+    [self.mainView addSubview:calendarRecordView];
     _calendarRecordView = calendarRecordView;
 }
 

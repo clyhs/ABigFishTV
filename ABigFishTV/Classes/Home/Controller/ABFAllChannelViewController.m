@@ -32,6 +32,8 @@
 
 @property (strong,nonatomic) UISwipeGestureRecognizer *recognizer;
 
+@property(nonatomic,strong) UIView *mainView;
+
 
 @end
 
@@ -42,7 +44,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     // Do any additional setup after loading the view.
-    self.hudView = [[JHUD alloc]initWithFrame:self.view.bounds];
+    [self setuiMainView];
+    self.hudView = [[JHUD alloc]initWithFrame:self.mainView.bounds];
     //[AppDelegate APP].allowRotation = false;
     UISwipeGestureRecognizer *recognizer= [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
     [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
@@ -57,6 +60,13 @@
     [self loadData];
     
     
+}
+
+- (void)setuiMainView{
+    _mainView = [[UIView alloc] init];
+    _mainView.backgroundColor = [UIColor whiteColor];
+    _mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    [self.view addSubview:_mainView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -97,7 +107,8 @@
 {
     [super viewWillLayoutSubviews];
     
-    self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+    //self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+    self.mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
     //_leftTableView.frame = CGr
     
 }
@@ -114,7 +125,7 @@
     leftTableView.backgroundColor = LINE_BG;
     leftTableView.delegate = self;
     leftTableView.dataSource = self;
-    [self.view addSubview:leftTableView];
+    [self.mainView addSubview:leftTableView];
     leftTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     leftTableView.bounces = NO;
     _leftTableView = leftTableView;
@@ -125,21 +136,21 @@
     rightTableView.backgroundColor = [UIColor clearColor];
     rightTableView.delegate = self;
     rightTableView.dataSource = self;
-    [self.view addSubview:rightTableView];
+    [self.mainView addSubview:rightTableView];
     rightTableView.bounces = NO;
     rightTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _rightTableView =rightTableView;
     [rightTableView registerClass:[ABFRightTableViewCell class] forCellReuseIdentifier:@"rightcell"];
     
-    _leftTableView.frame = CGRectMake(0, 64, kScreenWidth*0.25, kScreenHeight-64);
-    _rightTableView.frame = CGRectMake(kScreenWidth*0.25, 64, kScreenWidth*0.75, kScreenHeight-64);
+    _leftTableView.frame = CGRectMake(0, 0, kScreenWidth*0.25, kScreenHeight-64);
+    _rightTableView.frame = CGRectMake(kScreenWidth*0.25, 0, kScreenWidth*0.75, kScreenHeight-64);
 }
 
 -(void)loadData{
     
     NSString *fullUrl = [BaseUrl stringByAppendingString:TVAllChannelUrl];
     self.hudView.messageLabel.text = @"数据加载中...";
-    [self.hudView showAtView:self.view hudType:JHUDLoadingTypeCircle];
+    [self.hudView showAtView:self.mainView hudType:JHUDLoadingTypeCircle];
     [[ABFHttpManager manager]GET:fullUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSArray *temArray=[responseObject objectForKey:@"data"];
