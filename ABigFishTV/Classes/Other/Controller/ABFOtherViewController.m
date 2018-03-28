@@ -76,7 +76,7 @@
     
     [self loaddata];
     
-    //[self startLocation];
+    [self startLocation];
     
     
 }
@@ -97,12 +97,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    
+    
+}
+
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
     
-    _tableView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight - 64  );
-    
+    self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+    _tableView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight -0 -64);
     
 }
 
@@ -159,18 +165,19 @@
     
     [self.navView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.height.mas_offset(64);
+        make.height.mas_equalTo(64);
     }];
     
     [self.searchView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.navView).offset(80);
         make.top.equalTo(self.navView).offset(30);
-        make.height.mas_offset(25);
+        make.height.mas_equalTo(25);
         make.right.equalTo(self.navView).offset(-20);
     }];
-
+    
 }
 
+/*********table********/
 
 - (void) addTableView{
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -178,9 +185,10 @@
     tableView.backgroundColor = LINE_BG;
     tableView.delegate = self;
     tableView.dataSource = self;
-    tableView.bounces = NO;
+    //tableView.backgroundColor = [UIColor redColor];
     [self.view addSubview:tableView];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [tableView registerClass:[ABFOtherSimpleCell class] forCellReuseIdentifier:@"mycell"];
     _tableView = tableView;
     
 }
@@ -226,7 +234,7 @@
         [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:12];
         [btn addTarget:self action:@selector(searchAction:)
-           forControlEvents:UIControlEventTouchUpInside];
+      forControlEvents:UIControlEventTouchUpInside];
         [mylayout addSubview:btn];
         
         w = w + width + 20;
@@ -246,7 +254,7 @@
     NSLog(@"%d",i);
     if(i <= 1){
         nheight = 25 + totalheight;
-
+        
     }else{
         nheight = (i-1)*25 + totalheight;
     }
@@ -263,6 +271,7 @@
     UIView *myView = [[UIView alloc] initWithFrame:CGRectMake(0, self.adHeight, kScreenWidth,nheight)];
     [myView addSubview:mylayout];
     [headerView addSubview:myView];
+    headerView.backgroundColor = [UIColor redColor];
     
     _tableView.parallaxHeader.view = headerView;
     _tableView.parallaxHeader.height = nheight +self.adHeight;
@@ -278,7 +287,7 @@
     cycleScrollView.currentPageDotColor = [UIColor whiteColor];
     
     cycleScrollView.placeholderImage = [UIImage imageWithColor:RGB_255(245, 245, 245)];
-
+    
     cycleScrollView.imageURLStringsGroup = [_images copy];
     //_tableView.tableHeaderView = cycleScrollView;
     _sdcsView = cycleScrollView;
@@ -297,18 +306,6 @@
     NSLog(@"search text=%@",name);
     vc.searchKey = name;
     [self.navigationController pushViewController:vc animated:YES];
-    //ABFSearchViewController *vc = [[ABFSearchViewController alloc] init];
-    //把当前控制器作为背景
-    //self.definesPresentationContext = YES;
-    //vc.delegate = self;
-    //vc.dataArrays = self.titleArrays;
-    //vc.dataArrays = [self.titleArrays mutableCopy];
-    //设置模态视图弹出样式
-    //vc.searchKey = name;
-    //vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    //vc.modalPresentationStyle = UIModalPresentationFullScreen;
-    
-    //[self presentViewController:vc animated:YES completion:nil];
     
 }
 
@@ -316,19 +313,7 @@
     NSLog(@"....");
     ABFSearchViewController *vc = [[ABFSearchViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
-    //self.definesPresentationContext = YES;
-    //vc.delegate = self;
-    //vc.dataArrays = self.titleArrays;
-    //vc.dataArrays = [self.titleArrays mutableCopy];
-    //设置模态视图弹出样式
-    //vc.searchKey = name;
-    //vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    //vc.modalPresentationStyle = UIModalPresentationFullScreen;
-    
-    //[self presentViewController:vc animated:YES completion:nil];
 }
-
-/*********table********/
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -345,7 +330,8 @@
     
     NSString *title = [self.dataArrays[indexPath.row] objectForKey:@"name"];
     //NSLog(@"title=%@",title);
-    ABFOtherSimpleCell *cell = [[ABFOtherSimpleCell alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 40) title:title];
+    ABFOtherSimpleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mycell" forIndexPath:indexPath];
+    cell.textLabel.text = title;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
     
@@ -361,13 +347,19 @@
     return 5.0f;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return [UIView new];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.001f;
+}
 - (BOOL)shouldAutorotate{
     return YES;
 }
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskPortrait;
 }
-
 //开始定位
 - (void)startLocation {
     if ([CLLocationManager locationServicesEnabled]) {
@@ -439,7 +431,6 @@
     [manager stopUpdatingLocation];
     
 }
-
 /*
 #pragma mark - Navigation
 

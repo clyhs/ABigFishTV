@@ -27,7 +27,8 @@
     
     if (self)
     {
-        
+        [self addTitleLabel];
+        [self addBottomLine];
     }
     
     return self;
@@ -39,7 +40,6 @@
     
     if (self)
     {
-        
         [self addTitleLabel:title];
         [self addBottomLine];
     }
@@ -58,6 +58,18 @@
     _titleLabel = textLabel;
     
 }
+
+-(void)addTitleLabel{
+    
+    UILabel *textLabel = [[UILabel alloc] init];
+    textLabel.font = [UIFont systemFontOfSize:16];
+    textLabel.textColor = [UIColor darkGrayColor];
+    textLabel.textAlignment = NSTextAlignmentLeft;
+    [self addSubview:textLabel];
+    _titleLabel = textLabel;
+    
+}
+
 
 -(void)addBottomLine{
     

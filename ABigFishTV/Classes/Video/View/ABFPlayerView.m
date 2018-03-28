@@ -1851,7 +1851,6 @@ typedef NS_ENUM(NSInteger, PanDirection){
             NSLog(@"playbackStateDidChange: IJKMPMovieFinishReasonPlaybackEnded: %d\n", reason);
             self.state = ABFPlayerStateStopped;
             
-            
             break;
             //用户退出
         case IJKMPMovieFinishReasonUserExited:

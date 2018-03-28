@@ -76,6 +76,7 @@
     [super viewWillAppear:animated];
 
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [self setStatusBarBackgroundColor:COMMON_COLOR];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [self.tabBarController.tabBar setHidden:NO];
     [AppDelegate APP].allowRotation = false;
@@ -98,6 +99,15 @@
     [_tableView reloadData];
     
 }
+
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
+}
+
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
