@@ -152,7 +152,7 @@
 }
 
 - (void)createUI{
-    _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-64)];
     _mainScrollView.contentSize =CGSizeMake(kScreenWidth, kScreenHeight);
     _mainScrollView.bounces =YES;
     _mainScrollView.showsVerticalScrollIndicator = false;
@@ -464,10 +464,10 @@
     
     // 获取键盘的frame
     CGRect frame = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    
+    NSLog(@"y=%f",frame.origin.y);
+    NSLog(@"h=%f",self.view.height);
     if (frame.origin.y == self.view.height) { // 没有弹出键盘
         [UIView animateWithDuration:durtion animations:^{
-            
             _toolBar.transform =  CGAffineTransformIdentity;
         }];
     }else{ // 弹出键盘
