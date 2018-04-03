@@ -207,7 +207,7 @@
     
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBtn.frame = CGRectMake(0,0,20,20);
-    [rightBtn setBackgroundImage:[UIImage imageNamed:@"icon_menu"] forState:UIControlStateNormal];
+    [rightBtn setBackgroundImage:[UIImage imageNamed:@"icon_square"] forState:UIControlStateNormal];
     UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     self.navigationItem.rightBarButtonItem = rightBtnItem;
     

@@ -105,12 +105,12 @@
     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftBtn addTarget:self action:@selector(backClick:)
       forControlEvents:UIControlEventTouchUpInside];
-    leftBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
-    leftBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    //leftBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    //leftBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     //[leftBtn setTitle:@"" forState:UIControlStateNormal];
     //[leftBtn setFont:[UIFont systemFontOfSize: 14.0]];
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    leftBtn.frame = CGRectMake(0,0,60,20);
+    leftBtn.frame = CGRectMake(0,0,20,20);
     [leftBtn setImage:[UIImage imageNamed:@"icon_grayback"] forState:UIControlStateNormal];
     UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
     self.navigationItem.leftBarButtonItem = leftBtnItem;

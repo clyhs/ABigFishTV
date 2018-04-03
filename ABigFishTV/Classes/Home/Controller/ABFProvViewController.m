@@ -63,8 +63,17 @@
     [super viewWillAppear:animated];
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    
+    [self setStatusBarBackgroundColor:COMMON_COLOR];
 }
+
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
+}
+
 
 - (void)addRefreshHeader
 {

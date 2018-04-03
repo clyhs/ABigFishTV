@@ -70,8 +70,17 @@
     //隐藏
     [AppDelegate APP].allowRotation = false;
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [self setStatusBarBackgroundColor:COMMON_COLOR];
     [self.tabBarController.tabBar setHidden:YES];
     [self addNavigationBarView];
+}
+
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
 }
 
 - (void)setuiMainView{
@@ -113,10 +122,11 @@
     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftBtn addTarget:self action:@selector(backClick:)
       forControlEvents:UIControlEventTouchUpInside];
-    leftBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
-    leftBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    //leftBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+    //leftBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    leftBtn.frame = CGRectMake(0,0,60,20);
+    leftBtn.frame = CGRectMake(0,0,20,20);
+    //leftBtn.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
     [leftBtn setImage:[UIImage imageNamed:@"icon_lightback"] forState:UIControlStateNormal];
     UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
     self.navigationItem.leftBarButtonItem = leftBtnItem;

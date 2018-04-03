@@ -102,13 +102,13 @@ static NSUInteger titleTabHeight = 40 ;
     //rightBtn.layer.borderWidth = 0.1f;
     [rightBtn addTarget:self action:@selector(selectClick:)
       forControlEvents:UIControlEventTouchUpInside];
-    rightBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    //rightBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     //rightBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     //[rightBtn setTitle:@"" forState:UIControlStateNormal];
     //[rightBtn setFont:[UIFont systemFontOfSize: 14.0]];
     [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    rightBtn.frame = CGRectMake(0,0,24,24);
-    [rightBtn setImage:[UIImage imageNamed:@"icon_add"] forState:UIControlStateNormal];
+    rightBtn.frame = CGRectMake(0,0,20,20);
+    [rightBtn setImage:[UIImage imageNamed:@"icon_square"] forState:UIControlStateNormal];
     //[self.view addSubview:rightBtn];
     UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     self.navigationItem.rightBarButtonItem = rightBtnItem;
