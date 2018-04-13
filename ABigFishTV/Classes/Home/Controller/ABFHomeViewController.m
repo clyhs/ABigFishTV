@@ -420,31 +420,6 @@
             
         }
         if(indexPath.section == 1){
-            /*
-            ABFHomeTopCollectionReusableView *headerView = (ABFHomeTopCollectionReusableView *)[collectionView  dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"topheaderView" forIndexPath:indexPath];
-            if([AppDelegate APP].area == nil){
-                [AppDelegate APP].area = @"北京";
-            }
-            headerView.title = [NSString stringWithFormat:@"%@",[AppDelegate APP].area];
-            headerView.moreBtn.hidden = YES;
-            */
-            /*
-            //menu
-            ABFMenuView *channelView = [[ABFMenuView alloc] init];
-            self.channelView = channelView;
-            channelView.delegate = self;
-            [channelView setMenuArray:self.menuArray];
-            [headerView.topView addSubview:channelView];
-            //ad
-            SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, ((kScreenWidth*9)/16)) delegate:self placeholderImage:nil];
-            cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-            cycleScrollView.currentPageDotColor = [UIColor whiteColor];
-            
-            cycleScrollView.placeholderImage = [UIImage imageWithColor:RGB_255(245, 245, 245)];
-            _sdcsv = cycleScrollView;
-            cycleScrollView.imageURLStringsGroup = [_images copy];
-            [headerView.adView addSubview:cycleScrollView];
-            _headerView = headerView;*/
             
             ABFCollectionReusableView *headerView = (ABFCollectionReusableView *)[collectionView  dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView" forIndexPath:indexPath];
             if([AppDelegate APP].area == nil){
@@ -456,11 +431,7 @@
             
             return headerView;
             
-        }/*else if(indexPath.section == 1){
-            ABFCollectionReusableView *headerView = (ABFCollectionReusableView *)[collectionView  dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView" forIndexPath:indexPath];
-            headerView.title = @"最新";
-            return headerView;
-        }*/else if(indexPath.section == 2){
+        }else if(indexPath.section == 2){
             ABFCollectionReusableView *headerView = (ABFCollectionReusableView *)[collectionView  dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView" forIndexPath:indexPath];
             headerView.title = @"热门";
             headerView.moreBtn.hidden = NO;
@@ -512,8 +483,8 @@
         
         return cell;
     }else{
-        ABFCollectionViewCell *cell = (ABFCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"myCell" forIndexPath:indexPath];
-        
+        //dequeueReusableCellWithIdentifier
+        ABFCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"myCell" forIndexPath:nil];
         ABFTelevisionInfo *model = [self commentInIndexPath:indexPath];
         
         NSLog(@".......%@",model.name);

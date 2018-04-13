@@ -19,10 +19,6 @@
     if (self)
     {
         //定义CELL单元格内容
-        /*
-        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height-30)];
-        bgView.backgroundColor = [UIColor lightGrayColor];
-        [self addSubview:bgView];*/
         
         [self addIcon];
         
