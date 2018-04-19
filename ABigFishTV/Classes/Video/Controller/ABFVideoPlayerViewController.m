@@ -21,13 +21,8 @@
 #import "MBProgressHUD.h"
 #import "BRPlaceholderTextView.h"
 #import "ABFResultInfo.h"
-//#import <AVFoundation/AVFoundation.h>
-//#import <MediaPlayer/MediaPlayer.h>
-//#import <ZFDownload/ZFDownloadManager.h>
-//#import "ZFPlayer.h"
-//#import "UINavigationController+FDFullscreenPopGesture.h"
-#import "ABFPlayer.h"
-#import <ZFDownload/ZFDownloadManager.h>
+#import "ABFPlayerView.h"
+#import "ABFPlayerModel.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
 
 @interface ABFVideoPlayerViewController ()<ABFCommentDelegate,ABFCommentTFDelegate,ABFCommentViewCellDelegate,UITableViewDelegate,UITableViewDataSource,ABFPlayerDelegate,UITextViewDelegate>
@@ -56,9 +51,8 @@
 
 @property (nonatomic, strong) UIView   *botView;
 
-@property (strong, nonatomic) ABFPlayerView *playerView;
-
-@property (nonatomic, strong) ZFPlayerModel *playerModel;
+@property (nonatomic,strong)  ABFPlayerView    *player;
+@property (nonatomic,strong)  ABFPlayerModel   *playerModel;
 
 @property (nonatomic, assign) BOOL isGood;
 
@@ -71,7 +65,6 @@
 - (void)dealloc {
     NSLog(@"---------------dealloc------------------");
     //self.player destroyVideo];
-    [self.playerView destory];
 }
 
 - (void)viewDidLoad {
@@ -90,7 +83,7 @@
     [self addTableView];
     [self addCommentView];
     
-    [self.playerView autoPlayTheVideo];
+    [self.player autoPlayTheVideo];
     /*
     LMPlayerModel *model = [[LMPlayerModel alloc] init];
     model.videoURL = [NSURL URLWithString:_playUrl];
@@ -645,50 +638,39 @@
 
 - (void)abf_playerBackAction {
     //[self.navigationController popViewControllerAnimated:YES];
-    [self.playerView destory];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 //
-//- (void)zf_playerDownload:(NSString *)url {
-//    // 此处是截取的下载地址，可以自己根据服务器的视频名称来赋值
-//    NSString *name = [url lastPathComponent];
-//    [[ZFDownloadManager sharedDownloadManager] downFileUrl:url filename:name fileimage:nil];
-//    // 设置最多同时下载个数（默认是3）
-//    [ZFDownloadManager sharedDownloadManager].maxCount = 4;
-//    
-//    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"download"];
-//}
+
 
 #pragma mark - Getter
 
-- (ZFPlayerModel *)playerModel {
-    if (!_playerModel) {
-        _playerModel                  = [[ZFPlayerModel alloc] init];
-        _playerModel.title            = self.tvTitle;
-        _playerModel.videoURL         = [NSURL URLWithString:self.playUrl];
-       // _playerModel.placeholderImage = [UIImage imageNamed:@"loading_bgView1"];
-        _playerModel.fatherView       = self.playerFatherView;
+
+
+-(ABFPlayerView *)player{
+    if(!_player){
+        _player = [[ABFPlayerView alloc] init];
+        _player.delegate = self;
+        [_player playControlView:nil playerModel:self.playerModel];
+    }
+    return _player;
+}
+
+-(ABFPlayerModel *)playerModel{
+    if(!_playerModel){
+        _playerModel = [[ABFPlayerModel alloc] init];
+        _playerModel.fatherView = self.playerFatherView;
+        _playerModel.title = self.tvTitle;
+        NSMutableArray *urlArrays = [NSMutableArray new];
+        if(![self.playUrl isEqualToString:@"#"]){
+            [urlArrays addObject:self.playUrl];
+        }
         
+        _playerModel.urlArrays = [urlArrays mutableCopy];
     }
     return _playerModel;
 }
-
-- (ABFPlayerView *)playerView {
-    if (!_playerView) {
-        _playerView = [[ABFPlayerView alloc] init];
-
-        [_playerView playerControlView:nil playerModel:self.playerModel];
-
-        _playerView.delegate = self;
-
-        _playerView.hasDownload    = YES;
-
-        self.playerView.hasPreviewView = YES;
-        
-    }
-    return _playerView;
-}
-
 
 #pragma mark - UITextViewDelegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{

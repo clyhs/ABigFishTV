@@ -19,23 +19,21 @@
 #import "ABFResultInfo.h"
 #import "MBProgressHUD.h"
 #import "ABFTelevisionInfo.h"
-#import "ABFPlayer.h"
-#import <ZFDownload/ZFDownloadManager.h>
+#import "ABFPlayerView.h"
+#import "ABFPlayerModel.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import "BRPlaceholderTextView.h"
 
 @interface ABFPlayerViewController ()<UIScrollViewDelegate,ABFCommentDelegate,ABFCommentTFDelegate,ABFPListViewDelegate,ABFPlayerDelegate,UITextViewDelegate>
 
 /** 状态栏的背景 */
-@property (nonatomic, strong) UIView *topView;
-//@property (nonatomic, strong) LMVideoPlayer *player;
-@property (nonatomic, strong) UIView *playerFatherView;
-//@property (nonatomic, strong) LMPlayerModel *playerModel;
+@property (nonatomic, strong) UIView   *topView;
+@property (nonatomic, strong) UIView   *playerFatherView;
 
 /** 离开页面时候是否在播放 */
-@property (nonatomic, assign) BOOL isPlaying;
+@property (nonatomic, assign) BOOL     isPlaying;
 /** 离开页面时候是否开始过播放 */
-@property (nonatomic, assign) BOOL isStartPlay;
+@property (nonatomic, assign) BOOL     isStartPlay;
 
 @property (nonatomic, strong) UIView   *botView;
 
@@ -57,9 +55,8 @@
 
 @property(nonatomic,assign) Boolean isfullscreen;
 
-@property (strong, nonatomic) ABFPlayerView *playerView;
-
-@property (nonatomic, strong) ZFPlayerModel *playerModel;
+@property (nonatomic,strong)  ABFPlayerView    *player;
+@property (nonatomic,strong)  ABFPlayerModel   *playerModel;
 
 @property (nonatomic, assign) BOOL isGood;
 
@@ -80,9 +77,6 @@
 
 - (void)dealloc {
     NSLog(@"---------------dealloc------------------");
-   // [self.player destroyVideo];
-    [self.playerView destory ];
-    
 }
 
 - (void)viewDidLoad {
@@ -99,7 +93,7 @@
     
     [self makePlayViewConstraints];
     self.goodBtn.selected = NO;
-    [self.playerView autoPlayTheVideo];
+    [self.player autoPlayTheVideo];
     [self updatehit];
     [self historyAdd];
     [self getGoodLog];
@@ -274,7 +268,7 @@
 }
 
 - (void)playerCutButtonClick{
-    
+    /*
     NSString *fullUrl = [BaseUrl stringByAppendingString:@"/api/tv/uploadbg"];
     
     NSNumber *uid = [NSNumber numberWithInteger:_uid];
@@ -288,13 +282,10 @@
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error = %@",error);
-    }];
+    }];*/
 }
 
--(void)playerLockButtonClick{
-    NSLog(@"lock");
-    //[AppDelegate APP].allowRotation = ![AppDelegate APP].allowRotation;
-}
+
 
 -(void)playerCollectButtonClick{
     NSLog(@"collect");
@@ -760,22 +751,27 @@
 }
 
 - (void)abf_playerBackAction {
-    //[self.navigationController popViewControllerAnimated:YES];
-    //[self.navigationController popViewControllerAnimated:YES];
-    [self.playerView destory ];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Getter
 
-- (ZFPlayerModel *)playerModel {
-    if (!_playerModel) {
-        _playerModel                  = [[ZFPlayerModel alloc] init];
-        _playerModel.title            = self.tvTitle;
-        _playerModel.videoURL         = [NSURL URLWithString:self.playUrl];
-        // _playerModel.placeholderImage = [UIImage imageNamed:@"loading_bgView1"];
-        _playerModel.fatherView       = self.playerFatherView;
-        
+
+-(ABFPlayerView *)player{
+    if(!_player){
+        _player = [[ABFPlayerView alloc] init];
+        _player.delegate = self;
+        [_player playControlView:nil playerModel:self.playerModel];
+    }
+    return _player;
+}
+
+-(ABFPlayerModel *)playerModel{
+    if(!_playerModel){
+        _playerModel = [[ABFPlayerModel alloc] init];
+        _playerModel.fatherView = self.playerFatherView;
+        _playerModel.title = self.tvTitle;
         NSMutableArray *urlArrays = [NSMutableArray new];
         if(![self.model.url_1 isEqualToString:@"#"]){
             [urlArrays addObject:self.model.url_1];
@@ -787,24 +783,8 @@
             [urlArrays addObject:self.model.url_3];
         }
         _playerModel.urlArrays = [urlArrays mutableCopy];
-        
     }
     return _playerModel;
-}
-
-- (ABFPlayerView *)playerView {
-    if (!_playerView) {
-        _playerView = [[ABFPlayerView alloc] init];
-        [_playerView playerControlView:nil playerModel:self.playerModel];
-        _playerView.delegate = self;
-        
-        _playerView.hasDownload    = YES;
-        
-        self.playerView.hasPreviewView = YES;
-        
-        
-    }
-    return _playerView;
 }
 
 
