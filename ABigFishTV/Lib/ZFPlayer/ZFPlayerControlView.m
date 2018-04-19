@@ -344,14 +344,18 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     }];
     [self.menuView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.mas_right).offset(0);
-        make.width.height.mas_equalTo(24);
-        make.centerY.equalTo(self.backBtn.mas_centerY);
+        //make.width.height.mas_equalTo(24);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(self);
+        make.top.equalTo(self);
     }];
     
     [self.typeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.menuBtn.mas_left).offset(0);
-        make.width.height.mas_equalTo(24);
-        make.centerY.equalTo(self.backBtn.mas_centerY);
+        make.right.equalTo(self.mas_right).offset(0);
+        //make.width.height.mas_equalTo(24);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(self);
+        make.top.equalTo(self);
         //make.bottom.equalTo(self.mas_bottom).offset(0);
     }];
     [self.cutBtn mas_makeConstraints:^(MASConstraintMaker *make) {

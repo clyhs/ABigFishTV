@@ -45,7 +45,7 @@ PODS:
   - MWPhotoBrowser (2.1.1):
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
-    - SDWebImage (!= 3.7.2, ~> 3.7)
+    - "SDWebImage (!= 3.7.2, ~> 3.7)"
   - MXParallaxHeader (0.6.1)
   - MyLayout (1.4.2)
   - Reachability (3.2)
@@ -101,6 +101,36 @@ DEPENDENCIES:
   - XHLaunchAd (= 3.9.3)
   - ZFDownload
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - AGEmojiKeyboard
+    - ASIHTTPRequest
+    - DACircularProgress
+    - FDFullscreenPopGesture
+    - FLAnimatedImage
+    - JHUD
+    - Masonry
+    - MBProgressHUD
+    - MJExtension
+    - MJRefresh
+    - MWPhotoBrowser
+    - MXParallaxHeader
+    - MyLayout
+    - Reachability
+    - ReactiveCocoa
+    - SDCycleScrollView
+    - SDWebImage
+    - SGQRCode
+    - TZImagePickerController
+    - UMCAnalytics
+    - UMCCommon
+    - UMCErrorCatch
+    - UMCPush
+    - UMCSecurityPlugins
+    - XHLaunchAd
+    - ZFDownload
+
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   AGEmojiKeyboard: d5a01a4b0de30e1f1c2a121503ac36a79c7217ab
@@ -130,6 +160,6 @@ SPEC CHECKSUMS:
   XHLaunchAd: ecd208bce52a26d96d758cd58f617be09b1b52e9
   ZFDownload: a52f94ebb080833b8a8ceb19a409f2941343fe7f
 
-PODFILE CHECKSUM: 025eee63e37f03018e6ef966aec1e3f2a4ab1a23
+PODFILE CHECKSUM: fa4c4374d35e17303761823c66963be3f28626d6
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0
