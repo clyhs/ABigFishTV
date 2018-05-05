@@ -29,6 +29,11 @@
 
 ### 效果图
 <div align="center">
+<img src="https://github.com/clyhs/ABigFishTV/blob/master/images/ABigFishTV.gif" width="250" style="margin:10px 10px;" >
+
+</div>
+
+<div align="center">
 <img src="https://github.com/clyhs/ABigFishTV/blob/master/images/home.png" width="250" style="margin:10px 10px;" >
 <img src="https://github.com/clyhs/ABigFishTV/blob/master/images/video.png" width
 ="250" style="margin:10px 10px;" >
