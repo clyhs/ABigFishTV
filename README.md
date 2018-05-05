@@ -27,11 +27,13 @@
 ### ijkplayer软件包
 * 链接:https://pan.baidu.com/s/1qWVf42wnn6NuAPiGcDPZtQ  密码:769z
 
-### 效果图
+### 效果图gif
 <div align="center">
 <img src="https://github.com/clyhs/ABigFishTV/blob/master/images/ABigFishTV.gif" width="250" style="margin:10px 10px;" >
 
 </div>
+
+### 效果图png
 
 <div align="center">
 <img src="https://github.com/clyhs/ABigFishTV/blob/master/images/home.png" width="250" style="margin:10px 10px;" >
