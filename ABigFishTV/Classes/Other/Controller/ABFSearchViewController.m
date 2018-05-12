@@ -52,6 +52,7 @@
     [super viewWillAppear:animated];
     [AppDelegate APP].allowRotation = false;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    [self setStatusBarBackgroundColor:[UIColor whiteColor]];
     //隐藏
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [self.tabBarController.tabBar setHidden:YES];
@@ -59,9 +60,14 @@
         self.searchTF.text = self.searchKey;
         [self loadData];
     }
-    
-    
-    
+
+}
+
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
 }
 
 -(void)setNaviUI{

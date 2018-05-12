@@ -92,7 +92,7 @@
     [super viewWillLayoutSubviews];
     
     self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight );
-    _tableView.frame =  CGRectMake(0, 64, kScreenWidth, kScreenHeight-64);
+    _tableView.frame =  CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height-self.commentToolView.frame.size.height);
 }
 
 
@@ -105,10 +105,6 @@
     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftBtn addTarget:self action:@selector(backClick:)
       forControlEvents:UIControlEventTouchUpInside];
-    //leftBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-    //leftBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    //[leftBtn setTitle:@"" forState:UIControlStateNormal];
-    //[leftBtn setFont:[UIFont systemFontOfSize: 14.0]];
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     leftBtn.frame = CGRectMake(0,0,20,20);
     [leftBtn setImage:[UIImage imageNamed:@"icon_grayback"] forState:UIControlStateNormal];
@@ -310,6 +306,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 1.0f;
 }
+/*
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
     
     if(velocity.y>0)
@@ -325,7 +322,7 @@
         }];
     }
     
-}
+}*/
 
 
 

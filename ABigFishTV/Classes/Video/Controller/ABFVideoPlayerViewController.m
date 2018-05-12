@@ -221,41 +221,7 @@
     
     
 }
-//
-//#pragma mark - 屏幕旋转
-//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-//    if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
-//        [self.playerFatherView mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(self.view).offset(20);
-//        }];
-//        self.botView.alpha = 1;
-//        //self.titleTabScrollView.alpha = 1;
-//        //self.detailScrollView.alpha = 1;
-//    }else if (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight || toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) {
-//        
-//        [self.playerFatherView mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(self.view).offset(0);
-//        }];
-//        
-//        self.botView.alpha = 0;
-//        
-//    }
-//}
 
-//#pragma mark - LMVideoPlayerDelegate
-///** 返回按钮被点击 */
-//- (void)playerBackButtonClick {
-//    [self.player destroyVideo];
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
-//
-///** 控制层封面点击事件的回调 */
-//- (void)controlViewTapAction {
-//    if (_player) {
-//        [self.player autoPlayTheVideo];
-//        self.isStartPlay = YES;
-//    }
-//}
 
 #pragma mark - getter
 

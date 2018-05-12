@@ -47,6 +47,8 @@
     CGFloat height = kScreenWidth * 9 / 16 ;
     _adView.frame = CGRectMake(0, 0, kScreenWidth, height);
     _topView.frame = CGRectMake(0, height, kScreenWidth, 160);
+    //_adView.frame = CGRectMake(0, 160, kScreenWidth, height);
+    //_topView.frame = CGRectMake(0, 0, kScreenWidth, 160);
 
 }
 

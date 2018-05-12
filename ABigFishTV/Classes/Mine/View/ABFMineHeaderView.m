@@ -88,7 +88,7 @@
 -(void)addUsernameLabel{
     
     UILabel *usernameLabel = [[UILabel alloc] init];
-    usernameLabel.font = [UIFont systemFontOfSize:16];
+    usernameLabel.font = [UIFont systemFontOfSize:18];
     usernameLabel.textColor = [UIColor whiteColor];
     usernameLabel.textAlignment = NSTextAlignmentLeft;
     usernameLabel.text=@"未登陆";
@@ -138,7 +138,7 @@
     messageView.tag = 101;
     [messageView addGestureRecognizer:tap1];
     UILabel *messageLabel = [[UILabel alloc] init];
-    messageLabel.font = [UIFont systemFontOfSize:14];
+    messageLabel.font = [UIFont systemFontOfSize:16];
     messageLabel.textColor = [UIColor darkGrayColor];
     messageLabel.textAlignment = NSTextAlignmentLeft;
     messageLabel.text=@"消息";
@@ -166,7 +166,7 @@
     likeView.tag = 102;
     [likeView addGestureRecognizer:tap2];
     UILabel *likeLabel = [[UILabel alloc] init];
-    likeLabel.font = [UIFont systemFontOfSize:14];
+    likeLabel.font = [UIFont systemFontOfSize:16];
     likeLabel.textColor = [UIColor darkGrayColor];
     likeLabel.textAlignment = NSTextAlignmentLeft;
     likeLabel.text=@"收藏";
@@ -193,7 +193,7 @@
     historyView.tag = 103;
     [historyView addGestureRecognizer:tap3];
     UILabel *hLabel = [[UILabel alloc] init];
-    hLabel.font = [UIFont systemFontOfSize:14];
+    hLabel.font = [UIFont systemFontOfSize:16];
     hLabel.textColor = [UIColor darkGrayColor];
     hLabel.textAlignment = NSTextAlignmentLeft;
     hLabel.text=@"历史";
@@ -332,46 +332,46 @@
     }];
     
     [_miView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self.messageView).offset(width/2 - 22);
+        make.left.equalTo(self.messageView).offset(width/2 - 25);
         make.top.equalTo(self.messageView).offset(20);
-        make.width.height.mas_equalTo(19);
+        make.width.height.mas_equalTo(24);
         
     }];
     
     [_messageLab mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self.messageView).offset(width/2);
+        make.left.equalTo(self.messageView).offset(width/2+2);
         make.top.equalTo(self.messageView).offset(20);
         make.right.equalTo(self.messageView).offset(0);
-        make.height.equalTo(@20);
+        make.height.equalTo(@24);
     }];
     
     [_liView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self.likeView).offset(width/2 - 22);
+        make.left.equalTo(self.likeView).offset(width/2 - 25);
         make.top.equalTo(self.likeView).offset(20);
-        make.width.height.mas_equalTo(20);
+        make.width.height.mas_equalTo(24);
         
     }];
     
     [_likeLab mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self.likeView).offset(width/2);
+        make.left.equalTo(self.likeView).offset(width/2+2);
         make.top.equalTo(self.likeView).offset(20);
         make.right.equalTo(self.likeView).offset(0);
-        make.height.equalTo(@20);
+        make.height.equalTo(@24);
     }];
     
     
     [_hiView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self.historyView).offset(width/2 - 22);
+        make.left.equalTo(self.historyView).offset(width/2 - 25);
         make.top.equalTo(self.historyView).offset(20);
-        make.width.height.mas_equalTo(20);
+        make.width.height.mas_equalTo(24);
         
     }];
     
     [_historyLab mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self.historyView).offset(width/2);
+        make.left.equalTo(self.historyView).offset(width/2+2);
         make.top.equalTo(self.historyView).offset(20);
         make.right.equalTo(self.historyView).offset(0);
-        make.height.equalTo(@20);
+        make.height.equalTo(@24);
     }];
     /*
     [_messageTLab mas_makeConstraints:^(MASConstraintMaker *make){

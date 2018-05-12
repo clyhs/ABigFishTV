@@ -155,29 +155,30 @@
     self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
     _collectionView.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-20);
     self.channelView.frame = CGRectMake(0, 0, kScreenWidth, 160);
+    //_collectionView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-self.tabBarController.tabBar.frame.size.height);
 }
 
 
 //***********nav*************
 //设置导航栏的颜色
 - (void)initNavigationBar{
-    [self.navigationController.navigationBar setBarTintColor:COMMON_COLOR];
+    //[self.navigationController.navigationBar setBarTintColor:COMMON_COLOR];
     //[self.navigationController.navigationBar setBackgroundColor:COMMON_COLOR];
     //[self.navigationController.navigationBar setTintColor:COMMON_COLOR];
     //[self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
     
     //去掉透明后导航栏下边的黑边
     //[//self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:22],NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    //self.navigationController.navigationBar.alpha = 0.;
-    self.navigationController.navigationBar.translucent = NO;
+    //[self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:22],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    //self.navigationController.navigationBar.alpha = 0.1;
+    //self.navigationController.navigationBar.translucent = NO;
     /*
     CGRect frame = self.navigationController.navigationBar.frame;
     UIView *alphaView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, frame.size.width, frame.size.height+20)];
     alphaView.backgroundColor = [UIColor blueColor];
     alphaView.userInteractionEnabled = NO;
     [self.navigationController.navigationBar insertSubview: alphaView atIndex:0];*/
-    
+    /*
     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     leftBtn.frame = CGRectMake(0,0,20,20);
     [leftBtn setBackgroundImage:[UIImage imageNamed:@"icon_search"] forState:UIControlStateNormal];
@@ -193,7 +194,42 @@
     self.navigationItem.rightBarButtonItem = rightBtnItem;
     
     UIImageView* imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_logo"]];
-    self.navigationItem.titleView = imageView;
+    self.navigationItem.titleView = imageView;*/
+    
+    //[self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    
+    //去掉透明后导航栏下边的黑边
+    //[self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+    self.title=@"";
+    [self.navigationController.navigationBar setBarTintColor:COMMON_COLOR];
+    self.navigationController.navigationBar.translucent = NO;
+    
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_logo"]];
+    
+    imageView.frame = CGRectMake(15, 4, 70, 36);
+    [self.navigationController.navigationBar addSubview:imageView];
+    
+    UIView *searchView = [[UIView alloc] init];
+    searchView.frame = CGRectMake(90, 7, kScreenWidth-90-20, 28);
+    searchView.backgroundColor = [UIColor whiteColor];
+    searchView.layer.masksToBounds = YES;
+    searchView.layer.cornerRadius = 14;
+    [self.navigationController.navigationBar addSubview:searchView];
+    
+    UIImageView *searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(8, 6, 16, 16)];
+    [searchImage setImage:[UIImage imageNamed:@"icon_lightsearch"]];
+    [searchView addSubview:searchImage];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchClick:)];
+    [searchView addGestureRecognizer:tap];
+    
+    UILabel *placeHolderLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 2, searchView.frame.size.width-30, 25)];
+    placeHolderLabel.font = [UIFont boldSystemFontOfSize:14];
+    placeHolderLabel.text = @"请输入关键字";
+    placeHolderLabel.textAlignment = NSTextAlignmentLeft;
+    placeHolderLabel.textColor = [UIColor lightGrayColor];
+    [searchView addSubview:placeHolderLabel];
+    
 }
 
 

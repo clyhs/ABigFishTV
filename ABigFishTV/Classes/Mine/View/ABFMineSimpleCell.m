@@ -66,7 +66,7 @@
 -(void)addTitleLabel{
     
     UILabel *textLabel = [[UILabel alloc] init];
-    textLabel.font = [UIFont systemFontOfSize:14];
+    textLabel.font = [UIFont systemFontOfSize:16];
     textLabel.textColor = [UIColor darkGrayColor];
     textLabel.textAlignment = NSTextAlignmentLeft;
     
@@ -148,15 +148,15 @@
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self).offset(50);
-        make.top.equalTo(self).offset(15);
+        make.top.equalTo(self).offset(13);
         make.width.equalTo(@100);
-        make.height.equalTo(@20);
+        make.height.equalTo(@24);
     }];
     [_descLabel mas_makeConstraints:^(MASConstraintMaker *make){
         make.top.equalTo(self).offset(5);
         make.right.equalTo(self).offset(-30);
         make.bottom.equalTo(self).offset(-5);
-        make.height.equalTo(@20);
+        make.height.equalTo(@24);
     }];
     [_profile mas_makeConstraints:^(MASConstraintMaker *make){
         make.right.equalTo(self).offset(-30);

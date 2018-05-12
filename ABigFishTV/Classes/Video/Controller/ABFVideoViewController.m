@@ -88,7 +88,7 @@ static NSUInteger titleTabHeight = 64 ;
     
         CGFloat lblW = (SCREEN_WIDTH)/ 4;
         CGFloat lblH = 40;
-        CGFloat lblY = 18;
+        CGFloat lblY = 24;
         CGFloat lblX = (i+1) * lblW;
         TitleLineLabel *labelLeft = self.titleTabScrollView.subviews[i];
         labelLeft.frame = CGRectMake(lblX, lblY, lblW, lblH);
