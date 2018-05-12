@@ -85,11 +85,19 @@
     [super viewWillAppear:animated];
     [AppDelegate APP].allowRotation = false;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [self setStatusBarBackgroundColor:COMMON_COLOR];
     //隐藏
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [self.tabBarController.tabBar setHidden:NO];
     [self initNavigationBar];
     
+}
+
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
