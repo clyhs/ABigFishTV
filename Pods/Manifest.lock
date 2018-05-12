@@ -59,7 +59,7 @@ PODS:
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
   - SGQRCode (2.2.0)
-  - TZImagePickerController (2.0.0.7)
+  - TZImagePickerController (2.1.1)
   - UMCAnalytics (5.4.1):
     - UMCCommon
   - UMCCommon (1.4.2)
@@ -90,7 +90,7 @@ DEPENDENCIES:
   - SDCycleScrollView
   - SDWebImage (~> 3.7.3)
   - SGQRCode
-  - TZImagePickerController
+  - TZImagePickerController (= 2.1.1)
   - UMCAnalytics
   - UMCCommon
   - UMCErrorCatch
@@ -160,7 +160,7 @@ SPEC CHECKSUMS:
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SGQRCode: 6cd7f03ea6b74d1267820d427b07d1451b387c79
-  TZImagePickerController: c80a189b6e2ca167a4dc56b656fb2557eedea0f7
+  TZImagePickerController: 788184b04158006b25ffdbccbb550bfc193e9d9c
   UMCAnalytics: 44e0bb2f442b7aaf97d1c924b58798b612f2c13d
   UMCCommon: 19f09b4c67b6007837f70f321fe091e5814d49b1
   UMCErrorCatch: 51f1b68f920233e90a3fa6d51f0456174507ec78
@@ -170,6 +170,6 @@ SPEC CHECKSUMS:
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   ZFDownload: a52f94ebb080833b8a8ceb19a409f2941343fe7f
 
-PODFILE CHECKSUM: 00bac352eac32b5e153fcfe3fd50e289d683f958
+PODFILE CHECKSUM: d784a9e65e56becd77975f028de475342f4146c1
 
 COCOAPODS: 1.5.0

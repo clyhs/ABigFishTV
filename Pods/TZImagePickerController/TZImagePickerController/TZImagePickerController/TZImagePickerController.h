@@ -4,7 +4,7 @@
 //
 //  Created by 谭真 on 15/12/24.
 //  Copyright © 2015年 谭真. All rights reserved.
-//  version 2.0.0.7 - 2018.03.06
+//  version 2.1.1 - 2018.05.07
 //  更多信息，请前往项目的github地址：https://github.com/banchichen/TZImagePickerController
 
 /*
@@ -19,11 +19,17 @@
 #import <UIKit/UIKit.h>
 #import "TZAssetModel.h"
 #import "NSBundle+TZImagePicker.h"
+#import "TZImageManager.h"
+#import "TZVideoPlayerController.h"
+#import "TZGifPhotoPreviewController.h"
+#import "TZLocationManager.h"
+#import "TZPhotoPreviewController.h"
 
 #define iOS7Later ([UIDevice currentDevice].systemVersion.floatValue >= 7.0f)
 #define iOS8Later ([UIDevice currentDevice].systemVersion.floatValue >= 8.0f)
 #define iOS9Later ([UIDevice currentDevice].systemVersion.floatValue >= 9.0f)
 #define iOS9_1Later ([UIDevice currentDevice].systemVersion.floatValue >= 9.1f)
+#define iOS11Later ([UIDevice currentDevice].systemVersion.floatValue >= 11.0f)
 
 @protocol TZImagePickerControllerDelegate;
 @interface TZImagePickerController : UINavigationController
@@ -83,8 +89,14 @@
 @property(nonatomic, assign) BOOL allowPickingImage;
 
 /// Default is YES, if set NO, user can't take picture.
-/// 默认为YES，如果设置为NO,拍照按钮将隐藏,用户将不能选择照片
+/// 默认为YES，如果设置为NO, 用户将不能拍摄照片
 @property(nonatomic, assign) BOOL allowTakePicture;
+
+/// Default is YES, if set NO, user can't take video.
+/// 默认为YES，如果设置为NO, 用户将不能拍摄视频
+@property(nonatomic, assign) BOOL allowTakeVideo;
+/// Default value is 10 minutes / 视频最大拍摄时间，默认是10分钟，单位是秒
+@property (assign, nonatomic) NSTimeInterval videoMaximumDuration;
 
 /// 首选语言，如果设置了就用该语言，不设则取当前系统语言。
 /// 由于目前只支持中文、繁体中文、英文、越南语。故该属性只支持zh-Hans、zh-Hant、en、vi四种值，其余值无效。
@@ -102,14 +114,21 @@
 /// 默认为YES，如果设置为NO, 选择器将不会自己dismiss
 @property(nonatomic, assign) BOOL autoDismiss;
 
-/// Default is YES, if set NO, in the delegate method the photos and infos will be nil, only assets hava value.
+/// Default is NO, if set YES, in the delegate method the photos and infos will be nil, only assets hava value.
 /// 默认为NO，如果设置为YES，代理方法里photos和infos会是nil，只返回assets
 @property (assign, nonatomic) BOOL onlyReturnAsset;
+
+/// Default is NO, if set YES, will show the image's selected index.
+/// 默认为NO，如果设置为YES，会显示照片的选中序号
+@property (assign, nonatomic) BOOL showSelectedIndex;
 
 /// The photos user have selected
 /// 用户选中过的图片数组
 @property (nonatomic, strong) NSMutableArray *selectedAssets;
 @property (nonatomic, strong) NSMutableArray<TZAssetModel *> *selectedModels;
+@property (nonatomic, strong) NSMutableArray *selectedAssetIds;
+- (void)addSelectedModel:(TZAssetModel *)model;
+- (void)removeSelectedModel:(TZAssetModel *)model;
 
 /// Minimum selectable photo width, Default is 0
 /// 最小可选中的图片宽度，默认是0，小于这个宽度的图片不可选中
@@ -146,13 +165,20 @@
 @property (assign, nonatomic) BOOL needShowStatusBar;
 
 #pragma mark -
-@property (nonatomic, copy) NSString *takePictureImageName;
-@property (nonatomic, copy) NSString *photoSelImageName;
-@property (nonatomic, copy) NSString *photoDefImageName;
-@property (nonatomic, copy) NSString *photoOriginSelImageName;
-@property (nonatomic, copy) NSString *photoOriginDefImageName;
-@property (nonatomic, copy) NSString *photoPreviewOriginDefImageName;
-@property (nonatomic, copy) NSString *photoNumberIconImageName;
+@property (nonatomic, copy) NSString *takePictureImageName __attribute__((deprecated("Use -takePictureImage.")));
+@property (nonatomic, copy) NSString *photoSelImageName __attribute__((deprecated("Use -photoSelImage.")));
+@property (nonatomic, copy) NSString *photoDefImageName __attribute__((deprecated("Use -photoDefImage.")));
+@property (nonatomic, copy) NSString *photoOriginSelImageName __attribute__((deprecated("Use -photoOriginSelImage.")));
+@property (nonatomic, copy) NSString *photoOriginDefImageName __attribute__((deprecated("Use -photoOriginDefImage.")));
+@property (nonatomic, copy) NSString *photoPreviewOriginDefImageName __attribute__((deprecated("Use -photoPreviewOriginDefImage.")));
+@property (nonatomic, copy) NSString *photoNumberIconImageName __attribute__((deprecated("Use -photoNumberIconImage.")));
+@property (nonatomic, strong) UIImage *takePictureImage;
+@property (nonatomic, strong) UIImage *photoSelImage;
+@property (nonatomic, strong) UIImage *photoDefImage;
+@property (nonatomic, strong) UIImage *photoOriginSelImage;
+@property (nonatomic, strong) UIImage *photoOriginDefImage;
+@property (nonatomic, strong) UIImage *photoPreviewOriginDefImage;
+@property (nonatomic, strong) UIImage *photoNumberIconImage;
 
 #pragma mark -
 /// Appearance / 外观颜色 + 按钮文字
@@ -170,6 +196,10 @@
 @property (nonatomic, copy) NSString *fullImageBtnTitleStr;
 @property (nonatomic, copy) NSString *settingBtnTitleStr;
 @property (nonatomic, copy) NSString *processHintStr;
+
+/// Icon theme color, default is green color like wechat, the value is r:31 g:185 b:34. Currently only support image selection icon when showSelectedIndex is YES
+/// icon主题色，默认是微信的绿色，值是r:31 g:185 b:34。目前仅支持showSelectedIndex为YES时的图片选中icon
+@property (strong, nonatomic) UIColor *iconThemeColor;
 
 #pragma mark -
 - (void)cancelButtonClick;
@@ -272,4 +302,7 @@
 @property(nonatomic, assign) BOOL allowPickingImage;
 @property (nonatomic, assign) BOOL allowPickingVideo;
 @property (strong, nonatomic) NSBundle *languageBundle;
+/// 默认是200，如果一个GIF过大，里面图片个数可能超过1000，会导致内存飙升而崩溃
+@property (assign, nonatomic) NSInteger gifPreviewMaxImagesCount;
+@property (assign, nonatomic) BOOL showSelectedIndex;
 @end
