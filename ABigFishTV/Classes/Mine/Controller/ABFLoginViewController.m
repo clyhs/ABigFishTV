@@ -65,11 +65,19 @@
     [super viewWillAppear:animated];
     //self.navigationController.navigationBarHidden=YES;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self setStatusBarBackgroundColor:[UIColor clearColor]];
     //self.navigationController.navigationBar.backgroundColor = LINE_BG;
     [AppDelegate APP].allowRotation = false;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self.tabBarController.tabBar setHidden:YES];
     [self setNaviUI];
+}
+
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
 }
 
 -(void)viewDidLayoutSubviews{

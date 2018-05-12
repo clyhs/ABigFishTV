@@ -52,7 +52,7 @@
     [super viewWillAppear:animated];
     [AppDelegate APP].allowRotation = false;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-    [self setStatusBarBackgroundColor:[UIColor whiteColor]];
+    [self setStatusBarBackgroundColor:LINE_BG];
     //隐藏
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [self.tabBarController.tabBar setHidden:YES];

@@ -61,6 +61,9 @@
 
 @property(nonatomic,strong) CLLocationManager *locationManager;
 
+@property(nonatomic,strong) UIImageView       *logoView;
+@property(nonatomic,strong) UIView            *searchView;
+
 @end
 
 @implementation ABFHomeViewController
@@ -208,6 +211,7 @@
     
     imageView.frame = CGRectMake(15, 4, 70, 36);
     [self.navigationController.navigationBar addSubview:imageView];
+    _logoView = imageView;
     
     UIView *searchView = [[UIView alloc] init];
     searchView.frame = CGRectMake(90, 7, kScreenWidth-90-20, 28);
@@ -215,6 +219,7 @@
     searchView.layer.masksToBounds = YES;
     searchView.layer.cornerRadius = 14;
     [self.navigationController.navigationBar addSubview:searchView];
+    _searchView = searchView;
     
     UIImageView *searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(8, 6, 16, 16)];
     [searchImage setImage:[UIImage imageNamed:@"icon_lightsearch"]];
@@ -232,6 +237,12 @@
     
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    _logoView.hidden=YES;
+    _searchView.hidden=YES;
+    _logoView.alpha = 0;
+    _searchView.alpha = 0;
+}
 
 -(void)searchClick:(id)sender{
     ABFSearchViewController *vc = [[ABFSearchViewController alloc] init];

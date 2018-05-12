@@ -271,7 +271,7 @@
     UIView *myView = [[UIView alloc] initWithFrame:CGRectMake(0, self.adHeight, kScreenWidth,nheight)];
     [myView addSubview:mylayout];
     [headerView addSubview:myView];
-    headerView.backgroundColor = [UIColor redColor];
+    headerView.backgroundColor = [UIColor whiteColor];
     
     _tableView.parallaxHeader.view = headerView;
     _tableView.parallaxHeader.height = nheight +self.adHeight;

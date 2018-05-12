@@ -80,6 +80,8 @@
     
 }
 
+
+
 - (void)setStatusBarBackgroundColor:(UIColor *)color {
     
     UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
@@ -113,6 +115,9 @@
        forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     self.navigationItem.rightBarButtonItem = rightBtnItem;
+    
+    
+    
     
 }
 
