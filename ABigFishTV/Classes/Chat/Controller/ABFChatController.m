@@ -500,10 +500,11 @@
         [params setObject:context forKey:@"context"];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         NSMutableArray<NSString *> *fileNames = [NSMutableArray new];
-        
+        NSMutableArray<NSString *> *names = [NSMutableArray new];
         if(self.selectedPhotos.count>0){
             for(int i=0;i<self.selectedPhotos.count;i++){
                 [fileNames addObject:@"headIcon.png"];
+                [names addObject:[NSString stringWithFormat:@"file_%d",i+1]];
             }
         }
         self.hudView.messageLabel.text = @"数据加载中...";
@@ -513,13 +514,11 @@
         
         
         
-        [PPNetworkHelper uploadImagesWithURL:fullUrl parameters:params name:@"profile" images:[self.selectedPhotos mutableCopy] fileNames:[fileNames mutableCopy] imageScale:1.0f imageType:@"png" progress:^(NSProgress *progress) {
+        [PPNetworkHelper uploadImagesWithURL2:fullUrl parameters:params name:names images:[self.selectedPhotos mutableCopy] fileNames:[fileNames mutableCopy] imageScale:1.0f imageType:@"png" progress:^(NSProgress *progress) {
             NSLog(@"%lf",1.0*progress.completedUnitCount/progress.totalUnitCount);
         } success:^(id responseObject) {
-            //ABFResultInfo *result = [ABFResultInfo mj_objectWithKeyValues:responseObject];
-            //NSLog(@"desc=%@",result.desc);
-            NSString * jsonStr = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
-            NSData * data1 = [[NSData alloc]initWithData:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+            ABFResultInfo *result = [ABFResultInfo mj_objectWithKeyValues:responseObject];
+            NSLog(@"desc=%@",result.desc);
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self dismiss];
         } failure:^(NSError *error) {
