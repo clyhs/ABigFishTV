@@ -20,13 +20,13 @@
 
 @interface ABFMyChatViewController ()<UITableViewDelegate,UITableViewDataSource,ABFChatImageDelegate>
 
-@property (nonatomic) JHUD *hudView;
+@property (nonatomic)       JHUD           *hudView;
 @property(nonatomic,strong) NSMutableArray *dataArrays;
-@property(nonatomic,assign) NSInteger curIndexPage;
+@property(nonatomic,assign) NSInteger      curIndexPage;
 
 @property(nonatomic,strong) ABFNavigationBarView *naviView;
 
-@property(nonatomic,strong) UIView *mainView;
+@property(nonatomic,strong) UIView         *mainView;
 
 @end
 
@@ -39,8 +39,9 @@
     
    // self.edgesForExtendedLayout = UIRectEdgeBottom;//不用这个，不然会有导航栏向上缩
     _curIndexPage = 1;
-    [self addTableView];
     [self setuiMainView];
+    [self addTableView];
+    
     self.hudView = [[JHUD alloc]initWithFrame:self.mainView.bounds];
     [self addRefreshHeader];
     [self addRefreshFooter];
@@ -198,8 +199,6 @@
         }
         if(type == 2){
             if(arrayM.count > 0){
-                //self.data = [self.data arrayByAddingObjectsFromArray:arrayM];
-                //self.data = [[arrayM arrayByAddingObjectsFromArray:self.data] mutableCopy];
                 self.dataArrays = [[self.dataArrays arrayByAddingObjectsFromArray:arrayM] mutableCopy];
                 [self.tableView reloadData];
                 [self.tableView.mj_footer endRefreshing];
