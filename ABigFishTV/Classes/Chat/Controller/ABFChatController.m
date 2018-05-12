@@ -508,7 +508,7 @@
         }
         self.hudView.messageLabel.text = @"数据加载中...";
         [self.hudView showAtView:self.view hudType:JHUDLoadingTypeCircle];
-        //[PPNetworkHelper setRequestSerializer:PPRequestSerializerHTTP];
+        [PPNetworkHelper setRequestSerializer:PPRequestSerializerHTTP];
         [PPNetworkHelper setResponseSerializer:PPResponseSerializerHTTP];
         
         

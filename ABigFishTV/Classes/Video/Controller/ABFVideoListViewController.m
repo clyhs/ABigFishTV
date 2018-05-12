@@ -110,12 +110,13 @@
     NSString *fullUrl = BaseUrl;
     if([self.typeId isEqualToString:@"1"]){
         fullUrl = [fullUrl stringByAppendingString:ChatUrl];
+        fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%@/%d",self.typeId,0]];
     }
     
     if([self.typeId isEqualToString:@"2"]){
         fullUrl = [fullUrl stringByAppendingString:VideoUrl];
     }
-    fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%ld",_curIndexPage]];
+    fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%ld",(long)_curIndexPage]];
     NSLog(@"url=%@",fullUrl);
     //[self.tableView.mj_footer beginRefreshing];
     [self loadData:fullUrl type:2];
@@ -130,9 +131,9 @@
 - (void) loadData:(NSString *)url type:(NSInteger)type{
     
     NSLog(@"url=%@",url);
-    [PPNetworkHelper GET:url parameters:nil responseCache:^(id responseCache) {
-        //加载缓存数据
-    } success:^(id responseObject) {
+    [PPNetworkHelper setRequestSerializer:PPRequestSerializerJSON];
+    [PPNetworkHelper setResponseSerializer:PPResponseSerializerJSON];
+    [PPNetworkHelper GET:url parameters:nil success:^(id responseObject) {
         
         NSArray *temArray=[responseObject objectForKey:@"data"];
         if(temArray.count>0){
@@ -140,7 +141,7 @@
         }
         //NSLog(@"success%ld",[temArray count]);
         
-        NSArray *arrayM = nil;
+        NSArray *arrayM =nil;
         if([self.typeId isEqualToString:@"1"]){
             arrayM = [ABFChatInfo mj_objectArrayWithKeyValuesArray:temArray];
         }
@@ -150,7 +151,6 @@
         }
         
         if(type == 1){
-            
             
             self.data = [arrayM mutableCopy];
             [self.tableView reloadData];
@@ -169,6 +169,9 @@
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
             }
         }
+        
+        
+        
         
         
     } failure:^( NSError *error) {

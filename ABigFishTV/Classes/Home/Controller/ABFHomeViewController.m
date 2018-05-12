@@ -162,11 +162,22 @@
 //设置导航栏的颜色
 - (void)initNavigationBar{
     [self.navigationController.navigationBar setBarTintColor:COMMON_COLOR];
-    [self.navigationController.navigationBar setBackgroundColor:COMMON_COLOR];
-    [self.navigationController.navigationBar setTintColor:COMMON_COLOR];
+    //[self.navigationController.navigationBar setBackgroundColor:COMMON_COLOR];
+    //[self.navigationController.navigationBar setTintColor:COMMON_COLOR];
+    //[self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    
+    //去掉透明后导航栏下边的黑边
+    //[//self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:22],NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    self.navigationController.navigationBar.alpha = 1;
+    //self.navigationController.navigationBar.alpha = 0.;
     self.navigationController.navigationBar.translucent = NO;
+    /*
+    CGRect frame = self.navigationController.navigationBar.frame;
+    UIView *alphaView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, frame.size.width, frame.size.height+20)];
+    alphaView.backgroundColor = [UIColor blueColor];
+    alphaView.userInteractionEnabled = NO;
+    [self.navigationController.navigationBar insertSubview: alphaView atIndex:0];*/
+    
     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     leftBtn.frame = CGRectMake(0,0,20,20);
     [leftBtn setBackgroundImage:[UIImage imageNamed:@"icon_search"] forState:UIControlStateNormal];
