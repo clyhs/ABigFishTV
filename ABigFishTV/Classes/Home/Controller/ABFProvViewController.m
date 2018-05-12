@@ -11,7 +11,7 @@
 #import "ABFPlayerViewController.h"
 #import "ABFTelevisionInfo.h"
 #import "JHUD.h"
-#import "ABFHttpManager.h"
+#import <PPNetworkHelper.h>
 #import "ABFMJRefreshGifFooter.h"
 #import "ABFMJRefreshGifHeader.h"
 #import "ABFCollectionSimpleCell.h"
@@ -179,7 +179,9 @@
     
     NSLog(@"url=%@",url);
     
-    [[ABFHttpManager manager]GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [PPNetworkHelper GET:url parameters:nil responseCache:^(id responseCache) {
+        //加载缓存数据
+    } success:^(id responseObject) {
         NSArray *temArray=[responseObject objectForKey:@"data"];
         NSLog(@"success%ld",[temArray count]);
         NSArray *arrayM = [ABFTelevisionInfo mj_objectArrayWithKeyValuesArray:temArray];
@@ -209,7 +211,7 @@
             
         }
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^( NSError *error) {
         NSLog(@"error%@",error);
         
         if(type == 1){

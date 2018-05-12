@@ -14,7 +14,7 @@
 #import "ABFPlayerViewController.h"
 #import "JHUD.h"
 #import "ABFRightTableViewCell.h"
-#import "ABFHttpManager.h"
+#import <PPNetworkHelper.h>
 #import "AppDelegate.h"
 #import "ABFDictInfo.h"
 #import "ABFTelevisionInfo.h"
@@ -22,17 +22,17 @@
 @interface ABFAllChannelViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 
-@property (nonatomic,weak) NavigationBarView *navBar;
+@property (nonatomic,weak)    NavigationBarView        *navBar;
 
-@property (nonatomic) JHUD *hudView;
+@property (nonatomic)         JHUD                     *hudView;
 
-@property (nonatomic, strong) NSMutableArray *dataArrays;
+@property (nonatomic, strong) NSMutableArray           *dataArrays;
 
-@property (strong, nonatomic) NSIndexPath *currentSelectIndexPath;
+@property (strong, nonatomic) NSIndexPath              *currentSelectIndexPath;
 
-@property (strong,nonatomic) UISwipeGestureRecognizer *recognizer;
+@property (strong,nonatomic)  UISwipeGestureRecognizer *recognizer;
 
-@property(nonatomic,strong) UIView *mainView;
+@property(nonatomic,strong)   UIView                   *mainView;
 
 
 @end
@@ -44,8 +44,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     // Do any additional setup after loading the view.
-    [self setuiMainView];
-    self.hudView = [[JHUD alloc]initWithFrame:self.mainView.bounds];
+    [self setMainView];
     //[AppDelegate APP].allowRotation = false;
     UISwipeGestureRecognizer *recognizer= [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
     [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
@@ -54,19 +53,19 @@
     [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
     [[self view] addGestureRecognizer:recognizer];
     
-    [self setTableViewUI];
-    
-    
+    [self addTableView];
     [self loadData];
     
     
 }
 
-- (void)setuiMainView{
+- (void)setMainView{
     _mainView = [[UIView alloc] init];
     _mainView.backgroundColor = [UIColor whiteColor];
     _mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
     [self.view addSubview:_mainView];
+    
+    self.hudView = [[JHUD alloc]initWithFrame:self.mainView.bounds];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -108,7 +107,7 @@
     [super viewWillLayoutSubviews];
     
     //self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    self.mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    self.mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height - 20);
     //_leftTableView.frame = CGr
     
 }
@@ -119,7 +118,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setTableViewUI{
+- (void)addTableView{
 
     UITableView *leftTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     leftTableView.backgroundColor = LINE_BG;
@@ -151,7 +150,9 @@
     NSString *fullUrl = [BaseUrl stringByAppendingString:TVAllChannelUrl];
     self.hudView.messageLabel.text = @"数据加载中...";
     [self.hudView showAtView:self.mainView hudType:JHUDLoadingTypeCircle];
-    [[ABFHttpManager manager]GET:fullUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [PPNetworkHelper GET:fullUrl parameters:nil responseCache:^(id responseCache) {
+        //加载缓存数据
+    } success:^(id responseObject) {
         
         NSArray *temArray=[responseObject objectForKey:@"data"];
         
@@ -166,9 +167,7 @@
         [self.rightTableView reloadData];
         [self.hudView hide];
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"error%@",error);
-        NSLog(@"error%@",error);
+    } failure:^(NSError *error) {
         self.hudView.indicatorViewSize = CGSizeMake(100, 100);
         self.hudView.messageLabel.text = @"连接网络失败，请重新连接";
         [self.hudView.refreshButton setTitle:@"重新连接" forState:UIControlStateNormal];
@@ -199,7 +198,6 @@
         return [[self.dataArrays[section] valueForKey:@"tvs"] count];
         
     }
-    
     return 0;
 }
 /*
@@ -210,16 +208,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-//    if(tableView == self.rightTableView){
-//    
-//        TitleHeaderSectionView *sectionView = [[TitleHeaderSectionView alloc] init];
-//        sectionView.backgroundColor = [UIColor clearColor];
-//        sectionView.title =[self.dataArrays[section] valueForKey:@"name"];
-//        
-//        return sectionView;
-//    }
     return nil;
-    
 }
 
 
@@ -231,9 +220,7 @@
         if (cell == nil) {
             cell = [[ABFLeftTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"leftcell"];
         }
-        
         ABFDictInfo *model = self.dataArrays[indexPath.row];
-        //ABFLeftTableViewCell *cell = [[ABFLeftTableViewCell alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth*0.25, 40)];
         cell.titleLab.text = model.name;
         [cell setIconUrl:model.icon];
         return cell;
@@ -272,8 +259,6 @@
     vc.uid = cell.model.id;
     vc.tvTitle = cell.model.name;
     vc.model = cell.model;
-    //vc.hidesBottomBarWhenPushed = YES;
-    //[self.navigationController pushViewController:vc animated:YES];
     vc.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:vc animated:YES completion:nil];
     
@@ -284,12 +269,9 @@
     if (tableView == self.rightTableView)
     {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        
-        
     }
     // 点击左边的tableView，设置选中右边的tableView某一行。左边的tableView的每一行对应右边tableView的每个分区
     if (tableView == self.leftTableView){
-        
         NSMutableArray *tvs =[ABFTelevisionInfo mj_objectArrayWithKeyValuesArray:[self.dataArrays[indexPath.row] valueForKey:@"tvs"]];
         
         if(tvs.count > 0){
@@ -298,10 +280,7 @@
                                     atScrollPosition:UITableViewScrollPositionTop animated:YES];
             self.currentSelectIndexPath = indexPath;
         }
-        
     }
-    
-    
 }
 
 

@@ -10,7 +10,7 @@
 #import "ABFCommentViewCell.h"
 #import "AppDelegate.h"
 #import "ABFCommentInfo.h"
-#import "ABFHttpManager.h"
+#import <PPNetworkHelper.h>
 #import "ABFCommentView.h"
 #import "ABFCommentTFView.h"
 #import "ABFProgramInfo.h"
@@ -27,8 +27,8 @@
 @property(nonatomic,strong) ABFCommentInfo *currentModel;
 @property(nonatomic,assign) NSInteger      replyIndex;
 
-@property(nonatomic,strong) UIView *bgView;
-@property(nonatomic,strong) UIImageView *bgImageView;
+@property(nonatomic,strong) UIView         *bgView;
+@property(nonatomic,strong) UIImageView    *bgImageView;
 @property (nonatomic) JHUD *hudView;
 @property(nonatomic,assign) NSInteger curIndexPage;
 
@@ -38,15 +38,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    //self.hudView = [[JHUD alloc]initWithFrame:self.tableView.bounds];
     _data = [NSMutableArray new];
-    
     _curIndexPage = 1;
     [self addTableView];
     [self addBgView];
-    //[self addRefreshHeader];
-    //[self addRefreshFooter];
     [self loadDataFirst];
     
 }
@@ -121,10 +116,10 @@
         NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
         [dateformatter setDateFormat:@"YYYYMMdd"];
         NSString *locationString=[dateformatter stringFromDate:senddate];
+        NSLog(@"%@",locationString);
         fullUrl = [fullUrl stringByAppendingFormat:@"/%@",locationString];
         [self loaddata:fullUrl type:1];
     }
-    //[self.tableView.mj_header beginRefreshing];
     
 }
 
@@ -147,7 +142,9 @@
 -(void)loaddata:(NSString *)url type:(NSInteger)type{
     
     if([self.typeId isEqualToString:@"11"]){
-        [[ABFHttpManager manager]GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [PPNetworkHelper GET:url parameters:nil responseCache:^(id responseCache) {
+            //加载缓存数据
+        } success:^(id responseObject) {
             NSArray *temArray=[responseObject objectForKey:@"data"];
             //NSLog(@"11 ...success%ld",[temArray count]);
             if([temArray count]>0){
@@ -155,19 +152,13 @@
             }
             NSArray *arrayM = [ABFCommentInfo mj_objectArrayWithKeyValuesArray:temArray];
             if(type == 1){
-                
-                //if(self.data.count == 0){
-                    //_bgView.alpha = 1;
-                    self.data = [arrayM mutableCopy];
-                    if([self.data count] == 0){
+                self.data = [arrayM mutableCopy];
+                if([self.data count] == 0){
                         _bgView.alpha = 1;
-                    }else{
-                        _bgView.alpha = 0;
-                        [self.tableView reloadData];
-                    }
-                //}else{
-                    //[self.tableView reloadData];
-                //}
+                }else{
+                    _bgView.alpha = 0;
+                    [self.tableView reloadData];
+                }
                 [self.tableView.mj_header endRefreshing];
                 
             }else if(type == 2){
@@ -178,7 +169,7 @@
             
             }
             [self.hudView hide];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^( NSError *error) {
             NSLog(@"error%@",error);
             if(type == 1){
                 [self.tableView.mj_header endRefreshing];
@@ -197,7 +188,9 @@
         }];
         //[self.tableView reloadData];
     }else if([self.typeId isEqualToString:@"12"]){
-        [[ABFHttpManager manager]GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [PPNetworkHelper GET:url parameters:nil responseCache:^(id responseCache) {
+            //加载缓存数据
+        } success:^(id responseObject) {
             NSArray *temArray=[responseObject objectForKey:@"data"];
             NSLog(@"12 ... success%ld",[temArray count]);
             NSArray *arrayM = [ABFProgramInfo mj_objectArrayWithKeyValuesArray:temArray];
@@ -211,7 +204,7 @@
             [self.tableView.mj_header endRefreshing];
             self.tableView.mj_footer.hidden = YES;
             [self.hudView hide];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^( NSError *error) {
             NSLog(@"error%@",error);
             [self.tableView.mj_header endRefreshing];
             self.hudView.indicatorViewSize = CGSizeMake(100, 100);
@@ -223,17 +216,12 @@
         }];
         
     }
-    
-    
 }
 
 -(void)refresh:(id)sender{
     [self loadDataFirst];
 }
 
-
-
-/*********table********/
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -243,21 +231,17 @@
     return [self.data count];
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if([self.typeId isEqualToString:@"11"]){
         ABFCommentInfo *model = self.data[indexPath.row];
         
         ABFCommentViewCell *cell = [[ABFCommentViewCell alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 50)];
-        //cell.model = self.data[indexPath.row];
         [cell setModel:model];
         cell.delegate = self;
-        NSLog(@"abfcommentinfo context=%@",model.context);
         return cell;
     }else if([self.typeId isEqualToString:@"12"]){
         ABFProgramInfo *model = self.data[indexPath.row];
-        
         ABFProgramViewCell *cell = (ABFProgramViewCell *)[tableView dequeueReusableCellWithIdentifier:@"programCell" forIndexPath:indexPath];
         [cell setModel:model];
         return cell;
@@ -292,15 +276,12 @@
 }
 
 -(void)pushForButton:(ABFCommentInfo *)model index:(NSInteger)tag{
-
-    NSLog(@"hhh");
     if ([self.delegate respondsToSelector:@selector(pushlistForButton:index:)]) {
         [self.delegate pushlistForButton:model index:tag];
     }
 }
 
 -(void)pushForReplyButton:(ABFCommentInfo *)model index:(NSInteger)tag{
-
     if ([self.delegate respondsToSelector:@selector(pushlistForReplyButton:index:)]) {
         [self.delegate pushlistForReplyButton:model index:tag];
     }

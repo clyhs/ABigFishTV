@@ -23,7 +23,7 @@
 #import "ABFSearchViewController.h"
 #import "AppDelegate.h"
 #import "MBProgressHUD.h"
-#import "ABFHttpManager.h"
+#import <PPNetworkHelper.h>
 #import "JHUD.h"
 #import "ABFMJRefreshGifHeader.h"
 #import "SDCycleScrollView.h"
@@ -39,29 +39,27 @@
 }
 
 //ui
-@property(nonatomic,weak)   ABFMenuView *channelView;
-
+@property(nonatomic,weak)   ABFMenuView       *channelView;
 @property(nonatomic,weak)   ABFHomeTopCollectionReusableView *headerView;
-
-@property (nonatomic)       JHUD *hudView;
+@property (nonatomic)       JHUD              *hudView;
 
 @property(nonatomic,weak)   SDCycleScrollView *sdcsv;
 //data
-@property(nonatomic,strong) NSMutableArray *menuArray;
+@property(nonatomic,strong) NSMutableArray    *menuArray;
 
-@property(nonatomic,strong) NSMutableArray *recordData;
+@property(nonatomic,strong) NSMutableArray    *recordData;
 
-@property(nonatomic,strong) ABFHomeInfo    *homeInfo;
+@property(nonatomic,strong) ABFHomeInfo       *homeInfo;
 
-@property(nonatomic,strong) NSMutableArray *images;
+@property(nonatomic,strong) NSMutableArray    *images;
 
-@property(nonatomic,strong) NSString       *headerTitle;
+@property(nonatomic,strong) NSString          *headerTitle;
 
-@property(nonatomic,assign) BOOL update;
+@property(nonatomic,assign) BOOL              update;
 
-@property(nonatomic,assign) NSString *code;
+@property(nonatomic,assign) NSString          *code;
 
-@property (nonatomic,strong) CLLocationManager *locationManager;
+@property(nonatomic,strong) CLLocationManager *locationManager;
 
 @end
 
@@ -96,42 +94,31 @@
     return _recordData;
 }
 
--(void) initData{
-    NSArray *imageArray = [NSArray arrayWithObjects:
-                           @"http://www.comke.net/public/upload/ad/img2017-02-1223-38-41.gif",
-                           @"http://www.comke.net/public/upload/ad/img2017-02-1200-48-46.gif",
-                           @"http://www.comke.net/public/upload/ad/img2017-02-1200-54-23.gif",nil];
-    _images = [[NSMutableArray array] init];
-    _images = [NSMutableArray arrayWithArray:imageArray];
-    
+-(void) initImagesArray{
+    if(_images == nil){
+        _images = [[NSMutableArray array] init];
+        NSArray *imageArray = [NSArray arrayWithObjects:
+                               @"http://www.comke.net/public/upload/ad/img2017-02-1223-38-41.gif",
+                               @"http://www.comke.net/public/upload/ad/img2017-02-1200-48-46.gif",
+                               @"http://www.comke.net/public/upload/ad/img2017-02-1200-54-23.gif",nil];
+        _images = [NSMutableArray arrayWithArray:imageArray];
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    //self.edgesForExtendedLayout = UIRectEdgeBottom;
-    //调整的是UIScrollView显示内容的位置
     self.automaticallyAdjustsScrollViewInsets = NO;
-    //[AppDelegate APP].area = @"推荐";
-    
-    
-    
-    self.hudView = [[JHUD alloc]initWithFrame:self.view.bounds];
-    //[self addTableView];
-    [self initData];
-    [self addCollectionView];
-    //[self initChannelView];
-    //[self setCollectionHeaderView];
-    [self loadDataFirst];
     self.update = YES;
+    self.hudView = [[JHUD alloc]initWithFrame:self.view.bounds];
+    [self initImagesArray];
+    [self addCollectionView];
+    [self loadDataFirst];
     [self addRefreshHeader];
-    
     [self startLocation];
     
 }
-
-
 
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -140,23 +127,16 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self setStatusBarBackgroundColor:COMMON_COLOR];
     [AppDelegate APP].allowRotation = false;
-    
-    //self.navigationController.navigationBarHidden=YES;
-    //隐藏
-    //[self.navigationController setNavigationBarHidden:YES animated:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
-    
     [self initNavigationBar];
     [self.tabBarController.tabBar setHidden:NO];
-    
     if (self.update == YES) {
-        [self.tableView.mj_header beginRefreshing];
+        [self.collectionView.mj_header beginRefreshing];
         self.update = NO;
     }
 }
 
 - (void)setStatusBarBackgroundColor:(UIColor *)color {
-    
     UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
     if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
         statusBar.backgroundColor = color;
@@ -173,7 +153,7 @@
     [super viewWillLayoutSubviews];
     
     self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    _collectionView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight-64-self.tabBarController.tabBar.frame.size.height);
+    _collectionView.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-20);
     self.channelView.frame = CGRectMake(0, 0, kScreenWidth, 160);
 }
 
@@ -187,16 +167,6 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:22],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.navigationController.navigationBar.alpha = 1;
     self.navigationController.navigationBar.translucent = NO;
-    //[self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-    
-    //[self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault] ;
-    
-    [self setNavinationItemButtons];
-}
-
-//设置导航的按钮
-- (void)setNavinationItemButtons{
-
     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     leftBtn.frame = CGRectMake(0,0,20,20);
     [leftBtn setBackgroundImage:[UIImage imageNamed:@"icon_search"] forState:UIControlStateNormal];
@@ -215,31 +185,13 @@
     self.navigationItem.titleView = imageView;
 }
 
+
 -(void)searchClick:(id)sender{
-    NSLog(@"....");
     ABFSearchViewController *vc = [[ABFSearchViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-//***********nav*************
 
-/********channels****/
-
-- (void)initChannelView{
-    ABFMenuView *channelView = [[ABFMenuView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 160) menuArray:self.menuArray];
-    //[self.collectionView addSubview:channelView];
-    self.channelView = channelView;
-    self.channelView.delegate = self;
-    
-}
-
-
-- (void)addRefreshHeader
-{
-    ABFMJRefreshGifHeader *header = [ABFMJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
-    self.collectionView.mj_header = header;
-    
-}
 
 - (void)addCollectionView{
     
@@ -270,6 +222,13 @@
     
 }
 
+- (void)addRefreshHeader
+{
+    ABFMJRefreshGifHeader *header = [ABFMJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    self.collectionView.mj_header = header;
+    
+}
+
 /********channels*****/
 
 - (void) loadDataFirst{
@@ -279,47 +238,35 @@
     [self loadData];
 }
 
-
 - (void) loadData{
-    
-    
     
     NSString *fullUrl = [BaseUrl stringByAppendingString:TVIndexUrl];
     
     if([AppDelegate APP].postcode != nil){
-        //[AppDelegate APP].area = @"北京";
         fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%@",[AppDelegate APP].postcode]];
     }
+    //[[ABFHttpManager manager]GET:fullUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id /responseObject) {
+    [PPNetworkHelper GET:fullUrl parameters:nil responseCache:^(id responseCache) {
     
-    [[ABFHttpManager manager]GET:fullUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+    }success:^(id responseObject) {
         NSArray *temArray=[responseObject objectForKey:@"data"];
-        
-        NSLog(@"success");
-        
         self.homeInfo = [ABFHomeInfo mj_objectWithKeyValues:temArray];
         
         NSInteger image_nums = [self.homeInfo.ads count];
         if(image_nums > 0){
-            //NSLog(@"images count%d",image_nums);
             [_images removeAllObjects];
-            
             for(ABFTelevisionInfo *tv in [self.homeInfo valueForKey:@"ads"]){
                 [_images addObject:tv.bg];
                 NSLog(@"%@",[NSString stringWithFormat:@"%@",tv.name]);
             }
             _sdcsv.imageURLStringsGroup = [_images copy];
         }
-        
         [self.collectionView.mj_header endRefreshing];
-        
-        
-        
         [self.collectionView reloadData];
         [self.hudView hide];
         
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSError *error) {
         NSLog(@"error%@",error);
         [self.collectionView.mj_header endRefreshing];
         self.hudView.indicatorViewSize = CGSizeMake(100, 100);
@@ -330,9 +277,6 @@
         [self.hudView showAtView:self.view hudType:JHUDLoadingTypeFailure];
         
     }];
-    
-    
-    
 }
 -(void)refresh:(id)sender{
     [self loadDataFirst];
@@ -346,9 +290,7 @@
     }
     else if(section == 1){
         return [self.homeInfo valueForKey:@"recommends"];
-    }/*else if(section == 1){
-        return [self.homeInfo valueForKey:@"news"];
-    }*/else if(section == 2){
+    }else if(section == 2){
         return [self.homeInfo valueForKey:@"hots"];
     }else if(section == 3){
         return [self.homeInfo valueForKey:@"cartoons"];
@@ -362,75 +304,47 @@
 }
 
 -(ABFTelevisionInfo *) commentInIndexPath:(NSIndexPath *) indexPath{
-    
     return [self commentsInSection:indexPath.section][indexPath.row];
 }
-
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 5+1;
 }
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    
     if(section == 0){
         return 1;
     }
-    
     if(section == 1){
         return [[self.homeInfo valueForKey:@"recommends"] count];
     }
-    
     if(section == 2){
-    
         return [[self.homeInfo valueForKey:@"hots"] count];
     }
     if(section == 3){
-        
         return [[self.homeInfo valueForKey:@"cartoons"] count];
     }
-    
     if(section == 4){
-        
         return [[self.homeInfo valueForKey:@"foreigns"] count];
     }
-    
     if(section == 5){
-        
         return [[self.homeInfo valueForKey:@"hongkongs"] count];
     }
-    
-    
     return 0;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    
-    //UICollectionReusableView *reusableview = nil;
-    
     if(kind == UICollectionElementKindSectionHeader){
-        /**
-         *
-         * 注意:虽然这里没有看到明显的initWithFrame方法,但是在获取重用视图的时候,系统会自动调用initWithFrame方法的.所以在initWithFrame里面进行初始化操作,是没有问题的!
-         */
         if(indexPath.section == 0){
-            
             ABFCollectionReusableView *headerView = (ABFCollectionReusableView *)[collectionView  dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView" forIndexPath:indexPath];
-            
             return headerView;
-            
         }
         if(indexPath.section == 1){
-            
             ABFCollectionReusableView *headerView = (ABFCollectionReusableView *)[collectionView  dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView" forIndexPath:indexPath];
             if([AppDelegate APP].area == nil){
                 [AppDelegate APP].area = @"北京";
             }
             headerView.title = [NSString stringWithFormat:@"%@",[AppDelegate APP].area];
             headerView.moreBtn.hidden = YES;
-            
-            
             return headerView;
-            
         }else if(indexPath.section == 2){
             ABFCollectionReusableView *headerView = (ABFCollectionReusableView *)[collectionView  dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView" forIndexPath:indexPath];
             headerView.title = @"热门";
@@ -452,10 +366,7 @@
             headerView.moreBtn.hidden = NO;
             return headerView;
         }
-        
-        //reusableview = headerView;
     }
-
     return nil;
 }
 
@@ -483,12 +394,8 @@
         
         return cell;
     }else{
-        //dequeueReusableCellWithIdentifier
         ABFCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"myCell" forIndexPath:nil];
         ABFTelevisionInfo *model = [self commentInIndexPath:indexPath];
-        
-        NSLog(@".......%@",model.name);
-        
         cell.titleLab.text = [NSString stringWithFormat:@"%@",model.name];
         [cell setModel:model];
         return cell;
@@ -503,10 +410,6 @@
     if(section == 0){
         return CGSizeMake(kScreenWidth, 0);
     }
-    /*
-    if(section == 1){
-        return CGSizeMake(kScreenWidth, 200+((kScreenWidth*9)/16));
-    }*/
     return CGSizeMake(kScreenWidth, 40);
 }
 
@@ -530,7 +433,6 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //[collectionView deselectRowAtIndexPath:indexPath animated:YES];
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     ABFPlayerViewController *vc = [[ABFPlayerViewController alloc] init];
     ABFTelevisionInfo *model = [self commentInIndexPath:indexPath];
@@ -538,9 +440,6 @@
     vc.uid = model.id;
     vc.tvTitle = model.name;
     vc.model = model;
-    //vc.hidesBottomBarWhenPushed = YES;
-    //vc.tabBarController.tabBar.hidden = YES;
-    //[self.navigationController pushViewController:vc animated:YES];
     vc.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:vc animated:YES completion:nil];
     
@@ -557,13 +456,8 @@
     return 5.0f;
 }
 
-
-
-
-
 - (void)pushVC:(id)sender name:(NSString *)name url:(NSString *)url
 {
-    
     if([name isEqualToString:@"全部"]){
         
         ABFAllChannelViewController *vc = [[ABFAllChannelViewController alloc] init];
@@ -579,9 +473,7 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     else{
-    
         ABFChannelListViewController *webVC = [[ABFChannelListViewController alloc] init];
-        
         webVC.title = name;
         webVC.url = url;
         
@@ -589,8 +481,6 @@
         
         [self.navigationController pushViewController:webVC animated:YES];
     }
-    
-    
 }
 
 - (BOOL)shouldAutorotate{
@@ -655,11 +545,6 @@
             if(result){
                 city = [city stringByReplacingOccurrencesOfString:@"市"withString:@""];
             }
-            //self.headerTitle = placemark.administrativeArea;
-            //[AppDelegate APP].area = placemark.administrativeArea;
-            //self.headerView.title = [NSString stringWithFormat:@"推荐-%@",[AppDelegate APP].area];
-            //[self.collectionView reloadData];
-            
             
             for(ABFProvinceInfo *p in self.recordData){
                 
@@ -667,16 +552,16 @@
                     [AppDelegate APP].area  =city;
                     self.headerView.title = [NSString stringWithFormat:@"%@",[AppDelegate APP].area];
                     
-                    //[AppDelegate APP].area = p.shortname;
                     [AppDelegate APP].postcode = p.code;
-                    //[self.collectionView reloadData];
                     
                     NSString *fullUrl = [BaseUrl stringByAppendingString:TVProvinceForIndexUrl];
                     fullUrl = [fullUrl stringByAppendingFormat:@"%@",p.code];
                     NSLog(@"%@",fullUrl);
                     
                     
-                    [[ABFHttpManager manager]GET:fullUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    [PPNetworkHelper GET:fullUrl parameters:nil responseCache:^(id responseCache) {
+                        //加载缓存数据
+                    } success:^(id responseObject) {
                         NSArray *temArray=[responseObject objectForKey:@"data"];
                         //NSLog(@"success%ld",[temArray count]);
                         //self.homeInfo = [ABFHomeInfo mj_objectWithKeyValues:temArray];
@@ -693,7 +578,7 @@
                         
                         
                         
-                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    } failure:^(NSError *error) {
                         NSLog(@"error%@",error);
                     }];
                     
@@ -722,7 +607,9 @@
 
     NSString *fullUrl = [BaseUrl stringByAppendingString:TVProvinceUrl];
     fullUrl = [fullUrl stringByAppendingFormat:@"/%@",self.code];
-    [[ABFHttpManager manager]GET:fullUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [PPNetworkHelper GET:fullUrl parameters:nil responseCache:^(id responseCache) {
+        //加载缓存数据
+    } success:^(id responseObject) {
         NSArray *temArray=[responseObject objectForKey:@"data"];
         NSLog(@"success%ld",[temArray count]);
         NSArray *arrayM = [ABFTelevisionInfo mj_objectArrayWithKeyValuesArray:temArray];
@@ -738,7 +625,7 @@
         }
         
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSError *error) {
         NSLog(@"error%@",error);
     }];
 

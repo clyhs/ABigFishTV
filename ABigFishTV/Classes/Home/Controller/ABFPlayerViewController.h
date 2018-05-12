@@ -10,16 +10,15 @@
 @class ABFTelevisionInfo;
 
 @interface ABFPlayerViewController : UIViewController
-
 /*
  视频播放器的播放地址
  */
-@property(nonatomic,copy) NSString *playUrl;
+@property(nonatomic,copy) NSString            *playUrl;
 
-@property(nonatomic,copy) NSString *tvTitle;
+@property(nonatomic,copy) NSString            *tvTitle;
 
 @property(nonatomic,strong) ABFTelevisionInfo *model;
 
-@property(nonatomic,assign) NSInteger uid;
+@property(nonatomic,assign) NSInteger         uid;
 
 @end

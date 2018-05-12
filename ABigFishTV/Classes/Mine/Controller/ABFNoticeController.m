@@ -11,7 +11,7 @@
 #import "ABFNoticeInfo.h"
 #import "ABFUserInfo.h"
 #import "JHUD.h"
-#import "ABFHttpManager.h"
+#import <PPNetworkHelper.h>
 #import "ABFMJRefreshGifHeader.h"
 #import "AppDelegate.h"
 #import "ABFPlayerViewController.h"
@@ -138,7 +138,9 @@
         NSLog(@"url=%@",fullUrl);
         self.hudView.messageLabel.text = @"数据加载中...";
         [self.hudView showAtView:self.tableView hudType:JHUDLoadingTypeCircle];
-        [[ABFHttpManager manager]GET:fullUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [PPNetworkHelper GET:fullUrl parameters:nil responseCache:^(id responseCache) {
+            //加载缓存数据
+        } success:^(id responseObject) {
             
             NSArray *temArray=[responseObject objectForKey:@"data"];
             if(temArray.count>0){
@@ -158,7 +160,7 @@
             [self.tableView.mj_header endRefreshing];
             [self.hudView hide];
             
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^( NSError *error) {
             NSLog(@"error%@",error);
             [self.tableView.mj_header endRefreshing];
             self.hudView.indicatorViewSize = CGSizeMake(100, 100);

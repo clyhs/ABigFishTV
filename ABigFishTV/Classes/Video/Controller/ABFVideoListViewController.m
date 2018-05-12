@@ -7,7 +7,7 @@
 //
 
 #import "ABFVideoListViewController.h"
-#import "ABFHttpManager.h"
+#import <PPNetworkHelper.h>
 #import "ABFChatViewCell.h"
 #import "ABFVideoViewCell.h"
 #import "JHUD.h"
@@ -130,7 +130,9 @@
 - (void) loadData:(NSString *)url type:(NSInteger)type{
     
     NSLog(@"url=%@",url);
-    [[ABFHttpManager manager]GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [PPNetworkHelper GET:url parameters:nil responseCache:^(id responseCache) {
+        //加载缓存数据
+    } success:^(id responseObject) {
         
         NSArray *temArray=[responseObject objectForKey:@"data"];
         if(temArray.count>0){
@@ -169,7 +171,7 @@
         }
         
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^( NSError *error) {
         NSLog(@"error%@",error);
         if(type == 1){
             [self.tableView.mj_header endRefreshing];

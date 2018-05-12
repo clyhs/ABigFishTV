@@ -11,7 +11,7 @@
 #import "ABFTelevisionInfo.h"
 #import "ABFUserInfo.h"
 #import "JHUD.h"
-#import "ABFHttpManager.h"
+#import <PPNetworkHelper.h>
 #import "ABFMJRefreshGifHeader.h"
 #import "AppDelegate.h"
 #import "ABFListCommonCell.h"
@@ -199,7 +199,7 @@
         }
         
         NSLog(@"url=%@",fullUrl);
-        [[ABFHttpManager manager]POST:fullUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [PPNetworkHelper POST:fullUrl parameters:params success:^(id responseObject) {
             if(self.index == 102){
                 [AppDelegate APP].user.likenum =[AppDelegate APP].user.likenum - self.deleteArrays.count;
             }else if(self.index == 103){
@@ -207,7 +207,7 @@
             }
             [self.tableView reloadData];
             NSLog(@"success");
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^( NSError *error) {
             NSLog(@"error%@",error);
             
         }];
@@ -285,7 +285,7 @@
         self.hudView.messageLabel.text = @"数据加载中...";
         [self.hudView showAtView:self.detailView hudType:JHUDLoadingTypeCircle];
     }
-    [[ABFHttpManager manager]GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [PPNetworkHelper GET:url parameters:nil success:^(id responseObject) {
         NSArray *temArray=[responseObject objectForKey:@"data"];
         NSLog(@"success%ld",[temArray count]);
         NSArray *arrayM = [ABFTelevisionInfo mj_objectArrayWithKeyValuesArray:temArray];
@@ -314,7 +314,7 @@
             }
         }
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^( NSError *error) {
         NSLog(@"error%@",error);
         if(type == 1){
             [self.tableView.mj_header endRefreshing];

@@ -15,7 +15,7 @@
 #import "AppDelegate.h"
 #import "ABFPlayerViewController.h"
 #import "JHUD.h"
-#import "ABFHttpManager.h"
+#import <PPNetworkHelper.h>
 #import "ABFMJRefreshGifHeader.h"
 #import "ABFMJRefreshGifFooter.h"
 #import "ABFCollectionViewCell.h"
@@ -23,21 +23,21 @@
 
 @interface ABFChannelListViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
-@property(nonatomic,weak) NavigationBarView *navBar;
+@property(nonatomic,weak)   NavigationBarView *navBar;
 
-@property(nonatomic,strong) NSMutableArray *dataArrays;
+@property(nonatomic,strong) NSMutableArray    *dataArrays;
 
-@property (nonatomic) JHUD *hudView;
+@property (nonatomic)       JHUD              *hudView;
 
-@property(nonatomic,assign) NSInteger curIndexPage;
+@property(nonatomic,assign) NSInteger         curIndexPage;
 
-@property(nonatomic,assign) CGFloat width;
+@property(nonatomic,assign) CGFloat           width;
 
-@property(nonatomic,assign) CGFloat height;
+@property(nonatomic,assign) CGFloat           height;
 
-@property(nonatomic,assign) NSInteger type;
+@property(nonatomic,assign) NSInteger         type;
 
-@property(nonatomic,strong) UIView *mainView;
+@property(nonatomic,strong) UIView            *mainView;
 
 @end
 
@@ -47,14 +47,10 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    // Do any additional setup after loading the view.
-    //[AppDelegate APP].allowRotation = false;
-    
     _curIndexPage = 1;
-    [self setuiMainView];
-    [self addCollectionView];
     
-    self.hudView = [[JHUD alloc]initWithFrame:self.mainView.bounds];
+    [self setMainView];
+    [self addCollectionView];
     [self addRefreshHeader];
     [self addRefreshFooter];
     [self loadDataFirst];
@@ -72,24 +68,8 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [self setStatusBarBackgroundColor:COMMON_COLOR];
     [self.tabBarController.tabBar setHidden:YES];
-    [self addNavigationBarView];
+    [self initNavigationBar];
 }
-
-- (void)setStatusBarBackgroundColor:(UIColor *)color {
-    
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
-        statusBar.backgroundColor = color;
-    }
-}
-
-- (void)setuiMainView{
-    _mainView = [[UIView alloc] init];
-    _mainView.backgroundColor = [UIColor whiteColor];
-    _mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
-    [self.view addSubview:_mainView];
-}
-
 
 - (void)viewWillLayoutSubviews
 {
@@ -100,21 +80,15 @@
     
 }
 
-- (void)addRefreshHeader
-{
-    ABFMJRefreshGifHeader *header = [ABFMJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadRefresh)];
-    self.collectionView.mj_header = header;
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
     
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
 }
 
-- (void)addRefreshFooter{
-    ABFMJRefreshGifFooter *footer = [ABFMJRefreshGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadDataMore)];
-    
-    self.collectionView.mj_footer = footer;
-}
-
-
-- (void)addNavigationBarView{
+- (void)initNavigationBar{
     self.navigationController.navigationBar.backgroundColor = COMMON_COLOR;
     //self.navigationController.navigationBar.alpha = 0.8;
     [self.navigationController.navigationBar setTitleTextAttributes:
@@ -139,10 +113,30 @@
        forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     self.navigationItem.rightBarButtonItem = rightBtnItem;
+    
+}
 
+- (void)setMainView{
+    _mainView = [[UIView alloc] init];
+    _mainView.backgroundColor = [UIColor whiteColor];
+    _mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    [self.view addSubview:_mainView];
+    self.hudView = [[JHUD alloc]initWithFrame:self.mainView.bounds];
 }
 
 
+- (void)addRefreshHeader
+{
+    ABFMJRefreshGifHeader *header = [ABFMJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadRefresh)];
+    self.collectionView.mj_header = header;
+    
+}
+
+- (void)addRefreshFooter{
+    ABFMJRefreshGifFooter *footer = [ABFMJRefreshGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadDataMore)];
+    
+    self.collectionView.mj_footer = footer;
+}
 
 - (void) loadRefresh{
     _curIndexPage = 1;
@@ -170,12 +164,10 @@
     
     NSLog(@"url=%@",url);
     
-    [[ABFHttpManager manager]GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [PPNetworkHelper GET:url parameters:nil responseCache:^(id responseCache) {
+        //加载缓存数据
+    } success:^(id responseObject) {
         NSArray *temArray=[responseObject objectForKey:@"data"];
-        /*
-        if(temArray.count>0){
-            _curIndexPage++;
-        }*/
         NSLog(@"success%ld",[temArray count]);
         NSArray *arrayM = [ABFTelevisionInfo mj_objectArrayWithKeyValuesArray:temArray];
         
@@ -201,10 +193,10 @@
             }
         }
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSError *error) {
         NSLog(@"error%@",error);
         if(type == 1){
-            [self.tableView.mj_header endRefreshing];
+            [self.collectionView.mj_header endRefreshing];
             self.hudView.indicatorViewSize = CGSizeMake(100, 100);
             self.hudView.messageLabel.text = @"连接网络失败，请重新连接";
             [self.hudView.refreshButton setTitle:@"重新连接" forState:UIControlStateNormal];
@@ -235,8 +227,7 @@
     flowLayout.minimumInteritemSpacing=0.0f;//item左右间隔
     flowLayout.scrollDirection=UICollectionViewScrollDirectionVertical;//设置滚动方向,默认垂直方向.
     //flowLayout.headerReferenceSize=CGSizeMake(self.view.frame.size.width, 0);//头视图的大小
-    
-    
+
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero  collectionViewLayout:flowLayout];
     collectionView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight-64 );
     collectionView.delegate = self;
@@ -245,7 +236,6 @@
     collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     
     //collectionView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
-    
     _collectionView = collectionView;
     
     [_collectionView registerClass:[ABFCollectionViewCell class] forCellWithReuseIdentifier:@"myCell"];
@@ -264,9 +254,6 @@
     
     return self.dataArrays.count;
 }
-
-
-
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ABFTelevisionInfo *model = self.dataArrays[indexPath.row];
     
@@ -281,39 +268,17 @@
         [cell setModel:model];
         return cell;
     }
-    
-    
-    //NSLog(@".......%@",model.name);
     return nil;
     
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"widht=%f",self.width);
     return CGSizeMake(self.width, self.height);
 }
-/*
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    
-    UICollectionReusableView *reusableview = nil;
-    
-    if(kind == UICollectionElementKindSectionHeader){
-        UICollectionReusableView *headerView = (UICollectionReusableView *)[collectionView  dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView" forIndexPath:indexPath];
-        
-        headerView.backgroundColor = [UIColor clearColor];
-        reusableview = headerView;
-    }
-    
-    
-    return reusableview;
-}*/
-
-
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    
     return CGSizeMake(kScreenWidth, 0);
 }
 
@@ -332,9 +297,6 @@
     vc.uid = model.id;
     vc.model = model;
     vc.tvTitle = model.name;
-    //vc.hidesBottomBarWhenPushed = YES;
-    //vc.tabBarController.tabBar.hidden = YES;
-    //[/self.navigationController pushViewController:vc animated:YES];
     vc.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:vc animated:YES completion:nil];
     
@@ -353,7 +315,6 @@
 -(void)backClick:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 -(void)rightClick:(id)sender{
     NSLog(@"right");

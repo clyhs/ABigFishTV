@@ -12,7 +12,7 @@
 #import "ABFMineSimpleCell.h"
 #import "ABFCacheManager.h"
 #import "ABFMineViewController.h"
-#import "ABFHttpManager.h"
+#import <PPNetworkHelper.h>
 #import "TZImagePickerController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
@@ -272,6 +272,7 @@
             _selectedPhotos= photo.mutableCopy;
             NSData *imageData = UIImagePNGRepresentation(_selectedPhotos[0]);
             UIImage *image=[UIImage imageWithData:imageData];
+            
             //NSLog(@"photo == %@, assets == %@",photo,assets);
             //[weakSelf.tableView reloadData];
             
@@ -281,6 +282,20 @@
             NSDictionary *params = @{@"id":uid};
             //NSURL *url = [NSURL URLWithString:_playUrl];
             //UIImage *image = _player.getImage;
+            NSMutableArray<NSString *> *fileNames = [NSMutableArray new];
+            [fileNames addObject:@"headIcon.png"];
+            [PPNetworkHelper uploadImagesWithURL:fullUrl parameters:params name:@"profile" images:_selectedPhotos fileNames:[fileNames mutableCopy] imageScale:1.0f imageType:@"png" progress:^(NSProgress *progress) {
+                
+            } success:^(id responseObject) {
+                NSObject *obj = [responseObject objectForKey:@"data"];
+                ABFUserInfo *model = [ABFUserInfo mj_objectWithKeyValues:obj];
+                [AppDelegate APP].user.profile = model.profile;
+                [cell setProfileImage:image];
+                [weakSelf.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+            } failure:^(NSError *error) {
+                 NSLog(@"error = %@",error);
+            }];
+            /*
             [[ABFHttpManager manager]POST:fullUrl parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                 //NSURL *url = [NSURL URLWithString:_playUrl];
                 NSData *imageData = UIImagePNGRepresentation(image);
@@ -295,7 +310,7 @@
                 [weakSelf.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 NSLog(@"error = %@",error);
-            }];
+            }];*/
             
             
             

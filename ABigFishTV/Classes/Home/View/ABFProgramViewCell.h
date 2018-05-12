@@ -12,9 +12,8 @@
 @interface ABFProgramViewCell : UITableViewCell
 
 @property(nonatomic,strong) ABFProgramInfo *model;
-
 @property(nonatomic,weak)   UILabel *timeLab;
 @property(nonatomic,weak)   UILabel *nameLab;
-@property(nonatomic,weak) UIView *lineView;
+@property(nonatomic,weak)   UIView  *lineView;
 
 @end

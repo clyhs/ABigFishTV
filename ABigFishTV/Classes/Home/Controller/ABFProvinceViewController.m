@@ -12,7 +12,7 @@
 #import "ABFProvViewController.h"
 #import "ABFProvNaviViewController.h"
 #import "AppDelegate.h"
-#import "ABFHttpManager.h"
+#import <PPNetworkHelper.h>
 #import "ABFRegionInfo.h"
 #import "JHUD.h"
 
@@ -94,33 +94,14 @@ static NSUInteger titleTabHeight = 40 ;
     self.navigationItem.leftBarButtonItem = leftBtnItem;
     
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    //rightBtn.backgroundColor = RGB_255(250, 250, 250);
-    //rightBtn.alpha = 0.5;
-    //rightBtn.layer.masksToBounds = YES;
-    //rightBtn.layer.cornerRadius = 13;
-    //rightBtn.layer.borderColor = RGB_255(250, 250, 250).CGColor;
-    //rightBtn.layer.borderWidth = 0.1f;
     [rightBtn addTarget:self action:@selector(selectClick:)
       forControlEvents:UIControlEventTouchUpInside];
-    //rightBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-    //rightBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    //[rightBtn setTitle:@"" forState:UIControlStateNormal];
-    //[rightBtn setFont:[UIFont systemFontOfSize: 14.0]];
     [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     rightBtn.frame = CGRectMake(0,0,20,20);
     [rightBtn setImage:[UIImage imageNamed:@"icon_square"] forState:UIControlStateNormal];
     //[self.view addSubview:rightBtn];
     UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     self.navigationItem.rightBarButtonItem = rightBtnItem;
-    /*
-    UIButton *rBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    rBtn.frame = CGRectMake(0,0,20,20);
-    [rBtn setImage:[UIImage imageNamed:@"icon_square"] forState:UIControlStateNormal];
-    [rBtn setImage:[UIImage imageNamed:@"icon_square"] forState:UIControlStateSelected];
-    [rBtn addTarget:self action:@selector(rightClick:)
-       forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithCustomView:rBtn];
-    self.navigationItem.rightBarButtonItem = rightBtnItem;*/
     
 }
 
@@ -140,20 +121,10 @@ static NSUInteger titleTabHeight = 40 ;
     btn.selected = !btn.selected;
     self.flag = btn.selected;
     if(btn.selected){
-        /*
-        for (int i = 0; i < self.titleArrays.count; i++) {
-            ABFProvViewController *vc = self.childViewControllers[i];
-            [vc changeCell:YES];
-        }*/
         [vc changeCell:YES];
         
     }else{
         [vc changeCell:NO];
-        /*
-        for (int i = 0; i < self.titleArrays.count; i++) {
-            ABFProvViewController *vc = self.childViewControllers[i];
-            [vc changeCell:NO];
-        }*/
     }
     
 }
@@ -163,7 +134,9 @@ static NSUInteger titleTabHeight = 40 ;
     NSString *fullUrl = [BaseUrl stringByAppendingString:RegionUrl];
     //self.hudView.messageLabel.text = @"数据加载中...";
     [self.hudView showAtView:self.view hudType:JHUDLoadingTypeCircle];
-    [[ABFHttpManager manager]GET:fullUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [PPNetworkHelper GET:fullUrl parameters:nil responseCache:^(id responseCache) {
+        //加载缓存数据
+    } success:^(id responseObject) {
         
         NSArray *temArray=[responseObject objectForKey:@"data"];
         
@@ -171,8 +144,6 @@ static NSUInteger titleTabHeight = 40 ;
         
         NSArray *arrayM = [ABFRegionInfo mj_objectArrayWithKeyValuesArray:temArray];
         self.titleArrays = [arrayM mutableCopy];
-        
-    
         
         [self addChildViewController];
         
@@ -184,7 +155,7 @@ static NSUInteger titleTabHeight = 40 ;
         
         [self.hudView hide];
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSError *error) {
         NSLog(@"error%@",error);
         self.hudView.indicatorViewSize = CGSizeMake(60, 60);
         self.hudView.messageLabel.text = @"连接网络失败，请重新连接";
@@ -245,12 +216,8 @@ static NSUInteger titleTabHeight = 40 ;
     //懒加载时，不能用_titleArray.count
     for (int i=0 ; i<self.titleArrays.count ;i++){
         ABFProvViewController *vc = [[ABFProvViewController alloc] init];
-        //vc.title = self.titleArrays[i][@"name"];
         ABFRegionInfo *model = self.titleArrays[i];
         vc.title = model.name;
-        //N/SNumber *typeId =self.titleArrays[i][@"typeId"] ;
-        //vc.typeId = [NSString stringWithFormat:@"%@",typeId];
-        //NSLog(@"typeId=%@",typeId);
         vc.code = [NSString stringWithFormat:@"%ld",model.code];
         [self addChildViewController:vc];
     }
@@ -306,8 +273,6 @@ static NSUInteger titleTabHeight = 40 ;
 }
 
 - (void)initDetailScrollView{
-    
-    
     
     CGFloat contentX = self.childViewControllers.count * [UIScreen mainScreen].bounds.size.width;
     UIScrollView *detailScrollView = [[UIScrollView alloc] init];
@@ -370,8 +335,6 @@ static NSUInteger titleTabHeight = 40 ;
     ABFProvViewController *vc = self.childViewControllers[index];
     vc.index = index;
     
-    
-    
     [self.titleTabScrollView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         if (idx != index) {
             TitleLineLabel *temlabel = self.titleTabScrollView.subviews[idx];
@@ -396,7 +359,6 @@ static NSUInteger titleTabHeight = 40 ;
     TitleLineLabel *titlelable = (TitleLineLabel *)recognizer.view;
     
     CGFloat offsetX = titlelable.tag * self.detailScrollView.frame.size.width;
-    
     CGFloat offsetY = self.detailScrollView.contentOffset.y;
     CGPoint offset = CGPointMake(offsetX, offsetY);
     

@@ -7,7 +7,7 @@
 //
 
 #import "ABFVideoPlayerViewController.h"
-#import "ABFHttpManager.h"
+#import <PPNetworkHelper.h>
 #import <AVFoundation/AVFoundation.h>
 #import "TitleLineLabel.h"
 #import "ABFPListViewController.h"
@@ -299,7 +299,9 @@
     
     fullUrl = [fullUrl stringByAppendingFormat:@"22/%ld",self.model.id];
     NSLog(@"url=%@",fullUrl);
-    [[ABFHttpManager manager]GET:fullUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [PPNetworkHelper GET:fullUrl parameters:nil responseCache:^(id responseCache) {
+        //加载缓存数据
+    } success:^(id responseObject) {
         NSArray *temArray=[responseObject objectForKey:@"data"];
         NSLog(@"success%ld",[temArray count]);
         NSArray *arrayM = [ABFCommentInfo mj_objectArrayWithKeyValuesArray:temArray];
@@ -316,7 +318,7 @@
         [self.tableView reloadData];
         //[self.tableView beginUpdates];
         //[self.tableView endUpdates];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSError *error) {
         NSLog(@"error%@",error);
     }];
     
@@ -336,7 +338,9 @@
     if([AppDelegate APP].user){
         fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%ld",[AppDelegate APP].user.id]];
         fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%d",22]];
-        [[ABFHttpManager manager]GET:fullUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [PPNetworkHelper GET:fullUrl parameters:nil responseCache:^(id responseCache) {
+            //加载缓存数据
+        } success:^(id responseObject) {
             NSLog(@"success");
             
             ABFResultInfo *info = [ABFResultInfo mj_objectWithKeyValues:responseObject];
@@ -347,7 +351,7 @@
             }
             
             
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^(NSError *error) {
             NSLog(@"error%@",error);
         }];
     }
@@ -470,12 +474,13 @@
         [params setObject:[NSString stringWithFormat:@"22"] forKey:@"type_id"];
         [params setObject:[NSString stringWithFormat:@"%ld",[AppDelegate APP].user.id] forKey:@"userId"];
         NSLog(@"url=%@",fullUrl);
-        [[ABFHttpManager manager]POST:fullUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [PPNetworkHelper POST:fullUrl parameters:params success:^(id responseObject) {
+            //请求成功
             //NSObject *obj = [responseObject objectForKey:@"data"];
             //[self loaddata];
             
             NSLog(@"success");
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^( NSError *error) {
             NSLog(@"error%@",error);
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
@@ -545,7 +550,7 @@
         
         [params setObject:context forKey:@"context"];
         NSLog(@"url=%@",fullUrl);
-        [[ABFHttpManager manager]POST:fullUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [PPNetworkHelper POST:fullUrl parameters:params success:^(id responseObject) {
             
             //NSObject *obj = [responseObject objectForKey:@"data"];
             [self loaddata];
@@ -554,7 +559,7 @@
             [self.view endEditing:YES];
              [MBProgressHUD hideHUDForView:self.view animated:YES];
             NSLog(@"success");
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^( NSError *error) {
             NSLog(@"error%@",error);
              [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
@@ -577,7 +582,7 @@
         
         [params setObject:context forKey:@"context"];
         NSLog(@"url=%@",fullUrl);
-        [[ABFHttpManager manager]POST:fullUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [PPNetworkHelper POST:fullUrl parameters:params success:^(id responseObject) {
             
             //NSObject *obj = [responseObject objectForKey:@"data"];
             [self loaddata];
@@ -587,7 +592,7 @@
             self.currentModel = nil;
              [MBProgressHUD hideHUDForView:self.view animated:YES];
             NSLog(@"success");
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^( NSError *error) {
             NSLog(@"error%@",error);
              [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
@@ -614,7 +619,7 @@
         
         [params setObject:context forKey:@"context"];
         NSLog(@"url=%@",fullUrl);
-        [[ABFHttpManager manager]POST:fullUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [PPNetworkHelper POST:fullUrl parameters:params success:^(id responseObject) {
             
             //NSObject *obj = [responseObject objectForKey:@"data"];
             [self loaddata];
@@ -624,7 +629,7 @@
             self.currentModel = nil;
              [MBProgressHUD hideHUDForView:self.view animated:YES];
             NSLog(@"success");
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^(NSError *error) {
             NSLog(@"error%@",error);
              [MBProgressHUD hideHUDForView:self.view animated:YES];
             

@@ -6,10 +6,10 @@
 //  Copyright © 2017年 陈立宇. All rights reserved.
 //
 
-#import <AFNetworking/AFHTTPRequestOperationManager.h>
-//#import <AFNetworking.h>
 
-@interface ABFHttpManager : AFHTTPRequestOperationManager
+#import <AFNetworking.h>
+
+@interface ABFHttpManager :NSObject
 //@interface ABFHttpManager : AFHTTPSessionManager
 
 + (instancetype)manager;

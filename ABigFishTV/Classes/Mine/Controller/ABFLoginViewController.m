@@ -10,7 +10,7 @@
 #import "ABFNavigationBarView.h"
 #import "MBProgressHUD.h"
 
-#import "ABFHttpManager.h"
+#import <PPNetworkHelper.h>
 #import <ShareSDK/ShareSDK.h>
 #import "ABFUserInfo.h"
 #import "AppDelegate.h"
@@ -470,7 +470,7 @@
     [params setObject:type forKey:@"type"];
     [params setObject:uid forKey:@"uid"];
     
-    [[ABFHttpManager manager]POST:fullUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [PPNetworkHelper POST:fullUrl parameters:params success:^(id responseObject) {
             NSLog(@"success");
         NSObject *obj = [responseObject objectForKey:@"data"];
         ABFUserInfo *user = [ABFUserInfo mj_objectWithKeyValues:obj];
@@ -481,7 +481,7 @@
         [self dismissViewControllerAnimated:YES completion:^{
         }];
             
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSError *error) {
             NSLog(@"error%@",error);
     }];
 }
@@ -507,7 +507,7 @@
     [params setObject:self.passwordTF.text forKey:@"password"];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [[ABFHttpManager manager]POST:fullUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [PPNetworkHelper POST:fullUrl parameters:params success:^(id responseObject) {
         
         NSObject *obj = [responseObject objectForKey:@"data"];
         ABFUserInfo *user = [ABFUserInfo mj_objectWithKeyValues:obj];
@@ -523,7 +523,7 @@
         [self dismissViewControllerAnimated:YES completion:^{
         }];
         NSLog(@"success");
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSError *error) {
         NSLog(@"error%@",error);
         
     }];

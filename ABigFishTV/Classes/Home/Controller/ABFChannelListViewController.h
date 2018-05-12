@@ -13,8 +13,6 @@
 
 @property(nonatomic,copy) NSString *url;
 
-@property(nonatomic,weak) UITableView *tableView;
-
 @property(nonatomic,weak) UICollectionView *collectionView;
 
 @end

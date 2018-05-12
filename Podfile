@@ -2,7 +2,7 @@ platform :ios,'9.0'
 
 target ‘ABigFishTV’ do
 pod 'ReactiveCocoa','2.5'
-pod 'AFNetworking', '2.5.4'
+#pod 'AFNetworking', '2.5.4'
 pod 'Masonry'
 pod 'MBProgressHUD','~> 0.9'
 pod 'MJExtension'
@@ -20,6 +20,7 @@ pod 'ZFDownload'
 pod 'SDCycleScrollView'
 pod 'XHLaunchAd','3.9.3'
 #pod 'FlyImage'
+pod 'PPNetworkHelper',:git => 'https://github.com/jkpang/PPNetworkHelper.git'
 
 pod 'UMCCommon'
 pod 'UMCSecurityPlugins'

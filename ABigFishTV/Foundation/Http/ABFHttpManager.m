@@ -11,7 +11,7 @@
 @implementation ABFHttpManager
 
 + (instancetype)manager
-{
+{/*
     ABFHttpManager *mgr = [super manager];
     mgr.responseSerializer = [AFJSONResponseSerializer serializer];
     mgr.responseSerializer.acceptableContentTypes =[NSSet setWithObjects:@"application/json",
@@ -19,8 +19,11 @@
                                                     @"image/png",
                                                     @"text/json",
                                                     @"text/javascript",
-                                                    @"text/html", nil];
-    return mgr;
+                                                    @"text/html", nil];*/
+    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+    sessionManager.requestSerializer.timeoutInterval = 30.f;
+    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html", @"text/json", @"text/plain", @"text/javascript", @"text/xml", @"image/*", nil];
+    return sessionManager;
 }
 
 @end

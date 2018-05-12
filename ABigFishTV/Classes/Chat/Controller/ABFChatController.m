@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "BRPlaceholderTextView.h"
 #import "ABFImageCollectionCell.h"
-#import "ABFHttpManager.h"
+#import <PPNetworkHelper.h>
 #import "ABFResultInfo.h"
 #import "MBProgressHUD.h"
 #import "TZImagePickerController.h"
@@ -20,7 +20,7 @@
 #import "TZImageManager.h"
 #import "TZLocationManager.h"
 #import "STEmojiKeyboard.h"
-
+#import "JHUD.h"
 
 
 @interface ABFChatController ()<UITextViewDelegate,ABFChatToolBarDelegate,UINavigationControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UIImagePickerControllerDelegate,TZImagePickerControllerDelegate >{
@@ -29,7 +29,7 @@
     NSMutableArray *_selectedPhotos;
     BOOL _isSelectOriginalPhoto;
 }
-
+@property (nonatomic)       JHUD              *hudView;
 @property (nonatomic, strong) UIScrollView *mainScrollView;
 @property (nonatomic, strong) BRPlaceholderTextView *noteTextView;
 //背景
@@ -96,6 +96,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     _selectedAssets = [NSMutableArray array];
     self.isEmojiKeyboard = NO;
+    self.hudView = [[JHUD alloc]initWithFrame:self.view.bounds];
     /*
     emojiKeyboardView = [[AGEmojiKeyboardView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216) dataSource:self];
     emojiKeyboardView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
@@ -498,6 +499,34 @@
         NSLog(@"context=%@",context);
         [params setObject:context forKey:@"context"];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        NSMutableArray<NSString *> *fileNames = [NSMutableArray new];
+        
+        if(self.selectedPhotos.count>0){
+            for(int i=0;i<self.selectedPhotos.count;i++){
+                [fileNames addObject:@"headIcon.png"];
+            }
+        }
+        self.hudView.messageLabel.text = @"数据加载中...";
+        [self.hudView showAtView:self.view hudType:JHUDLoadingTypeCircle];
+        //[PPNetworkHelper setRequestSerializer:PPRequestSerializerHTTP];
+        [PPNetworkHelper setResponseSerializer:PPResponseSerializerHTTP];
+        
+        
+        
+        [PPNetworkHelper uploadImagesWithURL:fullUrl parameters:params name:@"profile" images:[self.selectedPhotos mutableCopy] fileNames:[fileNames mutableCopy] imageScale:1.0f imageType:@"png" progress:^(NSProgress *progress) {
+            NSLog(@"%lf",1.0*progress.completedUnitCount/progress.totalUnitCount);
+        } success:^(id responseObject) {
+            //ABFResultInfo *result = [ABFResultInfo mj_objectWithKeyValues:responseObject];
+            //NSLog(@"desc=%@",result.desc);
+            NSString * jsonStr = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+            NSData * data1 = [[NSData alloc]initWithData:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self dismiss];
+        } failure:^(NSError *error) {
+            NSLog(@"error = %@",error);
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }];
+        /*
         [[ABFHttpManager manager]POST:fullUrl parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             if(self.selectedPhotos.count>0){
                 for(int i=0;i<self.selectedPhotos.count;i++){
@@ -516,7 +545,7 @@
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"error = %@",error);
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-        }];
+        }];*/
     }
     
 }

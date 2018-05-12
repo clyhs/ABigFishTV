@@ -21,7 +21,6 @@
 @property(nonatomic,assign)   NSInteger      index;
 @property(nonatomic,assign)   NSInteger      uid;
 @property(nonatomic,strong)   NSMutableArray *data;
-
 @property(nonatomic,assign)   CGFloat        height;
 
 @property(nonatomic,weak)   id<ABFPListViewDelegate> delegate;

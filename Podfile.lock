@@ -1,24 +1,18 @@
 PODS:
-  - AFNetworking (2.5.4):
-    - AFNetworking/NSURLConnection (= 2.5.4)
-    - AFNetworking/NSURLSession (= 2.5.4)
-    - AFNetworking/Reachability (= 2.5.4)
-    - AFNetworking/Security (= 2.5.4)
-    - AFNetworking/Serialization (= 2.5.4)
-    - AFNetworking/UIKit (= 2.5.4)
-  - AFNetworking/NSURLConnection (2.5.4):
+  - AFNetworking (3.2.0):
+    - AFNetworking/NSURLSession (= 3.2.0)
+    - AFNetworking/Reachability (= 3.2.0)
+    - AFNetworking/Security (= 3.2.0)
+    - AFNetworking/Serialization (= 3.2.0)
+    - AFNetworking/UIKit (= 3.2.0)
+  - AFNetworking/NSURLSession (3.2.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.4):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.4)
-  - AFNetworking/Security (2.5.4)
-  - AFNetworking/Serialization (2.5.4)
-  - AFNetworking/UIKit (2.5.4):
-    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (3.2.0)
+  - AFNetworking/Security (3.2.0)
+  - AFNetworking/Serialization (3.2.0)
+  - AFNetworking/UIKit (3.2.0):
     - AFNetworking/NSURLSession
   - AGEmojiKeyboard (0.2.1)
   - ASIHTTPRequest (1.8.2):
@@ -48,6 +42,9 @@ PODS:
     - "SDWebImage (!= 3.7.2, ~> 3.7)"
   - MXParallaxHeader (0.6.1)
   - MyLayout (1.4.2)
+  - PPNetworkHelper (0.8.1):
+    - AFNetworking (~> 3.2.0)
+    - YYCache (~> 1.0.4)
   - Reachability (3.2)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
@@ -73,11 +70,11 @@ PODS:
   - UMCSecurityPlugins (1.0.6)
   - XHLaunchAd (3.9.3):
     - FLAnimatedImage (~> 1.0.12)
+  - YYCache (1.0.4)
   - ZFDownload (1.0.2):
     - ASIHTTPRequest
 
 DEPENDENCIES:
-  - AFNetworking (= 2.5.4)
   - AGEmojiKeyboard
   - FDFullscreenPopGesture (= 1.1)
   - JHUD
@@ -88,6 +85,7 @@ DEPENDENCIES:
   - MWPhotoBrowser (= 2.1.1)
   - MXParallaxHeader
   - MyLayout (= 1.4.2)
+  - PPNetworkHelper (from `https://github.com/jkpang/PPNetworkHelper.git`)
   - ReactiveCocoa (= 2.5)
   - SDCycleScrollView
   - SDWebImage (~> 3.7.3)
@@ -129,10 +127,20 @@ SPEC REPOS:
     - UMCPush
     - UMCSecurityPlugins
     - XHLaunchAd
+    - YYCache
     - ZFDownload
 
+EXTERNAL SOURCES:
+  PPNetworkHelper:
+    :git: https://github.com/jkpang/PPNetworkHelper.git
+
+CHECKOUT OPTIONS:
+  PPNetworkHelper:
+    :commit: 50043e0ba8ef6587629e14b2706bcb663c0f74b6
+    :git: https://github.com/jkpang/PPNetworkHelper.git
+
 SPEC CHECKSUMS:
-  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
   AGEmojiKeyboard: d5a01a4b0de30e1f1c2a121503ac36a79c7217ab
   ASIHTTPRequest: ec013992946676b7978dcbde6396d57312d21db4
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
@@ -146,6 +154,7 @@ SPEC CHECKSUMS:
   MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
   MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
   MyLayout: 90df5544cdadb00a52873cb9a95c04d7083a81c1
+  PPNetworkHelper: e893191a73665e9c496c2887fd5ceece9e930bb8
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
@@ -158,8 +167,9 @@ SPEC CHECKSUMS:
   UMCPush: 6d67ff5ca853857e2690abbdaecb86b254b1f823
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
   XHLaunchAd: ecd208bce52a26d96d758cd58f617be09b1b52e9
+  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   ZFDownload: a52f94ebb080833b8a8ceb19a409f2941343fe7f
 
-PODFILE CHECKSUM: fa4c4374d35e17303761823c66963be3f28626d6
+PODFILE CHECKSUM: 00bac352eac32b5e153fcfe3fd50e289d683f958
 
 COCOAPODS: 1.5.0

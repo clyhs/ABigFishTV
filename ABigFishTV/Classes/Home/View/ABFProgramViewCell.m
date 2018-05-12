@@ -68,6 +68,7 @@
 
 -(void)setModel:(ABFProgramInfo *)model{
     _model = model;
+    NSLog(@"============%@",model.play_time);
     _timeLab.text = model.play_time;
     _nameLab.text = model.title;
 }

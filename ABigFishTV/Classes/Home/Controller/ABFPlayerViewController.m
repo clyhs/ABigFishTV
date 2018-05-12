@@ -7,7 +7,7 @@
 //
 
 #import "ABFPlayerViewController.h"
-#import "ABFHttpManager.h"
+#import <PPNetworkHelper.h>
 #import <AVFoundation/AVFoundation.h>
 #import "TitleLineLabel.h"
 #import "ABFPListViewController.h"
@@ -27,40 +27,30 @@
 @interface ABFPlayerViewController ()<UIScrollViewDelegate,ABFCommentDelegate,ABFCommentTFDelegate,ABFPListViewDelegate,ABFPlayerDelegate,UITextViewDelegate>
 
 /** 状态栏的背景 */
-@property (nonatomic, strong) UIView   *topView;
-@property (nonatomic, strong) UIView   *playerFatherView;
+@property (nonatomic, strong)   UIView         *topView;
+@property (nonatomic, strong)   UIView         *botView;
 
-/** 离开页面时候是否在播放 */
-@property (nonatomic, assign) BOOL     isPlaying;
-/** 离开页面时候是否开始过播放 */
-@property (nonatomic, assign) BOOL     isStartPlay;
+@property(weak,nonatomic)       UIView         *titleView;
+@property(weak,nonatomic)       UIScrollView   *titleTabScrollView;
+@property(weak,nonatomic)       UIScrollView   *detailScrollView;
+@property(weak,nonatomic)       ABFPListViewController *plistViewController;
+@property(nonatomic,strong)     NSArray        *titleArrays;
 
-@property (nonatomic, strong) UIView   *botView;
+@property(nonatomic,assign)     NSInteger      commentType;
+@property(nonatomic,strong)     ABFCommentInfo *currentModel;
+@property(nonatomic,assign)     NSInteger      replyIndex;
+@property(nonatomic,weak)       UIView         *commentToolView;
+@property(nonatomic,weak)       UIView         *commentTFView;
+@property(nonatomic,strong)     UIView         *bgView;
+@property(nonatomic,strong)    BRPlaceholderTextView *inputTextField;
+@property (nonatomic,strong)    UILabel        *textNumberLabel;
 
-@property(weak,nonatomic) UIView       *titleView;
-@property(weak,nonatomic) UIScrollView *titleTabScrollView;
-@property(weak,nonatomic) UIScrollView *detailScrollView;
-@property(weak,nonatomic) ABFPListViewController *plistViewController;
-@property(nonatomic,strong) NSArray    *titleArrays;
-
-@property(nonatomic,assign) NSInteger      commentType;
-@property(nonatomic,strong) ABFCommentInfo *currentModel;
-@property(nonatomic,assign) NSInteger      replyIndex;
-
-@property(nonatomic,weak)   UIView *commentToolView;
-@property(nonatomic,weak)   UIView *commentTFView;
-@property(nonatomic,strong) UIView *bgView;
-@property(nonatomic,strong) BRPlaceholderTextView *inputTextField;
-@property (nonatomic, strong) UILabel *textNumberLabel;
-
-@property(nonatomic,assign) Boolean isfullscreen;
-
+@property (nonatomic, strong)   UIView         *playerFatherView;
 @property (nonatomic,strong)  ABFPlayerView    *player;
 @property (nonatomic,strong)  ABFPlayerModel   *playerModel;
 
-@property (nonatomic, assign) BOOL isGood;
-
-@property (nonatomic,strong ) UIButton *goodBtn;
+@property (nonatomic, assign) BOOL             isGood;
+@property (nonatomic,strong ) UIButton         *goodBtn;
 
 
 @end
@@ -75,35 +65,28 @@
     return _titleArrays;
 }
 
-- (void)dealloc {
-    NSLog(@"---------------dealloc------------------");
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.hidden = YES;
-    self.isStartPlay = NO;
-    //self.isfullscreen = NO;
     self.isGood = false;
+    self.goodBtn.selected = NO;
     [self.view addSubview:self.topView];
     [self.view addSubview:self.playerFatherView];
     [self setBotViewUI];
-    
-    
     [self makePlayViewConstraints];
-    self.goodBtn.selected = NO;
-    [self.player autoPlayTheVideo];
+    
     [self updatehit];
     [self historyAdd];
     [self getGoodLog];
-    
     [self addChildViewController];
     self.plistViewController = self.childViewControllers[0];
     [self initTitleTabScrollView];
     [self setFirstTitleTab];
     [self initDetailScrollView];
     [self addCommentView];
+    
+    [self.player autoPlayTheVideo];
     
     UITapGestureRecognizer *tapgest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBackAction)];
     [self.view addGestureRecognizer:tapgest];
@@ -115,13 +98,11 @@
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [self.tabBarController.tabBar setHidden:YES];
     [AppDelegate APP].allowRotation = true;
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)setStatusBarBackgroundColor:(UIColor *)color {
-    
     UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
     if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
         statusBar.backgroundColor = color;
@@ -131,9 +112,7 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    
     self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    //[self makePlayViewConstraints];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -178,10 +157,6 @@
     
 }
 
-
-
-
-
 #pragma mark - getter
 - (UIView *)topView {
     if (!_topView) {
@@ -198,7 +173,6 @@
     return _playerFatherView;
 }
 
-
 - (void)getGoodLog{
     
     NSString *fullUrl = [BaseUrl stringByAppendingString:UserGetGoodUrl];
@@ -206,7 +180,7 @@
     if([AppDelegate APP].user){
         fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%ld",[AppDelegate APP].user.id]];
         fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%d",11]];
-        [[ABFHttpManager manager]GET:fullUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [PPNetworkHelper GET:fullUrl parameters:nil success:^(id responseObject) {
             NSLog(@"success");
             
             ABFResultInfo *info = [ABFResultInfo mj_objectWithKeyValues:responseObject];
@@ -215,16 +189,10 @@
                 self.isGood = YES;
                 self.goodBtn.selected = self.isGood;
             }
-            
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^( NSError *error) {
             NSLog(@"error%@",error);
         }];
     }
-    
-    
-    
-    
 }
 
 
@@ -232,9 +200,9 @@
     
     NSString *fullUrl = [BaseUrl stringByAppendingString:TVUpdatehitUrl];
     fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"%ld",self.uid]];
-    [[ABFHttpManager manager]GET:fullUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [PPNetworkHelper GET:fullUrl parameters:nil success:^(id responseObject) {
         NSLog(@"success");
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^( NSError *error) {
         NSLog(@"error%@",error);
     }];
     
@@ -249,15 +217,14 @@
         fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%ld",[AppDelegate APP].user.id]];
         fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%ld",self.uid]];
         NSLog(@"history url=%@",fullUrl);
-        [[ABFHttpManager manager]POST:fullUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [PPNetworkHelper POST:fullUrl parameters:nil success:^(id responseObject) {
             NSLog(@"success");
-            
             ABFResultInfo *result = [ABFResultInfo mj_objectWithKeyValues:responseObject];
             if(result.code == 10000){
                 [AppDelegate APP].user.history = [AppDelegate APP].user.history+1;
             }
             
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^( NSError *error) {
             NSLog(@"error%@",error);
         }];
     }
@@ -296,9 +263,11 @@
         fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%ld",[AppDelegate APP].user.id]];
         fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%ld",self.uid]];
         NSLog(@"collect url=%@",fullUrl);
-        [[ABFHttpManager manager]POST:fullUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [PPNetworkHelper POST:fullUrl parameters:nil responseCache:^(id responseCache) {
+            //加载缓存数据
+        } success:^(id responseObject) {
             NSLog(@"success");
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^( NSError *error) {
             NSLog(@"error%@",error);
         }];
     }
@@ -347,7 +316,6 @@
     CGFloat width = SCREEN_WIDTH;
     titleTabScrollView.contentSize = CGSizeMake(width, 0);
     titleTabScrollView.frame = CGRectMake(0, 0, width,45);
-    
     _titleTabScrollView = titleTabScrollView;
     //不显示垂直滚动条
     _titleTabScrollView.showsHorizontalScrollIndicator = NO;
@@ -430,18 +398,14 @@
     
     // 获得索引
     NSUInteger index = scrollView.contentOffset.x / self.titleTabScrollView.frame.size.width;
-    
     TitleLineLabel *titleLabel = (TitleLineLabel *)self.titleTabScrollView.subviews[index];
-    
     CGFloat offsetx = titleLabel.center.x - self.titleTabScrollView.frame.size.width * 0.5;
-    
     CGFloat offsetMax = self.titleTabScrollView.contentSize.width - self.titleTabScrollView.frame.size.width;
     if (offsetx < 0) {
         offsetx = 0;
     }else if (offsetx > offsetMax){
         offsetx = offsetMax;
     }
-    
     CGPoint offset = CGPointMake(offsetx, self.titleTabScrollView.contentOffset.y);
     [self.titleTabScrollView setContentOffset:offset animated:YES];
     
@@ -461,10 +425,6 @@
     
     if (vc.view.superview) return;
     vc.view.frame = CGRectMake(scrollView.contentOffset.x, 0, kScreenWidth, scrollView.height-20);
-    //vc.view.frame = scrollView.bounds;
-    //vc.tableView.contentInset = UIEdgeInsetsMake(64, 0, self.tabBarController.tabBar.height, 0);
-    
-    //vc.tableView.scrollIndicatorInsets = vc.tableView.contentInset;
     [self.detailScrollView addSubview:vc.view];
 }
 
@@ -485,15 +445,12 @@
 
 -(void)addCommentView{
     
-    
     ABFCommentView *commentToolView = [[ABFCommentView alloc] initWithFrame:CGRectMake(0, kScreenHeight-45, kScreenWidth, 45)];
     commentToolView.delegate = self;
     _commentToolView = commentToolView;
     commentToolView.commentNumLab.text =[NSString stringWithFormat:@"%ld",self.model.commentNum] ;
-    //_commentToolView.hidden = YES;
     self.goodBtn = commentToolView.dingBtn;
     [self.view addSubview:commentToolView];
-    
     
     _bgView = [[UIView alloc] init];
     _bgView.frame = self.view.bounds;
@@ -534,8 +491,6 @@
         }
     }else if(tag == 102){
         NSLog(@"ding reply");
-        
-        //_goodImgView.image = [UIImage imageNamed:@"btn_good"];
     }
 }
 
@@ -565,8 +520,6 @@
 }
 
 -(void)submitClick:(id)sender{
-    NSLog(@"submit");
-    NSLog(@"content=%@",self.inputTextField.text);
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     if(self.commentType == 1){
         [self submitAction];
@@ -577,7 +530,6 @@
     }
     
 }
-
 -(void)submitAction{
     NSString *fullUrl = [BaseUrl stringByAppendingString:TVCommentAddUrl];
     NSMutableDictionary *params = [NSMutableDictionary new];
@@ -590,10 +542,7 @@
         NSString *context = [self.inputTextField.text stringByReplacingEmojiUnicodeWithCheatCodes];
         [params setObject:context forKey:@"context"];
         NSLog(@"url=%@",fullUrl);
-        [[ABFHttpManager manager]POST:fullUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
-            //NSObject *obj = [responseObject objectForKey:@"data"];
-            //[self loaddata];
+        [PPNetworkHelper POST:fullUrl parameters:params success:^(id responseObject) {
             
             ABFPListViewController *vc = self.plistViewController;
             [vc loadDataFirst];
@@ -602,7 +551,7 @@
             [self.view endEditing:YES];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             NSLog(@"success");
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^(NSError *error) {
             NSLog(@"error%@",error);
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
@@ -623,7 +572,7 @@
         NSString *context = [self.inputTextField.text stringByReplacingEmojiUnicodeWithCheatCodes];
         [params setObject:context forKey:@"context"];
         NSLog(@"url=%@",fullUrl);
-        [[ABFHttpManager manager]POST:fullUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [PPNetworkHelper POST:fullUrl parameters:params success:^(id responseObject) {
             
             //NSObject *obj = [responseObject objectForKey:@"data"];
             //[self loaddata];
@@ -634,7 +583,7 @@
             self.currentModel = nil;
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             NSLog(@"success");
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^(NSError *error) {
             NSLog(@"error%@",error);
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
@@ -660,10 +609,7 @@
         NSString *context = [self.inputTextField.text stringByReplacingEmojiUnicodeWithCheatCodes];
         [params setObject:context forKey:@"context"];
         NSLog(@"url=%@",fullUrl);
-        [[ABFHttpManager manager]POST:fullUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
-            //NSObject *obj = [responseObject objectForKey:@"data"];
-            //[//self loaddata];
+        [PPNetworkHelper POST:fullUrl parameters:params success:^(id responseObject) {
             ABFPListViewController *vc = self.plistViewController;
             [vc loadDataFirst];
             _bgView.hidden = YES;
@@ -671,7 +617,7 @@
             self.currentModel = nil;
             NSLog(@"success");
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^( NSError *error) {
             NSLog(@"error%@",error);
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
@@ -695,12 +641,9 @@
         [params setObject:[NSString stringWithFormat:@"11"] forKey:@"type_id"];
         [params setObject:[NSString stringWithFormat:@"%ld",[AppDelegate APP].user.id] forKey:@"userId"];
         NSLog(@"url=%@",fullUrl);
-        [[ABFHttpManager manager]POST:fullUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            //NSObject *obj = [responseObject objectForKey:@"data"];
-            //[self loaddata];
-            
+        [PPNetworkHelper POST:fullUrl parameters:params success:^(id responseObject) {
             NSLog(@"success");
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^( NSError *error) {
             NSLog(@"error%@",error);
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
