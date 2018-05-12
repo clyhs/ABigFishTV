@@ -296,10 +296,6 @@
 -(void)pushForImage:(ABFChatInfo *)model imageIndex:(NSInteger)index{
     NSLog(@"title=%@",model.context);
     NSLog(@"index=%ld",index);
-    //ABFPhotoViewController *vc = [[ABFPhotoViewController alloc] init];
-    //vc.model = model;
-    //vc.index = index;
-    //[self.navigationController pushViewController:vc animated:YES];
     
     
 }
