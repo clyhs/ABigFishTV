@@ -27,7 +27,7 @@
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
         [self setTopViewUI];
-        [self setShareBtn];
+        //[self setShareBtn];
         [self setContextViewUI];
         [self setImagesViewUI];
         [self addBottomLine];
@@ -84,12 +84,13 @@
 }
 
 -(void)setShareBtn{
+    /*
     _shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_shareBtn setImage:[UIImage imageNamed:@"btn_share"] forState:UIControlStateNormal];
     [_shareBtn setImage:[UIImage imageNamed:@"btn_lightshare"] forState:UIControlStateSelected];
     [_shareBtn addTarget:self action:@selector(shareClick:)
       forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:_shareBtn];
+    [self addSubview:_shareBtn];*/
 }
 
 -(void)addBottomLine{
@@ -197,11 +198,12 @@
         make.right.equalTo(self.topView).offset(-10);
         make.height.mas_equalTo(20);
     }];
+    /*
     [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make){
         make.right.equalTo(self.topView).offset(-5);
         make.top.equalTo(self.topView).offset(5);
         make.width.height.mas_equalTo(40);
-    }];
+    }];*/
     [_bottomLine mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self).offset(0);
         make.bottom.equalTo(self).offset(0);
@@ -222,13 +224,13 @@
         [self.delegate pushForImage:self.model imageIndex:view.tag];
     }
 }
-
+/*
 -(void)shareClick:(id)sender{
 
     if ([self.delegate respondsToSelector:@selector(shareAction)]) {
         [self.delegate shareAction];
     }
-}
+}*/
 
 
 @end

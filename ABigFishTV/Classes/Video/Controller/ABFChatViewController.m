@@ -111,6 +111,14 @@
     UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
     self.navigationItem.leftBarButtonItem = leftBtnItem;
     
+    UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [shareBtn setImage:[UIImage imageNamed:@"btn_share"] forState:UIControlStateNormal];
+    [shareBtn setImage:[UIImage imageNamed:@"btn_lightshare"] forState:UIControlStateSelected];
+    [shareBtn addTarget:self action:@selector(shareClick:)
+        forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithCustomView:shareBtn];
+    self.navigationItem.rightBarButtonItem = rightBtnItem;
+    
 }
 
 - (void) addTableView{
@@ -334,7 +342,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)shareAction{
+-(void)shareClick:(id)sender{
     NSLog(@"share");
     //1、创建分享参数
     //NSArray* imageArray = @[[UIImage imageNamed:@"shareImg.png"]];

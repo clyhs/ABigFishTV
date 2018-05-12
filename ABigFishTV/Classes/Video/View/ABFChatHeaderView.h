@@ -11,7 +11,7 @@
 
 @protocol ABFChatHeaderImageDelegate <NSObject>
 - (void)pushForImage:(ABFChatInfo *)model imageIndex:(NSInteger)index;
-- (void)shareAction;
+//- (void)shareAction;
 @end
 
 @interface ABFChatHeaderView : UIView
