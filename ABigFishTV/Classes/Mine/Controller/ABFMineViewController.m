@@ -375,10 +375,12 @@
     //NSLog(@"setting");
     ABFSettingViewController *vc = [[ABFSettingViewController alloc] init];
     //[self.navigationController pushViewController:vc animated:YES];
-    vc.modalPresentationStyle = UIModalPresentationFullScreen;
-    vc.navigationController.navigationBar.hidden = NO;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
+    navController.modalPresentationStyle = UIModalPresentationFullScreen;
+    
     vc.delegate = self;
-    [self presentViewController:vc animated:YES completion:nil];
+    
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 -(void)logoutAction{

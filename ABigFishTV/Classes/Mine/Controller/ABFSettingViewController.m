@@ -91,7 +91,7 @@
     [super viewWillAppear:animated];
     //隐藏
     [AppDelegate APP].allowRotation = false;
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
     [self setStatusBarBackgroundColor:COMMON_COLOR];
     [self.tabBarController.tabBar setHidden:YES];
     [self addNavigationBarView];
@@ -116,21 +116,40 @@
 - (void)addNavigationBarView{
     
     self.title = @"设置";
+    [self.navigationController.navigationBar setBarTintColor:COMMON_COLOR];
+    self.navigationController.navigationBar.translucent = NO;
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:22],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftBtn addTarget:self action:@selector(backClick:)
+      forControlEvents:UIControlEventTouchUpInside];
+    //leftBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+    //leftBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    leftBtn.frame = CGRectMake(0,0,20,20);
+    //leftBtn.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+    [leftBtn setImage:[UIImage imageNamed:@"icon_lightback"] forState:UIControlStateNormal];
+    UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
+    self.navigationItem.leftBarButtonItem = leftBtnItem;
+    /*
     UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    statusBar.backgroundColor = COMMON_COLOR;
     ABFNavigationBarView *naviView = [[ABFNavigationBarView alloc] initWithFrame:CGRectMake(0, statusBar.frame.size.height, kScreenWidth, 40)];
     naviView.title = self.title;
     naviView.backgroundColor = COMMON_COLOR;
     [naviView setLeftBtnImageName:@"icon_lightback"];
-    [self.view addSubview:naviView];
-    
+    [self.view addSubview:naviView];*/
+    /*
     naviView.navBackHandle=^{
         [self dismissViewControllerAnimated:YES completion:^{
         }];
     };
     
-    _naviView = naviView;
+    _naviView = naviView;*/
     
 }
+
+
 
 - (void)setStatusBarBackgroundColor:(UIColor *)color {
     UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];

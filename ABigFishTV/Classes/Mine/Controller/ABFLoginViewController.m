@@ -65,7 +65,7 @@
     [super viewWillAppear:animated];
     //self.navigationController.navigationBarHidden=YES;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-    [self setStatusBarBackgroundColor:[UIColor clearColor]];
+    //[self setStatusBarBackgroundColor:[UIColor clearColor]];
     //self.navigationController.navigationBar.backgroundColor = LINE_BG;
     [AppDelegate APP].allowRotation = false;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
