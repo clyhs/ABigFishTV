@@ -203,7 +203,7 @@
     
     //去掉透明后导航栏下边的黑边
     //[self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
-    self.title=@"";
+    //self.title=@"";
     [self.navigationController.navigationBar setBarTintColor:COMMON_COLOR];
     self.navigationController.navigationBar.translucent = NO;
     
