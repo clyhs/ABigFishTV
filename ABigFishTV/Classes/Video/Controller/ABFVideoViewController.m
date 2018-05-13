@@ -74,6 +74,8 @@ static NSUInteger titleTabHeight = 64 ;
     [self setStatusBarBackgroundColor:RGB_255(250, 250, 250)];
     _titleTabScrollView.hidden=NO;
     _titleTabScrollView.alpha = 1;
+    _addBtn.hidden=NO;
+    _addBtn.alpha = 1;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
