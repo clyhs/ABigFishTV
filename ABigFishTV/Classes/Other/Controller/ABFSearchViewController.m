@@ -56,6 +56,8 @@
     [AppDelegate APP].allowRotation = false;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self setStatusBarBackgroundColor:LINE_BG];
+    _searchBar.hidden=NO;
+    _searchBar.alpha = YES;
     //隐藏
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [self.tabBarController.tabBar setHidden:YES];
@@ -117,7 +119,7 @@
     searchBar.barTintColor = LINE_BG;
     searchBar.backgroundImage = [[UIImage alloc] init];
     searchBar.showsCancelButton = YES;
-    searchBar.frame = CGRectMake(0, 5, kScreenWidth, self.navigationController.navigationBar.frame.size.height-5);
+    searchBar.frame = CGRectMake(5, 5, kScreenWidth, self.navigationController.navigationBar.frame.size.height-10);
     
     [self.navigationController.navigationBar addSubview:searchBar];
     /*

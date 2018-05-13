@@ -56,9 +56,10 @@ static NSUInteger titleTabHeight = 64 ;
     self.videoListViewController = self.childViewControllers[0];
     //[self setTopView];
     [self initTitleTabScrollView];
-    [self addBtnUI];
+    
     [self setFirstTitleTab];
     [self initDetailScrollView];
+    [self addBtnUI];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -78,6 +79,8 @@ static NSUInteger titleTabHeight = 64 ;
 -(void)viewWillDisappear:(BOOL)animated{
     _titleTabScrollView.hidden=YES;
     _titleTabScrollView.alpha = 0;
+    _addBtn.hidden=YES;
+    _addBtn.alpha = 0;
 }
 
 
@@ -107,7 +110,7 @@ static NSUInteger titleTabHeight = 64 ;
     }
     
     _detailScrollView.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height);
-    _addBtn.frame = CGRectMake(kScreenWidth-40,22,40,40);
+    _addBtn.frame = CGRectMake(kScreenWidth-40,0,40,40);
     
 }
 
@@ -131,14 +134,17 @@ static NSUInteger titleTabHeight = 64 ;
     [rightBtn setImage:[UIImage imageNamed:@"icon_grayadd"] forState:UIControlStateNormal];
     [rightBtn addTarget:self action:@selector(addClick:)
       forControlEvents:UIControlEventTouchUpInside];
-    [self.view insertSubview: rightBtn atIndex:1];
+    [self.navigationController.navigationBar insertSubview:rightBtn atIndex:99  ];
     _addBtn = rightBtn;
     
 }
 
+
+
 -(void)addClick:(id)sender{
     NSLog(@"add");
     ABFChatController *vc = [[ABFChatController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

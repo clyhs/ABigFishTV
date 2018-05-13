@@ -279,14 +279,17 @@
         //[self.navigationController pushViewController:vc animated:YES];
         //[self qrscan];
         ABFFriendsViewController *vc = [[ABFFriendsViewController alloc] init];
+         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
     if([title isEqualToString:@"微话题"]){
         ABFMyChatViewController *vc = [[ABFMyChatViewController alloc] init];
+         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
     if([title isEqualToString:@"日历"]){
         ABFCalendarController *vc = [[ABFCalendarController alloc] init];
+         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
     

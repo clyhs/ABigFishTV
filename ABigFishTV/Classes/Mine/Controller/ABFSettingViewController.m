@@ -92,7 +92,7 @@
     //隐藏
     [AppDelegate APP].allowRotation = false;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-    
+    [self setStatusBarBackgroundColor:COMMON_COLOR];
     [self.tabBarController.tabBar setHidden:YES];
     [self addNavigationBarView];
     if ([AppDelegate APP].user) {
@@ -132,6 +132,12 @@
     
 }
 
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
+}
 
 - (void) addTableView{
     

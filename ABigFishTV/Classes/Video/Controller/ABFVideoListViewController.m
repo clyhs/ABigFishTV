@@ -274,6 +274,7 @@
     if([self.typeId isEqualToString:@"1"]){
         ABFChatViewController *vc = [[ABFChatViewController alloc] init];
         vc.model = self.data[indexPath.row];
+        vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
     

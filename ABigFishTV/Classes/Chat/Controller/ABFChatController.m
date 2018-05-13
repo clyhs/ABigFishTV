@@ -121,6 +121,8 @@
     [AppDelegate APP].allowRotation = false;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController.navigationBar setBarTintColor:RGB_255(250, 250, 250)];
+    self.navigationController.navigationBar.translucent = NO;
     [self.tabBarController.tabBar setHidden:YES];
     
 }
@@ -128,7 +130,7 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+    //self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
     
 }
 
@@ -153,7 +155,8 @@
 }
 
 - (void)createUI{
-    _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height)];
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height)];
     _mainScrollView.contentSize =CGSizeMake(kScreenWidth, kScreenHeight);
     _mainScrollView.bounces =YES;
     _mainScrollView.showsVerticalScrollIndicator = false;
