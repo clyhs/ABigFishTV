@@ -1,5 +1,13 @@
 {
-  "images" : [
+  "images" : [{
+      "extent" : "full-screen",
+      "idiom" : "iphone",
+      "subtype" : "2436h",
+      "filename" : "LaunchImage-1100-2436h@3x.png",
+      "minimum-system-version" : "11.0",
+      "orientation" : "portrait",
+      "scale" : "3x"
+    },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",

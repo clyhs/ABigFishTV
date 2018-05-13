@@ -42,7 +42,7 @@
 
 @property(nonatomic,strong)  UIView *footerView;
 
-@property(nonatomic,weak) UIButton *loginout;
+@property(nonatomic,weak)   UIButton *loginout;
 @end
 
 @implementation ABFMineViewController
@@ -118,9 +118,9 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
     self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    _tableView.frame = CGRectMake( 0, 0, kScreenWidth, kScreenHeight-self.tabBarController.tabBar.frame.size.height);
+    _tableView.frame = CGRectMake( 0, statusBar.frame.size.height, kScreenWidth, kScreenHeight-self.tabBarController.tabBar.frame.size.height-statusBar.frame.size.height);
 }
 
 - (void) addTableView{

@@ -26,6 +26,8 @@
 
 @property (nonatomic, strong) NSMutableArray *dataArrays;
 
+@property(nonatomic,strong) UIView     *mainView;
+
 
 @end
 
@@ -36,6 +38,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     //[AppDelegate APP].allowRotation = false;
+    [self setuiMainView];
     [self setNaviUI];
     [self setSearchTF];
     [self addTableView];
@@ -54,13 +57,19 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self setStatusBarBackgroundColor:LINE_BG];
     //隐藏
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
     [self.tabBarController.tabBar setHidden:YES];
     if(self.searchKey){
         self.searchTF.text = self.searchKey;
         [self loadData];
     }
 
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    _searchBar.hidden=YES;
+    _searchBar.alpha = 0;
+    _searchTF.inputView = nil;
 }
 
 - (void)setStatusBarBackgroundColor:(UIColor *)color {
@@ -70,19 +79,29 @@
     }
 }
 
+- (void)setuiMainView{
+    _mainView = [[UIView alloc] init];
+    _mainView.backgroundColor = [UIColor whiteColor];
+    _mainView.frame = CGRectMake(0,0, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height);
+    [self.view addSubview:_mainView];
+}
+
 -(void)setNaviUI{
     
-    UIView *navView = [[UIView alloc] init];
-    navView.backgroundColor = LINE_BG;
-    [self.view addSubview:navView];
-    _navView = navView;
-    
+    //UIView *navView = [[UIView alloc] init];
+    //navView.backgroundColor = LINE_BG;
+    //[self.view addSubview:navView];
+    //_navView = navView;
+    [self.navigationController.navigationBar setBarTintColor:LINE_BG];
+    //_navView = self.navigationController.navigationBar.v;
+    self.navigationController.navigationBar.translucent = NO;
+    /*
     [_navView mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self.view).offset(0);
         make.top.equalTo(self.view).offset(0);
         make.height.mas_equalTo(64);
         make.right.equalTo(self.view).offset(0);
-    }];
+    }];*/
     
     
 }
@@ -98,14 +117,16 @@
     searchBar.barTintColor = LINE_BG;
     searchBar.backgroundImage = [[UIImage alloc] init];
     searchBar.showsCancelButton = YES;
+    searchBar.frame = CGRectMake(0, 5, kScreenWidth, self.navigationController.navigationBar.frame.size.height-5);
     
-    [self.navView addSubview:searchBar];
+    [self.navigationController.navigationBar addSubview:searchBar];
+    /*
     [searchBar mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self.navView.mas_left).offset(0);
         make.right.equalTo(self.navView.mas_right).offset(0);
         make.top.equalTo(self.navView).offset(5);
         make.height.mas_equalTo(self.navView);
-    }];
+    }];*/
     _searchBar = searchBar;
     UITextField *searchField = [searchBar valueForKey:@"_searchField"];
     UIView *backgroundView = [searchBar valueForKey:@"_background"];
@@ -167,15 +188,15 @@
 {
     [super viewWillLayoutSubviews];
     
-    self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    _tableView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight-64);
+    //self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+    _tableView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height);
 }
 
 -(void)loadData{
     
     NSString *fullUrl = [BaseUrl stringByAppendingString:SearchTVUrl];
     self.hudView.messageLabel.text = @"数据加载中...";
-    [self.hudView showAtView:self.view hudType:JHUDLoadingTypeCircle];
+    [self.hudView showAtView:self.mainView hudType:JHUDLoadingTypeCircle];
     NSDictionary *params = @{@"name":self.searchTF.text};
     [PPNetworkHelper POST:fullUrl parameters:params success:^(id responseObject) {
         
@@ -195,7 +216,7 @@
         self.hudView.messageLabel.text = @"连接网络失败，请重新连接";
         [self.hudView.refreshButton setTitle:@"重新连接" forState:UIControlStateNormal];
         self.hudView.customImage = [UIImage imageNamed:@"bg_null"];
-        [self.hudView showAtView:self.view hudType:JHUDLoadingTypeFailure];
+        [self.hudView showAtView:self.mainView hudType:JHUDLoadingTypeFailure];
         
     }];
 
@@ -210,7 +231,7 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.bounces = NO;
-    [self.view addSubview:tableView];
+    [self.mainView addSubview:tableView];
     
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView = tableView;

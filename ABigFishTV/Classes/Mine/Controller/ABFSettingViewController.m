@@ -92,6 +92,7 @@
     //隐藏
     [AppDelegate APP].allowRotation = false;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
     [self.tabBarController.tabBar setHidden:YES];
     [self addNavigationBarView];
     if ([AppDelegate APP].user) {
@@ -107,15 +108,16 @@
     [super viewWillLayoutSubviews];
     
     self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    _tableView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight -64);
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    _tableView.frame = CGRectMake(0, statusBar.frame.size.height+40, kScreenWidth, kScreenHeight -(statusBar.frame.size.height+40));
     
 }
 
 - (void)addNavigationBarView{
     
     self.title = @"设置";
-    
-    ABFNavigationBarView *naviView = [[ABFNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    ABFNavigationBarView *naviView = [[ABFNavigationBarView alloc] initWithFrame:CGRectMake(0, statusBar.frame.size.height, kScreenWidth, 40)];
     naviView.title = self.title;
     naviView.backgroundColor = COMMON_COLOR;
     [naviView setLeftBtnImageName:@"icon_lightback"];
@@ -149,8 +151,8 @@
 }
 
 -(void) addTableFooterView{
-    
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-60, kScreenWidth, 60)];
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-60-statusBar.frame.size.height, kScreenWidth, 60)];
     footerView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:footerView];
     //_tableView.tableFooterView = footerView;

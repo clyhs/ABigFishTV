@@ -40,6 +40,7 @@
 @property(nonatomic,strong) UIView *bgView;
 @property(nonatomic,weak)   BRPlaceholderTextView *inputTextField;
 @property (nonatomic, strong) UILabel *textNumberLabel;
+@property(nonatomic,strong) UIView *mainView;
     
 @property (nonatomic,retain) NSMutableArray *photosArray;
 
@@ -62,12 +63,13 @@
         [_photosArray addObject:[MWPhoto photoWithURL:[NSURL URLWithString:m.url]]];
     }
     self.goodBtn.selected = NO;
+    [self setuiMainView];
     [self addTableView];
     [self addTableheaderView];
     [self addCommentView];
     
     UITapGestureRecognizer *tapgest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBackAction)];
-    [self.view addGestureRecognizer:tapgest];
+    [self.mainView addGestureRecognizer:tapgest];
     
     [self loaddata];
     [self getGoodLog];
@@ -91,10 +93,18 @@
 {
     [super viewWillLayoutSubviews];
     
-    self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight );
-    _tableView.frame =  CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height-self.commentToolView.frame.size.height);
+    //self.view.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height );
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    _tableView.frame =  CGRectMake(0, 0, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height-self.commentToolView.frame.size.height-statusBar.frame.size.height);
 }
 
+- (void)setuiMainView{
+    _mainView = [[UIView alloc] init];
+    _mainView.backgroundColor = [UIColor whiteColor];
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    _mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height-statusBar.frame.size.height);
+    [self.view addSubview:_mainView];
+}
 
 - (void)addNavigationBarView{
     self.title = @"微话题";
@@ -130,7 +140,7 @@
     tableView.showsVerticalScrollIndicator = NO;
     //tableView.bounces = NO;
     //self.tableView.rowHeight = UITableViewAutomaticDimension;
-    [self.view addSubview:tableView];
+    [self.mainView addSubview:tableView];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView = tableView;
     
@@ -150,20 +160,20 @@
 
 -(void)addCommentView{
     
-    
-    ABFCommentView *commentToolView = [[ABFCommentView alloc] initWithFrame:CGRectMake(0, kScreenHeight-45, kScreenWidth, 45)];
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    ABFCommentView *commentToolView = [[ABFCommentView alloc] initWithFrame:CGRectMake(0, kScreenHeight-self.navigationController.navigationBar.frame.size.height-statusBar.frame.size.height-45, kScreenWidth, 45)];
     commentToolView.delegate = self;
     _commentToolView = commentToolView;
     //_commentToolView.hidden = YES;
     self.goodBtn = commentToolView.dingBtn;
-    [self.view addSubview:commentToolView];
+    [self.mainView addSubview:commentToolView];
     
     
     _bgView = [[UIView alloc] init];
-    _bgView.frame = self.view.bounds;
+    _bgView.frame = self.mainView.bounds;
     //3. 背景颜色可以用多种方法看需要咯
     _bgView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.4];
-    [self.view addSubview:_bgView];
+    [self.mainView addSubview:_bgView];
     _bgView.hidden = YES;
     
     ABFCommentTFView *commentView = [[ABFCommentTFView alloc] initWithFrame:CGRectMake(0, kScreenHeight-100, kScreenWidth, 100)];
@@ -262,7 +272,7 @@
             NSLog(@"success");
         } failure:^( NSError *error) {
             NSLog(@"error%@",error);
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD hideHUDForView:self.mainView animated:YES];
         }];
     }
 }
@@ -454,7 +464,7 @@
 -(void)submitClick:(id)sender{
     NSLog(@"submit");
     NSLog(@"content=%@",self.inputTextField.text);
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.mainView animated:YES];
     if(self.commentType == 1){
         [self submitAction];
     }else if(self.commentType == 2){
@@ -520,12 +530,12 @@
             [self loaddata];
             
             _bgView.hidden = YES;
-            [self.view endEditing:YES];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.mainView endEditing:YES];
+            [MBProgressHUD hideHUDForView:self.mainView animated:YES];
             NSLog(@"success");
         } failure:^( NSError *error) {
             NSLog(@"error%@",error);
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD hideHUDForView:self.mainView animated:YES];
         }];
     }
     
@@ -552,13 +562,13 @@
             [self loaddata];
             
             _bgView.hidden = YES;
-            [self.view endEditing:YES];
+            [self.mainView endEditing:YES];
             self.currentModel = nil;
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD hideHUDForView:self.mainView animated:YES];
             NSLog(@"success");
         } failure:^( NSError *error) {
             NSLog(@"error%@",error);
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD hideHUDForView:self.mainView animated:YES];
             
         }];
     }
@@ -590,13 +600,13 @@
             [self loaddata];
             
             _bgView.hidden = YES;
-            [self.view endEditing:YES];
+            [self.mainView endEditing:YES];
             self.currentModel = nil;
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD hideHUDForView:self.mainView animated:YES];
             NSLog(@"success");
         } failure:^(NSError *error) {
             NSLog(@"error%@",error);
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD hideHUDForView:self.mainView animated:YES];
             
         }];
     }
@@ -605,7 +615,7 @@
 
 - (void)tapBackAction {
     _bgView.hidden = YES;
-    [self.view endEditing:YES];
+    [self.mainView endEditing:YES];
     
 }
 

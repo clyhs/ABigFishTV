@@ -57,6 +57,7 @@
 @property (nonatomic, assign) BOOL isGood;
 
 @property (nonatomic,strong ) UIButton *goodBtn;
+@property(nonatomic,strong) UIView *mainView;
 
 @end
 
@@ -75,6 +76,7 @@
     self.isStartPlay = NO;
     self.goodBtn.selected = NO;
     [AppDelegate APP].allowRotation = true;
+    
     [self.view addSubview:self.topView];
     [self.view addSubview:self.playerFatherView];
     [self setBotViewUI];
@@ -102,6 +104,7 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [self.tabBarController.tabBar setHidden:YES];
+    [self setStatusBarBackgroundColor:COMMON_COLOR];
     // pop回来时候是否自动播放
     /*
     if (self.player && self.isPlaying) {
@@ -114,12 +117,29 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
+}
+
+
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
     
     self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
     _tableView.frame =  self.botView.bounds;
+}
+
+- (void)setuiMainView{
+    _mainView = [[UIView alloc] init];
+    _mainView.backgroundColor = [UIColor whiteColor];
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    _mainView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height-statusBar.frame.size.height);
+    [self.view addSubview:_mainView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -189,17 +209,17 @@
 
 //#pragma mark - 添加子控件的约束
 - (void)makePlayViewConstraints {
-    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
     if (IS_IPHONE_4) {
         [self.playerFatherView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(20);
+            make.top.mas_equalTo(statusBar.frame.size.height);
             make.leading.trailing.mas_equalTo(0);
             // 这里宽高比16：9,可自定义宽高比
             make.height.mas_equalTo(self.view.mas_width).multipliedBy(2.0f/3.0f);
         }];
     } else {
         [self.playerFatherView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(20);
+            make.top.mas_equalTo(statusBar.frame.size.height);
             make.leading.trailing.mas_equalTo(0);
             // 这里宽高比16：9,可自定义宽高比
             make.height.mas_equalTo(self.view.mas_width).multipliedBy(9.0f/16.0f);
@@ -208,11 +228,11 @@
     
     [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.height.mas_offset(20);
+        make.height.mas_offset(statusBar.frame.size.height);
     }];
     
     [self.botView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(kScreenWidth*9/16+20);
+        make.top.equalTo(self.view).offset(kScreenWidth*9/16+statusBar.frame.size.height);
         make.left.equalTo(self.view);
         make.width.equalTo(self.view);
         make.bottom.equalTo(self.view).offset(-45);

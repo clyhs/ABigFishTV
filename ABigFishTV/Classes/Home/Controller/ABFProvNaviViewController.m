@@ -82,7 +82,7 @@
     closeBtn.layer.cornerRadius = 20;
     _closeBtn = closeBtn;
     [self.closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(20);
+        make.top.equalTo(self.view).offset(50);
         make.right.equalTo(self.view).offset(-20);
         // 这里宽高比16：9,可自定义宽高比
         make.height.width.mas_equalTo(40);
@@ -129,7 +129,7 @@
     naviView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:naviView];
     [naviView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(80);
+        make.top.equalTo(self.view).offset(100);
         make.left.equalTo(self.view).offset(20);
         make.right.equalTo(self.view).offset(-20);
         make.height.mas_equalTo(height);
@@ -148,7 +148,7 @@
     [self.view addSubview:titleLab];
     _titleLab = titleLab;
     [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(50);
+        make.top.equalTo(self.view).offset(60);
         make.left.equalTo(self.view).offset(20);
         // 这里宽高比16：9,可自定义宽高比
         make.height.mas_equalTo(28);

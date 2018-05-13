@@ -74,6 +74,7 @@
     [self.tabBarController.tabBar setHidden:YES];
     self.navigationController.navigationBar.translucent = NO;
     [self addNavigationBarView];
+    [self setStatusBarBackgroundColor:COMMON_COLOR];
     
 }
 
@@ -145,6 +146,14 @@
     _rightBtn =rightBtn;
     self.navigationItem.rightBarButtonItem = rBtnItem;
     
+}
+
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
 }
 
 

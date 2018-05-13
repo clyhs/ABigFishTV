@@ -59,7 +59,7 @@
     
     [backBtn mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self.backgroundView).offset(8);
-        make.top.equalTo(self.backgroundView).offset(26);
+        make.top.equalTo(self.backgroundView).offset(5);
         make.width.height.equalTo(@30);
     }];
     
@@ -69,7 +69,7 @@
 
 - (void)addTitleLabel{
     
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 20, 100, 40)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 0, 100, 40)];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.font = [UIFont systemFontOfSize:21];
     titleLabel.textColor = [UIColor whiteColor];

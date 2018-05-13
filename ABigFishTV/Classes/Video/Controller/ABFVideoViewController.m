@@ -20,7 +20,7 @@ static NSUInteger titleTabHeight = 64 ;
 @property(weak,nonatomic) UIScrollView *titleTabScrollView;
 @property(weak,nonatomic) UIScrollView *detailScrollView;
 @property(weak,nonatomic) UIView       *bgLineView;
-
+@property(nonatomic,strong) UIView     *mainView;
 @property(weak,nonatomic) UIButton     *addBtn;
 
 @property(weak,nonatomic) ABFVideoListViewController *videoListViewController;
@@ -45,11 +45,12 @@ static NSUInteger titleTabHeight = 64 ;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    self.edgesForExtendedLayout = UIRectEdgeBottom;
+    //self.edgesForExtendedLayout = UIRectEdgeBottom;
     //调整的是UIScrollView显示内容的位置
     self.automaticallyAdjustsScrollViewInsets = NO;
     //[AppDelegate APP].allowRotation = false;
     _titleLabArray = [NSMutableArray new];
+    [self setuiMainView];
     [self addChildViewController];
     
     self.videoListViewController = self.childViewControllers[0];
@@ -65,9 +66,20 @@ static NSUInteger titleTabHeight = 64 ;
     [super viewWillAppear:animated];
     [AppDelegate APP].allowRotation = false;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    [self setStatusBarBackgroundColor:[UIColor clearColor]];
+    //[self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    //_navView = self.navigationController.navigationBar.v;
+    self.navigationController.navigationBar.translucent = NO;
+    [self setStatusBarBackgroundColor:RGB_255(250, 250, 250)];
+    _titleTabScrollView.hidden=NO;
+    _titleTabScrollView.alpha = 1;
 }
+
+-(void)viewWillDisappear:(BOOL)animated{
+    _titleTabScrollView.hidden=YES;
+    _titleTabScrollView.alpha = 0;
+}
+
 
 - (void)setStatusBarBackgroundColor:(UIColor *)color {
     
@@ -80,23 +92,30 @@ static NSUInteger titleTabHeight = 64 ;
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    _topView.frame = CGRectMake(kScreenWidth/4, 0, kScreenWidth/2, titleTabHeight);
-    _titleTabScrollView.frame = CGRectMake(0, 0, kScreenWidth,titleTabHeight);
+    self.view.frame = CGRectMake(0,0, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height);
+    //_topView.frame = CGRectMake(kScreenWidth/4, 0, kScreenWidth/2, self.navigationController.navigationBar.frame.size.height);
+    _titleTabScrollView.frame = CGRectMake(0, 0, kScreenWidth,self.navigationController.navigationBar.frame.size.height);
     
     for (int i = 0; i < self.titleArrays.count; i++) {
     
         CGFloat lblW = (SCREEN_WIDTH)/ 4;
         CGFloat lblH = 40;
-        CGFloat lblY = 24;
+        CGFloat lblY = 0;
         CGFloat lblX = (i+1) * lblW;
         TitleLineLabel *labelLeft = self.titleTabScrollView.subviews[i];
         labelLeft.frame = CGRectMake(lblX, lblY, lblW, lblH);
     }
     
-    _detailScrollView.frame = CGRectMake(0, titleTabHeight, kScreenWidth, kScreenHeight-titleTabHeight);
+    _detailScrollView.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height);
     _addBtn.frame = CGRectMake(kScreenWidth-40,22,40,40);
     
+}
+
+- (void)setuiMainView{
+    _mainView = [[UIView alloc] init];
+    _mainView.backgroundColor = [UIColor whiteColor];
+    _mainView.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height);
+    [self.view addSubview:_mainView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -180,7 +199,7 @@ static NSUInteger titleTabHeight = 64 ;
         tll.userInteractionEnabled = YES;
         //[_titleLabArray addObject:tll];
     }
-    [self.view insertSubview:_titleTabScrollView atIndex:2];
+    [self.navigationController.navigationBar addSubview:_titleTabScrollView];
 }
 
 - (void)setFirstTitleTab{
@@ -202,7 +221,7 @@ static NSUInteger titleTabHeight = 64 ;
     detailScrollView.showsHorizontalScrollIndicator = NO;
     self.detailScrollView = detailScrollView;
     self.detailScrollView.delegate = self;
-    [self.view addSubview:detailScrollView];
+    [self.mainView addSubview:detailScrollView];
     
     // 添加默认控制器
     UIViewController *vc = [self.childViewControllers firstObject];

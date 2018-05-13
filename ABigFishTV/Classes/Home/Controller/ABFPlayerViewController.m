@@ -94,7 +94,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setStatusBarBackgroundColor:[UIColor blackColor]];
+    [self setStatusBarBackgroundColor:COMMON_COLOR];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [self.tabBarController.tabBar setHidden:YES];
     [AppDelegate APP].allowRotation = true;
@@ -124,17 +124,17 @@
 
 #pragma mark - 添加子控件的约束
 - (void)makePlayViewConstraints {
-    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
     if (IS_IPHONE_4) {
         [self.playerFatherView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(20);
+            make.top.mas_equalTo(statusBar.frame.size.height);
             make.leading.trailing.mas_equalTo(0);
             // 这里宽高比16：9,可自定义宽高比
             make.height.mas_equalTo(self.playerFatherView.mas_width).multipliedBy(2.0f/3.0f);
         }];
     } else {
         [self.playerFatherView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(20);
+            make.top.mas_equalTo(statusBar.frame.size.height);
             make.leading.trailing.mas_equalTo(0);
             // 这里宽高比16：9,可自定义宽高比
             make.height.mas_equalTo(self.playerFatherView.mas_width).multipliedBy(9.0f/16.0f);
@@ -143,11 +143,11 @@
     
     [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.height.mas_offset(20);
+        make.height.mas_offset(statusBar.frame.size.height);
     }];
     
     [self.botView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(kScreenWidth*9/16+20);
+        make.top.equalTo(self.view).offset(kScreenWidth*9/16+statusBar.frame.size.height);
         make.left.equalTo(self.view);
         make.width.equalTo(self.view);
         make.bottom.equalTo(self.view);

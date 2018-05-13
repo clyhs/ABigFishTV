@@ -282,7 +282,7 @@
         make.height.equalTo(@20);
     }];
     [_settingBtn mas_makeConstraints:^(MASConstraintMaker *make){
-        make.right.equalTo(self.topView.mas_right).offset(-2);
+        make.right.equalTo(self.topView.mas_right).offset(-10);
         make.top.equalTo(self.topView).offset(15);
         make.width.equalTo(@40);
         make.height.equalTo(@40);

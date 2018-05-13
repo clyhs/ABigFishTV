@@ -153,7 +153,7 @@
 }
 
 - (void)createUI{
-    _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-64)];
+    _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height)];
     _mainScrollView.contentSize =CGSizeMake(kScreenWidth, kScreenHeight);
     _mainScrollView.bounces =YES;
     _mainScrollView.showsVerticalScrollIndicator = false;

@@ -87,7 +87,7 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self setStatusBarBackgroundColor:COMMON_COLOR];
     //隐藏
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
     [self.tabBarController.tabBar setHidden:NO];
     [self initNavigationBar];
     
@@ -116,18 +116,20 @@
     [super viewWillLayoutSubviews];
     
     self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    _tableView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight -64);
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    _tableView.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+statusBar.frame.size.height, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height-statusBar.frame.size.height);
     
 }
 
 //设置导航栏的颜色
 - (void)initNavigationBar{
-    UIView *navView = [[UIView alloc] init];
-    navView.backgroundColor = COMMON_COLOR;
-    [self.view addSubview:navView];
-    _navView = navView;
-    
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, 80, 25)];
+    //UIView *navView = [[UIView alloc] init];
+    //navView.backgroundColor = COMMON_COLOR;
+    //[self.view addSubview:navView];
+    [self.navigationController.navigationBar setBarTintColor:COMMON_COLOR];
+    //_navView = self.navigationController.navigationBar.v;
+    self.navigationController.navigationBar.translucent = NO;
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 6, 80, 25)];
     title.textColor = [UIColor whiteColor];
     title.textAlignment = NSTextAlignmentCenter;
     title.font = [UIFont systemFontOfSize:20];
@@ -139,7 +141,7 @@
     
     _titleLab = title;
     
-    [_navView addSubview:title];
+    [self.navigationController.navigationBar addSubview:title];
     
     [self setupSearchUI];
     [self makeConstraints];
@@ -152,7 +154,8 @@
     searchView.backgroundColor = [UIColor whiteColor];
     searchView.layer.masksToBounds = YES;
     searchView.layer.cornerRadius = 12;
-    [_navView addSubview:searchView];
+    [self.navigationController.navigationBar addSubview:searchView];
+    searchView.frame= CGRectMake(80, 6, kScreenWidth-80-20, 26);
     _searchView = searchView;
     
     UIImageView *searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(8, 5, 16, 16)];
@@ -171,17 +174,18 @@
 
 - (void)makeConstraints{
     
+    /*
     [self.navView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.height.mas_equalTo(64);
-    }];
-    
+     make.height.mas_equalTo(self.navigationController.navigationBar.frame.size.height);
+    }];*/
+    /*
     [self.searchView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.navView).offset(80);
         make.top.equalTo(self.navView).offset(30);
         make.height.mas_equalTo(25);
         make.right.equalTo(self.navView).offset(-20);
-    }];
+    }];*/
     
 }
 
