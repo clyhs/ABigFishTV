@@ -72,6 +72,7 @@
     _searchBar.hidden=YES;
     _searchBar.alpha = 0;
     _searchTF.inputView = nil;
+    [_searchTF resignFirstResponder];
 }
 
 - (void)setStatusBarBackgroundColor:(UIColor *)color {

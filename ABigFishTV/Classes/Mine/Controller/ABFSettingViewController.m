@@ -285,16 +285,20 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ABFMineSimpleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mycell" forIndexPath:indexPath];
+    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
+    ABFMineSimpleCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    
     NSString *title = [self.menuArray[indexPath.row] objectForKey:@"name"];
+    //TZImagePickerController *pickerController=nil;
     if([title isEqualToString:@"上传头像"]){
     
         __weak typeof(self)weakSelf = self;
         
-        TZImagePickerController *pickerController = [[TZImagePickerController alloc]initWithMaxImagesCount:1 columnNumber:4 delegate:self pushPhotoPickerVc:YES];
+        TZImagePickerController *pickerController = [[TZImagePickerController alloc]initWithMaxImagesCount:1 columnNumber:4 delegate:weakSelf pushPhotoPickerVc:YES];
+        
         pickerController.allowCrop = NO;
-        //pickerController.title = @"图库";
+        pickerController.title = @"图库";
         [pickerController setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photo, NSArray *assets, BOOL isSelectOriginalPhoto) {
             _selectedPhotos= photo.mutableCopy;
             NSData *imageData = UIImagePNGRepresentation(_selectedPhotos[0]);
