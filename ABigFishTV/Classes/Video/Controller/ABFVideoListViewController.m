@@ -36,7 +36,7 @@
     // Do any additional setup after loading the view.
     NSLog(@"vc...%@",self.typeId);
     self.hudView = [[JHUD alloc]initWithFrame:self.view.bounds];
-    self.edgesForExtendedLayout = UIRectEdgeBottom;
+    //self.edgesForExtendedLayout = UIRectEdgeBottom;
     _curIndexPage = 1;
     [self addTableView];
     [self addRefreshHeader];

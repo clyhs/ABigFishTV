@@ -365,7 +365,7 @@
     }];
     [_bottomLine mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self).offset(0);
-        make.top.equalTo(self).offset(0);
+        make.bottom.equalTo(self).offset(-5);
         make.width.mas_equalTo(self);
         make.height.mas_equalTo(5);
     }];

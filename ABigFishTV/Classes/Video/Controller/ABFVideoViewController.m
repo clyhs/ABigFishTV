@@ -108,8 +108,8 @@ static NSUInteger titleTabHeight = 64 ;
         TitleLineLabel *labelLeft = self.titleTabScrollView.subviews[i];
         labelLeft.frame = CGRectMake(lblX, lblY, lblW, lblH);
     }
-    
-    _detailScrollView.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height);
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    _detailScrollView.frame = CGRectMake(0, statusBar.frame.size.height, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height);
     _addBtn.frame = CGRectMake(kScreenWidth-40,0,40,40);
     
 }
