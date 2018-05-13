@@ -154,9 +154,9 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
     self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    _collectionView.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-20);
+    _collectionView.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+statusBar.frame.size.height, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-statusBar.frame.size.height);
     self.channelView.frame = CGRectMake(0, 0, kScreenWidth, 160);
     //_collectionView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-self.tabBarController.tabBar.frame.size.height);
 }
