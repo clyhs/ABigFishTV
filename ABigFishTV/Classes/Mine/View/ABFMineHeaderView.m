@@ -334,7 +334,7 @@
     [_miView mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self.messageView).offset(width/2 - 25);
         make.top.equalTo(self.messageView).offset(20);
-        make.width.height.mas_equalTo(22);
+        make.width.height.mas_equalTo(23);
         
     }];
     
