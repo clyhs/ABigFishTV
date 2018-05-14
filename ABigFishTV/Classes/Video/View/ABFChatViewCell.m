@@ -30,6 +30,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self){
         //定义CELL单元格内容
+        //self.backgroundColor = [UIColor yellowColor];
         [self setTopViewUI];
         [self setContextViewUI];
         [self setImagesViewUI];
@@ -365,7 +366,7 @@
     }];
     [_bottomLine mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self).offset(0);
-        make.bottom.equalTo(self).offset(-5);
+        make.bottom.equalTo(self).offset(0);
         make.width.mas_equalTo(self);
         make.height.mas_equalTo(5);
     }];
