@@ -104,7 +104,7 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [self.tabBarController.tabBar setHidden:YES];
-    [self setStatusBarBackgroundColor:COMMON_COLOR];
+    [self setStatusBarBackgroundColor:[UIColor blackColor]];
     // pop回来时候是否自动播放
     /*
     if (self.player && self.isPlaying) {

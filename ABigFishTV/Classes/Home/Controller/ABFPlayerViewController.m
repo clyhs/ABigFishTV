@@ -51,6 +51,8 @@
 
 @property (nonatomic, assign) BOOL             isGood;
 @property (nonatomic,strong ) UIButton         *goodBtn;
+/** 定时器 */
+@property (nonatomic, weak)   NSTimer          *timer;
 
 
 @end
@@ -87,14 +89,14 @@
     [self addCommentView];
     
     [self.player autoPlayTheVideo];
-    
+    [self addTimer];
     UITapGestureRecognizer *tapgest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBackAction)];
     [self.view addGestureRecognizer:tapgest];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setStatusBarBackgroundColor:COMMON_COLOR];
+    [self setStatusBarBackgroundColor:[UIColor blackColor]];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [self.tabBarController.tabBar setHidden:YES];
     [AppDelegate APP].allowRotation = true;
@@ -120,6 +122,25 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
+
+- (void)addTimer{
+    if (!self.timer) {
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(test) userInfo:nil repeats:YES];
+        [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    }
+}
+
+- (void)test{
+    
+    if(self.player.getPlayerState == ABFPlayerStatePlaying){
+        NSLog(@"**********************");
+        NSLog(@"video playing");
+        NSLog(@"**********************");
+        [self playerCutButtonClick];
+        [_timer invalidate];
+    }
+    
+}
 
 
 #pragma mark - 添加子控件的约束
@@ -235,13 +256,25 @@
 }
 
 - (void)playerCutButtonClick{
-    /*
+    
     NSString *fullUrl = [BaseUrl stringByAppendingString:@"/api/tv/uploadbg"];
     
     NSNumber *uid = [NSNumber numberWithInteger:_uid];
     NSDictionary *params = @{@"id":uid};
     //NSURL *url = [NSURL URLWithString:_playUrl];
-    UIImage *image = self.playerView.image;
+    UIImage *image = self.player.getImage;
+    
+    NSMutableArray<NSString *> *fileNames = [NSMutableArray new];
+    [fileNames addObject:@"headIcon.png"];
+    NSMutableArray<UIImage *> *images = [NSMutableArray new];
+    [images addObject:image];
+    
+    [PPNetworkHelper uploadImagesWithURL:fullUrl parameters:params name:@"bg" images:images fileNames:[fileNames mutableCopy] imageScale:1.0f imageType:@"png" progress:^(NSProgress *progress) {
+    } success:^(id responseObject) {
+    } failure:^(NSError *error) {
+        NSLog(@"error = %@",error);
+    }];
+    /*
     [[ABFHttpManager manager]POST:fullUrl parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         //NSURL *url = [NSURL URLWithString:_playUrl];
         NSData *imageData = UIImagePNGRepresentation(image);

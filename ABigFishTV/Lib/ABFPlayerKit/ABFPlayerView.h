@@ -50,4 +50,8 @@ typedef NS_ENUM(NSInteger, ABFPlayerState) {
 
 - (void)pause;
 
+- (ABFPlayerState)getPlayerState;
+
+- (UIImage *)getImage;
+
 @end

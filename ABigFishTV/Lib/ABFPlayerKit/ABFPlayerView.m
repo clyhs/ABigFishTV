@@ -1235,4 +1235,12 @@ typedef NS_ENUM(NSInteger, PanDirection){
                                                   object:_player];
 }
 
+-(ABFPlayerState)getPlayerState{
+    return _state;
+}
+
+-(UIImage *)getImage{
+    return self.player.thumbnailImageAtCurrentTime;
+}
+
 @end
