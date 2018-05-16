@@ -51,7 +51,7 @@
             content.text =[[str stringByAppendingString:reply.context] stringByReplacingEmojiCheatCodesWithUnicode] ;
             content.font = [UIFont systemFontOfSize:16];
 
-            CGFloat height = [UILabel getHeightByWidthForSpace:labelWidth-5 string:[NSString sendEMJStringReturnstring: [str stringByAppendingString:reply.context]] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:3];
+            CGFloat height = [UILabel getHeightByWidthForSpace:labelWidth-5 string:[NSString replaceEmoji: [str stringByAppendingString:reply.context]] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:3];
             nHeight =nHeight+ height;
         }
         if(replyCount>0){
