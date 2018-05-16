@@ -60,7 +60,7 @@
 -(void)setUsernameLabUI{
     
     _usernameLab = [[UILabel alloc] init];
-    _usernameLab.font = [UIFont systemFontOfSize:14];
+    _usernameLab.font = [UIFont systemFontOfSize:16];
     _usernameLab.textAlignment =NSTextAlignmentLeft;
     _usernameLab.textColor = [UIColor darkGrayColor];
     [self addSubview:_usernameLab];
@@ -81,7 +81,7 @@
 
 -(void)setTimeLabUI{
     _timeLab = [[UILabel alloc] init];
-    _timeLab.font = [UIFont systemFontOfSize:10];
+    _timeLab.font = [UIFont systemFontOfSize:14];
     _timeLab.textAlignment =NSTextAlignmentLeft;
     _timeLab.textColor = [UIColor lightGrayColor];
     [self addSubview:_timeLab];
@@ -153,55 +153,45 @@
     _usernameLab.text = model.username;
     [_profile sd_setImageWithURL:[NSURL URLWithString:model.profile] placeholderImage:[UIImage imageNamed:@""]];
     _timeLab.text = model.create_at;
-    //_contextLab.text = model.context;
+    _contextLab.text = [_model.context stringByReplacingEmojiCheatCodesWithUnicode];
+    [UILabel changeSpaceForLabel:_contextLab withLineSpace:5 WordSpace:3];
     
     //
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[_model.context stringByReplacingEmojiCheatCodesWithUnicode]];
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    style.headIndent = 0;//缩进
-    style.firstLineHeadIndent = 28;
-    style.lineSpacing = 6;//行距
-    [text addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, text.length)];
-    _contextLab.attributedText = text;
-    
-    
-    //
-    
-    
-    //
-    CGFloat labelWidth = kScreenWidth-30;
+    CGFloat labelWidth = kScreenWidth-60;
     NSArray *replys = [ABFCommentInfo mj_objectArrayWithKeyValuesArray:model.childs];
     NSInteger replyCount = replys.count;
-    //CGFloat nHeight = 0;
+    CGFloat nHeight = 0;
     //UITapGestureRecognizer *tap = nil;
     //UIView *labelView = nil;
     for(NSInteger i=0;i<replyCount;i++){
         ABFCommentInfo *reply = replys[i];
-        UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(0, 21*i, labelWidth, 21)];
-        //UILabel *content = [[UILabel alloc] init];
+        
         NSString *str = [reply.replayname stringByAppendingString:@":"];
         if(reply.username !=nil){
             str = [str stringByAppendingFormat:@"@%@:",reply.username];
         }
+
+        CGFloat height = [UILabel getHeightByWidthForSpace:labelWidth-10 string:[str stringByAppendingString:reply.context] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:3];
+        
+        UILabel *content = [[UILabel alloc] init];
         content.text =[str stringByAppendingString:reply.context] ;
-        content.font = [UIFont systemFontOfSize:14];
+        content.font = [UIFont systemFontOfSize:16];
         content.numberOfLines = 0;
         content.textColor = [UIColor darkGrayColor];
         
-        CGFloat height = [UILabel getHeightByWidth:labelWidth title:content.text font:content.font];
+        content.frame = CGRectMake(5, nHeight+5, labelWidth-15, height);
+        nHeight = nHeight + height;
         
-        content.frame = CGRectMake(8, 21*i+6, labelWidth, height+7);
-        
-        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[str stringByAppendingString:[reply.context stringByReplacingEmojiCheatCodesWithUnicode]]];
+        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[str stringByAppendingString:[reply.context stringByReplacingEmojiCheatCodesWithUnicode]] attributes:@{NSKernAttributeName:@3}];
         NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
         style.headIndent = 0;//缩进
         style.firstLineHeadIndent = 0;
-        style.lineSpacing = 7;//行距
-        
+        style.lineSpacing = 5;//行距
         [text addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, text.length)];
         NSInteger usernameCount = str.length;
         [text addAttribute:NSForegroundColorAttributeName value:COMMON_COLOR range:NSMakeRange(0, usernameCount)];
         content.attributedText = text;
+        [content sizeToFit];
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTouchReplyButton:)];
         content.tag = i;
@@ -233,12 +223,7 @@
         make.height.mas_equalTo(40);
     }];
     
-    [_timeLab mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self).offset(60);
-        make.top.equalTo(self).offset(30);
-        make.width.mas_equalTo(120);
-        make.height.mas_equalTo(18);
-    }];
+    
     
     [_replyToolView mas_makeConstraints:^(MASConstraintMaker *make){
         make.right.equalTo(self).offset(-70);
@@ -246,8 +231,8 @@
         make.width.height.mas_equalTo(40);
     }];
     [_replyImgView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self.replyToolView).offset(10);
-        make.centerY.equalTo(self.usernameLab);
+        make.left.equalTo(self.timeLab.mas_right).offset(10);
+        make.centerY.equalTo(self.timeLab);
         make.width.height.mas_equalTo(22);
     }];
     
@@ -275,19 +260,26 @@
         make.left.equalTo(self).offset(0);
         make.top.equalTo(self).offset(0);
         make.right.equalTo(self).offset(0);
-        make.height.mas_equalTo(5);
+        make.height.mas_equalTo(0.5);
     }];
     
     [_contextLab mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self).offset(30);
-        make.top.equalTo(self).offset(50);
+        make.left.equalTo(self).offset(60);
+        make.top.equalTo(self).offset(40);
         make.right.equalTo(self).offset(-10);
         make.height.mas_equalTo(self.model.contextHeight);
     }];
     
+    [_timeLab mas_makeConstraints:^(MASConstraintMaker *make){
+        make.left.equalTo(self).offset(60);
+        make.top.equalTo(self.contextLab.mas_bottom).offset(10);
+        make.width.mas_equalTo(140);
+        make.height.mas_equalTo(20);
+    }];
+    
     [_replyView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self).offset(30);
-        make.top.equalTo(self).offset(50+self.model.contextHeight);
+        make.left.equalTo(self).offset(60);
+        make.top.equalTo(self).offset(60+self.model.contextHeight+25);
         make.right.equalTo(self).offset(-10);
         make.height.mas_equalTo(self.model.replyHeight);
     }];

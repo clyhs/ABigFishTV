@@ -14,4 +14,15 @@
 
 + (CGFloat)getWidthWithTitle:(NSString *)title font:(UIFont *)font;
 
++ (void)changeLineSpaceForLabel:(UILabel *)label WithSpace:(float)space;
+
+//2.设置：字间距
++ (void)changeWordSpaceForLabel:(UILabel *)label WithSpace:(float)space;
+
+//3.设置：行间距 与 字间距
++ (void)changeSpaceForLabel:(UILabel *)label withLineSpace:(float)lineSpace WordSpace:(float)wordSpace;
+
++ (CGFloat)getChangeSpaceForLabel:(UILabel *)label withLineSpace:(float)lineSpace WordSpace:(float)wordSpace;
+
++ (CGFloat)getHeightByWidthForSpace:(CGFloat)width string:(NSString *)string font:(UIFont*)font withLineSpace:(float)lineSpace WordSpace:(float)wordSpace;
 @end

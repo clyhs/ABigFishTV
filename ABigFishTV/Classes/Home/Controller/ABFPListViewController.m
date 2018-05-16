@@ -262,7 +262,7 @@
 {
     if([self.typeId isEqualToString:@"11"]){
         ABFCommentInfo *model = self.data[indexPath.row];
-        return 50+model.contextHeight+model.replyHeight+25;
+        return 50+model.contextHeight+model.replyHeight+25+30;
     }
     return 40;
 }

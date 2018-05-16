@@ -384,7 +384,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ABFCommentInfo *model = self.dataArrays[indexPath.row];
-    return 50+model.contextHeight+model.replyHeight+25;
+    return 50+model.contextHeight+model.replyHeight+25+30;
 }
 
 

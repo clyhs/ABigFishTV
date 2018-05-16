@@ -184,6 +184,7 @@
 		72689EC91FD832D30068FBA1 /* ABFFriendTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 72689EC81FD832D30068FBA1 /* ABFFriendTableCell.m */; };
 		7270F0401FC93CD7009F83EC /* ABFChatHeaderSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7270F03F1FC93CD7009F83EC /* ABFChatHeaderSectionView.m */; };
 		7270F04A1FC95E61009F83EC /* ABFCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7270F0491FC95E61009F83EC /* ABFCacheManager.m */; };
+		72810D2F20AC6AC0006C7860 /* NSString+ABF.m in Sources */ = {isa = PBXBuildFile; fileRef = 72810D2E20AC6AC0006C7860 /* NSString+ABF.m */; };
 		728E5A541FDD2EF600E034DB /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 728E5A531FDD2EF600E034DB /* UIView+Extension.m */; };
 		72C2C3371F7BEDFE00BDC850 /* tvTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72C2C3361F7BEDFE00BDC850 /* tvTypes.plist */; };
 		72DB59202088CFEF00645FD2 /* ABFPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72DB59142088CFEE00645FD2 /* ABFPlayerView.m */; };
@@ -546,6 +547,8 @@
 		7270F03F1FC93CD7009F83EC /* ABFChatHeaderSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFChatHeaderSectionView.m; path = Classes/Video/View/ABFChatHeaderSectionView.m; sourceTree = "<group>"; };
 		7270F0481FC95E61009F83EC /* ABFCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFCacheManager.h; path = Foundation/Utils/ABFCacheManager.h; sourceTree = "<group>"; };
 		7270F0491FC95E61009F83EC /* ABFCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFCacheManager.m; path = Foundation/Utils/ABFCacheManager.m; sourceTree = "<group>"; };
+		72810D2D20AC6AC0006C7860 /* NSString+ABF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSString+ABF.h"; path = "Foundation/Category/NSString+ABF.h"; sourceTree = "<group>"; };
+		72810D2E20AC6AC0006C7860 /* NSString+ABF.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSString+ABF.m"; path = "Foundation/Category/NSString+ABF.m"; sourceTree = "<group>"; };
 		728E5A521FDD2EF600E034DB /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Extension.h"; path = "Foundation/Category/UIView+Extension.h"; sourceTree = "<group>"; };
 		728E5A531FDD2EF600E034DB /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Extension.m"; path = "Foundation/Category/UIView+Extension.m"; sourceTree = "<group>"; };
 		72C2C3361F7BEDFE00BDC850 /* tvTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tvTypes.plist; sourceTree = "<group>"; };
@@ -1157,6 +1160,8 @@
 				72176836205418AF008312BC /* NSDate+ABFDate.m */,
 				724193CF2063D90600A7465C /* UITableView+ABFHighLight.h */,
 				724193D02063D90600A7465C /* UITableView+ABFHighLight.m */,
+				72810D2D20AC6AC0006C7860 /* NSString+ABF.h */,
+				72810D2E20AC6AC0006C7860 /* NSString+ABF.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -1861,6 +1866,7 @@
 				724D09A21FB9E62A00906436 /* ABFRegionInfo.m in Sources */,
 				722981151F8FC5AE00484146 /* ABFMenuView.m in Sources */,
 				720B0E141F767CC7005F30FA /* ABFMineViewController.m in Sources */,
+				72810D2F20AC6AC0006C7860 /* NSString+ABF.m in Sources */,
 				72DB593D2088D4F900645FD2 /* UINavigationController+ABFPlayerRotation.m in Sources */,
 				7217684A20541DC9008312BC /* ABFCommentTFView.m in Sources */,
 				72DB59202088CFEF00645FD2 /* ABFPlayerView.m in Sources */,
