@@ -105,17 +105,22 @@
     _usernameLab.text = model.username;
     [_profile sd_setImageWithURL:[NSURL URLWithString:model.profile] placeholderImage:[UIImage imageNamed:@""]];
     _timeLab.text = model.create_at;
-    NSString *str =[NSString stringWithFormat:@"      %@",model.context];
+    NSString *str =[NSString stringWithFormat:@"%@",model.context];
     //_contextLab.text = model.context;
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[str stringByReplacingEmojiCheatCodesWithUnicode]];
+    _contextLab.text =[str stringByReplacingEmojiCheatCodesWithUnicode];
+    _contextLab.font = [UIFont systemFontOfSize:16];
+    _contextLab.numberOfLines = 0;
+    _contextLab.textColor = [UIColor darkGrayColor];
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:_contextLab.text attributes:@{NSKernAttributeName:@3}];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.headIndent = 0;//缩进
     style.firstLineHeadIndent = 0;
-    style.lineSpacing = 6;//行距
+    style.lineSpacing = 5;//行距
     [text addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, text.length)];
     _contextLab.attributedText = text;
+    [_contextLab sizeToFit];
     [_contextView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self).offset(30);
+        make.left.equalTo(self).offset(60);
         make.top.equalTo(self).offset(50);
         make.right.equalTo(self).offset(-10);
         make.height.mas_equalTo(model.contextHeight);

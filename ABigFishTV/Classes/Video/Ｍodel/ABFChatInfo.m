@@ -7,7 +7,8 @@
 //
 
 #import "ABFChatInfo.h"
-
+#import "NSString+ABF.h"
+#import "UILabel+ABFLabel.h"
 #import <MJExtension.h>
 #import "ABFInfo.h"
 
@@ -22,14 +23,9 @@
 -(CGFloat) contextHeight{
     
     if(!_contextHeight){
-        CGFloat labelWidth = kScreenWidth-30-5;
-        UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, labelWidth, 1)];
-        content.text = [NSString stringWithFormat:@"      %@",_context];
-        content.font = [UIFont systemFontOfSize:16];
-        content.numberOfLines = 0;
-        CGFloat height = [UILabel getHeightByWidth:labelWidth title:content.text font:content.font];
-        NSInteger count = height / 13 ;
-        _contextHeight = height + 6*(count+1) + 10;
+        CGFloat labelWidth = kScreenWidth-70;
+        CGFloat height = [UILabel getHeightByWidthForSpace:labelWidth-5 string:[NSString replaceEmoji: _context] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:3];
+        _contextHeight = height;
     }
     return _contextHeight;
 }

@@ -75,7 +75,7 @@
     [self.topView addSubview:_usernameLab];
     
     _timeLab = [[UILabel alloc] init];
-    _timeLab.font = [UIFont systemFontOfSize:10];
+    _timeLab.font = [UIFont systemFontOfSize:14];
     _timeLab.textAlignment =NSTextAlignmentLeft;
     _timeLab.textColor = [UIColor lightGrayColor];
     [self.topView addSubview:_timeLab];
@@ -162,19 +162,24 @@
     _usernameLab.text = model.username;
     [_profile sd_setImageWithURL:[NSURL URLWithString:model.profile] placeholderImage:[UIImage imageNamed:@""]];
     _timeLab.text = model.create_at;
-    NSString *str =[NSString stringWithFormat:@"      %@",model.context];
-    //_contextLab.text = [model.context stringByReplacingEmojiCheatCodesWithUnicode];
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[str stringByReplacingEmojiCheatCodesWithUnicode]];
+    NSString *str =[NSString stringWithFormat:@"%@",model.context];
+    
+    
+    _contextLab.text =[str stringByReplacingEmojiCheatCodesWithUnicode];
+    _contextLab.font = [UIFont systemFontOfSize:16];
+    _contextLab.numberOfLines = 0;
+    _contextLab.textColor = [UIColor darkGrayColor];
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:_contextLab.text attributes:@{NSKernAttributeName:@3}];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.headIndent = 0;//缩进
     style.firstLineHeadIndent = 0;
-    style.lineSpacing = 6;//行距
+    style.lineSpacing = 5;//行距
     [text addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, text.length)];
     _contextLab.attributedText = text;
-    //[_contextLab.a]
+    [_contextLab sizeToFit];
     [_contextView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self).offset(30);
-        make.top.equalTo(self).offset(50);
+        make.left.equalTo(self).offset(60);
+        make.top.equalTo(self).offset(60);
         make.right.equalTo(self).offset(-10);
         make.height.mas_equalTo(model.contextHeight);
     }];
@@ -188,7 +193,7 @@
     
     [_imagesView mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self).offset(50);
-        make.top.equalTo(self).offset(50+model.contextHeight);
+        make.top.equalTo(self).offset(60+model.contextHeight);
         make.right.equalTo(self).offset(-10);
         make.height.mas_equalTo(model.imagesHeight);
     }];
@@ -230,7 +235,7 @@
     
     [_toolView mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self).offset(0);
-        make.top.equalTo(self).offset(50+model.contextHeight+model.imagesHeight);
+        make.top.equalTo(self).offset(60+model.contextHeight+model.imagesHeight);
         make.right.equalTo(self).offset(0);
         make.height.mas_equalTo(40);
     }];
@@ -360,8 +365,8 @@
     
     [_timeLab mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self.topView).offset(60);
-        make.top.equalTo(self.topView).offset(30);
-        make.right.equalTo(self.topView).offset(-10);
+        make.top.equalTo(self.topView).offset(35);
+        make.right.equalTo(self.topView).offset(-5);
         make.height.mas_equalTo(20);
     }];
     [_bottomLine mas_makeConstraints:^(MASConstraintMaker *make){
