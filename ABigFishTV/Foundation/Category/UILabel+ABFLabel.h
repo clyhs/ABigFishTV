@@ -25,4 +25,6 @@
 + (CGFloat)getChangeSpaceForLabel:(UILabel *)label withLineSpace:(float)lineSpace WordSpace:(float)wordSpace;
 
 + (CGFloat)getHeightByWidthForSpace:(CGFloat)width string:(NSString *)string font:(UIFont*)font withLineSpace:(float)lineSpace WordSpace:(float)wordSpace;
+
+
 @end

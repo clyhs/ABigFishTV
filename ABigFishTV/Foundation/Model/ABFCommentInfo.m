@@ -25,7 +25,7 @@
         UILabel *context = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, labelWidth, 1)];
         context.font = [UIFont systemFontOfSize:16];
         context.text = [_context stringByReplacingEmojiCheatCodesWithUnicode];
-        CGFloat height = [UILabel getChangeSpaceForLabel:context withLineSpace:5 WordSpace:3];
+        CGFloat height = [UILabel getHeightByWidthForSpace:labelWidth-5 string:[NSString replaceEmoji: _context] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:3];
         _contextHeight = height;
     }
     return _contextHeight;
@@ -60,9 +60,11 @@
         _replyHeight = nHeight;
         
     }
-    
     return _replyHeight;
-
 }
+
+
+
+
 
 @end

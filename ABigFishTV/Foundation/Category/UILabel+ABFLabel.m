@@ -7,6 +7,8 @@
 //
 
 #import "UILabel+ABFLabel.h"
+#import "NSString+ABF.h"
+#import <CoreText/CoreText.h>
 
 @implementation UILabel (ABFLabel)
 
@@ -102,6 +104,22 @@
     
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string attributes:@{NSKernAttributeName:@(wordSpace)}];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    /*
+    NSArray * lines = [self getSeparatedLinesFromtext:string font:font maxWidth:width];
+    
+    for (NSString *string in lines) {
+        if ([NSString stringContainsEmoji:string]) {
+            NSMutableAttributedString *contentEmojistring = [[NSMutableAttributedString alloc] initWithString:string];
+            [attributedString appendAttributedString:contentEmojistring];
+        }else { //否则设置段落样式，行高为4（这个高度要根据自己的需求慢慢的试）
+            NSMutableAttributedString *unContentEmojistring = [[NSMutableAttributedString alloc] initWithString:string];
+            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+            paragraphStyle.lineSpacing = lineSpace;
+            [unContentEmojistring addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [unContentEmojistring length])];
+            [attributedString appendAttributedString:unContentEmojistring];
+        }
+    }*/
+    
     [paragraphStyle setLineSpacing:lineSpace];
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [string length])];
     label.attributedText = attributedString;
@@ -119,6 +137,52 @@
         }
     }
     return NO;
+}
+
++ (NSArray *)getSeparatedLinesFromtext:(NSString *)text font:(UIFont *)font maxWidth:(CGFloat)maxWidth
+{
+    CTFontRef myFont = CTFontCreateWithName((__bridge CFStringRef)([font fontName]), [font pointSize], NULL);
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:text];
+    [attStr addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)myFont range:NSMakeRange(0, attStr.length)];
+    
+    CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)attStr);
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddRect(path, NULL, CGRectMake(0,0,maxWidth,100000));
+    
+    CTFrameRef frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, 0), path, NULL);
+    
+    NSArray *lines = (__bridge NSArray *)CTFrameGetLines(frame);
+    NSMutableArray *linesArray = [[NSMutableArray alloc]init];
+    
+    for (id line in lines)
+    {
+        CTLineRef lineRef = (__bridge CTLineRef )line;
+        CFRange lineRange = CTLineGetStringRange(lineRef);
+        NSRange range = NSMakeRange(lineRange.location, lineRange.length);
+        
+        NSString *lineString = [text substringWithRange:range];
+        [linesArray addObject:lineString];
+    }
+    return (NSArray *)linesArray;
+}
+
++ (NSMutableAttributedString *)changeLineSpacing:(NSArray *)stringList {
+    NSMutableAttributedString *mutableString = [[NSMutableAttributedString alloc] init];
+    for (NSString *string in stringList) {
+        //如果含有Emoji表情，不做处理
+        if ([NSString stringContainsEmoji:string]) {
+            NSMutableAttributedString *contentEmojistring = [[NSMutableAttributedString alloc] initWithString:string];
+            [mutableString appendAttributedString:contentEmojistring];
+        }else { //否则设置段落样式，行高为4（这个高度要根据自己的需求慢慢的试）
+            NSMutableAttributedString *unContentEmojistring = [[NSMutableAttributedString alloc] initWithString:string];
+            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+            paragraphStyle.lineSpacing = 4;
+            [unContentEmojistring addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [unContentEmojistring length])];
+            [mutableString appendAttributedString:unContentEmojistring];
+        }
+    }
+    return mutableString; //返回最后处理完成的字符串
 }
 
 @end

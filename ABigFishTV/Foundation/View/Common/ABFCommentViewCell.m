@@ -153,11 +153,23 @@
     _usernameLab.text = model.username;
     [_profile sd_setImageWithURL:[NSURL URLWithString:model.profile] placeholderImage:[UIImage imageNamed:@""]];
     _timeLab.text = model.create_at;
-    _contextLab.text = [_model.context stringByReplacingEmojiCheatCodesWithUnicode];
-    [UILabel changeSpaceForLabel:_contextLab withLineSpace:5 WordSpace:3];
-    
-    //
+    //_contextLab.text = [_model.context stringByReplacingEmojiCheatCodesWithUnicode];
+    //[UILabel changeSpaceForLabel:_contextLab withLineSpace:5 WordSpace:3];
     CGFloat labelWidth = kScreenWidth-60;
+    _contextLab.text =[_model.context stringByReplacingEmojiCheatCodesWithUnicode];
+    _contextLab.font = [UIFont systemFontOfSize:16];
+    _contextLab.numberOfLines = 0;
+    _contextLab.textColor = [UIColor darkGrayColor];
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:_contextLab.text attributes:@{NSKernAttributeName:@3}];
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    style.headIndent = 0;//缩进
+    style.firstLineHeadIndent = 0;
+    style.lineSpacing = 5;//行距
+    [text addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, text.length)];
+    _contextLab.attributedText = text;
+    [_contextLab sizeToFit];
+
+    
     NSArray *replys = [ABFCommentInfo mj_objectArrayWithKeyValuesArray:model.childs];
     NSInteger replyCount = replys.count;
     CGFloat nHeight = 0;
