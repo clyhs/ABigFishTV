@@ -62,10 +62,10 @@
             
             
             YYTextLinePositionSimpleModifier *modifier = [YYTextLinePositionSimpleModifier new];
-            modifier.fixedLineHeight = 22;
+            modifier.fixedLineHeight = 23;
             
             YYTextContainer *container = [YYTextContainer new];
-            container.size = CGSizeMake(labelWidth-4, CGFLOAT_MAX);
+            container.size = CGSizeMake(labelWidth-5, CGFLOAT_MAX);
             container.linePositionModifier = modifier;
             
             YYTextLayout *layout = [YYTextLayout layoutWithContainer:container text:attributedString];
@@ -73,7 +73,7 @@
             label.size = layout.textBoundingSize;
             label.textLayout = layout;
             
-            CGFloat height = label.size.height;
+            CGFloat height = ceilf(label.size.height);
             nHeight =nHeight+ height;
         }
         if(replyCount>0){

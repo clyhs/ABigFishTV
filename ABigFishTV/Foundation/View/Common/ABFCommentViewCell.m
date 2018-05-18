@@ -191,7 +191,7 @@
         content.numberOfLines = 0;
         content.textColor = [UIColor darkGrayColor];
         
-        content.frame = CGRectMake(5, nHeight+5, labelWidth-8, height);
+        content.frame = CGRectMake(5, nHeight+5, labelWidth-9, height);
         nHeight = nHeight + height;
         
         NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[str stringByAppendingString:[reply.context stringByReplacingEmojiCheatCodesWithUnicode]] attributes:@{NSKernAttributeName:@2}];
