@@ -21,6 +21,7 @@ pod 'SDCycleScrollView'
 pod 'XHLaunchAd','3.9.3'
 #pod 'FlyImage'
 pod 'PPNetworkHelper',:git => 'https://github.com/jkpang/PPNetworkHelper.git'
+pod 'YYText'
 
 pod 'UMCCommon'
 pod 'UMCSecurityPlugins'

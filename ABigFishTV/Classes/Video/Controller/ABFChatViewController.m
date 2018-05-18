@@ -145,7 +145,7 @@
 -(void) addTableheaderView{
     //_headerView = [[UIView alloc] init];
     ABFChatHeaderView *headerView = [[ABFChatHeaderView alloc] init];
-    headerView.frame = CGRectMake(0, 0,kScreenWidth , 50+self.model.contextHeight+self.model.imagesHeight+20);
+    headerView.frame = CGRectMake(0, 0,kScreenWidth , 50+self.model.contextHeight+self.model.imagesHeight+20+10);
     headerView.delegate = self;
     [headerView setModel:self.model];
     _tableView.tableHeaderView = headerView;

@@ -9,6 +9,7 @@
 #import "ABFCommentInfo.h"
 #import <MJExtension.h>
 #import "NSString+ABF.h"
+#import <YYText.h>
 
 @implementation ABFCommentInfo
 
@@ -50,8 +51,29 @@
             
             content.text =[[str stringByAppendingString:reply.context] stringByReplacingEmojiCheatCodesWithUnicode] ;
             content.font = [UIFont systemFontOfSize:16];
-
-            CGFloat height = [UILabel getHeightByWidthForSpace:labelWidth-5 string:[NSString replaceEmoji: [str stringByAppendingString:reply.context]] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:3];
+            /*
+            CGFloat height = [UILabel getHeightByWidthForSpace:labelWidth-5 string:[NSString replaceEmoji: [str stringByAppendingString:reply.context]] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:3];*/
+            //CGFloat height = [UILabel getHeightByWidth:labelWidth title:[str stringByAppendingString:reply.context] font:[UIFont systemFontOfSize:16]];
+            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:content.text];
+            attributedString.yy_font = [UIFont systemFontOfSize:16];
+            attributedString.yy_lineSpacing =5;
+            attributedString.yy_kern = @2;
+            attributedString.yy_lineBreakMode = NSLineBreakByWordWrapping;
+            
+            
+            YYTextLinePositionSimpleModifier *modifier = [YYTextLinePositionSimpleModifier new];
+            modifier.fixedLineHeight = 22;
+            
+            YYTextContainer *container = [YYTextContainer new];
+            container.size = CGSizeMake(labelWidth-4, CGFLOAT_MAX);
+            container.linePositionModifier = modifier;
+            
+            YYTextLayout *layout = [YYTextLayout layoutWithContainer:container text:attributedString];
+            YYLabel *label = [YYLabel new];
+            label.size = layout.textBoundingSize;
+            label.textLayout = layout;
+            
+            CGFloat height = label.size.height;
             nHeight =nHeight+ height;
         }
         if(replyCount>0){

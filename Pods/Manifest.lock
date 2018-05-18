@@ -71,6 +71,7 @@ PODS:
   - XHLaunchAd (3.9.3):
     - FLAnimatedImage (~> 1.0.12)
   - YYCache (1.0.4)
+  - YYText (1.0.7)
   - ZFDownload (1.0.2):
     - ASIHTTPRequest
 
@@ -97,6 +98,7 @@ DEPENDENCIES:
   - UMCPush
   - UMCSecurityPlugins
   - XHLaunchAd (= 3.9.3)
+  - YYText
   - ZFDownload
 
 SPEC REPOS:
@@ -128,6 +130,7 @@ SPEC REPOS:
     - UMCSecurityPlugins
     - XHLaunchAd
     - YYCache
+    - YYText
     - ZFDownload
 
 EXTERNAL SOURCES:
@@ -168,8 +171,9 @@ SPEC CHECKSUMS:
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
   XHLaunchAd: ecd208bce52a26d96d758cd58f617be09b1b52e9
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   ZFDownload: a52f94ebb080833b8a8ceb19a409f2941343fe7f
 
-PODFILE CHECKSUM: d784a9e65e56becd77975f028de475342f4146c1
+PODFILE CHECKSUM: 158cb027cf51f5d0477ee4e49bf26b2e6a211f47
 
 COCOAPODS: 1.5.0

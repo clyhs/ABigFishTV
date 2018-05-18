@@ -55,7 +55,7 @@
     [self.topView addSubview:_usernameLab];
     
     _timeLab = [[UILabel alloc] init];
-    _timeLab.font = [UIFont systemFontOfSize:10];
+    _timeLab.font = [UIFont systemFontOfSize:14];
     _timeLab.textAlignment =NSTextAlignmentLeft;
     _timeLab.textColor = [UIColor lightGrayColor];
     [self.topView addSubview:_timeLab];
@@ -121,7 +121,7 @@
     [_contextLab sizeToFit];
     [_contextView mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self).offset(60);
-        make.top.equalTo(self).offset(50);
+        make.top.equalTo(self).offset(60);
         make.right.equalTo(self).offset(-10);
         make.height.mas_equalTo(model.contextHeight);
     }];
@@ -134,7 +134,7 @@
     
     [_imagesView mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self).offset(50);
-        make.top.equalTo(self).offset(50+model.contextHeight);
+        make.top.equalTo(self).offset(60+model.contextHeight);
         make.right.equalTo(self).offset(-10);
         make.height.mas_equalTo(model.imagesHeight);
     }];
@@ -199,8 +199,8 @@
     
     [_timeLab mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self.topView).offset(60);
-        make.top.equalTo(self.topView).offset(30);
-        make.right.equalTo(self.topView).offset(-10);
+        make.top.equalTo(self.topView).offset(35);
+        make.right.equalTo(self.topView).offset(-5);
         make.height.mas_equalTo(20);
     }];
     /*

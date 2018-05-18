@@ -183,7 +183,7 @@
             str = [str stringByAppendingFormat:@"@%@:",reply.username];
         }
 
-        CGFloat height = [UILabel getHeightByWidthForSpace:labelWidth-10 string:[str stringByAppendingString:reply.context] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:3];
+        CGFloat height = [UILabel getHeightByWidthForSpace:labelWidth-10 string:[str stringByAppendingString:reply.context] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:2];
         
         UILabel *content = [[UILabel alloc] init];
         content.text =[str stringByAppendingString:reply.context] ;
@@ -191,10 +191,10 @@
         content.numberOfLines = 0;
         content.textColor = [UIColor darkGrayColor];
         
-        content.frame = CGRectMake(5, nHeight+5, labelWidth-15, height);
+        content.frame = CGRectMake(5, nHeight+5, labelWidth-8, height);
         nHeight = nHeight + height;
         
-        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[str stringByAppendingString:[reply.context stringByReplacingEmojiCheatCodesWithUnicode]] attributes:@{NSKernAttributeName:@3}];
+        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[str stringByAppendingString:[reply.context stringByReplacingEmojiCheatCodesWithUnicode]] attributes:@{NSKernAttributeName:@2}];
         NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
         style.headIndent = 0;//缩进
         style.firstLineHeadIndent = 0;
@@ -238,13 +238,13 @@
     
     
     [_replyToolView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.right.equalTo(self).offset(-70);
-        make.top.equalTo(self).offset(0);
+        make.left.equalTo(self.timeLab.mas_right).offset(10);
+        make.centerY.equalTo(self.timeLab).offset(0);
         make.width.height.mas_equalTo(40);
     }];
     [_replyImgView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self.timeLab.mas_right).offset(10);
-        make.centerY.equalTo(self.timeLab);
+        make.left.equalTo(self.replyToolView).offset(10);
+        make.centerY.equalTo(self.replyToolView);
         make.width.height.mas_equalTo(22);
     }];
     
