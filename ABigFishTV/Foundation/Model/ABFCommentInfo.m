@@ -66,35 +66,7 @@
                 str = [str stringByAppendingFormat:@"回复[%@]:",reply.username];
             }
             
-            /*
             
-            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:content.text];
-            attributedString.yy_font = [UIFont systemFontOfSize:16];
-            attributedString.yy_lineSpacing =5;
-            attributedString.yy_kern = @0;
-            //attributedString.yy_lineBreakMode = NSLineBreakByWordWrapping;
-            
-            
-            YYTextLinePositionSimpleModifier *modifier = [YYTextLinePositionSimpleModifier new];
-            modifier.fixedLineHeight = 20;
-            
-            
-            YYTextContainer *container = [YYTextContainer new];
-            container.size = CGSizeMake(labelWidth, CGFLOAT_MAX);
-            container.linePositionModifier = modifier;
-            
-            YYTextLayout *layout = [YYTextLayout layoutWithContainer:container text:attributedString];
-            YYLabel *label = [YYLabel new];
-            label.size = layout.textBoundingSize;
-            label.textLayout = layout;
-            //[label sizeToFit];
-            CGFloat height = label.size.height;
-            
-            if([NSString stringContainsEmoji:content.text]){
-                height = height -5;
-            }else{
-                height = height;
-            }*/
             
             NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[str stringByAppendingString:reply.context]];
             attributedString.yy_font = [UIFont systemFontOfSize:16];

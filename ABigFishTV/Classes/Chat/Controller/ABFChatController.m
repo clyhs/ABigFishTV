@@ -29,26 +29,26 @@
     NSMutableArray *_selectedPhotos;
     BOOL _isSelectOriginalPhoto;
 }
-@property (nonatomic)       JHUD              *hudView;
-@property (nonatomic, strong) UIScrollView *mainScrollView;
+@property (nonatomic)         JHUD                  *hudView;
+@property (nonatomic, strong) UIScrollView          *mainScrollView;
 @property (nonatomic, strong) BRPlaceholderTextView *noteTextView;
 //背景
-@property (nonatomic, strong) UIView *noteTextBackgroudView;
+@property (nonatomic, strong) UIView                *noteTextBackgroudView;
 //文字个数提示label
-@property (nonatomic, strong) UILabel *textNumberLabel;
+@property (nonatomic, strong) UILabel               *textNumberLabel;
 //图片
-@property (nonatomic,strong) UIImageView *photoImageView;
-@property (nonatomic,strong) UIView * lineView;
+@property (nonatomic,strong)  UIImageView           *photoImageView;
+@property (nonatomic,strong)  UIView                *lineView;
 
-@property (strong, nonatomic) STEmojiKeyboard *keyboard;
+@property (strong, nonatomic) STEmojiKeyboard       *keyboard;
 
-@property (nonatomic, weak)   ABFChatToolBar  *toolBar;
-@property (nonatomic, strong) UIBarButtonItem *rightItem;
-@property (nonatomic, assign) BOOL isEmojiKeyboard;
+@property (nonatomic, weak)   ABFChatToolBar        *toolBar;
+@property (nonatomic, strong) UIBarButtonItem       *rightItem;
+@property (nonatomic, assign) BOOL                  isEmojiKeyboard;
 
 //@property (nonatomic, strong) NSMutableArray *images;
-@property (strong, nonatomic) CLLocation *location;
-@property (nonatomic, strong) UIImagePickerController *imagePickerVc;
+@property (strong, nonatomic) CLLocation            *location;
+@property (nonatomic,strong) UIImagePickerController *imagePickerVc;
 
 @end
 
@@ -156,7 +156,7 @@
 
 - (void)createUI{
     UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-    _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height)];
+    _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height-statusBar.frame.size.height)];
     _mainScrollView.contentSize =CGSizeMake(kScreenWidth, kScreenHeight);
     _mainScrollView.bounces =YES;
     _mainScrollView.showsVerticalScrollIndicator = false;
@@ -203,8 +203,8 @@
 - (void)setUpToolBar
 {
     CGFloat h = 35;
-    CGFloat y = self.view.height - h;
-    ABFChatToolBar *toolBar = [[ABFChatToolBar alloc] initWithFrame:CGRectMake(0, y, self.view.width, h)];
+    CGFloat y = self.mainScrollView.height - h ;
+    ABFChatToolBar *toolBar = [[ABFChatToolBar alloc] initWithFrame:CGRectMake(0, y, self.mainScrollView.width, h)];
     toolBar.backgroundColor = [UIColor whiteColor];
     _toolBar = toolBar;
     toolBar.delegate = self;

@@ -160,10 +160,36 @@
     //_contextLab.text = [_model.context stringByReplacingEmojiCheatCodesWithUnicode];
     //[UILabel changeSpaceForLabel:_contextLab withLineSpace:5 WordSpace:3];
     CGFloat labelWidth = kScreenWidth-60;
+    
+    
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:_model.context];
+    attString.yy_font = [UIFont systemFontOfSize:16];
+    attString.yy_lineSpacing =5;
+    attString.yy_kern = @0;
+    //attributedString.yy_lineBreakMode = NSLineBreakByWordWrapping;
+    YYTextLinePositionSimpleModifier *modifier = [YYTextLinePositionSimpleModifier new];
+    modifier.fixedLineHeight = 20;
+    YYTextContainer *container = [YYTextContainer new];
+    container.size = CGSizeMake(labelWidth, CGFLOAT_MAX);
+    container.linePositionModifier = modifier;
+    YYTextLayout *attlayout = [YYTextLayout layoutWithContainer:container text:attString];
+    YYLabel *attlabel = [YYLabel new];
+    attlabel.size = attlayout.textBoundingSize;
+    attlabel.textLayout = attlayout;
+    //[label sizeToFit];
+    CGFloat attheight = attlabel.size.height;
+    
     _contextLab.text =[_model.context stringByReplacingEmojiCheatCodesWithUnicode];
     _contextLab.font = [UIFont systemFontOfSize:16];
     _contextLab.numberOfLines = 0;
     _contextLab.textColor = [UIColor darkGrayColor];
+    [_contextLab mas_makeConstraints:^(MASConstraintMaker *make){
+        make.left.equalTo(self).offset(60);
+        make.top.equalTo(self).offset(40);
+        make.right.equalTo(self).offset(-10);
+        make.height.mas_equalTo(attheight);
+    }];
+    
     NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:_contextLab.text attributes:@{NSKernAttributeName:@0}];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.headIndent = 0;//缩进
@@ -186,23 +212,16 @@
         if(reply.username !=nil){
             str = [str stringByAppendingFormat:@"@%@:",reply.username];
         }
-        /*
-        CGFloat height = [UILabel getHeightByWidthForSpace:labelWidth-10 string:[str stringByAppendingString:reply.context] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:2];*/
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[str stringByAppendingString:reply.context]];
         attributedString.yy_font = [UIFont systemFontOfSize:16];
         attributedString.yy_lineSpacing =5;
         attributedString.yy_kern = @0;
         //attributedString.yy_lineBreakMode = NSLineBreakByWordWrapping;
-        
-        
         YYTextLinePositionSimpleModifier *modifier = [YYTextLinePositionSimpleModifier new];
         modifier.fixedLineHeight = 20;
-        
-        
         YYTextContainer *container = [YYTextContainer new];
         container.size = CGSizeMake(labelWidth, CGFLOAT_MAX);
         container.linePositionModifier = modifier;
-        
         YYTextLayout *layout = [YYTextLayout layoutWithContainer:container text:attributedString];
         YYLabel *label = [YYLabel new];
         label.size = layout.textBoundingSize;
