@@ -102,6 +102,9 @@
 
     _replyView = [[UIView alloc] init];
     _replyView.backgroundColor = RGB_255(243, 243, 243);
+    _replyView.clipsToBounds=YES;
+    _replyView.layer.cornerRadius=4;
+    _replyView.layer.borderWidth=0;
     [self addSubview:_replyView];
 }
 
@@ -209,13 +212,14 @@
         
         
         UILabel *content = [[UILabel alloc] init];
+        //content.backgroundColor = [UIColor yellowColor];
         content.text =[str stringByAppendingString:reply.context] ;
         content.font = [UIFont systemFontOfSize:16];
         content.numberOfLines = 0;
         content.textColor = [UIColor darkGrayColor];
         
         content.frame = CGRectMake(5, nHeight+5, labelWidth-9, height);
-        nHeight = nHeight + height;
+        
         
         NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[str stringByAppendingString:[reply.context stringByReplacingEmojiCheatCodesWithUnicode]] attributes:@{NSKernAttributeName:@0}];
         NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
@@ -227,6 +231,8 @@
         [text addAttribute:NSForegroundColorAttributeName value:COMMON_COLOR range:NSMakeRange(0, usernameCount)];
         content.attributedText = text;
         [content sizeToFit];
+        nHeight = nHeight + content.frame.size.height;
+        
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTouchReplyButton:)];
         content.tag = i;
@@ -236,6 +242,15 @@
         [self.replyView addSubview:content];
     }
 
+    if(replyCount > 0){
+        nHeight = nHeight+10;
+    }
+    [_replyView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.left.equalTo(self).offset(55);
+        make.top.equalTo(self).offset(60+self.model.contextHeight+25);
+        make.right.equalTo(self).offset(-10);
+        make.height.mas_equalTo(nHeight);
+    }];
     
     
 }
@@ -312,12 +327,7 @@
         make.height.mas_equalTo(20);
     }];
     
-    [_replyView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self).offset(60);
-        make.top.equalTo(self).offset(60+self.model.contextHeight+25);
-        make.right.equalTo(self).offset(-10);
-        make.height.mas_equalTo(self.model.replyHeight);
-    }];
+    
     
     
 }

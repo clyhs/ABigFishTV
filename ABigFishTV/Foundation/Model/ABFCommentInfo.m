@@ -28,8 +28,8 @@
         context.text = [_context stringByReplacingEmojiCheatCodesWithUnicode];
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_context];
         attributedString.yy_font = [UIFont systemFontOfSize:16];
-        attributedString.yy_lineSpacing =5;
-        attributedString.yy_kern = @0;
+        //attributedString.yy_lineSpacing =5;
+        //attributedString.yy_kern = @0;
         attributedString.yy_lineBreakMode = NSLineBreakByWordWrapping;
         
         
@@ -66,33 +66,7 @@
                 str = [str stringByAppendingFormat:@"回复[%@]:",reply.username];
             }
             
-            //content.text =[[str stringByAppendingString:reply.context] stringByReplacingEmojiCheatCodesWithUnicode] ;
-            content.text = [str stringByAppendingString:reply.context];
-            content.font = [UIFont systemFontOfSize:16];
-            
-            //CGFloat cheight = [UILabel getHeightByWidthForSpace:labelWidth-5 string:[NSString replaceEmoji: [str stringByAppendingString:reply.context]] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:3];
-            //CGFloat height = [UILabel getHeightByWidth:labelWidth title:[str stringByAppendingString:reply.context] font:[UIFont systemFontOfSize:16]];
-            
-            
             /*
-            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:content.text];
-            attributedString.yy_font = [UIFont systemFontOfSize:16];
-            attributedString.yy_lineSpacing =5;
-            attributedString.yy_kern = @2;
-            attributedString.yy_lineBreakMode = NSLineBreakByWordWrapping;
-            
-            
-            YYTextLinePositionSimpleModifier *modifier = [YYTextLinePositionSimpleModifier new];
-            modifier.fixedLineHeight = 23;
-            
-            YYTextContainer *container = [YYTextContainer new];
-            container.size = CGSizeMake(labelWidth-5, CGFLOAT_MAX);
-            container.linePositionModifier = modifier;
-            
-            YYTextLayout *layout = [YYTextLayout layoutWithContainer:container text:attributedString];
-            YYLabel *label = [YYLabel new];
-            label.size = layout.textBoundingSize;
-            label.textLayout = layout;*/
             
             NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:content.text];
             attributedString.yy_font = [UIFont systemFontOfSize:16];
@@ -120,9 +94,51 @@
                 height = height -5;
             }else{
                 height = height;
-            }
-
-            nHeight =nHeight+ height;
+            }*/
+            
+            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[str stringByAppendingString:reply.context]];
+            attributedString.yy_font = [UIFont systemFontOfSize:16];
+            attributedString.yy_lineSpacing =5;
+            attributedString.yy_kern = @0;
+            //attributedString.yy_lineBreakMode = NSLineBreakByWordWrapping;
+            
+            
+            YYTextLinePositionSimpleModifier *modifier = [YYTextLinePositionSimpleModifier new];
+            modifier.fixedLineHeight = 20;
+            
+            
+            YYTextContainer *container = [YYTextContainer new];
+            container.size = CGSizeMake(labelWidth, CGFLOAT_MAX);
+            container.linePositionModifier = modifier;
+            
+            YYTextLayout *layout = [YYTextLayout layoutWithContainer:container text:attributedString];
+            YYLabel *label = [YYLabel new];
+            label.size = layout.textBoundingSize;
+            label.textLayout = layout;
+            //[label sizeToFit];
+            CGFloat height = label.size.height;
+            
+            
+            content.backgroundColor = [UIColor yellowColor];
+            content.text =[str stringByAppendingString:reply.context] ;
+            content.font = [UIFont systemFontOfSize:16];
+            content.numberOfLines = 0;
+            content.textColor = [UIColor darkGrayColor];
+            
+            content.frame = CGRectMake(0, 0, labelWidth, height);
+            
+            
+            NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[str stringByAppendingString:[reply.context stringByReplacingEmojiCheatCodesWithUnicode]] attributes:@{NSKernAttributeName:@0}];
+            NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+            style.headIndent = 0;//缩进
+            style.firstLineHeadIndent = 0;
+            style.lineSpacing = 5;//行距
+            [text addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, text.length)];
+            NSInteger usernameCount = str.length;
+            [text addAttribute:NSForegroundColorAttributeName value:COMMON_COLOR range:NSMakeRange(0, usernameCount)];
+            content.attributedText = text;
+            [content sizeToFit];
+            nHeight = nHeight + content.frame.size.height;
         }
         if(replyCount>0){
             nHeight = nHeight + 10;
