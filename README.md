@@ -34,33 +34,6 @@
 
 </div>
 
-### 效果图png
-
-<div align="center">
-<img src="https://github.com/clyhs/ABigFishTV/blob/master/images/home.png" width="250" style="margin:10px 10px;" >
-<img src="https://github.com/clyhs/ABigFishTV/blob/master/images/video.png" width
-="250" style="margin:10px 10px;" >
-<img src="https://github.com/clyhs/ABigFishTV/blob/master/images/found.png" width
-="250" style="margin:10px 10px;">
-
-</div>
-<div align="center">
-<img src="https://github.com/clyhs/ABigFishTV/blob/master/images/me.png" width
-="250" style="margin:10px 10px;">
-<img src="https://github.com/clyhs/ABigFishTV/blob/master/images/setting.png" width
-="250" style="margin:10px 10px;">
-<img src="https://github.com/clyhs/ABigFishTV/blob/master/images/login.png" width
-="250" style="margin:10px 10px;">
-<img src="https://github.com/clyhs/ABigFishTV/blob/master/images/tv.png" width
-="250" style="margin:10px 10px;">
-<img src="https://github.com/clyhs/ABigFishTV/blob/master/images/search.png" width
-="250" style="margin:10px 10px;">
-<img src="https://github.com/clyhs/ABigFishTV/blob/master/images/film.png" width
-="250" style="margin:10px 10px;">
-</div>
-
-
-
 ### 微信捐赠
 * 如果如您觉得代码不错，请我喝杯咖啡吧，也是我开源之路的动力，谢谢。
 <div align="center">
