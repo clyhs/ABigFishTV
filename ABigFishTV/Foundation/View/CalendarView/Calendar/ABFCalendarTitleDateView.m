@@ -23,7 +23,7 @@
     self=[super initWithFrame:frame];
     
     if (self) {
-        self.backgroundColor = LINE_BG;
+        self.backgroundColor =COMMON_COLOR;
         [self setupUI];
         NSLog(@"ABFCalendarTitleDateView init");
         
@@ -36,13 +36,13 @@
     _titleLab = [UILabel new];
     _titleLab.adjustsFontSizeToFitWidth = YES;
     _titleLab.textAlignment = NSTextAlignmentCenter;
-    _titleLab.textColor = COMMON_COLOR;
+    _titleLab.textColor = [UIColor whiteColor];
     [self addSubview:_titleLab];
     
     _leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_leftBtn setTitle:@"<<" forState:UIControlStateNormal];
-    [_leftBtn setTintColor:COMMON_COLOR];
-    [_leftBtn setTitleColor:COMMON_COLOR forState:UIControlStateNormal];
+    [_leftBtn setTintColor:[UIColor whiteColor]];
+    [_leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _leftBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     _leftBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     
@@ -52,8 +52,8 @@
     
     _rightBtn= [UIButton buttonWithType:UIButtonTypeCustom];
     [_rightBtn setTitle:@">>" forState:UIControlStateNormal];
-    [_rightBtn setTintColor:COMMON_COLOR];
-    [_rightBtn setTitleColor:COMMON_COLOR forState:UIControlStateNormal];
+    [_rightBtn setTintColor:[UIColor whiteColor]];
+    [_rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _rightBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     _rightBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     [_rightBtn addTarget:self action:@selector(rightClick:)

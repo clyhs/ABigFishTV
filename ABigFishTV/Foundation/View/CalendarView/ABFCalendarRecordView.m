@@ -13,8 +13,8 @@
 
 @interface ABFCalendarRecordView()<ABFCalendarTitleBarViewDelegate,ABFCalendarDelegate>
 
-@property(nonatomic,strong) ABFCalendarTitleBarView *titleBarView;
-@property(nonatomic,strong) ABFCalendarView         *calendarView;
+
+
 @property (nonatomic, strong) NSDate                *currentDate;
 
 @end

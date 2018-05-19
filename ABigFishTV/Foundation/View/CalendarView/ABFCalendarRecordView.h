@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ABFCalendarTitleBarView.h"
+#import "ABFCalendarView.h"
 
 @protocol ABFCalendarRecordViewDelegate <NSObject>
 
@@ -16,6 +18,9 @@
 @end
 
 @interface ABFCalendarRecordView : UIView
+
+@property(nonatomic,strong) ABFCalendarTitleBarView *titleBarView;
+@property(nonatomic,strong) ABFCalendarView         *calendarView;
 
 @property (nonatomic, weak) id<ABFCalendarRecordViewDelegate> delegate;
 

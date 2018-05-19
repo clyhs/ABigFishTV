@@ -261,7 +261,7 @@
 {
     ABFChatInfo *model = self.dataArrays[indexPath.row];
     //return 50+model.contextHeight+10 + model.infoHeight + 10;
-    return 50+model.contextHeight+model.imagesHeight+40+10;
+    return 60+model.contextHeight+model.imagesHeight+40+10;
     
 }
 

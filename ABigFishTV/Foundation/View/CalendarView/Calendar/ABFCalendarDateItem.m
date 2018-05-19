@@ -55,7 +55,7 @@ const CGFloat starContentHeight = 15;
     
     self.dayLabel.textAlignment = NSTextAlignmentCenter;
     //self.dayLabel.adjustsFontSizeToFitWidth = YES;
-    self.dayLabel.font = [UIFont systemFontOfSize:9];
+    self.dayLabel.font = [UIFont systemFontOfSize:12];
     /*
     if ([YSDevice isPhone6Plus])
     {

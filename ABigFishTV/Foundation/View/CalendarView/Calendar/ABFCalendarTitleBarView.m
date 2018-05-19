@@ -13,8 +13,8 @@
 
 @interface ABFCalendarTitleBarView()<ABFCalendarTitleDateViewDelegate>
 
-@property(nonatomic,strong) ABFCalendarTitleDateView *titleView;
-@property(nonatomic,strong) ABFCalendarWeekView      *weekView;
+//@property(nonatomic,strong) ABFCalendarTitleDateView *titleView;
+//@property(nonatomic,strong) ABFCalendarWeekView      *weekView;
 
 @end
 

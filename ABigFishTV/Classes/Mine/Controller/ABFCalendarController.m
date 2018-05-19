@@ -9,11 +9,16 @@
 #import "ABFCalendarController.h"
 #import "AppDelegate.h"
 #import "ABFCalendarRecordView.h"
+#import "ABFCalendarTitleDateView.h"
+#import "ABFCalendarWeekView.h"
+
 
 
 @interface ABFCalendarController ()<ABFCalendarRecordViewDelegate>
 
 @property(nonatomic,strong) ABFCalendarRecordView *calendarRecordView;
+@property(nonatomic,strong) ABFCalendarTitleDateView *titleDateView;
+
 
 @property(nonatomic,strong) UIView *mainView;
 
@@ -39,6 +44,13 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [self.tabBarController.tabBar setHidden:YES];
     [self addNavigationBarView];
+    _titleDateView.hidden=NO;
+    _titleDateView.alpha = 1;
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    _titleDateView.hidden=YES;
+    _titleDateView.alpha = 0;
 }
 
 - (void)setuiMainView{
@@ -63,11 +75,12 @@
     leftBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
     leftBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    leftBtn.frame = CGRectMake(10,20,60,20);
+    leftBtn.frame = CGRectMake(30,10,60,20);
     [leftBtn setImage:[UIImage imageNamed:@"btn_nback"] forState:UIControlStateNormal];
-    UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
-    self.navigationItem.leftBarButtonItem = leftBtnItem;
+    //UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
+    //self.navigationItem.leftBarButtonItem = leftBtnItem;
     //[self.calendarRecordView addSubview:leftBtn];
+    [_titleDateView addSubview:leftBtn];
     
 }
 -(void)viewDidLayoutSubviews{
@@ -85,8 +98,21 @@
 -(void)setupUI{
     ABFCalendarRecordView *calendarRecordView = [[ABFCalendarRecordView alloc] init];
     CGFloat height = (kScreenWidth/9.5+10)*6 + 64;
+    
+    ABFCalendarTitleBarView *titleBarView = calendarRecordView.titleBarView;
+    //titleBarView.frame = CGRectMake(0, 0, kScreenWidth, 40);
+    ABFCalendarTitleDateView *titleDateView = titleBarView.titleView;
+    titleDateView.frame = CGRectMake(0, 0, kScreenWidth, 40);
     calendarRecordView.frame =CGRectMake(0, 0, kScreenWidth, height);
-    [self.mainView addSubview:calendarRecordView];
+    [self.navigationController.navigationBar addSubview:titleDateView];
+    _titleDateView = titleDateView;
+    ABFCalendarWeekView *weekView = titleBarView.weekView;
+    weekView.frame = CGRectMake(0, 0, kScreenWidth, 24);
+    [self.mainView addSubview:weekView];
+    
+    ABFCalendarView *calendarView = calendarRecordView.calendarView;
+    calendarView.frame = CGRectMake(0, 24, kScreenWidth, (kScreenWidth/9.5+10)*6);
+    [self.mainView addSubview:calendarView];
     _calendarRecordView = calendarRecordView;
 }
 
