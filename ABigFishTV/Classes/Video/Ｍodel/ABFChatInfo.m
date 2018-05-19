@@ -24,7 +24,7 @@
     
     if(!_contextHeight){
         CGFloat labelWidth = kScreenWidth-70;
-        CGFloat height = [UILabel getHeightByWidthForSpace:labelWidth-5 string:[NSString replaceEmoji: _context] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:3];
+        CGFloat height = [UILabel getHeightByWidthForSpace:labelWidth-5 string:[NSString replaceEmoji: _context] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:0];
         _contextHeight = height;
     }
     return _contextHeight;

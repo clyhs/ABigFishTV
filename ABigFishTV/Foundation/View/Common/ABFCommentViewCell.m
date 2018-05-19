@@ -8,6 +8,7 @@
 
 #import "ABFCommentViewCell.h"
 #import "ABFCommentInfo.h"
+#import <YYText.h>
 
 @implementation ABFCommentViewCell
 
@@ -160,7 +161,7 @@
     _contextLab.font = [UIFont systemFontOfSize:16];
     _contextLab.numberOfLines = 0;
     _contextLab.textColor = [UIColor darkGrayColor];
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:_contextLab.text attributes:@{NSKernAttributeName:@3}];
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:_contextLab.text attributes:@{NSKernAttributeName:@0}];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.headIndent = 0;//缩进
     style.firstLineHeadIndent = 0;
@@ -182,8 +183,30 @@
         if(reply.username !=nil){
             str = [str stringByAppendingFormat:@"@%@:",reply.username];
         }
-
-        CGFloat height = [UILabel getHeightByWidthForSpace:labelWidth-10 string:[str stringByAppendingString:reply.context] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:2];
+        /*
+        CGFloat height = [UILabel getHeightByWidthForSpace:labelWidth-10 string:[str stringByAppendingString:reply.context] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:2];*/
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[str stringByAppendingString:reply.context]];
+        attributedString.yy_font = [UIFont systemFontOfSize:16];
+        attributedString.yy_lineSpacing =5;
+        attributedString.yy_kern = @0;
+        //attributedString.yy_lineBreakMode = NSLineBreakByWordWrapping;
+        
+        
+        YYTextLinePositionSimpleModifier *modifier = [YYTextLinePositionSimpleModifier new];
+        modifier.fixedLineHeight = 20;
+        
+        
+        YYTextContainer *container = [YYTextContainer new];
+        container.size = CGSizeMake(labelWidth, CGFLOAT_MAX);
+        container.linePositionModifier = modifier;
+        
+        YYTextLayout *layout = [YYTextLayout layoutWithContainer:container text:attributedString];
+        YYLabel *label = [YYLabel new];
+        label.size = layout.textBoundingSize;
+        label.textLayout = layout;
+        //[label sizeToFit];
+        CGFloat height = label.size.height;
+        
         
         UILabel *content = [[UILabel alloc] init];
         content.text =[str stringByAppendingString:reply.context] ;
@@ -194,7 +217,7 @@
         content.frame = CGRectMake(5, nHeight+5, labelWidth-9, height);
         nHeight = nHeight + height;
         
-        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[str stringByAppendingString:[reply.context stringByReplacingEmojiCheatCodesWithUnicode]] attributes:@{NSKernAttributeName:@2}];
+        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[str stringByAppendingString:[reply.context stringByReplacingEmojiCheatCodesWithUnicode]] attributes:@{NSKernAttributeName:@0}];
         NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
         style.headIndent = 0;//缩进
         style.firstLineHeadIndent = 0;

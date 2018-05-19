@@ -111,7 +111,7 @@
     _contextLab.font = [UIFont systemFontOfSize:16];
     _contextLab.numberOfLines = 0;
     _contextLab.textColor = [UIColor darkGrayColor];
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:_contextLab.text attributes:@{NSKernAttributeName:@3}];
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:_contextLab.text attributes:@{NSKernAttributeName:@0}];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.headIndent = 0;//缩进
     style.firstLineHeadIndent = 0;

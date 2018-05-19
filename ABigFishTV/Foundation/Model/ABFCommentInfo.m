@@ -26,8 +26,25 @@
         UILabel *context = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, labelWidth, 1)];
         context.font = [UIFont systemFontOfSize:16];
         context.text = [_context stringByReplacingEmojiCheatCodesWithUnicode];
-        CGFloat height = [UILabel getHeightByWidthForSpace:labelWidth-5 string:[NSString replaceEmoji: _context] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:3];
-        _contextHeight = height;
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_context];
+        attributedString.yy_font = [UIFont systemFontOfSize:16];
+        attributedString.yy_lineSpacing =5;
+        attributedString.yy_kern = @0;
+        attributedString.yy_lineBreakMode = NSLineBreakByWordWrapping;
+        
+        
+        YYTextLinePositionSimpleModifier *modifier = [YYTextLinePositionSimpleModifier new];
+        modifier.fixedLineHeight = 20;
+        
+        YYTextContainer *container = [YYTextContainer new];
+        container.size = CGSizeMake(labelWidth-5, CGFLOAT_MAX);
+        container.linePositionModifier = modifier;
+        
+        YYTextLayout *layout = [YYTextLayout layoutWithContainer:container text:attributedString];
+        YYLabel *label = [YYLabel new];
+        label.size = layout.textBoundingSize;
+        label.textLayout = layout;
+        _contextHeight = label.size.height;
     }
     return _contextHeight;
 }
@@ -49,11 +66,15 @@
                 str = [str stringByAppendingFormat:@"回复[%@]:",reply.username];
             }
             
-            content.text =[[str stringByAppendingString:reply.context] stringByReplacingEmojiCheatCodesWithUnicode] ;
+            //content.text =[[str stringByAppendingString:reply.context] stringByReplacingEmojiCheatCodesWithUnicode] ;
+            content.text = [str stringByAppendingString:reply.context];
             content.font = [UIFont systemFontOfSize:16];
-            /*
-            CGFloat height = [UILabel getHeightByWidthForSpace:labelWidth-5 string:[NSString replaceEmoji: [str stringByAppendingString:reply.context]] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:3];*/
+            
+            //CGFloat cheight = [UILabel getHeightByWidthForSpace:labelWidth-5 string:[NSString replaceEmoji: [str stringByAppendingString:reply.context]] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:3];
             //CGFloat height = [UILabel getHeightByWidth:labelWidth title:[str stringByAppendingString:reply.context] font:[UIFont systemFontOfSize:16]];
+            
+            
+            /*
             NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:content.text];
             attributedString.yy_font = [UIFont systemFontOfSize:16];
             attributedString.yy_lineSpacing =5;
@@ -71,13 +92,40 @@
             YYTextLayout *layout = [YYTextLayout layoutWithContainer:container text:attributedString];
             YYLabel *label = [YYLabel new];
             label.size = layout.textBoundingSize;
-            label.textLayout = layout;
+            label.textLayout = layout;*/
             
-            CGFloat height = ceilf(label.size.height);
+            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:content.text];
+            attributedString.yy_font = [UIFont systemFontOfSize:16];
+            attributedString.yy_lineSpacing =5;
+            attributedString.yy_kern = @0;
+            //attributedString.yy_lineBreakMode = NSLineBreakByWordWrapping;
+            
+            
+            YYTextLinePositionSimpleModifier *modifier = [YYTextLinePositionSimpleModifier new];
+            modifier.fixedLineHeight = 20;
+            
+            
+            YYTextContainer *container = [YYTextContainer new];
+            container.size = CGSizeMake(labelWidth, CGFLOAT_MAX);
+            container.linePositionModifier = modifier;
+            
+            YYTextLayout *layout = [YYTextLayout layoutWithContainer:container text:attributedString];
+            YYLabel *label = [YYLabel new];
+            label.size = layout.textBoundingSize;
+            label.textLayout = layout;
+            //[label sizeToFit];
+            CGFloat height = label.size.height;
+            
+            if([NSString stringContainsEmoji:content.text]){
+                height = height -5;
+            }else{
+                height = height;
+            }
+
             nHeight =nHeight+ height;
         }
         if(replyCount>0){
-            nHeight = nHeight+10;
+            nHeight = nHeight + 10;
         }
         _replyHeight = nHeight;
         
