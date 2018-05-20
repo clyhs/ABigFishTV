@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ABFCollectionReusableViewDelegate <NSObject>
+- (void)pushReusableView:(NSString *)name url:(NSString *)url;
+@end
+
 @interface ABFCollectionReusableView : UICollectionReusableView
 
+@property(nonatomic,weak) id<ABFCollectionReusableViewDelegate> delegate;
+
 @property(nonatomic,strong) NSString *title;
+
+@property(nonatomic,strong) NSString *url;
 
 @property (nonatomic, weak) UIButton *moreBtn;
 

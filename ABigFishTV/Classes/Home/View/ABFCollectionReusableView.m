@@ -62,6 +62,7 @@
     //moreBtn.backgroundColor = [UIColor greenColor];
     [moreBtn setTitleColor:RGB_255(155, 155, 155) forState:UIControlStateNormal];
     moreBtn.titleLabel.font=[UIFont systemFontOfSize:16];
+    [moreBtn addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:moreBtn];
     _moreBtn = moreBtn;
     
@@ -99,6 +100,14 @@
     _moreBtn.frame = CGRectMake(kScreenWidth-60, 0, 60, CGRectGetHeight(self.frame));
     _bottomLine.frame = CGRectMake(0, CGRectGetHeight(self.frame)-1, kScreenWidth, 0.5);
     _topLine.frame =CGRectMake(0, 0, kScreenWidth, 0.5);
+}
+
+-(void)onClick:(id)sender{
+    UIButton *moreBtn = (UIButton *)sender;
+    //moreBtn.selected = !dingBtn.selected;
+    if ([self.delegate respondsToSelector:@selector(pushReusableView:url:)]) {
+        [self.delegate pushReusableView:_title url:_url];
+    }
 }
 
 @end

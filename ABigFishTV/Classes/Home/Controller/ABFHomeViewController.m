@@ -34,7 +34,7 @@
 //static NSUInteger titleTabHeight = 40 ;
 
 @interface ABFHomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,NavBindingDelegate,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate,
-    CLLocationManagerDelegate>{
+    CLLocationManagerDelegate,ABFCollectionReusableViewDelegate>{
     
 }
 
@@ -165,45 +165,7 @@
 //***********nav*************
 //设置导航栏的颜色
 - (void)initNavigationBar{
-    //[self.navigationController.navigationBar setBarTintColor:COMMON_COLOR];
-    //[self.navigationController.navigationBar setBackgroundColor:COMMON_COLOR];
-    //[self.navigationController.navigationBar setTintColor:COMMON_COLOR];
-    //[self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
     
-    //去掉透明后导航栏下边的黑边
-    //[//self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
-    //[self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:22],NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    //self.navigationController.navigationBar.alpha = 0.1;
-    //self.navigationController.navigationBar.translucent = NO;
-    /*
-    CGRect frame = self.navigationController.navigationBar.frame;
-    UIView *alphaView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, frame.size.width, frame.size.height+20)];
-    alphaView.backgroundColor = [UIColor blueColor];
-    alphaView.userInteractionEnabled = NO;
-    [self.navigationController.navigationBar insertSubview: alphaView atIndex:0];*/
-    /*
-    UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.frame = CGRectMake(0,0,20,20);
-    [leftBtn setBackgroundImage:[UIImage imageNamed:@"icon_search"] forState:UIControlStateNormal];
-    [leftBtn addTarget:self action:@selector(searchClick:)
-      forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
-    self.navigationItem.leftBarButtonItem = leftBtnItem;
-    
-    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightBtn.frame = CGRectMake(0,0,20,20);
-    [rightBtn setBackgroundImage:[UIImage imageNamed:@"icon_square"] forState:UIControlStateNormal];
-    UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
-    self.navigationItem.rightBarButtonItem = rightBtnItem;
-    
-    UIImageView* imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_logo"]];
-    self.navigationItem.titleView = imageView;*/
-    
-    //[self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-    
-    //去掉透明后导航栏下边的黑边
-    //[self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
-    //self.title=@"";
     [self.navigationController.navigationBar setBarTintColor:COMMON_COLOR];
     self.navigationController.navigationBar.translucent = NO;
     
@@ -400,27 +362,32 @@
             if([AppDelegate APP].area == nil){
                 [AppDelegate APP].area = @"北京";
             }
+            headerView.delegate = self;
             headerView.title = [NSString stringWithFormat:@"%@",[AppDelegate APP].area];
-            headerView.moreBtn.hidden = YES;
+            headerView.moreBtn.hidden = NO;
             return headerView;
         }else if(indexPath.section == 2){
             ABFCollectionReusableView *headerView = (ABFCollectionReusableView *)[collectionView  dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView" forIndexPath:indexPath];
             headerView.title = @"热门";
-            headerView.moreBtn.hidden = NO;
+            //headerView.delegate = self;
+            headerView.moreBtn.hidden = YES;
             return headerView;
         }else if(indexPath.section == 3){
             ABFCollectionReusableView *headerView = (ABFCollectionReusableView *)[collectionView  dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView" forIndexPath:indexPath];
             headerView.title = @"动漫";
+            headerView.delegate = self;
             headerView.moreBtn.hidden = NO;
             return headerView;
         }else if(indexPath.section == 4){
             ABFCollectionReusableView *headerView = (ABFCollectionReusableView *)[collectionView  dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView" forIndexPath:indexPath];
             headerView.title = @"日韩";
+            headerView.delegate = self;
             headerView.moreBtn.hidden = NO;
             return headerView;
         }else if(indexPath.section == 5){
             ABFCollectionReusableView *headerView = (ABFCollectionReusableView *)[collectionView  dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView" forIndexPath:indexPath];
             headerView.title = @"港澳台";
+            headerView.delegate = self;
             headerView.moreBtn.hidden = NO;
             return headerView;
         }
@@ -538,6 +505,38 @@
         NSLog(@"url:%@",url);
         
         [self.navigationController pushViewController:webVC animated:YES];
+    }
+}
+
+-(void)pushReusableView:(NSString *)name url:(NSString *)url{
+    ABFChannelListViewController *webVC = [[ABFChannelListViewController alloc] init];
+    if([name isEqualToString:@"动漫"]){
+        NSLog(@"%@",url);
+        NSString *url = @"/api/tv/page/23";
+        webVC.title = name;
+        webVC.url = url;
+        
+        NSLog(@"url:%@",url);
+        
+        [self.navigationController pushViewController:webVC animated:YES];
+    }else if([name isEqualToString:@"日韩"]){
+        NSString *url = @"/api/tv/page/17";
+        webVC.title = name;
+        webVC.url = url;
+        
+        NSLog(@"url:%@",url);
+        [self.navigationController pushViewController:webVC animated:YES];
+    }else if([name isEqualToString:@"港澳台"]){
+        NSString *url = @"/api/tv/page/18";
+        webVC.title = name;
+        webVC.url = url;
+        NSLog(@"url:%@",url);
+        [self.navigationController pushViewController:webVC animated:YES];
+    }else if([name isEqualToString:[AppDelegate APP].area]){
+        ABFProvinceViewController *vc = [[ABFProvinceViewController alloc] init];
+        vc.title = @"地方台";
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
