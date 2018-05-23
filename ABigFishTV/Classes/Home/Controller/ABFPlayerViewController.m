@@ -264,25 +264,19 @@
     //NSURL *url = [NSURL URLWithString:_playUrl];
     UIImage *image = self.player.getImage;
     
-    NSMutableArray<NSString *> *fileNames = [NSMutableArray new];
-    [fileNames addObject:@"headIcon.png"];
-    NSMutableArray<UIImage *> *images = [NSMutableArray new];
-    [images addObject:image];
+    if(image!=nil){
+        NSMutableArray<NSString *> *fileNames = [NSMutableArray new];
+        [fileNames addObject:@"headIcon.png"];
+        NSMutableArray<UIImage *> *images = [NSMutableArray new];
+        [images addObject:image];
+        
+        [PPNetworkHelper uploadImagesWithURL:fullUrl parameters:params name:@"bg" images:images fileNames:[fileNames mutableCopy] imageScale:1.0f imageType:@"png" progress:^(NSProgress *progress) {
+        } success:^(id responseObject) {
+        } failure:^(NSError *error) {
+            NSLog(@"error = %@",error);
+        }];
+    }
     
-    [PPNetworkHelper uploadImagesWithURL:fullUrl parameters:params name:@"bg" images:images fileNames:[fileNames mutableCopy] imageScale:1.0f imageType:@"png" progress:^(NSProgress *progress) {
-    } success:^(id responseObject) {
-    } failure:^(NSError *error) {
-        NSLog(@"error = %@",error);
-    }];
-    /*
-    [[ABFHttpManager manager]POST:fullUrl parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        //NSURL *url = [NSURL URLWithString:_playUrl];
-        NSData *imageData = UIImagePNGRepresentation(image);
-        [formData appendPartWithFileData:imageData name:@"bg" fileName:@"headIcon.png" mimeType:@"image/png"];
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"error = %@",error);
-    }];*/
 }
 
 
