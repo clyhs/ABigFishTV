@@ -84,6 +84,7 @@
     _guangzhuBtn.backgroundColor = COMMON_COLOR;
     [_guangzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
     [_guangzhuBtn setTintColor:[UIColor whiteColor]];
+    _guangzhuBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     _guangzhuBtn.layer.cornerRadius = 4;
     _guangzhuBtn.layer.masksToBounds = YES;
     _guangzhuBtn.layer.borderWidth = 0;
@@ -386,9 +387,9 @@
     }];
     [_guangzhuBtn mas_makeConstraints:^(MASConstraintMaker *make){
         make.right.equalTo(self.topView).offset(-10);
-        make.top.equalTo(self.topView).offset(15);
-        make.width.mas_equalTo(50);
-        make.height.mas_equalTo(25);
+        make.top.equalTo(self.topView).offset(10);
+        make.width.mas_equalTo(45);
+        make.height.mas_equalTo(23);
     }];
     [_bottomLine mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self).offset(0);
