@@ -304,6 +304,10 @@
     
 }
 
+-(void)guangzhu:(ABFChatInfo *)model{
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

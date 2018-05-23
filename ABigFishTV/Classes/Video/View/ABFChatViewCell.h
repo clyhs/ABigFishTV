@@ -11,6 +11,7 @@
 
 @protocol ABFChatImageDelegate <NSObject>
 - (void)pushForImage:(ABFChatInfo *)model imageIndex:(NSInteger)index;
+- (void)guangzhu:(ABFChatInfo *)model;
 @end
 
 @interface ABFChatViewCell : UITableViewCell
@@ -47,6 +48,8 @@
 @property(nonatomic,strong)   UIView  *contextView;
 @property(nonatomic,strong)   UIView  *imagesView;
 @property(nonatomic,strong)   UIView  *toolView;
+
+@property(nonatomic,strong)   UIButton *guangzhuBtn;
 
 @property (nonatomic, weak) id<ABFChatImageDelegate> delegate;
 

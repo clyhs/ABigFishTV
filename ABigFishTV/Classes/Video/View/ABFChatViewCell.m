@@ -79,6 +79,20 @@
     _timeLab.textAlignment =NSTextAlignmentLeft;
     _timeLab.textColor = [UIColor lightGrayColor];
     [self.topView addSubview:_timeLab];
+    
+    _guangzhuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _guangzhuBtn.backgroundColor = COMMON_COLOR;
+    [_guangzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
+    [_guangzhuBtn setTintColor:[UIColor whiteColor]];
+    _guangzhuBtn.layer.cornerRadius = 4;
+    _guangzhuBtn.layer.masksToBounds = YES;
+    _guangzhuBtn.layer.borderWidth = 0;
+    _guangzhuBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 0,0, 0);
+    [_guangzhuBtn addTarget:self action:@selector(guangzhuClick:)
+         forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.topView addSubview:_guangzhuBtn];
+    
 
 }
 
@@ -163,6 +177,7 @@
     [_profile sd_setImageWithURL:[NSURL URLWithString:model.profile] placeholderImage:[UIImage imageNamed:@""]];
     _timeLab.text = model.create_at;
     NSString *str =[NSString stringWithFormat:@"%@",model.context];
+    
     
     
     _contextLab.text =[str stringByReplacingEmojiCheatCodesWithUnicode];
@@ -369,6 +384,12 @@
         make.right.equalTo(self.topView).offset(-5);
         make.height.mas_equalTo(20);
     }];
+    [_guangzhuBtn mas_makeConstraints:^(MASConstraintMaker *make){
+        make.right.equalTo(self.topView).offset(-10);
+        make.top.equalTo(self.topView).offset(15);
+        make.width.mas_equalTo(50);
+        make.height.mas_equalTo(25);
+    }];
     [_bottomLine mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self).offset(0);
         make.bottom.equalTo(self).offset(0);
@@ -387,6 +408,14 @@
     UIView *view = (UIView *)tap.view;
     if ([self.delegate respondsToSelector:@selector(pushForImage:imageIndex:)]) {
         [self.delegate pushForImage:self.model imageIndex:view.tag];
+    }
+}
+
+-(void)guangzhuClick:(id)sender{
+    UIButton *gzbtn = (UIButton *)sender;
+    gzbtn.selected=!gzbtn.selected;
+    if([self.delegate respondsToSelector:@selector(guangzhu:)]){
+        [self.delegate guangzhu:self.model];
     }
 }
 
