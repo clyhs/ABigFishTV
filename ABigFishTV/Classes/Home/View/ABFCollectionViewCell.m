@@ -47,7 +47,7 @@
 -(void)addIcon{
     
     _icon = [[UIImageView alloc] init];
-    _icon.backgroundColor = [UIColor clearColor];
+    _icon.backgroundColor = [UIColor whiteColor];
     _icon.layer.borderWidth = 0.1f;
     _icon.layer.borderColor = [UIColor whiteColor].CGColor;
     _icon.layer.masksToBounds = YES;

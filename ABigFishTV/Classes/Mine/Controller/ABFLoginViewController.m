@@ -89,11 +89,13 @@
 -(void)setNaviUI{
     
     self.navigationItem.title =@"登录";
-    [self.navigationController.navigationBar setBarTintColor:COMMON_COLOR];
-    self.navigationController.navigationBar.translucent = NO;
+    //[self.navigationController.navigationBar setBarTintColor:COMMON_COLOR];
+    //self.navigationController.navigationBar.translucent = NO;
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSFontAttributeName:[UIFont systemFontOfSize:20],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftBtn addTarget:self action:@selector(backClick:)
      forControlEvents:UIControlEventTouchUpInside];

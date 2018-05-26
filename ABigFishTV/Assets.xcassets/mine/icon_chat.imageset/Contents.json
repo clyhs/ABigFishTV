@@ -2,16 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "t.png",
+      "filename" : "chengyi_pc_wechat.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "t2.png",
+      "filename" : "chengyi_pc_wechat (1).png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "chengyi_pc_wechat (2).png",
       "scale" : "3x"
     }
   ],

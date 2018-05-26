@@ -82,6 +82,8 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [self.navigationController.navigationBar setBarTintColor:COMMON_COLOR];
     self.navigationController.navigationBar.translucent = NO;
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     self.title = @"";
     
     UIButton *settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -89,7 +91,7 @@
     settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [settingBtn setImage:[UIImage imageNamed:@"btn_setting"] forState:UIControlStateNormal];
     //settingBtn.contentEdgeInsets = UIEdgeInsetsMake(20, 20, -10, -5);
-    settingBtn.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 0, 0);
+    //settingBtn.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 0, 0);
     [settingBtn addTarget:self action:@selector(settingClick:)
          forControlEvents:UIControlEventTouchUpInside];
     _settingBtn = settingBtn;
