@@ -82,9 +82,11 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [self.navigationController.navigationBar setBarTintColor:COMMON_COLOR];
     self.navigationController.navigationBar.translucent = NO;
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont systemFontOfSize:20],NSForegroundColorAttributeName:COMMON_COLOR}];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    self.title = @"";
+    //self.title = @"";
     
     UIButton *settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     //settingBtn.hidden = YES;
