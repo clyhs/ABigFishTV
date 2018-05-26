@@ -70,6 +70,7 @@
 		7211EB1C1FB08AD5000108F6 /* ABFOtherSimpleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7211EB1B1FB08AD5000108F6 /* ABFOtherSimpleCell.m */; };
 		7211EB1E1FB0B607000108F6 /* others.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7211EB1D1FB0B607000108F6 /* others.plist */; };
 		721208CB1FC1BF3A004ADC28 /* ABFRightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 721208CA1FC1BF3A004ADC28 /* ABFRightTableViewCell.m */; };
+		7212DDDD20B92DF700A1F95C /* ABFFooterCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7212DDDC20B92DF700A1F95C /* ABFFooterCollectionReusableView.m */; };
 		72130B671FBC733D0083D1DD /* ABFSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72130B661FBC733D0083D1DD /* ABFSearchViewController.m */; };
 		72136B941FC5CA3C00BAA470 /* ABFPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72136B931FC5CA3C00BAA470 /* ABFPhotoViewController.m */; };
 		7215BCD32054E99700D6157E /* ABFCalendarTitleDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7215BCD22054E99700D6157E /* ABFCalendarTitleDateView.m */; };
@@ -361,6 +362,8 @@
 		7211EB1D1FB0B607000108F6 /* others.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = others.plist; sourceTree = "<group>"; };
 		721208C91FC1BF3A004ADC28 /* ABFRightTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFRightTableViewCell.h; path = Classes/Home/View/ABFRightTableViewCell.h; sourceTree = "<group>"; };
 		721208CA1FC1BF3A004ADC28 /* ABFRightTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFRightTableViewCell.m; path = Classes/Home/View/ABFRightTableViewCell.m; sourceTree = "<group>"; };
+		7212DDDB20B92DF700A1F95C /* ABFFooterCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ABFFooterCollectionReusableView.h; path = Classes/Home/View/ABFFooterCollectionReusableView.h; sourceTree = "<group>"; };
+		7212DDDC20B92DF700A1F95C /* ABFFooterCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ABFFooterCollectionReusableView.m; path = Classes/Home/View/ABFFooterCollectionReusableView.m; sourceTree = "<group>"; };
 		72130B651FBC733D0083D1DD /* ABFSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFSearchViewController.h; path = Classes/Other/Controller/ABFSearchViewController.h; sourceTree = "<group>"; };
 		72130B661FBC733D0083D1DD /* ABFSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFSearchViewController.m; path = Classes/Other/Controller/ABFSearchViewController.m; sourceTree = "<group>"; };
 		72136B921FC5CA3C00BAA470 /* ABFPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFPhotoViewController.h; path = Classes/Video/Controller/ABFPhotoViewController.h; sourceTree = "<group>"; };
@@ -1139,6 +1142,8 @@
 				720A8DD91FE7FC4A0046A061 /* ABFProgramViewCell.m */,
 				7205B58520595B5F0061084E /* ABFCollectionTopCell.h */,
 				7205B58620595B5F0061084E /* ABFCollectionTopCell.m */,
+				7212DDDB20B92DF700A1F95C /* ABFFooterCollectionReusableView.h */,
+				7212DDDC20B92DF700A1F95C /* ABFFooterCollectionReusableView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1924,6 +1929,7 @@
 				7267D2EE1FDCCF5B00AEE25F /* STEmojiKeyboard.m in Sources */,
 				72DB59442088D50500645FD2 /* ASValueTrackingSlider.m in Sources */,
 				7215BCE72054EFA200D6157E /* ABFCalendarTitleBarView.m in Sources */,
+				7212DDDD20B92DF700A1F95C /* ABFFooterCollectionReusableView.m in Sources */,
 				7215BCED2054FF3D00D6157E /* ABFCalendarRecordView.m in Sources */,
 				720B0DC71F7608E0005F30FA /* main.m in Sources */,
 				7229810E1F8FC3B600484146 /* ABFImageMenu.m in Sources */,

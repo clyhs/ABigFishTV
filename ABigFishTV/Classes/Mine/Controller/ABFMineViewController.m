@@ -30,19 +30,21 @@
 
 @interface ABFMineViewController ()<UITableViewDelegate,UITableViewDataSource,MenuBindingDelegate,ABFSettingViewControllerDelegate>
 
-@property(nonatomic,weak)   UIImageView *profile;
+@property(nonatomic,weak)   UIImageView     *profile;
 
 @property(nonatomic,strong) NSMutableArray  *menuArray;
 
-@property(nonatomic,assign) CGFloat cacheSize;
+@property(nonatomic,assign) CGFloat         cacheSize;
 
-@property(nonatomic,strong) ABFUserInfo *user;
+@property(nonatomic,strong) ABFUserInfo     *user;
 
 @property(nonatomic,strong) ABFMineHeaderView *headerView;
 
-@property(nonatomic,strong)  UIView *footerView;
+@property(nonatomic,strong)  UIView         *footerView;
 
-@property(nonatomic,weak)   UIButton *loginout;
+@property(nonatomic,weak)   UIButton        *loginout;
+
+@property(nonatomic,weak)   UIButton        *settingBtn;
 @end
 
 @implementation ABFMineViewController
@@ -77,7 +79,23 @@
 
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self setStatusBarBackgroundColor:COMMON_COLOR];
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [self.navigationController.navigationBar setBarTintColor:COMMON_COLOR];
+    self.navigationController.navigationBar.translucent = NO;
+    self.title = @"";
+    
+    UIButton *settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    //settingBtn.hidden = YES;
+    settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [settingBtn setImage:[UIImage imageNamed:@"btn_setting"] forState:UIControlStateNormal];
+    //settingBtn.contentEdgeInsets = UIEdgeInsetsMake(20, 20, -10, -5);
+    settingBtn.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 0, 0);
+    [settingBtn addTarget:self action:@selector(settingClick:)
+         forControlEvents:UIControlEventTouchUpInside];
+    _settingBtn = settingBtn;
+    UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithCustomView:settingBtn];
+    self.navigationItem.rightBarButtonItem = rightBtnItem;
+    
     [self.tabBarController.tabBar setHidden:NO];
     [AppDelegate APP].allowRotation = false;
     if ([AppDelegate APP].user) {
@@ -90,10 +108,13 @@
         _headerView.historyTLab.text =[NSString stringWithFormat:@"%ld",[AppDelegate APP].user.history] ;
         _headerView.likeTLab.text =[NSString stringWithFormat:@"%ld",[AppDelegate APP].user.likenum] ;
         _headerView.messageTLab.text =[NSString stringWithFormat:@"%ld",[AppDelegate APP].user.notices] ;
-        _headerView.settingBtn.hidden = NO;
+        //_headerView.settingBtn.hidden = NO;
+        _settingBtn.hidden = NO;
+        _settingBtn.alpha = 1;
     }else{
         //_loginout.hidden = YES;
-        
+        _settingBtn.hidden = YES;
+        _settingBtn.alpha = 0;
     }
     
     [_tableView reloadData];
@@ -112,7 +133,8 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     //[self.tabBarController.tabBar setHidden:NO];
-    
+    _settingBtn.hidden = YES;
+    _settingBtn.alpha = 0;
 }
 
 - (void)viewWillLayoutSubviews
@@ -313,12 +335,14 @@
     NSLog(@"login...");
     if([AppDelegate APP].user){
     }else{
+        
         ABFLoginViewController *vc = [[ABFLoginViewController alloc] init];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
         //vc.view.frame = self.view.bounds;
         //[self.navigationController pushViewController:vc animated:YES];
-        vc.modalPresentationStyle = UIModalPresentationFullScreen;
+        navController.modalPresentationStyle = UIModalPresentationFullScreen;
         
-        [self presentViewController:vc animated:YES completion:nil];
+        [self presentViewController:navController animated:YES completion:nil];
     }
     
 }
@@ -379,7 +403,14 @@
     navController.modalPresentationStyle = UIModalPresentationFullScreen;
     
     vc.delegate = self;
-    
+    [self presentViewController:navController animated:YES completion:nil];
+}
+-(void)settingClick:(id)sender{
+    ABFSettingViewController *vc = [[ABFSettingViewController alloc] init];
+    //[self.navigationController pushViewController:vc animated:YES];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
+    navController.modalPresentationStyle = UIModalPresentationFullScreen;
+    vc.delegate = self;
     [self presentViewController:navController animated:YES completion:nil];
 }
 

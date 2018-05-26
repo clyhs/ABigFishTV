@@ -131,21 +131,7 @@
     [leftBtn setImage:[UIImage imageNamed:@"icon_lightback"] forState:UIControlStateNormal];
     UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
     self.navigationItem.leftBarButtonItem = leftBtnItem;
-    /*
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-    statusBar.backgroundColor = COMMON_COLOR;
-    ABFNavigationBarView *naviView = [[ABFNavigationBarView alloc] initWithFrame:CGRectMake(0, statusBar.frame.size.height, kScreenWidth, 40)];
-    naviView.title = self.title;
-    naviView.backgroundColor = COMMON_COLOR;
-    [naviView setLeftBtnImageName:@"icon_lightback"];
-    [self.view addSubview:naviView];*/
-    /*
-    naviView.navBackHandle=^{
-        [self dismissViewControllerAnimated:YES completion:^{
-        }];
-    };
-    
-    _naviView = naviView;*/
+
     
 }
 

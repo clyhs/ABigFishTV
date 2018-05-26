@@ -57,7 +57,7 @@
         
         [self setLineView];
         
-        [self addSettingBtn];
+        //[self addSettingBtn];
     }
     
     return self;
@@ -281,12 +281,13 @@
         make.width.equalTo(@180);
         make.height.equalTo(@20);
     }];
+    /*
     [_settingBtn mas_makeConstraints:^(MASConstraintMaker *make){
         make.right.equalTo(self.topView.mas_right).offset(-10);
         make.top.equalTo(self.topView).offset(15);
         make.width.equalTo(@40);
         make.height.equalTo(@40);
-    }];
+    }];*/
     [_botView mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self).offset(0);
         make.top.equalTo(self).offset(kScreenWidth*2/3-5-60);

@@ -64,8 +64,9 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     //self.navigationController.navigationBarHidden=YES;
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-    //[self setStatusBarBackgroundColor:[UIColor clearColor]];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    
+    [self setStatusBarBackgroundColor:[UIColor clearColor]];
     //self.navigationController.navigationBar.backgroundColor = LINE_BG;
     [AppDelegate APP].allowRotation = false;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
@@ -88,15 +89,15 @@
 -(void)setNaviUI{
     
     self.navigationItem.title =@"登录";
-    //self.navigationController.navigationBar.barTintColor =[UIColor blackColor];
-    //self.navigationController.navigationBar.alpha = 0.8;
-    self.navigationController.navigationBar.barTintColor = COMMON_COLOR;
+    [self.navigationController.navigationBar setBarTintColor:COMMON_COLOR];
+    self.navigationController.navigationBar.translucent = NO;
+    
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSFontAttributeName:[UIFont systemFontOfSize:20],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftBtn addTarget:self action:@selector(backClick:)
      forControlEvents:UIControlEventTouchUpInside];
-    leftBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+    //leftBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
     leftBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     //[leftBtn setTitle:@"" forState:UIControlStateNormal];
     //[leftBtn setFont:[UIFont systemFontOfSize: 14.0]];
@@ -105,9 +106,9 @@
     leftBtn.frame = CGRectMake(20,20,40,20);
     
     [leftBtn setImage:[UIImage imageNamed:@"btn_nback"] forState:UIControlStateNormal];
-    [self.view addSubview:leftBtn ];
-    //UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
-    //self.navigationItem.leftBarButtonItem = leftBtnItem;
+    //[self.view addSubview:leftBtn ];
+    UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
+    self.navigationItem.leftBarButtonItem = leftBtnItem;
 
 }
 

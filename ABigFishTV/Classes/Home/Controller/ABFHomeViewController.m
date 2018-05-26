@@ -12,6 +12,7 @@
 #import "ABFMenuView.h"
 #import "TitleHeaderSectionView.h"
 #import "ABFCollectionReusableView.h"
+#import "ABFFooterCollectionReusableView.h"
 #import "ABFHomeTopCollectionReusableView.h"
 #import "ABFCollectionViewCell.h"
 #import "ABFTelevisionInfo.h"
@@ -234,6 +235,8 @@
     
     _collectionView = collectionView;
     [_collectionView registerClass:[ABFCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView"];
+    [_collectionView registerClass:[ABFFooterCollectionReusableView class]
+        forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footerView"];
     [_collectionView registerClass:[ABFHomeTopCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"topheaderView"];
     [_collectionView registerClass:[ABFCollectionTopCell class] forCellWithReuseIdentifier:@"topCell"];
     [_collectionView registerClass:[ABFCollectionViewCell class] forCellWithReuseIdentifier:@"myCell"];
@@ -392,6 +395,11 @@
             return headerView;
         }
     }
+    
+    if(kind == UICollectionElementKindSectionFooter){
+        UICollectionReusableView* view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footerView" forIndexPath:indexPath];
+        return view;
+    }
     return nil;
 }
 
@@ -436,6 +444,13 @@
         return CGSizeMake(kScreenWidth, 0);
     }
     return CGSizeMake(kScreenWidth, 40);
+}
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
+    if(section == 0){
+        return CGSizeMake(kScreenWidth, 0);
+    }
+    return CGSizeMake(kScreenWidth, 20);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
