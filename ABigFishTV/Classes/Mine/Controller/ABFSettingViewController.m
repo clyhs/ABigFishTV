@@ -135,6 +135,9 @@
     
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [self setStatusBarBackgroundColor:[UIColor clearColor]];
+}
 
 
 - (void)setStatusBarBackgroundColor:(UIColor *)color {

@@ -133,7 +133,7 @@
     }];
     
     [_imagesView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.equalTo(self).offset(50);
+        make.left.equalTo(self).offset(55);
         make.top.equalTo(self).offset(60+model.contextHeight);
         make.right.equalTo(self).offset(-10);
         make.height.mas_equalTo(model.imagesHeight);
@@ -148,7 +148,14 @@
     mylayout.subviewSpace = 5;
     
     NSArray *images = [ABFInfo mj_keyValuesArrayWithObjectArray:model.images];
-    CGFloat width = ((kScreenWidth-60)/3-10);
+    NSInteger len = [images count];
+    CGFloat spession = 0;
+    if(len == 1){
+        spession =((kScreenWidth-60)*2/3-10);
+    }else{
+        spession = ((kScreenWidth-60)/3-10);
+    }
+    CGFloat width = spession;
     CGFloat height = width;
     int i = 0;
     for (ABFInfo *info in images) {

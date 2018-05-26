@@ -48,15 +48,32 @@
 -(CGFloat) imagesHeight{
 
     CGFloat lineHeight= ((kScreenWidth-60)/3-10);
+    CGFloat lineHeight2= (((kScreenWidth-60)*2)/3-10);
+    NSInteger len = 0;
     if(!_imagesHeight){
         NSArray *images = [ABFInfo mj_keyValuesArrayWithObjectArray:_images];
         if(images.count>0){
             NSInteger count = [images count];
+            /*
             if(count % 3 == 0){
                 _imagesHeight = (count/3)*(lineHeight+10);
             }else{
                 _imagesHeight = (count/3 + 1)*(lineHeight+10);
+            }*/
+            if(count <= 3){
+                len = 1;
+            }else if((count % 3 == 0) && (count>3)){
+                len = count / 3;
+            }else if((count % 3 > 0) && (count>3)){
+                len = count / 3 + 1;
             }
+            if(count == 1){
+                _imagesHeight = lineHeight2;
+            }else{
+                _imagesHeight = (lineHeight+10) * len;
+            }
+            
+            
         }else{
             _imagesHeight = 0;
         }
