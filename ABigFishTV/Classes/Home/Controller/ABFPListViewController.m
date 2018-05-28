@@ -263,7 +263,12 @@
     }else if([self.typeId isEqualToString:@"12"]){
         //ABFProgramInfo *model = self.data[indexPath.row];
         ABFProgramModel *model = self.data[indexPath.row];
-        ABFProgramViewCell *cell = (ABFProgramViewCell *)[tableView dequeueReusableCellWithIdentifier:@"programCell" forIndexPath:indexPath];
+        /*
+        ABFProgramViewCell *cell = (ABFProgramViewCell *)[tableView dequeueReusableCellWithIdentifier:@"programCell" forIndexPath:indexPath];*/
+        ABFProgramViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if (cell == nil) {
+            cell = [[ABFProgramViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"programCell"];
+        }
         [cell setModel:model];
         return cell;
     }
