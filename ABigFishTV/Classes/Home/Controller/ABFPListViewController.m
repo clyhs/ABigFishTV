@@ -18,6 +18,7 @@
 #import "JHUD.h"
 #import "ABFMJRefreshGifHeader.h"
 #import "ABFMJRefreshGifFooter.h"
+#import "ABFProgramModel.h"
 
 @interface ABFPListViewController ()<UITableViewDelegate,UITableViewDataSource,ABFCommentDelegate,ABFCommentTFDelegate,ABFCommentViewCellDelegate>
 
@@ -29,7 +30,7 @@
 
 @property(nonatomic,strong) UIView         *bgView;
 @property(nonatomic,strong) UIImageView    *bgImageView;
-@property (nonatomic) JHUD *hudView;
+@property (nonatomic)       JHUD *hudView;
 @property(nonatomic,assign) NSInteger curIndexPage;
 
 @end
@@ -110,14 +111,16 @@
         fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%ld",_curIndexPage]];
         [self loaddata:fullUrl type:1];
     }else if([self.typeId isEqualToString:@"12"]){
-        NSString *fullUrl = [BaseUrl stringByAppendingString:TVProgramUrl];
-        fullUrl = [fullUrl stringByAppendingFormat:@"/%ld",self.uid];
-        NSDate *senddate=[NSDate date];
-        NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
-        [dateformatter setDateFormat:@"YYYYMMdd"];
-        NSString *locationString=[dateformatter stringFromDate:senddate];
-        NSLog(@"%@",locationString);
-        fullUrl = [fullUrl stringByAppendingFormat:@"/%@",locationString];
+        
+        //NSString *fullUrl = [BaseUrl stringByAppendingString:TVProgramUrl];
+        NSString *fullUrl = @"https://m.tvsou.com/api/ajaxGetPlay";
+        //fullUrl = [fullUrl stringByAppendingFormat:@"/%ld",self.uid];
+        //NSDate *senddate=[NSDate date];
+        //NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+        //[dateformatter setDateFormat:@"YYYYMMdd"];
+        //NSString *locationString=[dateformatter stringFromDate:senddate];
+        //NSLog(@"%@",locationString);
+        //fullUrl = [fullUrl stringByAppendingFormat:@"/%@",locationString];
         [self loaddata:fullUrl type:1];
     }
     
@@ -188,32 +191,49 @@
         }];
         //[self.tableView reloadData];
     }else if([self.typeId isEqualToString:@"12"]){
-        [PPNetworkHelper GET:url parameters:nil responseCache:^(id responseCache) {
-            //加载缓存数据
-        } success:^(id responseObject) {
-            NSArray *temArray=[responseObject objectForKey:@"data"];
-            NSLog(@"12 ... success%ld",[temArray count]);
-            NSArray *arrayM = [ABFProgramInfo mj_objectArrayWithKeyValuesArray:temArray];
-            self.data = [arrayM mutableCopy];
-            if(self.data.count == 0){
-                _bgView.alpha = 1;
-            }else{
-                _bgView.alpha = 0;
-                [self.tableView reloadData];
-            }
-            [self.tableView.mj_header endRefreshing];
-            self.tableView.mj_footer.hidden = YES;
+        NSMutableDictionary *params = [NSMutableDictionary new];
+        NSDate *senddate=[NSDate date];
+        NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+        [dateformatter setDateFormat:@"YYYYMMdd"];
+        NSString *locationString=[dateformatter stringFromDate:senddate];
+        if( ![self.channelid isEqualToString:@""] && self.channelid!=nil) {
+            NSLog(@"channelid is not null");
+            [params setObject:self.channelid forKey:@"channelid"];
+            [params setObject:locationString forKey:@"date"];
+            [PPNetworkHelper POST:url parameters:params responseCache:^(id responseCache) {
+                //加载缓存数据
+            } success:^(id responseObject) {
+                NSArray *temArray=[responseObject objectForKey:@"list"];
+                NSLog(@"12 ... success%ld",[temArray count]);
+                NSArray *arrayM = [ABFProgramModel mj_objectArrayWithKeyValuesArray:temArray];
+                self.data = [arrayM mutableCopy];
+                if(self.data.count == 0){
+                    _bgView.alpha = 1;
+                }else{
+                    _bgView.alpha = 0;
+                    [self.tableView reloadData];
+                }
+                [self.tableView.mj_header endRefreshing];
+                self.tableView.mj_footer.hidden = YES;
+                [self.hudView hide];
+            } failure:^( NSError *error) {
+                NSLog(@"error%@",error);
+                [self.tableView.mj_header endRefreshing];
+                self.hudView.indicatorViewSize = CGSizeMake(100, 100);
+                self.hudView.messageLabel.text = @"连接网络失败，请重新连接";
+                [self.hudView.refreshButton setTitle:@"重新连接" forState:UIControlStateNormal];
+                [self.hudView.refreshButton addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventTouchUpInside];
+                self.hudView.customImage = [UIImage imageNamed:@"bg_null"];
+                [self.hudView showAtView:self.view hudType:JHUDLoadingTypeFailure];
+            }];
+        }else{
+            NSLog(@"channelid is null");
+            _bgView.alpha = 1;
             [self.hudView hide];
-        } failure:^( NSError *error) {
-            NSLog(@"error%@",error);
-            [self.tableView.mj_header endRefreshing];
-            self.hudView.indicatorViewSize = CGSizeMake(100, 100);
-            self.hudView.messageLabel.text = @"连接网络失败，请重新连接";
-            [self.hudView.refreshButton setTitle:@"重新连接" forState:UIControlStateNormal];
-            [self.hudView.refreshButton addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventTouchUpInside];
-            self.hudView.customImage = [UIImage imageNamed:@"bg_null"];
-            [self.hudView showAtView:self.view hudType:JHUDLoadingTypeFailure];
-        }];
+        }
+        
+        
+        
         
     }
 }
@@ -241,7 +261,8 @@
         cell.delegate = self;
         return cell;
     }else if([self.typeId isEqualToString:@"12"]){
-        ABFProgramInfo *model = self.data[indexPath.row];
+        //ABFProgramInfo *model = self.data[indexPath.row];
+        ABFProgramModel *model = self.data[indexPath.row];
         ABFProgramViewCell *cell = (ABFProgramViewCell *)[tableView dequeueReusableCellWithIdentifier:@"programCell" forIndexPath:indexPath];
         [cell setModel:model];
         return cell;

@@ -7,7 +7,8 @@
 //
 
 #import "ABFProgramViewCell.h"
-#import "ABFProgramInfo.h"
+#import "ABFProgramModel.h"
+#import "NSDate+ABFDate.h"
 
 @implementation ABFProgramViewCell
 
@@ -66,11 +67,26 @@
 }
 
 
--(void)setModel:(ABFProgramInfo *)model{
+-(void)setModel:(ABFProgramModel *)model{
     _model = model;
-    NSLog(@"============%@",model.play_time);
-    _timeLab.text = model.play_time;
+    NSLog(@"============%@",model.playtime);
+    _timeLab.text = model.playtime;
     _nameLab.text = model.title;
+    NSDate *datenow = [NSDate date];
+    if(![model.playtimes isEqualToString:@""] && ![model.endtimes isEqualToString:@""]){
+        NSTimeInterval playtimes    =[model.playtimes doubleValue] ;
+        NSTimeInterval endtimes    =[model.endtimes doubleValue] ;
+        NSDate *playdate = [NSDate dateWithTimeIntervalSince1970:playtimes];
+        NSDate *enddate = [NSDate dateWithTimeIntervalSince1970:endtimes];
+        
+        NSInteger p = [NSDate compareOneDay:playdate withAnotherDay:datenow];
+        NSInteger e = [NSDate compareOneDay:enddate withAnotherDay:datenow];
+        if(p == -1 && e == 1){
+            _nameLab.textColor = COMMON_COLOR;
+        }
+    }
+    
+    
 }
 
 

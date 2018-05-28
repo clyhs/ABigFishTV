@@ -36,6 +36,7 @@
 @property(nonatomic,copy)   NSString  *nexttitle;
 @property(nonatomic,assign) NSInteger commentNum;
 @property(nonatomic,copy)   NSString  *goodNum;
+@property(nonatomic,copy)   NSString  *channelid;
 
 
 

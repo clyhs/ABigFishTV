@@ -22,6 +22,7 @@
 @property(nonatomic,assign)   NSInteger      uid;
 @property(nonatomic,strong)   NSMutableArray *data;
 @property(nonatomic,assign)   CGFloat        height;
+@property(nonatomic,strong)   NSString       *channelid;
 
 @property(nonatomic,weak)   id<ABFPListViewDelegate> delegate;
 

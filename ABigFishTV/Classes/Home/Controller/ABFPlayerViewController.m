@@ -328,6 +328,7 @@
         vc.typeId = [NSString stringWithFormat:@"%@",typeId];
         NSLog(@"typeId=%@",typeId);
         vc.uid = self.uid;
+        vc.channelid =self.model.channelid;
         //vc.height = self.botView.frame.size.height;
         [self addChildViewController:vc];
     }

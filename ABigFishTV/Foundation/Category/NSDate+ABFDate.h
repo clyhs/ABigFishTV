@@ -30,4 +30,6 @@
 - (NSInteger)minuteValue;
 - (NSInteger)secondValue;
 
++(int)compareOneDay:(NSDate *)oneDay withAnotherDay:(NSDate *)anotherDay;
+
 @end

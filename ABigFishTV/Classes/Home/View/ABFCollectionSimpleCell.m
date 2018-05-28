@@ -120,8 +120,8 @@
     _model = model;
     [_playImageView sd_setImageWithURL:[NSURL URLWithString:model.bg] placeholderImage:[UIImage imageNamed:@""]];
     _hitLab.text =[NSString stringWithFormat:@"%ld",_model.hit] ;
-    _playtitleLab.text = [NSString stringWithFormat:@"正播：%@",model.playtitle];
-    _nexttitleLab.text =[NSString stringWithFormat:@"接下来：%@",model.nexttitle];
+    _playtitleLab.text = [NSString stringWithFormat:@"%@",model.playtitle];
+    _nexttitleLab.text =[NSString stringWithFormat:@"%@",model.nexttitle];
     
 }
 
