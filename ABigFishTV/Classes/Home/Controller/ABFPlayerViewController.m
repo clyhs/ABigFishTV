@@ -399,7 +399,8 @@
     // 添加默认控制器
     ABFPListViewController *vc = [self.childViewControllers firstObject];
     //vc.view.frame = self.detailScrollView.bounds;
-    vc.view.frame = CGRectMake(self.detailScrollView.contentOffset.x, 0, kScreenWidth, self.detailScrollView.frame.size.height-20);
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    vc.view.frame = CGRectMake(self.detailScrollView.contentOffset.x, 0, kScreenWidth, self.detailScrollView.frame.size.height-statusBar.frame.size.height);
     [self.detailScrollView addSubview:vc.view];
 }
 
@@ -452,7 +453,8 @@
     [self setScrollToTopWithTableViewIndex:index];
     
     if (vc.view.superview) return;
-    vc.view.frame = CGRectMake(scrollView.contentOffset.x, 0, kScreenWidth, scrollView.height-20);
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    vc.view.frame = CGRectMake(scrollView.contentOffset.x, 0, kScreenWidth, scrollView.height-statusBar.frame.size.height);
     [self.detailScrollView addSubview:vc.view];
 }
 

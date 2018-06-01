@@ -111,16 +111,7 @@
         fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%ld",_curIndexPage]];
         [self loaddata:fullUrl type:1];
     }else if([self.typeId isEqualToString:@"12"]){
-        
-        //NSString *fullUrl = [BaseUrl stringByAppendingString:TVProgramUrl];
         NSString *fullUrl = @"https://m.tvsou.com/api/ajaxGetPlay";
-        //fullUrl = [fullUrl stringByAppendingFormat:@"/%ld",self.uid];
-        //NSDate *senddate=[NSDate date];
-        //NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
-        //[dateformatter setDateFormat:@"YYYYMMdd"];
-        //NSString *locationString=[dateformatter stringFromDate:senddate];
-        //NSLog(@"%@",locationString);
-        //fullUrl = [fullUrl stringByAppendingFormat:@"/%@",locationString];
         [self loaddata:fullUrl type:1];
     }
     
