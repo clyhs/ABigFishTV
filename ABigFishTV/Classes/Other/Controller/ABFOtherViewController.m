@@ -14,6 +14,11 @@
 #import "AppDelegate.h"
 #import <CoreLocation/CoreLocation.h>
 #import "SDCycleScrollView.h"
+#import <PPNetworkHelper.h>
+#import "ABFProgramAndTvInfo.h"
+#import "ABFTelevisionInfo.h"
+#import "ABFPlayerViewController.h"
+#import "ABFMJRefreshGifHeader.h"
 
 
 @interface ABFOtherViewController ()<UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate,SDCycleScrollViewDelegate>{
@@ -25,6 +30,7 @@
 @property(nonatomic,weak)    MyFloatLayout *mylayout;
 @property(nonatomic,strong)  NSMutableArray *menuArrays;
 @property(nonatomic,strong)  NSMutableArray *dataArrays;
+@property(nonatomic,strong)  NSMutableArray *programArrays;
 @property(nonatomic,weak)    UILabel *titleLab;
 @property(nonatomic,weak)    SDCycleScrollView *sdcsView;
 @property(nonatomic,assign)  double nheight;
@@ -43,13 +49,7 @@
     return _menuArrays;
 }
 
--(NSMutableArray *)dataArrays{
-    
-    if(_dataArrays == nil){
-        _dataArrays = [NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"others.plist" ofType:nil]];
-    }
-    return _dataArrays;
-}
+
 
 
 -(void) initData{
@@ -67,14 +67,15 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = LINE_BG;
     //self.title = @"";
+    self.programArrays = [NSMutableArray new];
     self.adHeight = kScreenWidth /3;
     //[AppDelegate APP].allowRotation = false;
     [self initData];
     [self addTableView];
     
     [self addTableHeaderView];
-    
-    [self loaddata];
+    [self addRefreshHeader];
+    [self loadData];
     
     [self startLocation];
     
@@ -174,18 +175,38 @@
 
 - (void)makeConstraints{
     
-    /*
-    [self.navView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(self.view);
-     make.height.mas_equalTo(self.navigationController.navigationBar.frame.size.height);
-    }];*/
-    /*
-    [self.searchView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.navView).offset(80);
-        make.top.equalTo(self.navView).offset(30);
-        make.height.mas_equalTo(25);
-        make.right.equalTo(self.navView).offset(-20);
-    }];*/
+}
+
+- (void) loadData{
+    NSString *url = [BaseUrl stringByAppendingString:TVProgramRandomUrl];
+    
+    [PPNetworkHelper GET:url parameters:nil responseCache:^(id responseCache) {
+        //加载缓存数据
+    } success:^(id responseObject) {
+        NSArray *temArray=[responseObject objectForKey:@"data"];
+        NSLog(@"success%ld",[temArray count]);
+        NSArray *arrayM = [ABFProgramAndTvInfo mj_objectArrayWithKeyValuesArray:temArray];
+        
+        if(nil == self.dataArrays){
+            self.dataArrays = [NSMutableArray new];
+        }else{
+            [self.dataArrays removeAllObjects];
+        }
+        if(arrayM.count > 0){
+            for( ABFProgramAndTvInfo *tvi in arrayM){
+                ABFTelevisionInfo *i = tvi.model[0];
+                NSLog(@"%@",i.name);
+                //[self.dataArrays addObject:tvi];
+            }
+            self.dataArrays = [arrayM mutableCopy];
+        }
+        [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
+
+    } failure:^(NSError *error) {
+        NSLog(@"error%@",error);
+        [self.tableView.mj_header endRefreshing];
+    }];
     
 }
 
@@ -285,11 +306,17 @@
     [headerView addSubview:myView];
     headerView.backgroundColor = [UIColor whiteColor];
     
-    _tableView.parallaxHeader.view = headerView;
-    _tableView.parallaxHeader.height = nheight +self.adHeight;
-    _tableView.parallaxHeader.mode = MXParallaxHeaderModeFill;
+    _tableView.tableHeaderView = headerView;
+    _tableView.tableHeaderView.height = nheight +self.adHeight;
+    //_tableView.parallaxHeader.mode = MXParallaxHeaderModeFill;
 }
 
+- (void)addRefreshHeader
+{
+    ABFMJRefreshGifHeader *header = [ABFMJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    self.tableView.mj_header = header;
+    
+}
 
 - (void)addCycleScrollView
 {
@@ -305,9 +332,7 @@
     _sdcsView = cycleScrollView;
 }
 
--(void)loaddata{
-    [self.tableView reloadData];
-}
+
 
 -(void)searchAction:(id)sender{
     UIButton *btn = sender;
@@ -332,23 +357,46 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return [self.dataArrays count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    NSString *title = [self.dataArrays[indexPath.row] objectForKey:@"name"];
+    //NSString *title = [self.dataArrays[indexPath.row] objectForKey:@"title"];
+    ABFProgramAndTvInfo *model = self.dataArrays[indexPath.row];
+    NSString *title = model.title;
     //NSLog(@"title=%@",title);
-    ABFOtherSimpleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mycell" forIndexPath:indexPath];
-    cell.textLabel.text = title;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    ABFOtherSimpleCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[ABFOtherSimpleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mycell"];
+    }
+    //cell.titleLabel.text = title;
+    //cell.timeLabel.text = model.play_time;
+    [cell setTitle:title time:model.play_time];
+    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    
+        ABFPlayerViewController *vc = [[ABFPlayerViewController alloc] init];
+        ABFProgramAndTvInfo *tmodel = self.dataArrays[indexPath.row];
+    ABFTelevisionInfo *model =tmodel.model[0];
+        vc.playUrl = model.url_1;
+        vc.uid = model.id;
+        vc.tvTitle = model.name;
+        vc.model = model;
+        //vc.hidesBottomBarWhenPushed = YES;
+        //[self.navigationController pushViewController:vc animated:YES];
+        vc.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:vc animated:YES completion:nil];
+    
+    
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

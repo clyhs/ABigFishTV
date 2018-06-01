@@ -57,6 +57,7 @@
 #define UserGoodUrl @"/api/user/good" 
 #define UserGetGoodUrl @"/api/user/getgood/"
 #define UserRegisterUrl @"/api/user/registerforother"
+#define TVProgramRandomUrl @"/api/tv/getRandomProgram"
 
 #define LM_SCREEN_WIDTH   [[UIScreen mainScreen] bounds].size.width
 #define LM_SCREEN_HEIGHT  [[UIScreen mainScreen] bounds].size.height

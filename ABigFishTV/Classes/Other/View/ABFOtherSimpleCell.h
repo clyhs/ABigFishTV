@@ -12,8 +12,11 @@
 
 @property(nonatomic,weak) UILabel *titleLabel;
 
+@property(nonatomic,weak) UILabel *timeLabel;
+
 @property(nonatomic,weak) UIView *lineView;
 
-- (instancetype)initWithFrame:(CGRect)frame title:(NSString*)title;
+-(void)setTitle:(NSString *)title time:(NSString *)time;
+
 
 @end

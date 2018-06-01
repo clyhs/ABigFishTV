@@ -102,6 +102,7 @@
 		722981151F8FC5AE00484146 /* ABFMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 722981141F8FC5AE00484146 /* ABFMenuView.m */; };
 		722D8A551F9F71E000F21D2D /* ABFChannelViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 722D8A541F9F71E000F21D2D /* ABFChannelViewCell.m */; };
 		722D8A591F9F894D00F21D2D /* ABFMineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 722D8A581F9F894D00F21D2D /* ABFMineHeaderView.m */; };
+		7230640C20C1854F0002A159 /* ABFProgramAndTvInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7230640B20C1854F0002A159 /* ABFProgramAndTvInfo.m */; };
 		72350DEC1FF907E10024C5A9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72350DEB1FF907E10024C5A9 /* SystemConfiguration.framework */; };
 		72350DEE1FF907F00024C5A9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72350DED1FF907F00024C5A9 /* Security.framework */; };
 		72350DF01FF907F80024C5A9 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72350DEF1FF907F80024C5A9 /* CoreTelephony.framework */; };
@@ -427,6 +428,8 @@
 		722D8A541F9F71E000F21D2D /* ABFChannelViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFChannelViewCell.m; path = Classes/Home/View/ABFChannelViewCell.m; sourceTree = "<group>"; };
 		722D8A571F9F894D00F21D2D /* ABFMineHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFMineHeaderView.h; path = Classes/Mine/View/ABFMineHeaderView.h; sourceTree = "<group>"; };
 		722D8A581F9F894D00F21D2D /* ABFMineHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFMineHeaderView.m; path = Classes/Mine/View/ABFMineHeaderView.m; sourceTree = "<group>"; };
+		7230640A20C1854F0002A159 /* ABFProgramAndTvInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ABFProgramAndTvInfo.h; path = Classes/Other/Model/ABFProgramAndTvInfo.h; sourceTree = "<group>"; };
+		7230640B20C1854F0002A159 /* ABFProgramAndTvInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ABFProgramAndTvInfo.m; path = Classes/Other/Model/ABFProgramAndTvInfo.m; sourceTree = "<group>"; };
 		72350DEB1FF907E10024C5A9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		72350DED1FF907F00024C5A9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		72350DEF1FF907F80024C5A9 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -1543,6 +1546,8 @@
 		72FECD871FAE0404006CD1A9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7230640A20C1854F0002A159 /* ABFProgramAndTvInfo.h */,
+				7230640B20C1854F0002A159 /* ABFProgramAndTvInfo.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1880,6 +1885,7 @@
 				72DB593D2088D4F900645FD2 /* UINavigationController+ABFPlayerRotation.m in Sources */,
 				7217684A20541DC9008312BC /* ABFCommentTFView.m in Sources */,
 				72DB59202088CFEF00645FD2 /* ABFPlayerView.m in Sources */,
+				7230640C20C1854F0002A159 /* ABFProgramAndTvInfo.m in Sources */,
 				72130B671FBC733D0083D1DD /* ABFSearchViewController.m in Sources */,
 				720B0E041F767B6C005F30FA /* ABFTabBarController.m in Sources */,
 				7267D2F11FDD0A2500AEE25F /* ABFVideoPlayerViewController.m in Sources */,
