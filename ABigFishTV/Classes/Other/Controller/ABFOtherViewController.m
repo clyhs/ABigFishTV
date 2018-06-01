@@ -118,7 +118,7 @@
     
     self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
     UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-    _tableView.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+statusBar.frame.size.height, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height-statusBar.frame.size.height);
+    _tableView.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+statusBar.frame.size.height, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height-statusBar.frame.size.height-self.tabBarController.tabBar.frame.size.height);
     
 }
 
