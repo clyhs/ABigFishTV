@@ -329,7 +329,7 @@
         NSLog(@"typeId=%@",typeId);
         vc.uid = self.uid;
         vc.channelid =self.model.channelid;
-        //vc.height = self.botView.frame.size.height;
+        
         [self addChildViewController:vc];
     }
     
@@ -411,14 +411,14 @@
     NSUInteger rightIndex = leftIndex + 1;
     CGFloat scaleRight = value - leftIndex;
     CGFloat scaleLeft = 1 - scaleRight;
-    //TitleLineLabel *labelLeft = self.titleTabScrollView.subviews[leftIndex];
-    //labelLeft.backgroundColor = [UIColor yellowColor];
-    //labelLeft.scale = scaleLeft;
+    TitleLineLabel *labelLeft = self.titleTabScrollView.subviews[leftIndex];
+    //labelLeft.backgroundColor = [UIColor clearColor];
+    labelLeft.scale = scaleLeft;
     // 考虑到最后一个板块，如果右边已经没有板块了 就不在下面赋值scale了
-    //if (rightIndex < self.titleTabScrollView.subviews.count) {
-        //TitleLineLabel *labelRight = self.titleTabScrollView.subviews[rightIndex];
-        //labelRight.scale = scaleRight;
-    //}
+    if (rightIndex < self.titleTabScrollView.subviews.count) {
+        TitleLineLabel *labelRight = self.titleTabScrollView.subviews[rightIndex];
+        labelRight.scale = scaleRight;
+    }
 }
 
 /** 滚动结束后调用（代码导致） */

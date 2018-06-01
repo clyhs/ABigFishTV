@@ -255,16 +255,12 @@
     
     if([self.typeId isEqualToString:@"11"]){
         ABFCommentInfo *model = self.data[indexPath.row];
-        
         ABFCommentViewCell *cell = [[ABFCommentViewCell alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 50)];
         [cell setModel:model];
         cell.delegate = self;
         return cell;
     }else if([self.typeId isEqualToString:@"12"]){
-        //ABFProgramInfo *model = self.data[indexPath.row];
         ABFProgramModel *model = self.data[indexPath.row];
-        /*
-        ABFProgramViewCell *cell = (ABFProgramViewCell *)[tableView dequeueReusableCellWithIdentifier:@"programCell" forIndexPath:indexPath];*/
         ABFProgramViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         if (cell == nil) {
             cell = [[ABFProgramViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"programCell"];
@@ -272,8 +268,6 @@
         [cell setModel:model];
         return cell;
     }
-    
-    
     return nil;
 }
 
