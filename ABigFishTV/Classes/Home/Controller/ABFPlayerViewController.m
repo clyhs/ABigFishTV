@@ -374,8 +374,23 @@
         tll.tag = i;
         //设置视图是否可以接收到用户的事件和消息
         tll.userInteractionEnabled = YES;
+        [tll addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(lblClick:)]];
     }
     [self.botView addSubview:_titleTabScrollView];
+}
+
+/** 标题栏label的点击事件 */
+- (void)lblClick:(UITapGestureRecognizer *)recognizer
+{
+    TitleLineLabel *titlelable = (TitleLineLabel *)recognizer.view;
+    
+    CGFloat offsetX = titlelable.tag * self.detailScrollView.frame.size.width;
+    CGFloat offsetY = self.detailScrollView.contentOffset.y;
+    CGPoint offset = CGPointMake(offsetX, offsetY);
+    
+    [self.detailScrollView setContentOffset:offset animated:YES];
+    
+    [self setScrollToTopWithTableViewIndex:titlelable.tag];
 }
 
 - (void)setFirstTitleTab{
