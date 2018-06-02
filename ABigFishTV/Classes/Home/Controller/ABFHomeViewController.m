@@ -177,10 +177,10 @@
     _logoView = imageView;
     
     UIView *searchView = [[UIView alloc] init];
-    searchView.frame = CGRectMake(90, 7, kScreenWidth-90-20, 28);
+    searchView.frame = CGRectMake(90, 7, kScreenWidth-90-20, 26);
     searchView.backgroundColor = [UIColor whiteColor];
     searchView.layer.masksToBounds = YES;
-    searchView.layer.cornerRadius = 14;
+    searchView.layer.cornerRadius = 13;
     [self.navigationController.navigationBar addSubview:searchView];
     _searchView = searchView;
     
@@ -191,7 +191,7 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchClick:)];
     [searchView addGestureRecognizer:tap];
     
-    UILabel *placeHolderLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 2, searchView.frame.size.width-30, 25)];
+    UILabel *placeHolderLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 0, searchView.frame.size.width-30, 25)];
     placeHolderLabel.font = [UIFont boldSystemFontOfSize:14];
     placeHolderLabel.text = @"请输入关键字";
     placeHolderLabel.textAlignment = NSTextAlignmentLeft;

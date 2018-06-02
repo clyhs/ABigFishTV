@@ -169,9 +169,7 @@
     
     NSLog(@"url=%@",url);
     
-    [PPNetworkHelper GET:url parameters:nil responseCache:^(id responseCache) {
-        //加载缓存数据
-    } success:^(id responseObject) {
+    [PPNetworkHelper GET:url parameters:nil success:^(id responseObject) {
         NSArray *temArray=[responseObject objectForKey:@"data"];
         NSLog(@"success%ld",[temArray count]);
         NSArray *arrayM = [ABFTelevisionInfo mj_objectArrayWithKeyValuesArray:temArray];
