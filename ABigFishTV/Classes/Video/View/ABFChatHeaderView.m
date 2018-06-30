@@ -10,6 +10,7 @@
 #import "ABFChatInfo.h"
 #import "ABFInfo.h"
 #import "MyLayout.h"
+#import <YYText.h>
 
 @implementation ABFChatHeaderView
 
@@ -70,6 +71,7 @@
     [self addSubview:_contextView];
     
     _contextLab = [[UILabel alloc] init];
+    //_contextLab.backgroundColor = [UIColor yellowColor];
     _contextLab.font = [UIFont systemFontOfSize:16];
     _contextLab.textColor = [UIColor darkGrayColor];
     _contextLab.numberOfLines = 0;
@@ -107,6 +109,7 @@
     _timeLab.text = model.create_at;
     NSString *str =[NSString stringWithFormat:@"%@",model.context];
     //_contextLab.text = model.context;
+    /*
     _contextLab.text =[str stringByReplacingEmojiCheatCodesWithUnicode];
     _contextLab.font = [UIFont systemFontOfSize:16];
     _contextLab.numberOfLines = 0;
@@ -119,11 +122,35 @@
     [text addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, text.length)];
     _contextLab.attributedText = text;
     [_contextLab sizeToFit];
+     */
+    CGFloat labelWidth = kScreenWidth-60;
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[_model.context stringByReplacingEmojiCheatCodesWithUnicode]];
+    attString.yy_font = [UIFont systemFontOfSize:16];
+    attString.yy_lineSpacing =5;
+    attString.yy_kern = @0;
+    //attributedString.yy_lineBreakMode = NSLineBreakByWordWrapping;
+    YYTextLinePositionSimpleModifier *modifier = [YYTextLinePositionSimpleModifier new];
+    modifier.fixedLineHeight = 20;
+    YYTextContainer *container = [YYTextContainer new];
+    container.size = CGSizeMake(labelWidth, CGFLOAT_MAX);
+    container.linePositionModifier = modifier;
+    YYTextLayout *attlayout = [YYTextLayout layoutWithContainer:container text:attString];
+    YYLabel *attlabel = [YYLabel new];
+    attlabel.size = attlayout.textBoundingSize;
+    attlabel.textLayout = attlayout;
+    //[label sizeToFit];
+    CGFloat attheight = attlabel.size.height;
+    
+    _contextLab.text =[_model.context stringByReplacingEmojiCheatCodesWithUnicode];
+    _contextLab.font = [UIFont systemFontOfSize:16];
+    _contextLab.numberOfLines = 0;
+    _contextLab.textColor = [UIColor darkGrayColor];
+    
     [_contextView mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self).offset(60);
         make.top.equalTo(self).offset(60);
         make.right.equalTo(self).offset(-10);
-        make.height.mas_equalTo(model.contextHeight);
+        make.height.mas_equalTo(attheight);
     }];
     [_contextLab mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self.contextView).offset(0);
@@ -134,7 +161,7 @@
     
     [_imagesView mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self).offset(55);
-        make.top.equalTo(self).offset(60+model.contextHeight);
+        make.top.equalTo(self).offset(60+attheight);
         make.right.equalTo(self).offset(-10);
         make.height.mas_equalTo(model.imagesHeight);
     }];

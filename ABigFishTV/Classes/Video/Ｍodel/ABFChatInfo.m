@@ -11,6 +11,8 @@
 #import "UILabel+ABFLabel.h"
 #import <MJExtension.h>
 #import "ABFInfo.h"
+#import "NSString+ABF.h"
+#import <YYText.h>
 
 @implementation ABFChatInfo
 
@@ -23,9 +25,34 @@
 -(CGFloat) contextHeight{
     
     if(!_contextHeight){
+        /*
         CGFloat labelWidth = kScreenWidth-70;
         CGFloat height = [UILabel getHeightByWidthForSpace:labelWidth-5 string:[NSString replaceEmoji: _context] font:[UIFont systemFontOfSize:16] withLineSpace:5 WordSpace:0];
-        _contextHeight = height;
+        _contextHeight = height;*/
+        CGFloat labelWidth = kScreenWidth-60;
+        
+        UILabel *context = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, labelWidth, 1)];
+        context.font = [UIFont systemFontOfSize:16];
+        context.text = [_context stringByReplacingEmojiCheatCodesWithUnicode];
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[_context stringByReplacingEmojiCheatCodesWithUnicode]];
+        attributedString.yy_font = [UIFont systemFontOfSize:16];
+        //attributedString.yy_lineSpacing =5;
+        //attributedString.yy_kern = @0;
+        attributedString.yy_lineBreakMode = NSLineBreakByWordWrapping;
+        
+        
+        YYTextLinePositionSimpleModifier *modifier = [YYTextLinePositionSimpleModifier new];
+        modifier.fixedLineHeight = 20;
+        
+        YYTextContainer *container = [YYTextContainer new];
+        container.size = CGSizeMake(labelWidth-5, CGFLOAT_MAX);
+        container.linePositionModifier = modifier;
+        
+        YYTextLayout *layout = [YYTextLayout layoutWithContainer:container text:attributedString];
+        YYLabel *label = [YYLabel new];
+        label.size = layout.textBoundingSize;
+        label.textLayout = layout;
+        _contextHeight = label.size.height;
     }
     return _contextHeight;
 }
