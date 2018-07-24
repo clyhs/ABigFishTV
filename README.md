@@ -21,7 +21,8 @@
 * 地址：<a href="https://github.com/clyhs/webapi">webapi</a>
 
 ### 更换APP服务地址
-* 在ABigFishTV/Foundation/Common/ABigFishHeader.h的 #define BaseUrl @"http://webapi.abigfish.org"
+* 在ABigFishTV/Foundation/Common/ABigFishHeader.h的 #define BaseUrl @"http://webapi.abigfish.net"
+
 ### 登录
 * 可以使用第三方登录。
 * 或者用测试帐号test123/123456
