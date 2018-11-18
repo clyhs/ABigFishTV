@@ -29,7 +29,7 @@
 -(void) addAdView{
     
     _adView= [[UIView alloc] init];
-    _adView.backgroundColor = [UIColor clearColor];
+    _adView.backgroundColor = LINE_BG;
     [self addSubview:_adView];
 }
 

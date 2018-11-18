@@ -107,7 +107,7 @@
     _usernameLab.text = model.username;
     [_profile sd_setImageWithURL:[NSURL URLWithString:model.profile] placeholderImage:[UIImage imageNamed:@""]];
     _timeLab.text = model.create_at;
-    NSString *str =[NSString stringWithFormat:@"%@",model.context];
+    //NSString *str =[NSString stringWithFormat:@"%@",model.context];
     //_contextLab.text = model.context;
     /*
     _contextLab.text =[str stringByReplacingEmojiCheatCodesWithUnicode];
@@ -196,6 +196,7 @@
         
         UIImageView *img = [[UIImageView alloc] init];
         img.frame = imgView.bounds;
+        NSLog(@"http=%@",info.url);
         [img sd_setImageWithURL:[NSURL URLWithString:info.url] placeholderImage:[UIImage imageNamed:@""]];
         [imgView addSubview:img];
         imgView.tag = 100+i;

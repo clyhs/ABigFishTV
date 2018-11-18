@@ -305,7 +305,7 @@
 }
 
 -(void)guangzhu:(ABFChatInfo *)model{
-    
+    NSLog(@"gz");
 }
 
 

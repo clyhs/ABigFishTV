@@ -83,6 +83,8 @@
     _guangzhuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _guangzhuBtn.backgroundColor = COMMON_COLOR;
     [_guangzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
+    [_guangzhuBtn setTitle:@"已关注" forState:UIControlStateSelected];
+    
     [_guangzhuBtn setTintColor:[UIColor whiteColor]];
     _guangzhuBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     _guangzhuBtn.layer.cornerRadius = 4;
@@ -180,19 +182,7 @@
     [_profile sd_setImageWithURL:[NSURL URLWithString:model.profile] placeholderImage:[UIImage imageNamed:@""]];
     _timeLab.text = model.create_at;
     NSString *str =[NSString stringWithFormat:@"%@",model.context];
-    /*
-    _contextLab.text =[str stringByReplacingEmojiCheatCodesWithUnicode];
-    _contextLab.font = [UIFont systemFontOfSize:16];
-    _contextLab.numberOfLines = 0;
-    _contextLab.textColor = [UIColor darkGrayColor];
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:_contextLab.text attributes:@{NSKernAttributeName:@0}];
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    style.headIndent = 0;//缩进
-    style.firstLineHeadIndent = 0;
-    style.lineSpacing = 5;//行距
-    [text addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, text.length)];
-    _contextLab.attributedText = text;
-    [_contextLab sizeToFit];*/
+
     
     CGFloat labelWidth = kScreenWidth-60;
     
@@ -423,7 +413,7 @@
     [_guangzhuBtn mas_makeConstraints:^(MASConstraintMaker *make){
         make.right.equalTo(self.topView).offset(-10);
         make.top.equalTo(self.topView).offset(10);
-        make.width.mas_equalTo(45);
+        make.width.mas_equalTo(50);
         make.height.mas_equalTo(23);
     }];
     [_bottomLine mas_makeConstraints:^(MASConstraintMaker *make){
@@ -450,6 +440,11 @@
 -(void)guangzhuClick:(id)sender{
     UIButton *gzbtn = (UIButton *)sender;
     gzbtn.selected=!gzbtn.selected;
+    if(gzbtn.selected){
+        gzbtn.backgroundColor = [UIColor lightGrayColor];
+    }else{
+        gzbtn.backgroundColor = COMMON_COLOR;
+    }
     if([self.delegate respondsToSelector:@selector(guangzhu:)]){
         [self.delegate guangzhu:self.model];
     }
