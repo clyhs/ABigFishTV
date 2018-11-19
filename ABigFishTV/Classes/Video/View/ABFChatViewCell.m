@@ -181,8 +181,17 @@
     _usernameLab.text = model.username;
     [_profile sd_setImageWithURL:[NSURL URLWithString:model.profile] placeholderImage:[UIImage imageNamed:@""]];
     _timeLab.text = model.create_at;
-    NSString *str =[NSString stringWithFormat:@"%@",model.context];
+    //NSString *str =[NSString stringWithFormat:@"%@",model.context];
 
+    
+    if(model.fri>0){
+        _guangzhuBtn.selected = YES;
+        if(_guangzhuBtn.selected){
+            _guangzhuBtn.backgroundColor = [UIColor lightGrayColor];
+        }else{
+            _guangzhuBtn.backgroundColor = COMMON_COLOR;
+        }
+    }
     
     CGFloat labelWidth = kScreenWidth-60;
     

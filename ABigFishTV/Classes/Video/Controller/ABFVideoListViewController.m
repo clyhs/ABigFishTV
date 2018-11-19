@@ -94,6 +94,12 @@
     NSString *fullUrl = BaseUrl;
     if([self.typeId isEqualToString:@"1"]){
         fullUrl = [fullUrl stringByAppendingString:ChatUrl];
+        fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%@/%d",self.typeId,0]];
+        if([AppDelegate APP].user){
+            
+            fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%ld",[AppDelegate APP].user.id]];
+        }
+        
     }
     
     if([self.typeId isEqualToString:@"2"]){
@@ -111,6 +117,10 @@
     if([self.typeId isEqualToString:@"1"]){
         fullUrl = [fullUrl stringByAppendingString:ChatUrl];
         fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%@/%d",self.typeId,0]];
+        if([AppDelegate APP].user){
+            fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%ld",[AppDelegate APP].user.id]];
+        }
+        NSLog(@"url=%@",fullUrl);
     }
     
     if([self.typeId isEqualToString:@"2"]){
@@ -119,6 +129,7 @@
     fullUrl = [fullUrl stringByAppendingString:[NSString stringWithFormat:@"/%ld",(long)_curIndexPage]];
     NSLog(@"url=%@",fullUrl);
     //[self.tableView.mj_footer beginRefreshing];
+    
     [self loadData:fullUrl type:2];
 }
 
@@ -219,6 +230,13 @@
         //cell.frame = CGRectMake(0, 0, kScreenWidth, 90);
         ABFChatInfo *model = self.data[indexPath.row];
         [cell setModel:model];
+        if ([AppDelegate APP].user) {
+            if(model.user_id == [AppDelegate APP].user.id){
+                cell.guangzhuBtn.hidden = YES;
+                cell.guangzhuBtn.alpha = 0;
+            }
+        }
+        
         //NSLog(@"name........=%@",model.name);
         return cell;
     }

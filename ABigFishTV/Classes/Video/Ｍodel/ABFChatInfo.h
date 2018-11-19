@@ -30,5 +30,7 @@
 
 @property(nonatomic,assign) CGFloat imagesHeight;
 
+@property(nonatomic,assign) NSInteger fri;
+
 
 @end
