@@ -155,7 +155,14 @@
 }
 
 - (void)createUI{
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    UIView *statusBar = nil;
+    if (@available(iOS 13.0, *)) {
+        UIView *_localStatusBar = [[UIApplication sharedApplication].keyWindow.windowScene.statusBarManager performSelector:@selector(createLocalStatusBar)];
+        statusBar = [_localStatusBar performSelector:@selector(statusBar)];
+    } else {
+        // Fallback on earlier versions
+        statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    }
     _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height-statusBar.frame.size.height)];
     _mainScrollView.contentSize =CGSizeMake(kScreenWidth, kScreenHeight);
     _mainScrollView.bounces =YES;

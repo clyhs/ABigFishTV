@@ -95,7 +95,14 @@
 }
 
 - (void)setStatusBarBackgroundColor:(UIColor *)color {
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    UIView *statusBar = nil;
+    if (@available(iOS 13.0, *)) {
+        UIView *_localStatusBar = [[UIApplication sharedApplication].keyWindow.windowScene.statusBarManager performSelector:@selector(createLocalStatusBar)];
+        statusBar = [_localStatusBar performSelector:@selector(statusBar)];
+    } else {
+        // Fallback on earlier versions
+        statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    }
     if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
         statusBar.backgroundColor = color;
     }
@@ -117,7 +124,14 @@
     [super viewWillLayoutSubviews];
     
     self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    UIView *statusBar = nil;
+    if (@available(iOS 13.0, *)) {
+        UIView *_localStatusBar = [[UIApplication sharedApplication].keyWindow.windowScene.statusBarManager performSelector:@selector(createLocalStatusBar)];
+        statusBar = [_localStatusBar performSelector:@selector(statusBar)];
+    } else {
+        // Fallback on earlier versions
+        statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    }
     _tableView.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+statusBar.frame.size.height, kScreenWidth, kScreenHeight-self.navigationController.navigationBar.frame.size.height-statusBar.frame.size.height-self.tabBarController.tabBar.frame.size.height);
     
 }

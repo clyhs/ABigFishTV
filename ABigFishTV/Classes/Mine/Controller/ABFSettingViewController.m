@@ -108,7 +108,14 @@
     [super viewWillLayoutSubviews];
     
     self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    UIView *statusBar = nil;
+    if (@available(iOS 13.0, *)) {
+        UIView *_localStatusBar = [[UIApplication sharedApplication].keyWindow.windowScene.statusBarManager performSelector:@selector(createLocalStatusBar)];
+        statusBar = [_localStatusBar performSelector:@selector(statusBar)];
+    } else {
+        // Fallback on earlier versions
+        statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    }
     _tableView.frame = CGRectMake(0, statusBar.frame.size.height+40, kScreenWidth, kScreenHeight -(statusBar.frame.size.height+40));
     
 }
@@ -141,7 +148,14 @@
 
 
 - (void)setStatusBarBackgroundColor:(UIColor *)color {
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    UIView *statusBar = nil;
+    if (@available(iOS 13.0, *)) {
+        UIView *_localStatusBar = [[UIApplication sharedApplication].keyWindow.windowScene.statusBarManager performSelector:@selector(createLocalStatusBar)];
+        statusBar = [_localStatusBar performSelector:@selector(statusBar)];
+    } else {
+        // Fallback on earlier versions
+        statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    }
     if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
         statusBar.backgroundColor = color;
     }
@@ -165,7 +179,14 @@
 }
 
 -(void) addTableFooterView{
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    UIView *statusBar = nil;
+    if (@available(iOS 13.0, *)) {
+        UIView *_localStatusBar = [[UIApplication sharedApplication].keyWindow.windowScene.statusBarManager performSelector:@selector(createLocalStatusBar)];
+        statusBar = [_localStatusBar performSelector:@selector(statusBar)];
+    } else {
+        // Fallback on earlier versions
+        statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    }
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-60-statusBar.frame.size.height, kScreenWidth, 60)];
     footerView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:footerView];

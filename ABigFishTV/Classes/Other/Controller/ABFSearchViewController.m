@@ -76,7 +76,14 @@
 }
 
 - (void)setStatusBarBackgroundColor:(UIColor *)color {
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    UIView *statusBar = nil;
+    if (@available(iOS 13.0, *)) {
+        UIView *_localStatusBar = [[UIApplication sharedApplication].keyWindow.windowScene.statusBarManager performSelector:@selector(createLocalStatusBar)];
+        statusBar = [_localStatusBar performSelector:@selector(statusBar)];
+    } else {
+        // Fallback on earlier versions
+        statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    }
     if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
         statusBar.backgroundColor = color;
     }
@@ -131,18 +138,23 @@
         make.height.mas_equalTo(self.navView);
     }];*/
     _searchBar = searchBar;
-    UITextField *searchField = [searchBar valueForKey:@"_searchField"];
-    UIView *backgroundView = [searchBar valueForKey:@"_background"];
-    UIButton *cancelButton = [searchBar valueForKey:@"_cancelButton"];
+    //UITextField *searchField = [searchBar valueForKey:@"_searchField"];
+    UITextField *searchField = searchBar.searchTextField;
+    //UIView *backgroundView = [searchBar valueForKey:@"_background"];
+    searchBar.backgroundColor = [UIColor whiteColor];
+    //UIButton *cancelButton = [searchBar valueForKey:@"_cancelButton"];
     
-    backgroundView.backgroundColor = [UIColor whiteColor];
+    UIButton *cancelButton = [self findViewWithClassName:NSStringFromClass([UIButton class]) inView:searchBar];
+    
+    //backgroundView.backgroundColor = [UIColor whiteColor];
     // 设置输入文字的大小及颜色
     searchField.font = [UIFont systemFontOfSize:12];
     searchField.textColor = RGB_255(32,32,32);
     
     // 设置占位文字的大小及颜色
-    [searchField setValue:RGB_255(197,197,197) forKeyPath:@"_placeholderLabel.textColor"];
-    searchField.placeholder = @"搜索";
+    [searchField setValue:RGB_255(197,197,197) forKeyPath:@"placeholderLabel.textColor"];
+    //searchField.placeholder = @"搜索";
+    searchBar.searchTextField.placeholder = @"搜索";
     searchField.layer.cornerRadius = 12.0f;
     searchField.layer.masksToBounds = YES;
     searchField.layer.borderWidth = 0.5f;
@@ -159,6 +171,24 @@
       forControlEvents:UIControlEventTouchUpInside];
     
 
+}
+
+- (UIView *)findViewWithClassName:(NSString *)className inView:(UIView *)view{
+    Class specificView = NSClassFromString(className);
+    if ([view isKindOfClass:specificView]) {
+        return view;
+    }
+    
+    if (view.subviews.count > 0) {
+        for (UIView *subView in view.subviews) {
+            UIView *targetView = [self findViewWithClassName:className inView:subView];
+            if (targetView != nil) {
+                return targetView;
+            }
+        }
+    }
+    
+    return nil;
 }
 
 #pragma mark - **************** searchBar

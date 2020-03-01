@@ -60,7 +60,7 @@
     [self setUPAdapteriOS11];
     
     [self initShareSdk];
-    [self initUM:launchOptions];
+    //[self initUM:launchOptions];
     
     
     //[NSThread sleepForTimeInterval:2.0];
@@ -176,6 +176,7 @@
     [UMErrorCatch initErrorCatch];
     
     [MobClick setScenarioType:E_UM_NORMAL];
+    //[MobClick set]
     
     // Push组件基本功能配置
     [UNUserNotificationCenter currentNotificationCenter].delegate = self;
