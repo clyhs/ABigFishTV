@@ -35,11 +35,6 @@
 
 </div>
 
-### 微信捐赠
-* 如果如您觉得代码不错，请我喝杯咖啡吧，也是我开源之路的动力，谢谢。
-<div align="center">
-<img src="https://github.com/clyhs/ABigFishTV/blob/master/images/weixinpay.jpg" width
-="200" style="margin:10px 10px;">
-</div>
+
 
 
