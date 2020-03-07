@@ -398,6 +398,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
             [self interfaceOrientation:UIInterfaceOrientationLandscapeRight];
         }
         self.isFullScreen = YES;
+        // [self.controlView abf_playerCancelAutoFadeOutControlView];
     }
 }
 
@@ -700,8 +701,9 @@ typedef NS_ENUM(NSInteger, PanDirection){
     if(self.isShowMenu){
         [self.controlView abf_playerMenuSetting:NO index:0];
     }
-    if (self.playDidEnd) { return; }
-    else {
+    if (self.playDidEnd) {
+        return;
+    } else {
         [self.controlView abf_playerShowControlView];
     }
 }

@@ -339,10 +339,11 @@ static const CGFloat ABFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    [self abf_playerCancelAutoFadeOutControlView];
+    // [self abf_playerCancelAutoFadeOutControlView];
+    [self autoFadeOutControlView];
     if (!self.isShrink && !self.isPlayEnd) {
         // 只要屏幕旋转就显示控制层
-        [self abf_playerShowControlView];
+        // [self abf_playerShowControlView];
     }
     UIInterfaceOrientation currentOrientation = [UIApplication sharedApplication].statusBarOrientation;
     if (currentOrientation == UIDeviceOrientationPortrait) {

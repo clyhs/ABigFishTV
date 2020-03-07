@@ -127,7 +127,7 @@
     searchBar.barTintColor = LINE_BG;
     searchBar.backgroundImage = [[UIImage alloc] init];
     searchBar.showsCancelButton = YES;
-    searchBar.frame = CGRectMake(5, 5, kScreenWidth, self.navigationController.navigationBar.frame.size.height-10);
+    searchBar.frame = CGRectMake(0, 5, kScreenWidth, self.navigationController.navigationBar.frame.size.height-10);
     
     [self.navigationController.navigationBar addSubview:searchBar];
     /*
@@ -138,23 +138,32 @@
         make.height.mas_equalTo(self.navView);
     }];*/
     _searchBar = searchBar;
+    UITextField *searchField = nil;
+    UIButton *cancelButton = nil;
+    if (@available(iOS 13.0, *)) {
+        searchField = searchBar.searchTextField;
+        searchBar.backgroundColor = [UIColor whiteColor];
+        cancelButton = [self findViewWithClassName:NSStringFromClass([UIButton class]) inView:searchBar];
+        [searchField setValue:RGB_255(197,197,197) forKeyPath:@"placeholderLabel.textColor"];
+    }else{
+        searchField = [searchBar valueForKey:@"_searchField"];
+        UIView *backgroundView = [searchBar valueForKey:@"_background"];
+        backgroundView.backgroundColor = [UIColor whiteColor];
+        cancelButton = [searchBar valueForKey:@"_cancelButton"];
+        [searchField setValue:RGB_255(197,197,197) forKeyPath:@"_placeholderLabel.textColor"];
+    }
     //UITextField *searchField = [searchBar valueForKey:@"_searchField"];
-    UITextField *searchField = searchBar.searchTextField;
     //UIView *backgroundView = [searchBar valueForKey:@"_background"];
-    searchBar.backgroundColor = [UIColor whiteColor];
     //UIButton *cancelButton = [searchBar valueForKey:@"_cancelButton"];
-    
-    UIButton *cancelButton = [self findViewWithClassName:NSStringFromClass([UIButton class]) inView:searchBar];
-    
     //backgroundView.backgroundColor = [UIColor whiteColor];
     // 设置输入文字的大小及颜色
     searchField.font = [UIFont systemFontOfSize:12];
     searchField.textColor = RGB_255(32,32,32);
     
     // 设置占位文字的大小及颜色
-    [searchField setValue:RGB_255(197,197,197) forKeyPath:@"placeholderLabel.textColor"];
+    
     //searchField.placeholder = @"搜索";
-    searchBar.searchTextField.placeholder = @"搜索";
+    searchField.placeholder = @"搜索";
     searchField.layer.cornerRadius = 12.0f;
     searchField.layer.masksToBounds = YES;
     searchField.layer.borderWidth = 0.5f;

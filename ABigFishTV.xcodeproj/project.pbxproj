@@ -1654,7 +1654,7 @@
 				TargetAttributes = {
 					720B0DC11F7608E0005F30FA = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 7T64EQNHGQ;
+						DevelopmentTeam = 6BGHQWG8NV;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1679,6 +1679,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 720B0DB91F7608E0005F30FA;
@@ -1804,7 +1805,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ABigFishTV/Pods-ABigFishTV-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ABigFishTV/Pods-ABigFishTV-resources.sh",
 				"${PODS_ROOT}/AGEmojiKeyboard/Resources/EmojisList.plist",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/MWPhotoBrowser/MWPhotoBrowser.bundle",
@@ -1821,7 +1822,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ABigFishTV/Pods-ABigFishTV-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ABigFishTV/Pods-ABigFishTV-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7416FC9E794B7A5E64C654B9 /* [CP] Check Pods Manifest.lock */ = {
@@ -2093,7 +2094,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7T64EQNHGQ;
+				DEVELOPMENT_TEAM = 6BGHQWG8NV;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2165,7 +2166,7 @@
 					"\"Photos\"",
 					"-fobjc-arc",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.clyhs.ABigFishTV;
+				PRODUCT_BUNDLE_IDENTIFIER = com.clygd.ABigFishTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2178,7 +2179,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7T64EQNHGQ;
+				DEVELOPMENT_TEAM = 6BGHQWG8NV;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2250,7 +2251,7 @@
 					"\"Photos\"",
 					"-fobjc-arc",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.clyhs.ABigFishTV;
+				PRODUCT_BUNDLE_IDENTIFIER = com.clygd.ABigFishTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
