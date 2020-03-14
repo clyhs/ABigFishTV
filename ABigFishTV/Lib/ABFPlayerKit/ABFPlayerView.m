@@ -183,7 +183,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
     playerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self insertSubview:playerView atIndex:0];
     
-    [_player setScalingMode:IJKMPMovieScalingModeAspectFill];
+    [_player setScalingMode:IJKMPMovieScalingModeAspectFit];
     [self.controlView abf_playerResetControlView];
     [self install];
     [self installMovieNotificationObservers];
@@ -256,7 +256,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
     playerView.frame = self.bounds;
     playerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self insertSubview:playerView atIndex:0];
-    [_player setScalingMode:IJKMPMovieScalingModeAspectFill];
+    [_player setScalingMode:IJKMPMovieScalingModeAspectFit];
     [self install];
     [self installMovieNotificationObservers];
     
