@@ -45,10 +45,9 @@
 
 -(UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
 {
-    /*
     if (self.allowRotation) {
         return UIInterfaceOrientationMaskAllButUpsideDown;
-    }*/
+    }
     return UIInterfaceOrientationMaskPortrait;
 }
 
@@ -56,6 +55,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+
     
     [self setUPAdapteriOS11];
     

@@ -345,7 +345,8 @@ static const CGFloat ABFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
         // 只要屏幕旋转就显示控制层
         // [self abf_playerShowControlView];
     }
-    UIInterfaceOrientation currentOrientation = [UIApplication sharedApplication].statusBarOrientation;
+    //UIInterfaceOrientation currentOrientation = [UIApplication sharedApplication].statusBarOrientation;
+    UIInterfaceOrientation currentOrientation = (UIInterfaceOrientation)[UIDevice currentDevice].orientation;
     if (currentOrientation == UIDeviceOrientationPortrait) {
         [self setOrientationPortraitConstraint];
     } else {
@@ -732,7 +733,8 @@ static const CGFloat ABFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 
 -(void)backBtnClick:(UIButton *)sender{
     // 状态条的方向旋转的方向,来判断当前屏幕的方向
-    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    //UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    UIInterfaceOrientation orientation = (UIInterfaceOrientation)[UIDevice currentDevice].orientation;
     // 在cell上并且是竖屏时候响应关闭事件
     if (orientation == UIInterfaceOrientationPortrait && self.isShrink) {
         if ([self.delegate respondsToSelector:@selector(abf_controlView:closeAction:)]) {
