@@ -227,6 +227,9 @@
         ABFChatViewCell *cell = [[ABFChatViewCell alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 90)];
         //ABFChatViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mycell" forIndexPath:indexPath];
         cell.delegate = self;
+        NSLog(@"%lu",self.data.count);
+        NSLog(@"%lu", indexPath.row);
+        
         //cell.frame = CGRectMake(0, 0, kScreenWidth, 90);
         ABFChatInfo *model = self.data[indexPath.row];
         [cell setModel:model];

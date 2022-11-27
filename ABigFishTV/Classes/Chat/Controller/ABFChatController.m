@@ -523,8 +523,7 @@
         [PPNetworkHelper setResponseSerializer:PPResponseSerializerHTTP];
         
         
-        
-        [PPNetworkHelper uploadImagesWithURL2:fullUrl parameters:params name:names images:[self.selectedPhotos mutableCopy] fileNames:[fileNames mutableCopy] imageScale:1.0f imageType:@"png" progress:^(NSProgress *progress) {
+        [PPNetworkHelper uploadImagesWithURL:fullUrl parameters:params name:names images:[self.selectedPhotos mutableCopy] fileNames:[fileNames mutableCopy] imageScale:1.0f imageType:@"png" progress:^(NSProgress *progress) {
             NSLog(@"%lf",1.0*progress.completedUnitCount/progress.totalUnitCount);
         } success:^(id responseObject) {
             ABFResultInfo *result = [ABFResultInfo mj_objectWithKeyValues:responseObject];

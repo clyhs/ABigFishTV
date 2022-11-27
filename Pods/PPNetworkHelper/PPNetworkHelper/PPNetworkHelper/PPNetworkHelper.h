@@ -222,17 +222,6 @@ typedef void(^PPNetworkStatus)(PPNetworkStatusType status);
                                            success:(PPHttpRequestSuccess)success
                                            failure:(PPHttpRequestFailed)failure;
 
-+ (__kindof NSURLSessionTask *)uploadImagesWithURL2:(NSString *)URL
-                                        parameters:(id)parameters
-                                              name:(NSArray<NSString *> *)names
-                                            images:(NSArray<UIImage *> *)images
-                                         fileNames:(NSArray<NSString *> *)fileNames
-                                        imageScale:(CGFloat)imageScale
-                                         imageType:(NSString *)imageType
-                                          progress:(PPHttpProgress)progress
-                                           success:(PPHttpRequestSuccess)success
-                                           failure:(PPHttpRequestFailed)failure;
-
 /**
  *  下载文件
  *

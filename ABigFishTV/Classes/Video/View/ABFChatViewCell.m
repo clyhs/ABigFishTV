@@ -271,7 +271,8 @@
         
         UIImageView *img = [[UIImageView alloc] init];
         img.frame = imgView.bounds;
-        [img sd_setImageWithURL:[NSURL URLWithString:info.url] placeholderImage:[UIImage imageNamed:@""]];
+        NSLog(@"%@",info);
+        //[img sd_setImageWithURL:[NSURL URLWithString:info.url] placeholderImage:[UIImage imageNamed:@""]];
         [imgView addSubview:img];
         imgView.tag = 100+i;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTouchImage:)];

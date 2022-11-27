@@ -27,7 +27,6 @@
 		7203DB771FB1F75600F10C47 /* UILabel+ABFLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7203DB761FB1F75600F10C47 /* UILabel+ABFLabel.m */; };
 		7205B58720595B5F0061084E /* ABFCollectionTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7205B58620595B5F0061084E /* ABFCollectionTopCell.m */; };
 		7206D1431FAD620F0045FBA5 /* ABFPListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7206D1421FAD620F0045FBA5 /* ABFPListViewController.m */; };
-		720776ED1FAA1F41009220FC /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 720055D51FA56491003280F7 /* IJKMediaFramework.framework */; };
 		720807DB1FB32C35005D39F5 /* ABFAllChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 720807DA1FB32C35005D39F5 /* ABFAllChannelViewController.m */; };
 		720807DE1FB32F1B005D39F5 /* ABFDictInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 720807DD1FB32F1B005D39F5 /* ABFDictInfo.m */; };
 		720807E11FB33DEE005D39F5 /* ABFLeftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 720807E01FB33DEE005D39F5 /* ABFLeftTableViewCell.m */; };
@@ -50,7 +49,6 @@
 		720958111FA234D500DFC8F9 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 720958101FA234D500DFC8F9 /* VideoToolbox.framework */; };
 		720958131FA234E400DFC8F9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 720958121FA234E400DFC8F9 /* libz.tbd */; };
 		720958151FA2350A00DFC8F9 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 720958141FA2350A00DFC8F9 /* libbz2.tbd */; };
-		720958191FA2368300DFC8F9 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 720958181FA2368300DFC8F9 /* libstdc++.tbd */; };
 		720A8DD71FE7FB310046A061 /* ABFProgramInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 720A8DD61FE7FB310046A061 /* ABFProgramInfo.m */; };
 		720A8DDA1FE7FC4A0046A061 /* ABFProgramViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 720A8DD91FE7FC4A0046A061 /* ABFProgramViewCell.m */; };
 		720B0DC71F7608E0005F30FA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 720B0DC61F7608E0005F30FA /* main.m */; };
@@ -189,6 +187,7 @@
 		7270F04A1FC95E61009F83EC /* ABFCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7270F0491FC95E61009F83EC /* ABFCacheManager.m */; };
 		72810D2F20AC6AC0006C7860 /* NSString+ABF.m in Sources */ = {isa = PBXBuildFile; fileRef = 72810D2E20AC6AC0006C7860 /* NSString+ABF.m */; };
 		728E5A541FDD2EF600E034DB /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 728E5A531FDD2EF600E034DB /* UIView+Extension.m */; };
+		72C2A23D2932508E00C39B99 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 720055D51FA56491003280F7 /* IJKMediaFramework.framework */; };
 		72C2C3371F7BEDFE00BDC850 /* tvTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72C2C3361F7BEDFE00BDC850 /* tvTypes.plist */; };
 		72DB59202088CFEF00645FD2 /* ABFPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72DB59142088CFEE00645FD2 /* ABFPlayerView.m */; };
 		72DB59232088CFEF00645FD2 /* ABFPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72DB59172088CFEF00645FD2 /* ABFPlayerControlView.m */; };
@@ -323,7 +322,6 @@
 		720958101FA234D500DFC8F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		720958121FA234E400DFC8F9 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		720958141FA2350A00DFC8F9 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
-		720958181FA2368300DFC8F9 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		720A8DD51FE7FB310046A061 /* ABFProgramInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFProgramInfo.h; path = Classes/Home/Model/ABFProgramInfo.h; sourceTree = "<group>"; };
 		720A8DD61FE7FB310046A061 /* ABFProgramInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFProgramInfo.m; path = Classes/Home/Model/ABFProgramInfo.m; sourceTree = "<group>"; };
 		720A8DD81FE7FC4A0046A061 /* ABFProgramViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFProgramViewCell.h; path = Classes/Home/View/ABFProgramViewCell.h; sourceTree = "<group>"; };
@@ -560,6 +558,7 @@
 		72810D2E20AC6AC0006C7860 /* NSString+ABF.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSString+ABF.m"; path = "Foundation/Category/NSString+ABF.m"; sourceTree = "<group>"; };
 		728E5A521FDD2EF600E034DB /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Extension.h"; path = "Foundation/Category/UIView+Extension.h"; sourceTree = "<group>"; };
 		728E5A531FDD2EF600E034DB /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Extension.m"; path = "Foundation/Category/UIView+Extension.m"; sourceTree = "<group>"; };
+		72A137242929193B000DD0A5 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		72C2C3361F7BEDFE00BDC850 /* tvTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tvTypes.plist; sourceTree = "<group>"; };
 		72DB59112088CFEE00645FD2 /* ABFPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFPlayerView.h; path = Lib/ABFPlayerKit/ABFPlayerView.h; sourceTree = "<group>"; };
 		72DB59122088CFEE00645FD2 /* ABFPlayerControlViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFPlayerControlViewDelegate.h; path = Lib/ABFPlayerKit/ABFPlayerControlViewDelegate.h; sourceTree = "<group>"; };
@@ -637,6 +636,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72C2A23D2932508E00C39B99 /* IJKMediaFramework.framework in Frameworks */,
 				726286FF2000DC480047D6EA /* MailConnector.framework in Frameworks */,
 				7264E5B41FFA0F0E0085DD89 /* JavaScriptCore.framework in Frameworks */,
 				7264E5B21FFA0F000085DD89 /* libicucore.tbd in Frameworks */,
@@ -651,9 +651,7 @@
 				72350DF01FF907F80024C5A9 /* CoreTelephony.framework in Frameworks */,
 				72350DEE1FF907F00024C5A9 /* Security.framework in Frameworks */,
 				72350DEC1FF907E10024C5A9 /* SystemConfiguration.framework in Frameworks */,
-				720776ED1FAA1F41009220FC /* IJKMediaFramework.framework in Frameworks */,
 				726286FD2000DC480047D6EA /* ShareSDKUI.framework in Frameworks */,
-				720958191FA2368300DFC8F9 /* libstdc++.tbd in Frameworks */,
 				720958151FA2350A00DFC8F9 /* libbz2.tbd in Frameworks */,
 				720958131FA234E400DFC8F9 /* libz.tbd in Frameworks */,
 				720958111FA234D500DFC8F9 /* VideoToolbox.framework in Frameworks */,
@@ -1555,6 +1553,7 @@
 		A0B97454DEC5F677DDCF8C77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				72A137242929193B000DD0A5 /* libc++.tbd */,
 				7264E5B31FFA0F0E0085DD89 /* JavaScriptCore.framework */,
 				7264E5B11FFA0F000085DD89 /* libicucore.tbd */,
 				72350DF91FF909300024C5A9 /* CoreText.framework */,
@@ -1566,7 +1565,6 @@
 				72350DED1FF907F00024C5A9 /* Security.framework */,
 				72350DEB1FF907E10024C5A9 /* SystemConfiguration.framework */,
 				720055D51FA56491003280F7 /* IJKMediaFramework.framework */,
-				720958181FA2368300DFC8F9 /* libstdc++.tbd */,
 				720958141FA2350A00DFC8F9 /* libbz2.tbd */,
 				720958121FA234E400DFC8F9 /* libz.tbd */,
 				720958101FA234D500DFC8F9 /* VideoToolbox.framework */,
@@ -2108,12 +2106,14 @@
 				);
 				GCC_PREFIX_HEADER = "${SRCROOT}/ABigFishTV/ABigFishTV-Prefix.pch";
 				INFOPLIST_FILE = ABigFishTV/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ABigFishTV/Lib/SDK/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/ABigFishTV/Lib/SDK/ShareSDK/Support/PlatformSDK/WeChatSDK",
 				);
+				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2193,6 +2193,7 @@
 				);
 				GCC_PREFIX_HEADER = "${SRCROOT}/ABigFishTV/ABigFishTV-Prefix.pch";
 				INFOPLIST_FILE = ABigFishTV/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
