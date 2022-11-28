@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E457BD73E8D58155D23CFE6 /* libPods-ABigFishTV.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5498489DFE61E836E8C6553D /* libPods-ABigFishTV.a */; };
 		72018B601F9E32AB00E04EC5 /* ABFChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72018B5F1F9E32AB00E04EC5 /* ABFChannelListViewController.m */; };
 		7203C7411FCC2FDC002215D5 /* BRPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7203C7401FCC2FDC002215D5 /* BRPlaceholderTextView.m */; };
 		7203C7501FCC3225002215D5 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 7203C7441FCC3225002215D5 /* close.png */; };
@@ -187,7 +186,7 @@
 		7270F04A1FC95E61009F83EC /* ABFCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7270F0491FC95E61009F83EC /* ABFCacheManager.m */; };
 		72810D2F20AC6AC0006C7860 /* NSString+ABF.m in Sources */ = {isa = PBXBuildFile; fileRef = 72810D2E20AC6AC0006C7860 /* NSString+ABF.m */; };
 		728E5A541FDD2EF600E034DB /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 728E5A531FDD2EF600E034DB /* UIView+Extension.m */; };
-		72C2A23D2932508E00C39B99 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 720055D51FA56491003280F7 /* IJKMediaFramework.framework */; };
+		72B5DA4629345DD3007DF104 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72B5DA4529345DD3007DF104 /* IJKMediaFramework.framework */; };
 		72C2C3371F7BEDFE00BDC850 /* tvTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72C2C3361F7BEDFE00BDC850 /* tvTypes.plist */; };
 		72DB59202088CFEF00645FD2 /* ABFPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72DB59142088CFEE00645FD2 /* ABFPlayerView.m */; };
 		72DB59232088CFEF00645FD2 /* ABFPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72DB59172088CFEF00645FD2 /* ABFPlayerControlView.m */; };
@@ -242,6 +241,7 @@
 		72FC5E2F1FAB5883001C8DCA /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FC5E2E1FAB5883001C8DCA /* UIColor+Hex.m */; };
 		72FE991E1F90F9E500F64005 /* channels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72FE991D1F90F9E500F64005 /* channels.plist */; };
 		72FECD8B1FAE1AA1006CD1A9 /* test.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72FECD8A1FAE1AA1006CD1A9 /* test.plist */; };
+		D281C05CDD65816DC806C7AF /* libPods-ABigFishTV.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 551656B70D827975DDA411B0 /* libPods-ABigFishTV.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -263,8 +263,7 @@
 
 /* Begin PBXFileReference section */
 		3092B862EB07DFCE5C9DABAB /* Pods-ABigFishTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABigFishTV.release.xcconfig"; path = "Pods/Target Support Files/Pods-ABigFishTV/Pods-ABigFishTV.release.xcconfig"; sourceTree = "<group>"; };
-		5498489DFE61E836E8C6553D /* libPods-ABigFishTV.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ABigFishTV.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		720055D51FA56491003280F7 /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
+		551656B70D827975DDA411B0 /* libPods-ABigFishTV.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ABigFishTV.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		72018B5E1F9E32AB00E04EC5 /* ABFChannelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFChannelListViewController.h; path = Classes/Home/Controller/ABFChannelListViewController.h; sourceTree = "<group>"; };
 		72018B5F1F9E32AB00E04EC5 /* ABFChannelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABFChannelListViewController.m; path = Classes/Home/Controller/ABFChannelListViewController.m; sourceTree = "<group>"; };
 		7203C73F1FCC2FDC002215D5 /* BRPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BRPlaceholderTextView.h; path = Lib/PlaceholderTextView/BRPlaceholderTextView.h; sourceTree = "<group>"; };
@@ -559,6 +558,7 @@
 		728E5A521FDD2EF600E034DB /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Extension.h"; path = "Foundation/Category/UIView+Extension.h"; sourceTree = "<group>"; };
 		728E5A531FDD2EF600E034DB /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Extension.m"; path = "Foundation/Category/UIView+Extension.m"; sourceTree = "<group>"; };
 		72A137242929193B000DD0A5 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		72B5DA4529345DD3007DF104 /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
 		72C2C3361F7BEDFE00BDC850 /* tvTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tvTypes.plist; sourceTree = "<group>"; };
 		72DB59112088CFEE00645FD2 /* ABFPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFPlayerView.h; path = Lib/ABFPlayerKit/ABFPlayerView.h; sourceTree = "<group>"; };
 		72DB59122088CFEE00645FD2 /* ABFPlayerControlViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFPlayerControlViewDelegate.h; path = Lib/ABFPlayerKit/ABFPlayerControlViewDelegate.h; sourceTree = "<group>"; };
@@ -636,7 +636,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72C2A23D2932508E00C39B99 /* IJKMediaFramework.framework in Frameworks */,
+				72B5DA4629345DD3007DF104 /* IJKMediaFramework.framework in Frameworks */,
 				726286FF2000DC480047D6EA /* MailConnector.framework in Frameworks */,
 				7264E5B41FFA0F0E0085DD89 /* JavaScriptCore.framework in Frameworks */,
 				7264E5B21FFA0F000085DD89 /* libicucore.tbd in Frameworks */,
@@ -674,7 +674,7 @@
 				726286F72000DC480047D6EA /* MOBFoundation.framework in Frameworks */,
 				720957FD1FA2343700DFC8F9 /* AudioToolbox.framework in Frameworks */,
 				726287002000DC480047D6EA /* QQConnector.framework in Frameworks */,
-				1E457BD73E8D58155D23CFE6 /* libPods-ABigFishTV.a in Frameworks */,
+				D281C05CDD65816DC806C7AF /* libPods-ABigFishTV.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1553,6 +1553,7 @@
 		A0B97454DEC5F677DDCF8C77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				72B5DA4529345DD3007DF104 /* IJKMediaFramework.framework */,
 				72A137242929193B000DD0A5 /* libc++.tbd */,
 				7264E5B31FFA0F0E0085DD89 /* JavaScriptCore.framework */,
 				7264E5B11FFA0F000085DD89 /* libicucore.tbd */,
@@ -1564,7 +1565,6 @@
 				72350DEF1FF907F80024C5A9 /* CoreTelephony.framework */,
 				72350DED1FF907F00024C5A9 /* Security.framework */,
 				72350DEB1FF907E10024C5A9 /* SystemConfiguration.framework */,
-				720055D51FA56491003280F7 /* IJKMediaFramework.framework */,
 				720958141FA2350A00DFC8F9 /* libbz2.tbd */,
 				720958121FA234E400DFC8F9 /* libz.tbd */,
 				720958101FA234D500DFC8F9 /* VideoToolbox.framework */,
@@ -1578,7 +1578,7 @@
 				720958001FA2346500DFC8F9 /* CoreGraphics.framework */,
 				720957FE1FA2344E00DFC8F9 /* AVFoundation.framework */,
 				720957FC1FA2343700DFC8F9 /* AudioToolbox.framework */,
-				5498489DFE61E836E8C6553D /* libPods-ABigFishTV.a */,
+				551656B70D827975DDA411B0 /* libPods-ABigFishTV.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2094,6 +2094,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 6BGHQWG8NV;
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=*]" = "EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64=arm64 arm64e armv7 armv7s armv6 i386 armv8 EXCLUDED_ARCHS=$(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT)) arm64";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2113,6 +2114,7 @@
 					"$(PROJECT_DIR)/ABigFishTV/Lib/SDK/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/ABigFishTV/Lib/SDK/ShareSDK/Support/PlatformSDK/WeChatSDK",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
