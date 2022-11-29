@@ -347,7 +347,7 @@ static const CGFloat ABFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     }
     //UIInterfaceOrientation currentOrientation = [UIApplication sharedApplication].statusBarOrientation;
     UIInterfaceOrientation currentOrientation = (UIInterfaceOrientation)[UIDevice currentDevice].orientation;
-    if (currentOrientation == UIDeviceOrientationPortrait) {
+    if (currentOrientation == UIDeviceOrientationPortrait || currentOrientation == UIDeviceOrientationUnknown) {
         [self setOrientationPortraitConstraint];
     } else {
         [self setOrientationLandscapeConstraint];

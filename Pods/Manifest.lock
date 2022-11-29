@@ -102,7 +102,7 @@ DEPENDENCIES:
   - ZFDownload
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - AFNetworking
     - AGEmojiKeyboard
     - ASIHTTPRequest
@@ -176,4 +176,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 158cb027cf51f5d0477ee4e49bf26b2e6a211f47
 
-COCOAPODS: 1.9.0
+COCOAPODS: 1.11.3

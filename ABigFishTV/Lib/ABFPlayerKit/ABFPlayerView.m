@@ -472,6 +472,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
     NSLog(@"toOrientation start");
     //UIInterfaceOrientation currentOrientation = [UIApplication sharedApplication].statusBarOrientation;
     UIInterfaceOrientation currentOrientation = (UIInterfaceOrientation)[UIDevice currentDevice].orientation;
+    NSLog(@"toOrientation start %ld %ld",currentOrientation,orientation);
     // 判断如果当前方向和要旋转的方向一致,那么不做任何操作
     if (currentOrientation == orientation) {
         NSLog(@"no to orien");
@@ -481,7 +482,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
     // 根据要旋转的方向,使用Masonry重新修改限制
     if (orientation != UIInterfaceOrientationPortrait) {//
         //这个地方加判断是为了从全屏的一侧,直接到全屏的另一侧不用修改限制,否则会出错;
-        if (currentOrientation == UIInterfaceOrientationPortrait) {
+        if (currentOrientation == UIInterfaceOrientationPortrait || currentOrientation == UIDeviceOrientationUnknown) {
             [self removeFromSuperview];
             ABFBrightnessView *brightnessView = [ABFBrightnessView sharedBrightnessView];
             [[UIApplication sharedApplication].keyWindow insertSubview:self belowSubview:brightnessView];
@@ -613,22 +614,12 @@ typedef NS_ENUM(NSInteger, PanDirection){
         // 获取到当前状态条的方向
         //UIInterfaceOrientation currentOrientation = [UIApplication sharedApplication].statusBarOrientation;
         UIInterfaceOrientation currentOrientation = (UIInterfaceOrientation)[UIDevice currentDevice].orientation;
+        
+        NSLog(@"%ld", currentOrientation);
         if (currentOrientation == UIInterfaceOrientationPortrait) {
             [self setOrientationPortraitConstraint];
-            /*
-            if (self.cellPlayerOnCenter) {
-                if ([self.scrollView isKindOfClass:[UITableView class]]) {
-                    UITableView *tableView = (UITableView *)self.scrollView;
-                    [tableView scrollToRowAtIndexPath:self.indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
-                    
-                } else if ([self.scrollView isKindOfClass:[UICollectionView class]]) {
-                    UICollectionView *collectionView = (UICollectionView *)self.scrollView;
-                    [collectionView scrollToItemAtIndexPath:self.indexPath atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
-                }
-            }*/
             [self.brightnessView removeFromSuperview];
             [[UIApplication sharedApplication].keyWindow addSubview:self.brightnessView];
-            
             [self.brightnessView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.width.height.mas_equalTo(155);
                 make.leading.mas_equalTo((ScreenWidth-155)/2);
@@ -636,10 +627,13 @@ typedef NS_ENUM(NSInteger, PanDirection){
             }];
         } else {
             if (currentOrientation == UIInterfaceOrientationLandscapeRight) {
+                NSLog(@"11..");
                 [self toOrientation:UIInterfaceOrientationLandscapeRight];
             } else if (currentOrientation == UIDeviceOrientationLandscapeLeft){
+                NSLog(@"12..");
                 [self toOrientation:UIInterfaceOrientationLandscapeLeft];
             }
+            NSLog(@"111..");
             [self.brightnessView removeFromSuperview];
             [self addSubview:self.brightnessView];
             
